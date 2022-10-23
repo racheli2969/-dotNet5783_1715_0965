@@ -13,3 +13,11 @@ C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.pdb
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.genruntimeconfig.cache
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\ref\stage0.dll
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.csproj.AssemblyReference.cache
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.AssemblyInfoInputs.cache
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.AssemblyInfo.cs
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.csproj.CoreCompileInputs.cache
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.dll
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\ref\stage0.dll
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.pdb

@@ -2,7 +2,7 @@
 
 namespace stage0
 {
-   partial class P
+   partial class Program
     {
         static void Main(string[] args)
         {
