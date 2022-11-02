@@ -22,7 +22,7 @@ internal static class DataSource
     /// </summary>
     private static void Add_Items()
     {
-
+      
     }
     private static void Add_Order()
     {
@@ -50,11 +50,12 @@ internal static class DataSource
         public static int LastIndexOrder { get { return IndexOrder++; } };
         public static int LastIndexOrderItem { get { return IndexOrderItem++; } };
         public static int LastItemId {get { return ItemId++; } };
-        public static int 
+        public static int LastItemOrderId { get { return OrderId++; } };
+        public static int LastOrderItemId { get { return OrderItemId++; } };
         /// <summary>
         /// indexs for the first available place in the data arrays
         /// </summary>
-        internal int CountItems = 0;
+       
     }
 }
 
