@@ -9,9 +9,16 @@ internal static class DataSource
     {
         S_Initalize();
     }
+    string [] bookNames = {"Danny","Ivory","Danger","Diverse","Rainy days","Rachel","The janitor's daughter","Esther","Cell 35"}
+    //price and in stock randomly
+    string [] customerNames = {"Ruth","Esther","Abigayil","Leah","Rachel","Shlomo","Meir","Aharon","Eliyahu","Yehuda","Iska","Shoshana","Ayala","Shimon","Chaim","Yael","Eliezer","Moshe","Dan"}
+    string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
+    string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
+    string[] cities = { "Yerushalaim", "Rehovot", "Beit shemesh", "Beitar", "Rishon Letzion", "NesZiona" };
+
     private static Item CreateProductData()
     {
-
+        Item
         return Item;
     }
     private static Order CreateOrderData()
