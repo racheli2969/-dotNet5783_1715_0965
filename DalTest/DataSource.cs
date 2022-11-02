@@ -6,47 +6,34 @@ internal static class DataSource
 {
     static DataSource()
     {
-        S_Initalize();
+        S_Initalize(0);
     }
-    private static Item createProductdata()
+    private static void S_Initalize(int type)
     {
-        return Item;
-    }
-    private static void Add_Item(Item item)
-    {
-      
-          Items[Config.LastIndexItem] = item;
-        
-    }
-
-    private static void Add_Order()
-    {
-        Orders[Config.LastIndexOrder] = order;
-    }
-    private static void Add_OrderItem()
-    {
-        OrderItems[Config.LastIndexOrderItem] = orderItem;
-    }
-    private static void S_Initalize()
-    {
-        Item item;
-        for(int i = 0; i < 10; i++)
+        switch (type)
         {
-            item = createProductdata();
-            Add_Item(item);
-        }
-       
-        Add_Order();
-        Add_OrderItem();
-           
+            case 0: Add_Items(); break;
+            default: Add_Items(); break;
         }
     }
 
     /// <summary>
     /// adds items to the item array
     /// </summary>
-  
-    public static readonly Random Number = new Random();
+    private static void Add_Items()
+    {
+      
+    }
+    private static void Add_Order()
+    {
+
+    }
+    private static void Add_OrderItem()
+    {
+
+    }
+    public static readonly Random Number =
+       new Random();
     internal static Item[] Items = new Item[50];
     internal static OrderItem[] OrderItems = new OrderItem[200];
     internal static Order[] Orders = new Order[100];
@@ -68,7 +55,8 @@ internal static class DataSource
         /// <summary>
         /// indexs for the first available place in the data arrays
         /// </summary>
-       `
+
     }
+    
 }
 
