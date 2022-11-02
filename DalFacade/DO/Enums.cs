@@ -2,9 +2,21 @@
 namespace DO;
 
 /// <summary>
-/// structure for all enums in project
+/// file for all enums in project
 /// </summary>
-public struct Enums
+enum eBookGenre
 {
-
+    Fiction,
+    History,
+    Biography,
+    Fantasy,
+    Sci-Fi,
+    Mystery,
+    Thriller
+}
+enum eBookCategory
+{ 
+    Children,
+    Teens,
+    Adults
 }
