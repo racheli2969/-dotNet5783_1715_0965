@@ -93,11 +93,11 @@ switch(characterType){
 
  void Main(){
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
-    int x = int.Parse(Console.ReadLine());
+    int x = Convert.ToInt32(Console.Read());
     while (x < 0 || x > 3)
     {
         Console.WriteLine("Input needs to be between 0 and 3\nPlease try again");
-        x = int.Parse(Console.ReadLine());
+        x = Convert.ToInt32(Console.Read());
     }
 if(x!=0)
         ControlOptions(x);
