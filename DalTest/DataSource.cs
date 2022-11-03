@@ -1,5 +1,6 @@
 ﻿
 using DO;
+using System.Diagnostics.Metrics;
 
 namespace Dal;
 internal static class DataSource
@@ -41,11 +42,20 @@ internal static class DataSource
 
     private static Item CreateProductData()
     {
+        int counter = 0;
         Item item= new Item();
         item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
-        item.InStock = Convert.ToBoolean(Number.NextInt64(0, 1));
+        for (int i = 0; i < Items.Length; i++)
+        {
+            if (Items[i].InStock == false)
+              counter++;
+        }
+        if (Items.Length / counter > 0.5 * Items.Length)
+            item.InStock = Convert.ToBoolean(Number.NextInt64(0, 1));
+        else
+            item.InStock = false;
         item.Price = Number.NextInt64(35,140);
-        item.ID = Number.NextInt64(100000,999999); 
+        item.ID = (Config.LastItemId ) * 100000;
         item.Category = bookNames[Number.NextInt64(0, bookNames.Length)].Item2;
         return item;
     }
