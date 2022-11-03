@@ -4,7 +4,7 @@ namespace DO;
 /// <summary>
 /// file for all enums in project
 /// </summary>
-enum eBookGenre
+public enum BookGenre
 {
     Fiction,
     History,
@@ -14,25 +14,25 @@ enum eBookGenre
     Mystery,
     Thriller
 }
-enum eBookCategory
+public enum BookCategory
 { 
     Children,
     Teens,
     Adults
 }
-enum optionsForMain
+public enum OptionsForMain
 {
     Exit,
     Item,
     Order,
     OrderItem
 }
-enum optionsOfActions
+public enum OptionsOfActions
 {   
-    Exit,
-    AddObject='a',
+    Exit=0,
+    AddItem='a',
     ViewById='b',
     ViewAll='c',
-    UpdateObj='d',
-    DeleteObj='e'
+    UpdateItem='d',
+    DeleteItem='e'
 }
