@@ -10,7 +10,7 @@ enum eBookGenre
     History,
     Biography,
     Fantasy,
-    Sci-Fi,
+    SciFi,
     Mystery,
     Thriller
 }

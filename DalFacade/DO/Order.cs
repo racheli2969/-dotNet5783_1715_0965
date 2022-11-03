@@ -12,7 +12,7 @@ public struct Order
     public DateTime DateReceived { get; set; }
 
     public override string ToString() => $@"
-Order ID={ID}, Customer Name: {CustomerName}, 
+Order ID={OrderId}, Customer Name: {CustomerName}, 
 Email: {Email},
     	Address: {Address},
     	Date Ordered: {DateOrdered},
