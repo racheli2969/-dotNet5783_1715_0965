@@ -1,15 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace DO;
 
 /// <summary>
-/// structure for all enums in project
+/// file for all enums in project
 /// </summary>
-public struct Enums
+enum eBookGenre
 {
-
+    Fiction,
+    History,
+    Biography,
+    Fantasy,
+    SciFi,
+    Mystery,
+    Thriller
+}
+enum eBookCategory
+{ 
+    Children,
+    Teens,
+    Adults
+}
+enum optionsForMain
+{
+    Exit,
+    Item,
+    Order,
+    OrderItem
+}
+enum optionsOfActions
+{   
+    Exit,
+    AddObject='a',
+    ViewById='b',
+    ViewAll='c',
+    UpdateObj='d',
+    DeleteObj='e'
 }
