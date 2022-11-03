@@ -33,15 +33,8 @@ internal static class DataSource
         /// </summary>
 
     }
- //static (string, BookCategory)[] bookNames = new (string, BookCategory)[10]
-           // {
-           //    (string ,eCategory )new    ("כסא" , eCategory.Babies )
-           // }}(string, eCategory)[] productnames = new (string, eCategory)[10]
-           // {
-           //    (string ,eCategory )new    ("כסא" , eCategory.Babies )
-          //  }}
-  //  stat*ic string[] bookNames = { "Danny", "Ivory", "Danger", "Diverse", "Rainy days", "Rachel", "The janitor's daughter", "Esther", "Cell 35" };
-    //price and in stock randomly
+    static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children),("Ivory",) };
+  // static string[] bookNames = { "Danny", "Ivory", "Danger", "Diverse", "Rainy days", "Rachel", "The janitor's daughter", "Esther", "Cell 35" };
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
     static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
@@ -51,7 +44,7 @@ internal static class DataSource
     private static Item CreateProductData()
     {
         Item item= new Item();
-        item.Name = bookNames[Number.Next(0, bookNames.Length)];
+        item.Name = 
         item.InStock = Convert.ToBoolean(Number.Next(0, 1));
         item.Price = Number.Next(35,140);
         item.ID = Number.Next(0, Config.LastItemId); 
@@ -66,8 +59,8 @@ internal static class DataSource
         order.Address = streets[Number.Next(0, streets.Length)] + cities[Number.Next(0,cities.Length)]+Number.Next(0,cities.Length);
         order.CustomerName = customerNames[Number.Next(0,customerNames.Length)];
         order.Email = emails[Number.Next(0, emails.Length)];
-        order.DateDelivered
-        order.DateOrdered
+        order.DateDelivered=
+        order.DateOrdered=
         order.DateReceived= DateTime.Now;
         return order;
     }
