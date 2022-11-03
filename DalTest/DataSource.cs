@@ -1,6 +1,7 @@
 ﻿
-namespace Dal;
+using DO;
 
+namespace Dal;
 internal static class DataSource
 {
 
@@ -8,7 +9,6 @@ internal static class DataSource
     {
         S_Initalize();
     }
-  
     internal static Item[] Items = new Item[50];
     internal static OrderItem[] OrderItems = new OrderItem[200];
     internal static Order[] Orders = new Order[100];
@@ -32,8 +32,7 @@ internal static class DataSource
         /// </summary>
 
     }
-    static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children),("Ivory",) };
-  // static string[] bookNames = { "Danny", "Ivory", "Danger", "Diverse", "Rainy days", "Rachel", "The janitor's daughter", "Esther", "Cell 35" };
+    static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children),("Ivory",BookCategory.Teens),("Danger",BookCategory.Adults),("Diverse",BookCategory.Teens),("Rainy days",BookCategory.Children),("Rachel",BookCategory.Adults),("The janitor's daughter",BookCategory.Adults),("Esther",BookCategory.Children),("Cell 35",BookCategory.Teens)};
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
     static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
@@ -43,21 +42,20 @@ internal static class DataSource
     private static Item CreateProductData()
     {
         Item item= new Item();
-        item.Name = 
-        item.InStock = Convert.ToBoolean(Number.Next(0, 1));
-        item.Price = Number.Next(35,140);
-        item.ID = Number.Next(0, Config.LastItemId); 
-        item.Price = Number.Next(0, 3);
-        // item.Category = eBookCategory.GetName(typeof(MicrosoftOffice)Number.Next(0, 3))
+        item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
+        item.InStock = Convert.ToBoolean(Number.NextInt64(0, 1));
+        item.Price = Number.NextInt64(35,140);
+        item.ID = Number.NextInt64(100000,999999); 
+        item.Category = bookNames[Number.NextInt64(0, bookNames.Length)].Item2;
         return item;
     }
     private static Order CreateOrderData()
     {
         Order order=new Order(); 
-        order.OrderId=Number.Next(0, Config.LastIndexOrder);
-        order.Address = streets[Number.Next(0, streets.Length)] + cities[Number.Next(0,cities.Length)]+Number.Next(0,cities.Length);
-        order.CustomerName = customerNames[Number.Next(0,customerNames.Length)];
-        order.Email = emails[Number.Next(0, emails.Length)];
+        order.OrderId=Number.NextInt64(0, Config.LastIndexOrder);
+        order.Address = streets[Number.NextInt64(0, streets.Length)] + cities[Number.Next(0,cities.Length)]+Number.Next(0,cities.Length);
+        order.CustomerName = customerNames[Number.NextInt64(0,customerNames.Length)];
+        order.Email = emails[Number.NextInt64(0, emails.Length)];
         order.DateDelivered=
         order.DateOrdered=
         order.DateReceived= DateTime.Now;
@@ -66,11 +64,17 @@ internal static class DataSource
     private static OrderItem CreateOrderItemData()
     {
         OrderItem orderItem =new OrderItem(); 
-        orderItem.OrderItemId=Number.Next(0, Config.LastIndexOrderItem); 
-        orderItem.OrderID=Number.Next(0, Config.LastIndexOrder);
-        orderItem.ItemId = Number.Next(0, Config.IndexItem);
-        orderItem.Price = Number.Next(35, 140);
-        orderItem.Amount = Number.Next(1, 3);
+        orderItem.OrderItemId=Number.NextInt64(0, Config.LastIndexOrderItem);
+        orderItem.OrderID = Orders[Number.NextInt64(0, Orders.Length)];
+        orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)];
+        for (int i = 0; i < Items.Length; i++)
+        {
+            if (Items[i].ID == orderItem.ItemId)
+            {
+                orderItem.Price == Items[i].Price;
+            }
+        }
+        orderItem.Amount = Number.NextInt64(1, 3);
         return orderItem;
     }
     private static void Add_Item(Item item)
