@@ -1,6 +1,6 @@
 ﻿using Dal;
 
- void PrintOptions(){
+void PrintOptions(){
     Console.WriteLine("To Exit:0,\r\n  To  Add: a,\r\n  To View By Id: b,\r\n   To View All:c,\r\n  To Update: d,\r\n   To Delete: e");
 }
  
@@ -61,7 +61,7 @@ switch(characterType){
 
  void ControlOptions(int characterType){
     PrintOptions();
-    int x = int.Parse(Console.ReadLine());
+    int x = Convert.ToInt32(Console.Read());
     while (x!=0)
     {
         PrintOptions();
@@ -84,21 +84,22 @@ switch(characterType){
             case (int)OptionsOfActions.DeleteItem:
                 Delete(characterType);
                 break;
-
         }
     }
-
 }
 
-
  void Main(){
+    int number;
+    string input;
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
-    int x = Convert.ToInt32(Console.Read());
-    while (x < 0 || x > 3)
+    input = Console.ReadLine();
+    int.TryParse(input, out number);
+    while (number < 0 || number > 3)
     {
         Console.WriteLine("Input needs to be between 0 and 3\nPlease try again");
-        x = Convert.ToInt32(Console.Read());
+        input = Console.ReadLine();
+        int.TryParse(input, out number);
     }
-if(x!=0)
-        ControlOptions(x);
+    if (number != 0)
+        ControlOptions(number);
 }
