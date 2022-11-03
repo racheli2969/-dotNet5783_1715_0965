@@ -6,55 +6,55 @@
  
  void Add(int characterType){
     switch(characterType){
-        case OptionsForMain.Item:
+        case (int)OptionsForMain.Item:
             break;
-            case OptionsForMain.Order:
+            case (int)OptionsForMain.Order:
             break;
-            case OptionsForMain.OrderItem:
+            case (int)OptionsForMain.OrderItem:
             break;
     }
 }
  void ViewById(int characterType)
 {
 switch(characterType){
-        case OptionsForMain.Item:
+        case (int)OptionsForMain.Item:
             break;
-            case OptionsForMain.Order:
+            case (int)OptionsForMain.Order:
             break;
-            case OptionsForMain.OrderItem:
+            case (int)OptionsForMain.OrderItem:
             break;
 }
   }            
  void ViewAll(int characterType)
 {
 switch(characterType){
-        case OptionsForMain.Item:
+        case (int)OptionsForMain.Item:
             break;
-            case OptionsForMain.Order:
+            case (int)OptionsForMain.Order:
             break;
-            case OptionsForMain.OrderItem:
+            case (int)OptionsForMain.OrderItem:
             break;
 }
   }             
  void Update(int characterType)
 {
 switch(characterType){
-        case OptionsForMain.Item:
+        case (int)OptionsForMain.Item:
             break;
-            case OptionsForMain.Order:
+            case (int)OptionsForMain.Order:
             break;
-            case OptionsForMain.OrderItem:
+            case (int)OptionsForMain.OrderItem:
             break;
 }
 }
  void Delete(int characterType)
 {
 switch(characterType){
-        case OptionsForMain.Item:
+        case (int)OptionsForMain.Item:
             break;
-            case OptionsForMain.Order:
+            case (int)OptionsForMain.Order:
             break;
-            case OptionsForMain.OrderItem:
+            case (int)OptionsForMain.OrderItem:
             break;
 }
 }               
@@ -67,21 +67,21 @@ switch(characterType){
         PrintOptions();
         switch (x)
         {
-            case OptionsOfActions.Exit:
+            case (int)OptionsOfActions.Exit:
                 break;
-            case OptionsOfActions.AddItem:
+            case (int)OptionsOfActions.AddItem:
                 Add(characterType);
                 break;
-            case OptionsOfActions.ViewById:
+            case (int)OptionsOfActions.ViewById:
                 ViewById(characterType);
                 break;
-            case OptionsOfActions.ViewAll:
+            case (int)OptionsOfActions.ViewAll:
                 ViewAll(characterType);
                 break;
-            case OptionsOfActions.UpdateItem:
+            case (int)OptionsOfActions.UpdateItem:
                 Update(characterType);
                 break;
-            case OptionsOfActions.DeleteItem:
+            case (int)OptionsOfActions.DeleteItem:
                 Delete(characterType);
                 break;
 
@@ -91,7 +91,7 @@ switch(characterType){
 }
 
 
-static void Main(){
+ void Main(){
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
     int x = int.Parse(Console.ReadLine());
     while (x < 0 || x > 3)
