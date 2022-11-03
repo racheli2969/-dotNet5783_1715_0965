@@ -32,7 +32,14 @@ internal static class DataSource
         /// </summary>
 
     }
-    static string[] bookNames = { "Danny", "Ivory", "Danger", "Diverse", "Rainy days", "Rachel", "The janitor's daughter", "Esther", "Cell 35" };
+ //static (string, BookCategory)[] bookNames = new (string, BookCategory)[10]
+           // {
+           //    (string ,eCategory )new    ("כסא" , eCategory.Babies )
+           // }}(string, eCategory)[] productnames = new (string, eCategory)[10]
+           // {
+           //    (string ,eCategory )new    ("כסא" , eCategory.Babies )
+          //  }}
+  //  stat*ic string[] bookNames = { "Danny", "Ivory", "Danger", "Diverse", "Rainy days", "Rachel", "The janitor's daughter", "Esther", "Cell 35" };
     //price and in stock randomly
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
@@ -54,13 +61,23 @@ internal static class DataSource
     private static Order CreateOrderData()
     {
         Order order=new Order(); 
-        order.OrderId=Number.Next(0, Config.LastIndexOrder); 
-
+        order.OrderId=Number.Next(0, Config.LastIndexOrder);
+        order.Address = streets[Number.Next(0, streets.Length)] + cities[Number.Next(0,cities.Length)]+Number.Next(0,cities.Length);
+        order.CustomerName = customerNames[Number.Next(0,customerNames.Length)];
+        order.Email = emails[Number.Next(0, emails.Length)];
+        order.DateDelivered
+        order.DateOrdered
+        order.DateReceived= DateTime.Now;
         return order;
     }
     private static OrderItem CreateOrderItemData()
     {
         OrderItem orderItem =new OrderItem(); 
+        orderItem.OrderItemId=Number.Next(0, Config.LastIndexOrderItem); 
+        orderItem.OrderID=Number.Next(0, Config.LastIndexOrder);
+        orderItem.ItemId = Number.Next(0, Config.IndexItem);
+        orderItem.Price = Number.Next(35, 140);
+        orderItem.Amount = Number.Next(1, 3);
         return orderItem;
     }
     private static void Add_Item(Item item)
