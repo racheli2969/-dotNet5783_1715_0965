@@ -18,5 +18,8 @@ category - {Category}
     	Amount in stock: {InStock}
 ";
 
-    
+    public static implicit operator int(Item v)
+    {
+        throw new NotImplementedException();
+    }
 }

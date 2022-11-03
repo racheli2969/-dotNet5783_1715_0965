@@ -45,14 +45,14 @@ internal static class DataSource
         item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
         item.InStock = Convert.ToBoolean(Number.NextInt64(0, 1));
         item.Price = Number.NextInt64(35,140);
-        item.ID = Number.NextInt64(100000,999999); 
-        item.Category = bookNames[Number.NextInt64(0, bookNames.Length)].Item2;
+        item.ID = (int)Number.NextInt64(100000,999999); 
+        item.Category = (int)bookNames[Number.NextInt64(0, bookNames.Length)].Item2;
         return item;
     }
     private static Order CreateOrderData()
     {
         Order order=new Order(); 
-        order.OrderId=Number.NextInt64(0, Config.LastIndexOrder);
+        order.OrderId= (int)Number.NextInt64(0, Config.LastIndexOrder);
         order.Address = streets[Number.NextInt64(0, streets.Length)] + cities[Number.Next(0,cities.Length)]+Number.Next(0,cities.Length);
         order.CustomerName = customerNames[Number.NextInt64(0,customerNames.Length)];
         order.Email = emails[Number.NextInt64(0, emails.Length)];
@@ -64,17 +64,17 @@ internal static class DataSource
     private static OrderItem CreateOrderItemData()
     {
         OrderItem orderItem =new OrderItem(); 
-        orderItem.OrderItemId=Number.NextInt64(0, Config.LastIndexOrderItem);
-        orderItem.OrderID = Orders[Number.NextInt64(0, Orders.Length)];
+        orderItem.OrderItemId= (int)Number.NextInt64(0, Config.LastIndexOrderItem);
+        orderItem.OrderID = Orders[Number.NextInt64(0, Orders.Length)].OrderId;
         orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)];
         for (int i = 0; i < Items.Length; i++)
         {
             if (Items[i].ID == orderItem.ItemId)
             {
-                orderItem.Price == Items[i].Price;
+                orderItem.Price = Items[i].Price;
             }
         }
-        orderItem.Amount = Number.NextInt64(1, 3);
+        orderItem.Amount = (int)Number.NextInt64(1, 3);
         return orderItem;
     }
     private static void Add_Item(Item item)
