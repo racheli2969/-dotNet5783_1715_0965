@@ -51,40 +51,38 @@ internal static class DataSource
               counter++;
         }
         if (Items.Length / counter > 0.5 * Items.Length)
-            item.InStock = Convert.ToBoolean(Number.NextInt64(0, 1));
+            item.InStock = true;
         else
             item.InStock = false;
         item.Price = Number.NextInt64(35,140);
         item.ID = (Config.LastItemId ) * 100000;
-        item.Category = bookNames[Number.NextInt64(0, bookNames.Length)].Item2;
+        item.Category = Convert.ToInt16(bookNames[Number.NextInt64(0, bookNames.Length)].Item2);
         return item;
     }
     private static Order CreateOrderData()
     {
         Order order=new Order(); 
-        order.OrderId=Number.NextInt64(0, Config.LastIndexOrder);
+        order.OrderId=Number.Next(0, Orders.Length);
         order.Address = streets[Number.NextInt64(0, streets.Length)] + cities[Number.Next(0,cities.Length)]+Number.Next(0,cities.Length);
         order.CustomerName = customerNames[Number.NextInt64(0,customerNames.Length)];
         order.Email = emails[Number.NextInt64(0, emails.Length)];
         order.DateDelivered=
         order.DateOrdered=
-        order.DateReceived= DateTime.Now;
+        order.DateReceived= 
         return order;
     }
     private static OrderItem CreateOrderItemData()
     {
         OrderItem orderItem =new OrderItem(); 
-        orderItem.OrderItemId=Number.NextInt64(0, Config.LastIndexOrderItem);
-        orderItem.OrderID = Orders[Number.NextInt64(0, Orders.Length)];
-        orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)];
+        orderItem.OrderItemId=Number.Next(0, OrderItems.Length);
+        orderItem.OrderID = Number.Next(0, Orders.Length);
+        orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)].ID;
         for (int i = 0; i < Items.Length; i++)
         {
             if (Items[i].ID == orderItem.ItemId)
-            {
-                orderItem.Price == Items[i].Price;
-            }
+                orderItem.Price = Items[i].Price;
         }
-        orderItem.Amount = Number.NextInt64(1, 3);
+        orderItem.Amount = Number.Next(1, 3);
         return orderItem;
     }
     private static void Add_Item(Item item)
