@@ -18,5 +18,5 @@ category - {Category}
     	Amount in stock: {InStock}
 ";
 
-
+    
 }

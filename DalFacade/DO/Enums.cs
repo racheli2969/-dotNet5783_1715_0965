@@ -1,5 +1,4 @@
-﻿
-namespace DO;
+﻿namespace DO;
 
 /// <summary>
 /// file for all enums in project

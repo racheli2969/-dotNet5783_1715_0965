@@ -1,12 +1,14 @@
 ﻿using Dal;
-using Enums;
+using DalFacade;
 using DO;
+using Enums;
+using System;
 
-void PrintOptions(){
+public void PrintOptions(){
     Console.WriteLine("To Exit:0,\r\n  To  Add: a,\r\n  To View By Id: b,\r\n   To View All:c,\r\n  To Update: d,\r\n   To Delete: e");
 }
  
-void Add(int characterType){
+public void Add(int characterType){
     switch(characterType){
         case OptionsForMain.Item:
             break;
@@ -16,7 +18,7 @@ void Add(int characterType){
             break;
     }
 }
-void ViewById(int characterType)
+public void ViewById(int characterType)
 {
 switch(characterType){
         case OptionsForMain.Item:
@@ -27,7 +29,7 @@ switch(characterType){
             break;
 }
   }            
-void ViewAll(int characterType)
+public void ViewAll(int characterType)
 {
 switch(characterType){
         case OptionsForMain.Item:
@@ -38,7 +40,7 @@ switch(characterType){
             break;
 }
   }             
-void Update(int characterType)
+public void Update(int characterType)
 {
 switch(characterType){
         case OptionsForMain.Item:
@@ -49,7 +51,7 @@ switch(characterType){
             break;
 }
 }
-void Delete(int characterType)
+public void Delete(int characterType)
 {
 switch(characterType){
         case OptionsForMain.Item:
@@ -61,7 +63,7 @@ switch(characterType){
 }
 }               
 
-void ControlOptions(int characterType){
+public void ControlOptions(int characterType){
     PrintOptions();
     int x = int.Parse(Console.ReadLine());
     while (x){
@@ -92,7 +94,7 @@ void ControlOptions(int characterType){
     }
 }
 
-static void Main(){
+public static void Main(){
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
     int x = int.Parse(Console.ReadLine());
     while (x < 0 || x > 3)
