@@ -1,5 +1,4 @@
-﻿
-namespace DO;
+﻿namespace Dal;
 
 /// <summary>
 /// file for all enums in project

@@ -1,5 +1,4 @@
-﻿using DO;
-
+﻿
 namespace Dal;
 
 internal static class DataSource
@@ -112,11 +111,6 @@ internal static class DataSource
 
     }
 }
-
-/// <summary>
-/// adds items to the item array
-/// </summary>
-
 
 
 
