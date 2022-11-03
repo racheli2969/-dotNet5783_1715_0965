@@ -6,7 +6,7 @@ void PrintOptions(){
     Console.WriteLine("To Exit:0,\r\n  To  Add: a,\r\n  To View By Id: b,\r\n   To View All:c,\r\n  To Update: d,\r\n   To Delete: e");
 }
  
- void Add(int characterType){
+void Add(int characterType){
     switch(characterType){
         case OptionsForMain.Item:
             break;
@@ -16,8 +16,6 @@ void PrintOptions(){
             break;
     }
 }
-              
-           
 void ViewById(int characterType)
 {
 switch(characterType){
@@ -28,7 +26,7 @@ switch(characterType){
             case OptionsForMain.OrderItem:
             break;
 }
-              
+  }            
 void ViewAll(int characterType)
 {
 switch(characterType){
@@ -39,8 +37,8 @@ switch(characterType){
             case OptionsForMain.OrderItem:
             break;
 }
-               
- void Update(int characterType)
+  }             
+void Update(int characterType)
 {
 switch(characterType){
         case OptionsForMain.Item:
@@ -50,7 +48,7 @@ switch(characterType){
             case OptionsForMain.OrderItem:
             break;
 }
-              
+}
 void Delete(int characterType)
 {
 switch(characterType){
@@ -61,7 +59,7 @@ switch(characterType){
             case OptionsForMain.OrderItem:
             break;
 }
-               
+}               
 
 void ControlOptions(int characterType){
     PrintOptions();
