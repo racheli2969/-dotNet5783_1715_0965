@@ -119,10 +119,5 @@ internal static class DataSource
     }
 }
 
-/// <summary>
-/// adds items to the item array
-/// </summary>
-
-
 
 
