@@ -19,7 +19,7 @@ internal static class DataSource
         public static int IndexItem = 0;
         public static int IndexOrder = 0;
         public static int IndexOrderItem = 0;
-        private static int ItemId = 0;
+        private static int ItemId = 100000;
         private static int OrderId = 0;
         private static int OrderItemId = 0;
         public static int LastIndexItem { get { return IndexItem++; } }
@@ -42,6 +42,8 @@ internal static class DataSource
 
     private static Item CreateProductData()
     {
+        for(int i = 0; i < 10; i++)
+        { 
         int counter = 0;
         Item item= new Item();
         item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
@@ -50,17 +52,20 @@ internal static class DataSource
             if (Items[i].InStock == false)
               counter++;
         }
-        if (Items.Length / counter > 0.5 * Items.Length)
+        if (Items.Length / counter > (0.05 * Items.Length))
             item.InStock = true;
         else
             item.InStock = false;
         item.Price = Number.NextInt64(35,140);
-        item.ID = (Config.LastItemId ) * 100000;
+        item.ID = Config.LastItemId;
         item.Category = Convert.ToInt16(bookNames[Number.NextInt64(0, bookNames.Length)].Item2);
-        return item;
+        Items[LastIndexItem]=item;
+        }
     }
     private static Order CreateOrderData()
     {
+        for(int i=0; i<20; i++)
+        { 
         Order order=new Order(); 
         order.OrderId=Number.Next(0, Orders.Length);
         order.Address = streets[Number.NextInt64(0, streets.Length)] + cities[Number.Next(0,cities.Length)]+Number.Next(0,cities.Length);
@@ -68,11 +73,14 @@ internal static class DataSource
         order.Email = emails[Number.NextInt64(0, emails.Length)];
         order.DateDelivered=
         order.DateOrdered=
-        order.DateReceived= 
-        return order;
+        order.DateReceived=
+        Orders[LastIndexOrder]=order;
+        }
     }
     private static OrderItem CreateOrderItemData()
     {
+        for(int i = 0; i < 40; i++)
+        { 
         OrderItem orderItem =new OrderItem(); 
         orderItem.OrderItemId=Number.Next(0, OrderItems.Length);
         orderItem.OrderID = Number.Next(0, Orders.Length);
@@ -83,44 +91,28 @@ internal static class DataSource
                 orderItem.Price = Items[i].Price;
         }
         orderItem.Amount = Number.Next(1, 3);
-        return orderItem;
+        OrderItems[LastIndexOrderItem]=orderItem;
     }
-    private static void Add_Item(Item item)
+    private static void Add_Item()
     {
-
-        Items[Config.LastIndexItem] = item;
-
+      CreateProductData();
     }
-
-    private static void Add_Order(Order order)
+    private static void Add_Order()
     {
-        Orders[Config.LastIndexOrder] = order;
+        CreateOrderData();
     }
-    private static void Add_OrderItem(OrderItem orderItem)
+    private static void Add_OrderItem()
     {
-        OrderItems[Config.LastIndexOrderItem] = orderItem;
+        CreateOrderItemData();
     }
     private static void S_Initalize()
     {
         Item item;
         OrderItem orderItem;
         Order order;
-        for (int i = 0; i < 10; i++)
-        {
-            item = CreateProductData();
-            Add_Item(item);
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            order = CreateOrderData();
-            Add_Order(order);
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            orderItem = CreateOrderItemData();
-            Add_OrderItem(orderItem);
-        }
-
+        Add_Item();
+        Add_Order();
+        Add_OrderItem();
     }
 }
 
