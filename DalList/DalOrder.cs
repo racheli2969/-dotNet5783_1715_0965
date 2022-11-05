@@ -5,11 +5,11 @@ namespace Dal;
 
 public class DalOrder
 {
-    public void AddItem(Order order)
+    public void Add(Order order)
     {
        orders[Config.LastIndexItem] = order;
     }
-    public Item ReadById(int Id)
+    public Item ViewById(int Id)
     {
         for (int i = 0; i < orders.Length; i++)
         {
@@ -18,7 +18,7 @@ public class DalOrder
         }
         throw new Exception("The item is not exist");
     }
-    public Item[] Read()
+    public Item[] View()
     {
        Order order = new Order[Config.LastIndexItem];
         order = orders;

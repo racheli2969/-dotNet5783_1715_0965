@@ -2,15 +2,13 @@
 using DO;
 
 namespace Dal;
-
 public class DalOrderItem
 {
-
-    public void AddItem(Item item)
+    public void Add(Item item)
     {
         orderItems[Config.LastIndexItem] = item;
     }
-    public Item ReadById(int Id)
+    public OrderItem ViewById(int Id)
     {
         for (int i = 0; i < orderItems.Length; i++)
         {
@@ -19,9 +17,9 @@ public class DalOrderItem
         }
         throw new Exception("The item is not exist");
     }
-    public Item[] Read()
+    public OrderItem[] View()
     {
-         = new Item[Config.LastIndexItem];
+        OrderItem oi = new Item[Config.LastIndexItem];
         item = orderItems;
         return item;
     }
@@ -58,6 +56,6 @@ public class DalOrderItem
 
 
 
-}
+
        
 

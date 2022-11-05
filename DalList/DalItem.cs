@@ -7,11 +7,11 @@ namespace Dal;
 
  public class DalItem
  {
-     public void AddItem(Item item)
+     public void Add(Item item)
      {
         Items[Config.LastIndexItem] = item;
      }
-     public Item ReadById(int Id)
+     public Item ViewById(int Id)
      {
         for (int i = 0; i < Items.Length; i++)
         {
@@ -20,7 +20,7 @@ namespace Dal;
         }
         throw new Exception("The item is not exist");
      }
-     public Item[] Read()
+     public Item[] ViewAll()
      {
         Item item = new Item[Config.LastIndexItem];
         item = Items;
@@ -31,7 +31,7 @@ namespace Dal;
         bool b = false;
         for (int i = 0; i < Items.Length; i++)
         {
-            if (Items[i].id == Id)
+            if (DataSource.Items[i].id == Id)
             {
                 Items[i] = null;
                 b = true;
