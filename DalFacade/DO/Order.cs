@@ -20,5 +20,5 @@ Email: {Email},
 	Date Received: {DateReceived}
 ";
 
-
+    DataSource.items
 }
