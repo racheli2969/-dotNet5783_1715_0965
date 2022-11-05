@@ -107,9 +107,6 @@ internal static class DataSource
     }
     private static void S_Initalize()
     {
-        Item item;
-        OrderItem orderItem;
-        Order order;
         Add_Item();
         Add_Order();
         Add_OrderItem();
