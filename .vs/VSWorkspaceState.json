@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\DalFacade",
-    "\\DalList",
-    "\\DalTest"
+    ""
   ],
-  "SelectedNode": "\\DalTest\\DataSource.cs",
+  "SelectedNode": "\\stage0.sln",
   "PreviewInSolutionExplorer": false
 }
