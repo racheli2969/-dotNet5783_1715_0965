@@ -3,8 +3,23 @@
 void PrintOptions(){
     Console.WriteLine("To Exit:0,\r\n  To  Add: a,\r\n  To View By Id: b,\r\n   To View All:c,\r\n  To Update: d,\r\n   To Delete: e");
 }
- 
- void Add(int characterType){
+
+  DateTime DateInputControl(string? s)
+{
+    DateTime result=DateTime.MinValue;
+    bool a = false;
+    while (a == false)
+    {
+        a = DateTime.TryParse(s, out result);
+        if (a == false)
+        {
+            Console.WriteLine("not legal input, try again\n");
+            s = Console.ReadLine();
+        }  
+    }
+    return result;
+}
+void Add(int characterType){
     switch(characterType){
         case (int)OptionsForMain.Item:
             break;
