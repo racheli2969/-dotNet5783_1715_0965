@@ -10,10 +10,6 @@ internal static class DataSource
     {
         S_Initalize();
     }
-    internal static Item[] Items = new Item[50];
-    internal static OrderItem[] OrderItems = new OrderItem[200];
-    internal static Order[] Orders = new Order[100];
-
     internal static class Config
     {
         public static int IndexItem = 0;
@@ -28,11 +24,12 @@ internal static class DataSource
         public static int LastItemId { get { return ItemId++; } }
         public static int LastItemOrderId { get { return OrderId++; } }
         public static int LastOrderItemId { get { return OrderItemId++; } }
-        /// <summary>
-        /// indexs for the first available place in the data arrays
-        /// </summary>
-
     }
+
+    internal static Item[] Items = new Item[50];
+    internal static OrderItem[] OrderItems = new OrderItem[200];
+    internal static Order[] Orders = new Order[100];
+    
     static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children),("Ivory",BookCategory.Teens),("Danger",BookCategory.Adults),("Diverse",BookCategory.Teens),("Rainy days",BookCategory.Children),("Rachel",BookCategory.Adults),("The janitor's daughter",BookCategory.Adults),("Esther",BookCategory.Children),("Cell 35",BookCategory.Teens)};
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
