@@ -44,7 +44,7 @@ internal static class DataSource
         int counter = 0;
         Item item= new Item();
         item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
-        for (int i = 0; i < Items.Length; i++)
+        for (int j = 0; j < Items.Length; j++)
         {
             if (Items[i].InStock == false)
               counter++;
@@ -80,7 +80,11 @@ internal static class DataSource
         { 
         OrderItem orderItem =new OrderItem(); 
         orderItem.OrderItemId=Number.Next(0, OrderItems.Length);
-        orderItem.OrderID = Number.Next(0, Orders.Length);
+        orderItem.OrderId = Number.Next(0, Orders.Length);
+            for(int j = 0; j < Orders.Length; j++)
+            {
+            
+            }
         orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)].ID;
         for (int i = 0; i < Items.Length; i++)
         {
