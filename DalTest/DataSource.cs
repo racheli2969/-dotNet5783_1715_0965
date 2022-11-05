@@ -75,21 +75,19 @@ internal static class DataSource
             int count = 0;
             OrderItem orderItem = new OrderItem();
             orderItem.OrderItemId = Number.Next(0, OrderItems.Length);
-            orderItem.OrderID = Number.Next(0, Orders.Length);
+            if (i >=20)
+            {
+                orderItem.OrderID = Orders[i-20].OrderId;
+            }
+            else
+            {
+                orderItem.OrderID = Orders[i].OrderId;
+            }
             orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)].ID;
             for (int j = 0; j < Items.Length; j++)
             {
                 if (Items[i].ID == orderItem.ItemId)
                     orderItem.Price = Items[i].Price;
-            }
-            for(int g=0; g< OrderItems.Length; g++)
-            {
-                if (OrderItems[g].OrderID == orderItem.OrderID)
-                    count++;
-            }
-            if (count > 4)
-            {
-                orderItem.OrderID = Number.Next(0, Orders.Length);
             }
             orderItem.Amount = Number.Next(1, 3);
             OrderItems[Config.LastIndexOrderItem] = orderItem;
