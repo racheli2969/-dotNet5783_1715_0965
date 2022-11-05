@@ -1,5 +1,7 @@
 
-namespace DO;
+
+using Dal;
+namespace DO
 
 public struct Order
 {
@@ -19,6 +21,4 @@ Email: {Email},
 	Date Delivered: {DateDelivered},
 	Date Received: {DateReceived}
 ";
-
-    DataSource.items
 }
