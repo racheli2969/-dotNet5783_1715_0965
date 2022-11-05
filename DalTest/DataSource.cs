@@ -5,11 +5,6 @@ using System.Diagnostics.Metrics;
 namespace Dal;
 internal static class DataSource
 {
-
-    static DataSource()
-    {
-        S_Initalize();
-    }
     internal static class Config
     {
         public static int IndexItem = 0;
@@ -36,67 +31,74 @@ internal static class DataSource
     static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
     static string[] cities = { "Yerushalaim", "Rehovot", "Beit shemesh", "Beitar", "Rishon Letzion", "NesZiona" };
     public static readonly Random Number = new Random();
-
-    private static Item CreateProductData()
+    private static void CreateProductData()
     {
-        for(int i = 0; i < 10; i++)
-        { 
-        int counter = 0;
-        Item item= new Item();
-        item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
-        for (int j = 0; j < Items.Length; j++)
+        for (int i = 0; i < 10; i++)
         {
-            if (Items[i].InStock == false)
-              counter++;
-        }
-        if (Items.Length / counter > (0.05 * Items.Length))
-            item.InStock = true;
-        else
-            item.InStock = false;
-        item.Price = Number.NextInt64(35,140);
-        item.ID = Config.LastItemId;
-        item.Category = Convert.ToInt16(bookNames[Number.NextInt64(0, bookNames.Length)].Item2);
-        Items[LastIndexItem]=item;
-        }
-    }
-    private static Order CreateOrderData()
-    {
-        for(int i=0; i<20; i++)
-        { 
-        Order order=new Order(); 
-        order.OrderId=Number.Next(0, Orders.Length);
-        order.Address = streets[Number.NextInt64(0, streets.Length)] + cities[Number.Next(0,cities.Length)]+Number.Next(0,cities.Length);
-        order.CustomerName = customerNames[Number.NextInt64(0,customerNames.Length)];
-        order.Email = emails[Number.NextInt64(0, emails.Length)];
-        order.DateDelivered=
-        order.DateOrdered=
-        order.DateReceived=
-        Orders[LastIndexOrder]=order;
-        }
-    }
-    private static OrderItem CreateOrderItemData()
-    {
-        for(int i = 0; i < 40; i++)
-        { 
-        OrderItem orderItem =new OrderItem(); 
-        orderItem.OrderItemId=Number.Next(0, OrderItems.Length);
-        orderItem.OrderId = Number.Next(0, Orders.Length);
-            for(int j = 0; j < Orders.Length; j++)
+            int counter = 0;
+            Item item = new Item();
+            item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
+            for (int j = 0; j < Items.Length; j++)
             {
-            
+                if (Items[i].InStock == false)
+                    counter++;
             }
-        orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)].ID;
-        for (int i = 0; i < Items.Length; i++)
-        {
-            if (Items[i].ID == orderItem.ItemId)
-                orderItem.Price = Items[i].Price;
+            if (Items.Length / counter > (0.05 * Items.Length))
+                item.InStock = true;
+            else
+                item.InStock = false;
+            item.Price = Number.NextInt64(35, 140);
+            item.ID = Config.LastItemId;
+            item.Category = Convert.ToInt16(bookNames[Number.NextInt64(0, bookNames.Length)].Item2);
+            Items[Config.LastIndexItem] = item;
         }
-        orderItem.Amount = Number.Next(1, 3);
-        OrderItems[LastIndexOrderItem]=orderItem;
+    }
+    private static void CreateOrderData()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            Order order = new Order();
+            order.OrderId = Number.Next(0, Orders.Length);
+            order.Address = streets[Number.NextInt64(0, streets.Length)] + cities[Number.Next(0, cities.Length)] + Number.Next(0, cities.Length);
+            order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
+            order.Email = emails[Number.NextInt64(0, emails.Length)];
+            //order.DateDelivered =
+            //order.DateOrdered =
+            //order.DateReceived =
+            Orders[Config.LastIndexOrder] = order;
+        }
+    }
+    private static void CreateOrderItemData()
+    {
+        for (int i = 0; i < 40; i++)
+        {
+            int count = 0;
+            OrderItem orderItem = new OrderItem();
+            orderItem.OrderItemId = Number.Next(0, OrderItems.Length);
+            orderItem.OrderID = Number.Next(0, Orders.Length);
+            orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)].ID;
+            for (int j = 0; j < Items.Length; j++)
+            {
+                if (Items[i].ID == orderItem.ItemId)
+                    orderItem.Price = Items[i].Price;
+            }
+            for(int g=0; g< OrderItems.Length; g++)
+            {
+                if (OrderItems[g].OrderID == orderItem.OrderID)
+                    count++;
+            }
+            if (count > 4)
+            {
+                orderItem.OrderID = Number.Next(0, Orders.Length);
+            }
+            orderItem.Amount = Number.Next(1, 3);
+            OrderItems[Config.LastIndexOrderItem] = orderItem;
+        }
+
     }
     private static void Add_Item()
     {
-      CreateProductData();
+        CreateProductData();
     }
     private static void Add_Order()
     {
@@ -112,6 +114,11 @@ internal static class DataSource
         Add_Order();
         Add_OrderItem();
     }
+    static DataSource()
+    {
+        S_Initalize();
+    }
+
 }
 
 
