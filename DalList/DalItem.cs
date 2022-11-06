@@ -1,39 +1,36 @@
 ﻿
-using DO;
-using System.ComponentModel;
-using System.Data.Common;
-using System.Security.Cryptography.X509Certificates;
-namespace Dal;
+using Dal.;
 
- public class DalItem
+namespace Dal.DO;
+public class DalItem
  {
      public void Add(Item item)
      {
-        Items[Config.LastIndexItem] = item;
+       DataSource.Items[DataSource.Config.LastIndexItem] = item;
      }
      public Item ViewById(int Id)
      {
-        for (int i = 0; i < Items.Length; i++)
+        for (int i = 0; i < DataSource.Items.Length; i++)
         {
             if (DataSource.Items[i].id == Id)
-                return Items[i];
+                return DataSource.Items[i];
         }
         throw new Exception("The item does not exist");
      }
      public Item[] ViewAll()
      {
-        Item item = new Item[Config.LastIndexItem];
-        item = Items;
+        Item item = new Item[DataSource.Config.LastIndexItem];
+        item = DataSource.Items;
         return item;
      }
      public void Delete(int id)
      {
         bool b = false;
-        for (int i = 0; i < Items.Length; i++)
+        for (int i = 0; i < DataSource.Items.Length; i++)
         {
-            if (DataSource.Items[i].id == Id)
+            if (DataSource.Items[i].id == id)
             {
-                Items[i] = null;
+                DataSource.Items[i] = null;
                 b = true;
             }
         }
@@ -43,11 +40,11 @@ namespace Dal;
      public void Update(Item item)
      {
         bool b = false;
-        for(int i = 0; i < Items.Length; i++)
+        for(int i = 0; i < DataSource.Items.Length; i++)
         {
-            if (Items[i].ID == item.ID)
+            if (DataSource.Items[i].ID == item.ID)
             {
-                Items[i] = item;
+                DataSource.Items[i] = item;
                 b = true;
             }
         }
