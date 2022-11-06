@@ -13,7 +13,7 @@ namespace Dal;
      }
      public Item ViewById(int Id)
      {
-        for (int i = 0; i < Items.Length; i++)
+        for (int i = 0; i <indexItem; i++)
         {
             if (DataSource.Items[i].id == Id)
                 return Items[i];
