@@ -18,7 +18,7 @@ namespace Dal;
             if (DataSource.Items[i].id == Id)
                 return Items[i];
         }
-        throw new Exception("The item is not exist");
+        throw new Exception("The item does not exist");
      }
      public Item[] ViewAll()
      {
@@ -38,7 +38,7 @@ namespace Dal;
             }
         }
         if (b == false)
-            throw new Exception("The item is not exist");
+            throw new Exception("The item does not exist");
      }
      public void Update(Item item)
      {
@@ -52,7 +52,7 @@ namespace Dal;
             }
         }
         if (b == false)
-            throw new Exception("The item is not exist");
+            throw new Exception("The item does not exist");
      }
 }
        
