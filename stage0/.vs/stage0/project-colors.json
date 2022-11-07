@@ -5,7 +5,22 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Miscellaneous Files",
       "ColorIndex": -1
+    },
+    "0ff1f80e-3d6f-4d42-89ac-c2022172940c": {
+      "ProjectGuid": "0ff1f80e-3d6f-4d42-89ac-c2022172940c",
+      "DisplayName": "DalList",
+      "ColorIndex": 0
+    },
+    "31bdeedf-6a6a-4ce5-bfa1-a0baa967af22": {
+      "ProjectGuid": "31bdeedf-6a6a-4ce5-bfa1-a0baa967af22",
+      "DisplayName": "DalFacade",
+      "ColorIndex": 1
+    },
+    "15faf109-f969-4284-ac62-f97e2b9efd9c": {
+      "ProjectGuid": "15faf109-f969-4284-ac62-f97e2b9efd9c",
+      "DisplayName": "DalTest",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 0
+  "NextColorIndex": 3
 }
