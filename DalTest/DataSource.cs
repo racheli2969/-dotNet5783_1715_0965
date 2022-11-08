@@ -35,7 +35,7 @@ public static class DataSource
         {
             Item item = new Item();
             int counter = 0;
-            item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
+            item.Name = bookNames[Number.NextInt64(1, bookNames.Length)].Item1;
             for (int j = 0; j < items; j++)
             {
                 if (Items[i].InStock == false)
@@ -47,7 +47,7 @@ public static class DataSource
                 item.InStock = false;
             item.Price = Number.NextInt64(35, 140);
             item.ID = Config.LastItemId;
-            item.Category = Convert.ToInt16(bookNames[Number.NextInt64(0, bookNames.Length)].Item2);
+            item.Category = Convert.ToInt16(bookNames[Number.NextInt64(1, bookNames.Length)].Item2);
             Items[Config.LastIndexItem] = item;
         }
     }
@@ -59,7 +59,7 @@ public static class DataSource
         {
             Order order = new Order();
             order.OrderId = Config.LastIndexOrder;
-            order.Address = streets[Number.NextInt64(0, streets.Length)] + cities[Number.Next(0, cities.Length)] + Number.Next(0, cities.Length);
+            order.Address = streets[Number.NextInt64(1, streets.Length)] + cities[Number.Next(0, cities.Length)] + Number.Next(0, cities.Length);
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
             int v = Number.Next(0, 5);
@@ -87,8 +87,8 @@ public static class DataSource
             OrderItem orderItem = new OrderItem();
             int count = 0;
             orderItem.OrderItemId = Config.LastIndexOrderItem;
-            orderItem.OrderID = Number.Next(0, Orders.Length);
-            orderItem.OrderItemId = Number.Next(0, OrderItems.Length);
+            orderItem.OrderID = Number.Next(1, Orders.Length);
+            orderItem.OrderItemId = Number.Next(1, OrderItems.Length);
             if (i >=20)
             {
                 orderItem.OrderID = Orders[i-20].OrderId;

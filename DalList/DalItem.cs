@@ -6,9 +6,10 @@ using System.Security.Cryptography.X509Certificates;
 namespace Dal;
  public class DalItem
  {
-     public void Add(Item item)
+     public int Add(Item item)
      {
-        DataSource.Items[DataSource.Config.IndexItem] = item;
+        DataSource.Items[DataSource.Config.LastIndexItem] = item;
+        return DataSource.Config.IndexItem;
      }
      public Item ViewById(int Id)
      {
@@ -41,8 +42,8 @@ namespace Dal;
             {
             DataSource.Items[i] = DataSource.Items[i + 1];
             }
-         
         }
+        DataSource.Items[DataSource.Config.IndexItem-1].ID = 0;
         if (b == false)
             throw new Exception("The item does not exist");
      }

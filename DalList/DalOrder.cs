@@ -5,9 +5,10 @@ namespace Dal;
 
 public class DalOrder
 {
-    public void Add(Order order)
+    public int Add(Order order)
     {
         DataSource.Orders[DataSource.Config.IndexOrder] = order;
+        return DataSource.Config.IndexOrder;
     }
     public Order ViewById(int Id)
     {
@@ -30,7 +31,7 @@ public class DalOrder
     public void Delete(int id)
     {
         bool b = false;
-        for (int i = 0; i < DataSource.Config.IndexOrder; i++)
+        for (int i = 0; i < DataSource.Config.LastIndexOrder; i++)
         {
             if (DataSource.Orders[i].OrderId == id)
             {
@@ -41,6 +42,7 @@ public class DalOrder
                 DataSource.Orders[i] = DataSource.Orders[i + 1];
             }
         }
+        DataSource.Orders[DataSource.Config.IndexOrder-1].OrderId = 0;
         if (b == false)
             throw new Exception("The item is not exist");
     }

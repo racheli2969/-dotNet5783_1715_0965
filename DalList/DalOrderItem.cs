@@ -4,9 +4,10 @@ using DO;
 namespace Dal;
 public class DalOrderItem
 {
-    public void Add(OrderItem oi)
+    public int Add(OrderItem oi)
     {
-        DataSource.OrderItems[DataSource.Config.IndexOrderItem] = oi;
+        DataSource.OrderItems[DataSource.Config.LastIndexOrderItem] = oi;
+        return DataSource.Config.IndexOrderItem;
     }
     public OrderItem ViewById(int Id)
     {
@@ -36,6 +37,11 @@ public class DalOrderItem
             {
                 b = true;
             }
+            if(b==true&&(i+1 < DataSource.Config.IndexOrderItem))
+            {
+                DataSource.OrderItems[i] = DataSource.OrderItems[i + 1];
+            }
+            DataSource.OrderItems[DataSource.Config.IndexOrderItem - 1].OrderItemId = 0;
         }
         if (b == false)
             throw new Exception("The item is not exist");
