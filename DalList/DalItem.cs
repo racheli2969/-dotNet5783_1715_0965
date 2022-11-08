@@ -9,6 +9,7 @@ namespace Dal;
  {
      public void Add(Item item)
      {
+     
         Items[Config.LastIndexItem] = item;
      }
      public Item ViewById(int Id)
@@ -55,5 +56,3 @@ namespace Dal;
             throw new Exception("The item does not exist");
      }
 }
-       
-

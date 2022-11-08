@@ -1,7 +1,8 @@
 ﻿
 using DO;
 namespace Dal;
-internal static class DataSource
+
+public static class DataSource
 {
     internal static class Config
     {
@@ -15,7 +16,8 @@ internal static class DataSource
         public static int LastItemId { get { return ItemId++; } }
     }
 
-    internal static Item[] Items = new Item[50];
+   public static Item[] Items = new Item[50];
+    
     internal static OrderItem[] OrderItems = new OrderItem[200];
     internal static Order[] Orders = new Order[100];
     const int items = 10;
