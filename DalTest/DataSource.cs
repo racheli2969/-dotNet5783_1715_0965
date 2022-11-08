@@ -4,7 +4,7 @@ namespace Dal;
 
 public static class DataSource
 {
-    internal static class Config
+    public static class Config
     {
         public static int IndexItem = 0;
         public static int IndexOrder = 0;
@@ -16,10 +16,9 @@ public static class DataSource
         public static int LastItemId { get { return ItemId++; } }
     }
 
-   public static Item[] Items = new Item[50];
-    
-    internal static OrderItem[] OrderItems = new OrderItem[200];
-    internal static Order[] Orders = new Order[100];
+    public static Item[] Items = new Item[50];
+    public static OrderItem[] OrderItems = new OrderItem[200];
+    public static Order[] Orders = new Order[100];
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
@@ -32,9 +31,9 @@ public static class DataSource
 
     private static void CreateProductData()
     {
-        Item item = new Item();
         for (int i = 0; i < items; i++)
         {
+            Item item = new Item();
             int counter = 0;
             item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
             for (int j = 0; j < items; j++)
@@ -55,9 +54,10 @@ public static class DataSource
 
     private static void CreateOrderData()
     {
-        Order order = new Order();
+        
         for (int i = 0; i < orders; i++)
         {
+            Order order = new Order();
             order.OrderId = Config.LastIndexOrder;
             order.Address = streets[Number.NextInt64(0, streets.Length)] + cities[Number.Next(0, cities.Length)] + Number.Next(0, cities.Length);
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
@@ -82,9 +82,9 @@ public static class DataSource
 
     private static void CreateOrderItemData()
     {
-        OrderItem orderItem = new OrderItem();
         for (int i = 0; i < orderItems; i++)
         {
+            OrderItem orderItem = new OrderItem();
             int count = 0;
             orderItem.OrderItemId = Config.LastIndexOrderItem;
             orderItem.OrderID = Number.Next(0, Orders.Length);

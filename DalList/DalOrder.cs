@@ -7,32 +7,38 @@ public class DalOrder
 {
     public void Add(Order order)
     {
-       orders[Config.LastIndexItem] = order;
+        DataSource.Orders[DataSource.Config.IndexOrder] = order;
     }
-    public Item ViewById(int Id)
+    public Order ViewById(int Id)
     {
-        for (int i = 0; i < orders.Length; i++)
+        for (int i = 0; i < DataSource.Config.IndexOrder; i++)
         {
-            if (DataSource.orders[i].id == Id)
-                return orders[i];
+            if (DataSource.Orders[i].OrderId == Id)
+                return DataSource.Orders[i];
         }
         throw new Exception("The item is not exist");
     }
-    public Item[] View()
+    public Order[] View()
     {
-       Order order = new Order[Config.LastIndexItem];
-        order = orders;
-        return item;
+       Order[] order = new Order[DataSource.Config.IndexOrder];
+       for(int i=0;i< DataSource.Config.IndexOrder; i++)
+       {
+            order[i] = DataSource.Orders[i];
+       }
+        return order;
     }
     public void Delete(int id)
     {
         bool b = false;
-        for (int i = 0; i < orders.Length; i++)
+        for (int i = 0; i < DataSource.Config.IndexOrder; i++)
         {
-            if (orders[i].id == Id)
+            if (DataSource.Orders[i].OrderId == id)
             {
-                orders[i] = null;
                 b = true;
+            }
+            if(b==true && (i + 1 < DataSource.Config.IndexOrder))
+            {
+                DataSource.Orders[i] = DataSource.Orders[i + 1];
             }
         }
         if (b == false)
@@ -41,11 +47,11 @@ public class DalOrder
     public void Update(Order order)
     {
         bool b = false;
-        for (int i = 0; i < orders.Length; i++)
+        for (int i = 0; i < DataSource.Config.IndexOrder; i++)
         {
-            if (orders[i].ID == order.OrderId)
+            if (DataSource.Orders[i].OrderId == order.OrderId)
             {
-                orders[i] = order;
+                DataSource.Orders[i] = order;
                 b = true;
             }
         }
@@ -53,11 +59,6 @@ public class DalOrder
             throw new Exception("The item is not exist");
     }
 }
-       
 
-
-    
-
-}
        
 
