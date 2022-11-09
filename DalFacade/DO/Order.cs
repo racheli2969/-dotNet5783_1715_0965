@@ -1,7 +1,7 @@
 
 
 using Dal;
-namespace DO
+namespace DO;
 
 public struct Order
 {

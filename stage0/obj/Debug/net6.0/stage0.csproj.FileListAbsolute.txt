@@ -9,7 +9,6 @@ C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.AssemblyInfo.cs
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.csproj.CoreCompileInputs.cache
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.dll
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\refint\stage0.dll
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.pdb
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.genruntimeconfig.cache
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\ref\stage0.dll
@@ -51,3 +50,4 @@ C:\Users\acer\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\refint\
 C:\Users\acer\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.pdb
 C:\Users\acer\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.genruntimeconfig.cache
 C:\Users\acer\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\ref\stage0.dll
+C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\bin\Debug\net6.0\ref\stage0.dll
