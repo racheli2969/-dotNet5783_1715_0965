@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DalList",
+    "\\DalTest"
   ],
-  "SelectedNode": "\\stage0.sln",
-  "PreviewInSolutionExplorer": false
+  "SelectedNode": "\\DalList\\DalOrderItem.cs",
+  "PreviewInSolutionExplorer": true
 }
