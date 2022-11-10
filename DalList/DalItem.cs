@@ -32,18 +32,20 @@ namespace Dal;
      public void Delete(int id)
      {
         bool b = false;
+        int index = 0;
         for (int i = 0; i < DataSource.Config.IndexItem; i++)
         {
             if (DataSource.Items[i].ID == id)
             { 
                 b = true;
+                index = i;
             }
-            if (b == true&&(i+1 < DataSource.Config.IndexItem))
+            if (b == true)
             {
-            DataSource.Items[i] = DataSource.Items[i + 1];
+            DataSource.Items[index] = DataSource.Items[DataSource.Config.IndexItem];
+                DataSource.Config.IndexItem--;
             }
         }
-        DataSource.Items[DataSource.Config.IndexItem-1].ID = 0;
         if (b == false)
             throw new Exception("The item does not exist");
      }

@@ -6,10 +6,14 @@ public static class DataSource
 {
     public static class Config
     {
+        private static int ItemId = 100000;
+        public static int OrderId = 1;
+        public static int OrderItemId = 1;
         public static int IndexItem = 0;
         public static int IndexOrder = 0;
         public static int IndexOrderItem = 0;
-        private static int ItemId = 100000;
+        public static int LastOrderId { get { return OrderId++; } }
+        public static int LastOrderItemId { get { return OrderItemId++; } }
         public static int LastIndexItem { get { return IndexItem++; } }
         public static int LastIndexOrder { get { return IndexOrder++; } }//last Index available
         public static int LastIndexOrderItem { get { return IndexOrderItem++; } }
@@ -35,7 +39,7 @@ public static class DataSource
         {
             Item item = new Item();
             int counter = 0;
-            item.Name = bookNames[Number.NextInt64(1, bookNames.Length)].Item1;
+            item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
             for (int j = 0; j < items; j++)
             {
                 if (Items[i].InStock == false)
@@ -54,15 +58,13 @@ public static class DataSource
 
     private static void CreateOrderData()
     {
-        
         for (int i = 0; i < orders; i++)
         {
             Order order = new Order();
-            order.OrderId = Config.LastIndexOrder;
-            order.Address = streets[Number.NextInt64(1, streets.Length)] + cities[Number.Next(0, cities.Length)] + Number.Next(0, cities.Length);
+            order.OrderId = Config.LastOrderId;
+            order.Address = streets[Number.NextInt64(0, streets.Length)] + Number.Next(0,100) +cities[Number.Next(0, cities.Length)] ;
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
-            int v = Number.Next(0, 5);
             TimeSpan ts = new TimeSpan(Number.Next(2, 12), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
             DateTime randomDate=new DateTime(Number.Next(0, 5), Number.Next(0, 12), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
            order.DateOrdered.Subtract(randomDate);
@@ -86,9 +88,9 @@ public static class DataSource
         {
             OrderItem orderItem = new OrderItem();
             int count = 0;
-            orderItem.OrderItemId = Config.LastIndexOrderItem;
-            orderItem.OrderID = Number.Next(1, Orders.Length);
-            orderItem.OrderItemId = Number.Next(1, OrderItems.Length);
+            orderItem.OrderItemId = Config.LastOrderItemId;
+            orderItem.OrderID = Number.Next(0, Orders.Length);
+            orderItem.OrderItemId = Number.Next(0, OrderItems.Length);
             if (i >=20)
             {
                 orderItem.OrderID = Orders[i-20].OrderId;
@@ -106,7 +108,6 @@ public static class DataSource
             orderItem.Amount = Number.Next(1, 3);
             OrderItems[Config.LastIndexOrderItem] = orderItem;
         }
-
     }
 
     private static void S_Initalize()
@@ -119,7 +120,6 @@ public static class DataSource
     {
         S_Initalize();
     }
-
 }
 
 

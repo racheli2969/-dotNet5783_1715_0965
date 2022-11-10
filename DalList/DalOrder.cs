@@ -19,7 +19,7 @@ public class DalOrder
         }
         throw new Exception("The item is not exist");
     }
-    public Order[] View()
+    public Order[] ViewAll()
     {
        Order[] order = new Order[DataSource.Config.IndexOrder];
        for(int i=0;i< DataSource.Config.IndexOrder; i++)
@@ -31,18 +31,20 @@ public class DalOrder
     public void Delete(int id)
     {
         bool b = false;
-        for (int i = 0; i < DataSource.Config.LastIndexOrder; i++)
+        int index = 0;
+        for (int i = 0; i < DataSource.Config.IndexOrder; i++)
         {
             if (DataSource.Orders[i].OrderId == id)
             {
                 b = true;
+                index = i;
             }
-            if(b==true && (i + 1 < DataSource.Config.IndexOrder))
+            if(b==true)
             {
-                DataSource.Orders[i] = DataSource.Orders[i + 1];
+                DataSource.Config.IndexOrder--;
+                DataSource.Orders[index] = DataSource.Orders[DataSource.Config.IndexOrder-1];
             }
         }
-        DataSource.Orders[DataSource.Config.IndexOrder-1].OrderId = 0;
         if (b == false)
             throw new Exception("The item is not exist");
     }
