@@ -1,5 +1,4 @@
-﻿
-using DO;
+﻿using DO;
 namespace Dal;
 
 public static class DataSource
@@ -26,14 +25,14 @@ public static class DataSource
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
-    static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children),("Ivory",BookCategory.Teens),("Danger",BookCategory.Adults),("Diverse",BookCategory.Teens),("Rainy days",BookCategory.Children),("Rachel",BookCategory.Adults),("The janitor's daughter",BookCategory.Adults),("Esther",BookCategory.Children),("Cell 35",BookCategory.Teens)};
+    static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children), ("Ivory", BookCategory.Teens), ("Danger", BookCategory.Adults), ("Diverse", BookCategory.Teens), ("Rainy days", BookCategory.Children), ("Rachel", BookCategory.Adults), ("The janitor's daughter", BookCategory.Adults), ("Esther", BookCategory.Children), ("Cell 35", BookCategory.Teens) };
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
     static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
     static string[] cities = { "Yerushalaim", "Rehovot", "Beit shemesh", "Beitar", "Rishon Letzion", "NesZiona" };
     public static readonly Random Number = new Random();
 
-    private static void CreateProductData()
+    static void CreateProductData()
     {
         for (int i = 0; i < items; i++)
         {
@@ -56,44 +55,41 @@ public static class DataSource
         }
     }
 
-    private static void CreateOrderData()
+    static void CreateOrderData()
     {
         for (int i = 0; i < orders; i++)
         {
             Order order = new Order();
             order.OrderId = Config.LastOrderId;
-            order.Address = streets[Number.NextInt64(0, streets.Length)] + Number.Next(0,100) +cities[Number.Next(0, cities.Length)] ;
+            order.Address = streets[Number.NextInt64(0, streets.Length)] + Number.Next(0, 100) + cities[Number.Next(0, cities.Length)];
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
-            
-         TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
-           order.DateOrdered.Subtract(ts);
-             Orders[Config.LastIndexOrder] = order;
-        }
 
-            for (int j = 0; j <= 0.8 * 20; j++)//80% of orders have date delivered
-            {
-            DataSource.OrderItems[j].DateDelivered.Add(Number.Next(2, 9));
-            }
-            for (int j = 0; j <= 0.6 * 20; j++)//60% of orders have date received
-            {
-                 DataSource.DateReceived[j].DateDelivered.Add(Number.Next(2, 9));
-            }
+            TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
+            order.DateOrdered.Subtract(ts);
+            TimeSpan t = new TimeSpan(Number.Next(2, 9));
+            if (i<0.8*orders)//80% of orders
+                order.DateDelivered.Add(t);
+            t = new TimeSpan(Number.Next(2, 9));
+            if (i < 0.6 * orders)//60% of orders
+                order.DateReceived.Add(t);
+            Orders[Config.LastIndexOrder] = order;
         }
     }
 
-    private static void CreateOrderItemData()
+
+    static void CreateOrderItemData()
     {
-        for (int i = 0; i < orderItems; i++)
+        for (int i = 0; i < OrderItems.Length; i++)
         {
             OrderItem orderItem = new OrderItem();
             int count = 0;
             orderItem.OrderItemId = Config.LastOrderItemId;
             orderItem.OrderID = Number.Next(0, Orders.Length);
             orderItem.OrderItemId = Number.Next(0, OrderItems.Length);
-            if (i >=20)
+            if (i >= 20)
             {
-                orderItem.OrderID = Orders[i-20].OrderId;
+                orderItem.OrderID = Orders[i - 20].OrderId;
             }
             else
             {
@@ -115,10 +111,6 @@ public static class DataSource
         CreateProductData();
         CreateOrderData();
         CreateOrderItemData();
-    }
-    static DataSource()
-    {
-        S_Initalize();
     }
 }
 
