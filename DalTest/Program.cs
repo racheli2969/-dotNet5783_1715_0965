@@ -28,7 +28,9 @@ void Add(int characterType){
             DalItem.Add(item);
             break;
         case (int)OptionsForMain.Order:
+            Order order = new Order();
             Console.WriteLine("enter details for new order:");
+            DalOrder.Add(order);
             break;
         case (int)OptionsForMain.OrderItem:
             Console.WriteLine("enter details for new orderItem:");
