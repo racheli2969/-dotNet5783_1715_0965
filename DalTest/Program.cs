@@ -103,7 +103,7 @@ switch(characterType){
     }
 }
 
- void Main(){
+ void Main(string[] args){
     int number;
     string input;
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");

@@ -65,20 +65,20 @@ public static class DataSource
             order.Address = streets[Number.NextInt64(0, streets.Length)] + Number.Next(0,100) +cities[Number.Next(0, cities.Length)] ;
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
-            TimeSpan ts = new TimeSpan(Number.Next(2, 12), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
-            DateTime randomDate=new DateTime(Number.Next(0, 5), Number.Next(0, 12), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
-           order.DateOrdered.Subtract(randomDate);
-            for (int j = 0; j <= 0.8 * 20; j++)
+            
+         TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
+           order.DateOrdered.Subtract(ts);
+             Orders[Config.LastIndexOrder] = order;
+        }
+
+            for (int j = 0; j <= 0.8 * 20; j++)//80% of orders have date delivered
             {
-                order.DateDelivered.Add(ts);
-                ts = new TimeSpan(Number.Next(0, 12), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60)) ;
+            DataSource.OrderItems[j].DateDelivered.Add(Number.Next(2, 9));
             }
-            for (int j = 0; j <= 0.6 * 20; j++)
+            for (int j = 0; j <= 0.6 * 20; j++)//60% of orders have date received
             {
-                order.DateReceived.Add(ts);
-                ts = new TimeSpan(Number.Next(0, 12), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60)); ;
+                 DataSource.DateReceived[j].DateDelivered.Add(Number.Next(2, 9));
             }
-            Orders[Config.LastIndexOrder] = order;
         }
     }
 
