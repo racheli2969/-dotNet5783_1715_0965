@@ -1,8 +1,5 @@
 ﻿
 using DO;
-using System.ComponentModel;
-using System.Data.Common;
-using System.Security.Cryptography.X509Certificates;
 namespace Dal;
  public class DalItem
  {

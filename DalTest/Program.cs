@@ -1,4 +1,5 @@
 ﻿using Dal;
+using DO;
 
 void PrintOptions(){
     Console.WriteLine("To Exit:0,\r\n  To  Add: a,\r\n  To View By Id: b,\r\n   To View All:c,\r\n  To Update: d,\r\n   To Delete: e");
@@ -22,12 +23,14 @@ void PrintOptions(){
 void Add(int characterType){
     switch(characterType){
         case (int)OptionsForMain.Item:
+            Item item = new Item();
             Console.WriteLine("enter details for new book:");
+            DalItem.Add(item);
             break;
-            case (int)OptionsForMain.Order:
+        case (int)OptionsForMain.Order:
             Console.WriteLine("enter details for new order:");
             break;
-            case (int)OptionsForMain.OrderItem:
+        case (int)OptionsForMain.OrderItem:
             Console.WriteLine("enter details for new orderItem:");
             break;
     }
