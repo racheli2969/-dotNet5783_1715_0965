@@ -57,27 +57,27 @@ public static class DataSource
 
     static void CreateOrderData()
     {
+        Order order = new Order();
         for (int i = 0; i < orders; i++)
         {
-            Order order = new Order();
             order.OrderId = Config.LastOrderId;
             order.Address = streets[Number.NextInt64(0, streets.Length)] + Number.Next(0, 100) + cities[Number.Next(0, cities.Length)];
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
             order.DateOrdered = DateTime.Now;
             TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
-            order.DateOrdered.Subtract(ts);
-            TimeSpan t = new TimeSpan(Number.Next(2, 9));
+            order.DateOrdered=order.DateOrdered.Subtract(ts);
+             ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
             if (i < 0.8 * orders)//80% of orders
             {
                 order.DateDelivered = order.DateOrdered;
-                order.DateDelivered.Add(t);
+                order.DateDelivered= order.DateDelivered.Add(ts);
             }
-            t = new TimeSpan(Number.Next(2, 9));
+            ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
             if (i < 0.6 * orders)//60% of orders
             {
                 order.DateReceived = order.DateDelivered;
-                order.DateReceived.Add(t);
+                order.DateReceived=order.DateReceived.Add(ts);
             }
                
             Orders[Config.LastIndexOrder] = order;
