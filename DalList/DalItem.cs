@@ -1,14 +1,14 @@
 ﻿
 using DO;
 namespace Dal;
- public class DalItem
+ public static class DalItem
  {
-     public int Add(Item item)
+     public static int Add(Item item)
      {
         DataSource.Items[DataSource.Config.LastIndexItem] = item;
         return DataSource.Config.ItemId;
      }
-     public Item ViewById(int Id)
+     public static Item ViewById(int Id)
      {
         for (int i = 0; i < DataSource.Config.IndexItem; i++)
         {
@@ -17,7 +17,7 @@ namespace Dal;
         }
         throw new Exception("The item does not exist");
      }
-     public Item[] ViewAll()
+     public static Item[] ViewAll()
      {
         Item[] item = new Item[DataSource.Config.IndexItem];
        for(int i = 0; i < DataSource.Config.IndexItem; i++)
@@ -26,7 +26,7 @@ namespace Dal;
         }
         return item;
      }
-     public void Delete(int id)
+     public static void Delete(int id)
      {
         bool b = false;
         int index = 0;
@@ -46,7 +46,7 @@ namespace Dal;
         if (b == false)
             throw new Exception("The item does not exist");
      }
-     public void Update(Item item)
+     public static void Update(Item item)
      {
         bool b = false;
         for(int i = 0; i < DataSource.Config.IndexItem; i++)
