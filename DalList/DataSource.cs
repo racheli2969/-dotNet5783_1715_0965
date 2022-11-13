@@ -106,11 +106,15 @@ public static class DataSource
         }
     }
 
-    private static void S_Initalize()
+    private static void s_Initalize()
     {
         CreateProductData();
         CreateOrderData();
         CreateOrderItemData();
+    }
+  static DataSource()
+    {
+        s_Initalize();
     }
 }
 

@@ -1,16 +1,14 @@
-﻿
-using DO;
-
+﻿using DO;
 namespace Dal;
 
-public class DalOrder
+public static class DalOrder
 {
-    public int Add(Order order)
+    public static int Add(Order order)
     {
         DataSource.Orders[DataSource.Config.IndexOrder] = order;
         return DataSource.Config.IndexOrder;
     }
-    public Order ViewById(int Id)
+    public static Order ViewById(int Id)
     {
         for (int i = 0; i < DataSource.Config.IndexOrder; i++)
         {
@@ -19,7 +17,7 @@ public class DalOrder
         }
         throw new Exception("The item is not exist");
     }
-    public Order[] ViewAll()
+    public static Order[] ViewAll()
     {
        Order[] order = new Order[DataSource.Config.IndexOrder];
        for(int i=0;i< DataSource.Config.IndexOrder; i++)
@@ -28,7 +26,7 @@ public class DalOrder
        }
         return order;
     }
-    public void Delete(int id)
+    public static void Delete(int id)
     {
         bool b = false;
         int index = 0;
@@ -48,7 +46,7 @@ public class DalOrder
         if (b == false)
             throw new Exception("The item is not exist");
     }
-    public void Update(Order order)
+    public static void Update(Order order)
     {
         bool b = false;
         for (int i = 0; i < DataSource.Config.IndexOrder; i++)

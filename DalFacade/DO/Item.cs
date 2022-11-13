@@ -7,7 +7,7 @@ public struct Item
 {
     public string Name { get; set; }
     public int Category { get; set; }
-    public float Price { get; set; }
+    public double Price { get; set; }
     public bool InStock { get; set; }
     public int ID { get; set; }
 
