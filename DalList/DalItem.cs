@@ -1,13 +1,27 @@
 ﻿
 using DO;
 namespace Dal;
+/// <summary>
+/// item data layer
+/// </summary>
  public static class DalItem
  {
+    /// <summary>
+    /// gets a new item from the main and adds it to the item array
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns>returns the added item's id</returns>
      public static int Add(Item item)
      {
         DataSource.Items[DataSource.Config.LastIndexItem] = item;
         return DataSource.Config.ItemId;
      }
+    /// <summary>
+    /// finds an item by id 
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <returns>returns the item</returns>
+    /// <exception cref="Exception"></exception>
      public static Item ViewById(int Id)
      {
         for (int i = 0; i < DataSource.Config.IndexItem; i++)
@@ -17,6 +31,10 @@ namespace Dal;
         }
         throw new Exception("The item does not exist");
      }
+    /// <summary>
+    /// returns all the existing items
+    /// </summary>
+    /// <returns></returns>
      public static Item[] ViewAll()
      {
         Item[] item = new Item[DataSource.Config.IndexItem];
@@ -26,6 +44,11 @@ namespace Dal;
         }
         return item;
      }
+    /// <summary>
+    /// gets an id and deletes that item
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="Exception"></exception>
      public static void Delete(int id)
      {
         bool b = false;
@@ -46,6 +69,11 @@ namespace Dal;
         if (b == false)
             throw new Exception("The item does not exist");
      }
+    /// <summary>
+    /// gets an object and searches for it's id in the data array and then replaces the updated object
+    /// </summary>
+    /// <param name="item"></param>
+    /// <exception cref="Exception">if there is no object with that id an exception is thrown</exception>
      public static void Update(Item item)
      {
         bool b = false;

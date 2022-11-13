@@ -3,11 +3,22 @@ using DO;
 namespace Dal;
 public static class DalOrderItem
 {
+    /// <summary>
+    /// gets a new order item from the main and adds it to the order item array
+    /// </summary>
+    /// <param name="oi"></param>
+    /// <returns>returns the added order item's id</returns>
     public static int Add(OrderItem oi)
     {
             DataSource.OrderItems[DataSource.Config.LastIndexOrderItem] = oi;
             return DataSource.Config.OrderItemId;
     }
+    /// <summary>
+    /// finds an order item by id
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <returns>returns the order item</returns>
+    /// <exception cref="Exception"></exception>
     public static OrderItem ViewById(int Id)
     {
         for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
@@ -17,6 +28,9 @@ public static class DalOrderItem
         }
         throw new Exception("The item is not exist");
     }
+    /// <summary>
+    /// returns existing order items
+    /// </summary>
     public static OrderItem[] ViewAll()
     {
         OrderItem[] oi = new OrderItem[DataSource.Config.IndexOrderItem];
@@ -26,6 +40,11 @@ public static class DalOrderItem
         }
         return oi;
     }
+    /// <summary>
+    /// deletes order item by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="Exception"></exception>
     public static void Delete(int id)
     {
         bool b = false;
@@ -46,6 +65,11 @@ public static class DalOrderItem
         if (b == false)
             throw new Exception("The item is not exist");
     }
+    /// <summary>
+    /// updates order item by id
+    /// </summary>
+    /// <param name="oi"> updated object</param>
+    /// <exception cref="Exception"></exception>
     public static void Update(OrderItem oi)
     {
         bool b = false;

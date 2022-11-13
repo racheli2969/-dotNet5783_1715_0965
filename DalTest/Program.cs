@@ -120,7 +120,8 @@ void Add(int characterType){
     {
         Console.WriteLine(msg);
     }
-}             
+} 
+
  void Update(int characterType)
 {
     int intTemp;
@@ -206,7 +207,9 @@ void Add(int characterType){
         Console.WriteLine(msg);
     }
 }               
-
+/// <summary>
+/// navigates between the options of deleting etc...
+/// </summary>
  void ControlOptions(int characterType){
     PrintOptions();
     char x=char.Parse(Console.ReadLine());
@@ -247,7 +250,7 @@ void Add(int characterType){
     int.TryParse(input, out number);
     while (number < 0 || number > 3)
     {
-        Console.WriteLine("Input needs to be between 0 and 3\nPlease try again");
+        Console.WriteLine("Input needs to be between 0 and 3\nPlease try again");//three options:order, item and order item
         input = Console.ReadLine();
         int.TryParse(input, out number);
     }

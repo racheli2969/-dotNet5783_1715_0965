@@ -3,6 +3,11 @@ namespace Dal;
 
 public static class DalOrder
 {
+    /// <summary>
+    /// gets a new order from the main and adds it to the order array
+    /// </summary>
+    /// <param name="order"></param>
+    /// <returns>returns the added order's id</returns>
     public static int Add(Order order)
     {
         DataSource.Orders[DataSource.Config.IndexOrder] = order;
@@ -17,6 +22,10 @@ public static class DalOrder
         }
         throw new Exception("The item does not exist");
     }
+    /// <summary>
+    /// returns all existing orders
+    /// </summary>
+    /// <returns></returns>
     public static Order[] ViewAll()
     {
        Order[] order = new Order[DataSource.Config.IndexOrder];
@@ -26,6 +35,11 @@ public static class DalOrder
        }
         return order;
     }
+    /// <summary>
+    /// delete's an order by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="Exception">if the item does not exist</exception>
     public static void Delete(int id)
     {
         bool b = false;
@@ -46,6 +60,11 @@ public static class DalOrder
         if (b == false)
             throw new Exception("The item does not exist");
     }
+    /// <summary>
+    /// finds an order by id and updates it with the order
+    /// </summary>
+    /// <param name="order"> new order with existing id</param>
+    /// <exception cref="Exception"></exception>
     public static void Update(Order order)
     {
         bool b = false;

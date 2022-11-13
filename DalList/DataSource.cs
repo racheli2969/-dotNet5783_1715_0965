@@ -3,6 +3,9 @@ namespace Dal;
 
 public static class DataSource
 {
+    /// <summary>
+    /// configures all indexs needed for the data arrays
+    /// </summary>
     public static class Config
     {
         public static int ItemId = 100000;
@@ -25,13 +28,18 @@ public static class DataSource
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
+    /// <summary>
+    /// data to randomize to initalize the data arrays
+    /// </summary>
     static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children), ("Ivory", BookCategory.Teens), ("Danger", BookCategory.Adults), ("Diverse", BookCategory.Teens), ("Rainy days", BookCategory.Children), ("Rachel", BookCategory.Adults), ("The janitor's daughter", BookCategory.Adults), ("Esther", BookCategory.Children), ("Cell 35", BookCategory.Teens) };
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
     static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
     static string[] cities = { "Yerushalaim", "Rehovot", "Beit shemesh", "Beitar", "Rishon Letzion", "NesZiona" };
     public static readonly Random Number = new Random();
-
+    /// <summary>
+    /// creates product data
+    /// </summary>
     static void CreateProductData()
     {
         for (int i = 0; i < items; i++)
@@ -54,7 +62,9 @@ public static class DataSource
             Items[Config.LastIndexItem] = item;
         }
     }
-
+    /// <summary>
+    /// creates order data
+    /// </summary>
     static void CreateOrderData()
     {
         Order order = new Order();
@@ -84,7 +94,9 @@ public static class DataSource
         }
     }
 
-
+    /// <summary>
+    /// creates order item data
+    /// </summary>
     static void CreateOrderItemData()
     {
         for (int i = 0; i < orders; i++)
@@ -111,7 +123,9 @@ public static class DataSource
             OrderItems[Config.LastIndexOrderItem] = orderItem;
         }
     }
-
+    /// <summary>
+    /// initalizes all data
+    /// </summary>
     public static void S_Initalize()
     {
         CreateProductData();
