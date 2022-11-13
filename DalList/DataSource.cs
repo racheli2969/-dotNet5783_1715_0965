@@ -61,7 +61,7 @@ public static class DataSource
         for (int i = 0; i < orders; i++)
         {
             order.OrderId = Config.LastOrderId;
-            order.Address = streets[Number.NextInt64(0, streets.Length)] + Number.Next(0, 100) + cities[Number.Next(0, cities.Length)];
+            order.Address = streets[Number.NextInt64(0, streets.Length)] +", "+ Number.Next(0, 100) + ", " + cities[Number.Next(0, cities.Length)];
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
             order.DateOrdered = DateTime.Now;
@@ -90,7 +90,6 @@ public static class DataSource
         for (int i = 0; i < orders; i++)
         {
             OrderItem orderItem = new OrderItem();
-            int count = 0;
             orderItem.OrderItemId = Config.LastOrderItemId;
             orderItem.OrderID = Number.Next(0, Orders.Length);
             orderItem.OrderItemId = Number.Next(0, OrderItems.Length);
