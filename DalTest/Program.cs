@@ -1,4 +1,5 @@
 ﻿using Dal;
+using DO;
 
 void PrintOptions(){
     Console.WriteLine("To Exit:0,\r\n  To  Add: a,\r\n  To View By Id: b,\r\n   To View All:c,\r\n  To Update: d,\r\n   To Delete: e");
@@ -22,56 +23,67 @@ void PrintOptions(){
 void Add(int characterType){
     switch(characterType){
         case (int)OptionsForMain.Item:
+            Item item = new Item();
+            Console.WriteLine("enter details for new book:");
+            DalItem.Add(item);
             break;
-            case (int)OptionsForMain.Order:
+        case (int)OptionsForMain.Order:
+            Order order = new Order();
+            Console.WriteLine("enter details for new order:");
+            DalOrder.Add(order);
             break;
-            case (int)OptionsForMain.OrderItem:
+        case (int)OptionsForMain.OrderItem:
+            Console.WriteLine("enter details for new orderItem:");
             break;
     }
 }
  void ViewById(int characterType)
 {
-switch(characterType){
+    switch (characterType)
+    {
         case (int)OptionsForMain.Item:
             break;
-            case (int)OptionsForMain.Order:
+        case (int)OptionsForMain.Order:
             break;
-            case (int)OptionsForMain.OrderItem:
+        case (int)OptionsForMain.OrderItem:
             break;
-}
-  }            
+    }
+}            
  void ViewAll(int characterType)
 {
-switch(characterType){
+    switch (characterType)
+    {
         case (int)OptionsForMain.Item:
             break;
-            case (int)OptionsForMain.Order:
+        case (int)OptionsForMain.Order:
             break;
-            case (int)OptionsForMain.OrderItem:
+        case (int)OptionsForMain.OrderItem:
             break;
-}
-  }             
+    }
+}             
  void Update(int characterType)
 {
-switch(characterType){
+    switch (characterType)
+    {
         case (int)OptionsForMain.Item:
             break;
-            case (int)OptionsForMain.Order:
+        case (int)OptionsForMain.Order:
             break;
-            case (int)OptionsForMain.OrderItem:
+        case (int)OptionsForMain.OrderItem:
             break;
-}
+    }
 }
  void Delete(int characterType)
 {
-switch(characterType){
+    switch (characterType)
+    {
         case (int)OptionsForMain.Item:
             break;
-            case (int)OptionsForMain.Order:
+        case (int)OptionsForMain.Order:
             break;
-            case (int)OptionsForMain.OrderItem:
+        case (int)OptionsForMain.OrderItem:
             break;
-}
+    }
 }               
 
  void ControlOptions(int characterType){
@@ -80,6 +92,7 @@ switch(characterType){
     while (x!=0)
     {
         PrintOptions();
+        x = Convert.ToInt32(Console.Read());
         switch (x)
         {
             case (int)OptionsOfActions.Exit:
@@ -103,7 +116,7 @@ switch(characterType){
     }
 }
 
- void Main(){
+ void Main(string[] args){
     int number;
     string input;
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");

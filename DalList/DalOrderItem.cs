@@ -4,47 +4,57 @@ using DO;
 namespace Dal;
 public class DalOrderItem
 {
-    public void Add(Item item)
+    public int Add(OrderItem oi)
     {
-        orderItems[Config.LastIndexItem] = item;
+        DataSource.OrderItems[DataSource.Config.LastIndexOrderItem] = oi;
+        return DataSource.Config.IndexOrderItem;
     }
     public OrderItem ViewById(int Id)
     {
-        for (int i = 0; i < orderItems.Length; i++)
+        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
         {
-            if (DataSource.orderItems[i].id == Id)
-                return orderItems[i];
+            if (DataSource.OrderItems[i].OrderItemId == Id)
+                return DataSource.OrderItems[i];
         }
         throw new Exception("The item is not exist");
     }
-    public OrderItem[] View()
+    public OrderItem[] ViewAll()
     {
-        OrderItem oi = new Item[Config.LastIndexItem];
-        item = orderItems;
-        return item;
+        OrderItem[] oi = new OrderItem[DataSource.Config.IndexOrderItem];
+        for(int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        {
+            oi[i] = DataSource.OrderItems[i];
+        }
+        return oi;
     }
     public void Delete(int id)
     {
         bool b = false;
-        for (int i = 0; i < orderItems.Length; i++)
+        int index = 0;
+        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
         {
-            if (orderItems[i].id == Id)
+            if (DataSource.OrderItems[i].OrderItemId == id)
             {
-                orderItems[i] = null;
+                index = i;
                 b = true;
+            }
+            if(b==true)
+            {
+                DataSource.OrderItems[index] = DataSource.OrderItems[DataSource.Config.IndexOrderItem-1];
+                DataSource.Config.IndexOrderItem--;
             }
         }
         if (b == false)
             throw new Exception("The item is not exist");
     }
-    public void Update(Item item)
+    public void Update(OrderItem oi)
     {
         bool b = false;
-        for (int i = 0; i < orderItems.Length; i++)
+        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
         {
-            if (orderItems[i].ID == item.ID)
+            if (DataSource.OrderItems[i].OrderItemId == oi.OrderItemId)
             {
-                orderItems[i] = item;
+                DataSource.OrderItems[i] = oi;
                 b = true;
             }
         }
