@@ -2,7 +2,9 @@
 
 using Dal;
 namespace DO;
-
+/// <summary>
+/// defines the order details
+/// </summary>
 public struct Order
 {
     public int OrderId { get; set; }

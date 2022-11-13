@@ -1,7 +1,7 @@
 ﻿
 namespace DO;
 /// <summary>
-/// defines the item details
+/// defines the order item details
 /// </summary>
 public struct OrderItem
 {

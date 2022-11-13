@@ -44,7 +44,7 @@ public static class DalOrder
             }
         }
         if (b == false)
-            throw new Exception("The item is not exist");
+            throw new Exception("The item does not exist");
     }
     public static void Update(Order order)
     {
@@ -58,7 +58,7 @@ public static class DalOrder
             }
         }
         if (b == false)
-            throw new Exception("The item is not exist");
+            throw new Exception("The item does not exist");
     }
 }
 
