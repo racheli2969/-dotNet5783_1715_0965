@@ -7,7 +7,7 @@ public class DalOrderItem
     public int Add(OrderItem oi)
     {
         DataSource.OrderItems[DataSource.Config.LastIndexOrderItem] = oi;
-        return DataSource.Config.IndexOrderItem;
+        return DataSource.Config.OrderItemId ;
     }
     public OrderItem ViewById(int Id)
     {

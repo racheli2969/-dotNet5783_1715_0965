@@ -8,7 +8,7 @@ public class DalOrder
     public int Add(Order order)
     {
         DataSource.Orders[DataSource.Config.IndexOrder] = order;
-        return DataSource.Config.IndexOrder;
+        return DataSource.Config.OrderId;
     }
     public Order ViewById(int Id)
     {

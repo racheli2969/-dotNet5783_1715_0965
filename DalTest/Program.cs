@@ -85,7 +85,6 @@ void Add(int characterType){
             break;
     }
 }               
-
  void ControlOptions(int characterType){
     PrintOptions();
     int x = Convert.ToInt32(Console.Read());
@@ -115,7 +114,6 @@ void Add(int characterType){
         }
     }
 }
-
  void Main(string[] args){
     int number;
     string input;

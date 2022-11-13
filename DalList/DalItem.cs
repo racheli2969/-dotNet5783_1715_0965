@@ -6,7 +6,7 @@ namespace Dal;
      public int Add(Item item)
      {
         DataSource.Items[DataSource.Config.LastIndexItem] = item;
-        return DataSource.Config.IndexItem;
+        return DataSource.Config.ItemId;
      }
      public Item ViewById(int Id)
      {
