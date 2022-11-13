@@ -5,8 +5,8 @@ public static class DalOrderItem
 {
     public static int Add(OrderItem oi)
     {
-        DataSource.OrderItems[DataSource.Config.LastIndexOrderItem] = oi;
-        return DataSource.Config.OrderItemId ;
+            DataSource.OrderItems[DataSource.Config.LastIndexOrderItem] = oi;
+            return DataSource.Config.OrderItemId;
     }
     public static OrderItem ViewById(int Id)
     {
