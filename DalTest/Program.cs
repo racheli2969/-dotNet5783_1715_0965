@@ -2,7 +2,7 @@
 using DO;
 
 void PrintOptions(){
-    Console.WriteLine("To Exit:0,\r\n  To  Add: a,\r\n  To View By Id: b,\r\n   To View All:c,\r\n  To Update: d,\r\n   To Delete: e");
+    Console.WriteLine("To Exit:0,\r\nTo  Add: a,\r\nTo View By Id: b,\r\nTo View All:c,\r\nTo Update: d,\r\nTo Delete: e");
 }
 
   DateTime DateInputControl(string? s)
@@ -67,19 +67,19 @@ void Add(int characterType){
     {
         case (int)OptionsForMain.Item:
             Console.WriteLine("enter id");
-            a = Convert.ToInt32(Console.Read());
+            int.TryParse(Console.ReadLine(), out a);
             Item item = DalItem.ViewById(a);
             Console.WriteLine(item.ToString());
             break;
         case (int)OptionsForMain.Order:
             Console.WriteLine("enter id");
-            a = Convert.ToInt32(Console.Read());
+            int.TryParse(Console.ReadLine(), out a);
             Order order = DalOrder.ViewById(a);
             Console.WriteLine(order.ToString());
             break;
         case (int)OptionsForMain.OrderItem:
             Console.WriteLine("enter id");
-            a = Convert.ToInt32(Console.Read());
+            int.TryParse(Console.ReadLine(), out a);
             OrderItem orderItem = DalOrderItem.ViewById(a);
             Console.WriteLine(orderItem.ToString());
             break;
@@ -180,31 +180,31 @@ void Add(int characterType){
 
  void ControlOptions(int characterType){
     PrintOptions();
-    int x = Convert.ToInt32(Console.Read());
-    while (x!=0)
+    char x=char.Parse(Console.ReadLine());
+    while (x!='0')
     {
-        PrintOptions();
-        x = Convert.ToInt32(Console.Read());
         switch (x)
         {
-            case (int)OptionsOfActions.Exit:
+            case (char)OptionsOfActions.Exit:
                 break;
-            case (int)OptionsOfActions.AddItem:
+            case (char)OptionsOfActions.AddItem:
                 Add(characterType);
                 break;
-            case (int)OptionsOfActions.ViewById:
+            case (char)OptionsOfActions.ViewById:
                 ViewById(characterType);
                 break;
-            case (int)OptionsOfActions.ViewAll:
+            case (char)OptionsOfActions.ViewAll:
                 ViewAll(characterType);
                 break;
-            case (int)OptionsOfActions.UpdateItem:
+            case (char)OptionsOfActions.UpdateItem:
                 Update(characterType);
                 break;
-            case (int)OptionsOfActions.DeleteItem:
+            case (char)OptionsOfActions.DeleteItem:
                 Delete(characterType);
                 break;
         }
+        PrintOptions();
+        x = char.Parse(Console.ReadLine());
     }
 }
 
@@ -212,6 +212,7 @@ void Add(int characterType){
 {
     int number;
     string input;
+    DataSource.S_Initalize();
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
     input = Console.ReadLine();
     int.TryParse(input, out number);

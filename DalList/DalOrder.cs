@@ -8,14 +8,14 @@ public static class DalOrder
         DataSource.Orders[DataSource.Config.IndexOrder] = order;
         return DataSource.Config.IndexOrder;
     }
-    public static Order ViewById(int Id)
+    public static Order ViewById(int id)
     {
         for (int i = 0; i < DataSource.Config.IndexOrder; i++)
         {
-            if (DataSource.Orders[i].OrderId == Id)
+            if (DataSource.Orders[i].OrderId == id)
                 return DataSource.Orders[i];
         }
-        throw new Exception("The item is not exist");
+        throw new Exception("The item does not exist");
     }
     public static Order[] ViewAll()
     {

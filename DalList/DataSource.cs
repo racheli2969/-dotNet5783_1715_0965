@@ -64,15 +64,22 @@ public static class DataSource
             order.Address = streets[Number.NextInt64(0, streets.Length)] + Number.Next(0, 100) + cities[Number.Next(0, cities.Length)];
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
-
+            order.DateOrdered = DateTime.Now;
             TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
             order.DateOrdered.Subtract(ts);
             TimeSpan t = new TimeSpan(Number.Next(2, 9));
-            if (i<0.8*orders)//80% of orders
+            if (i < 0.8 * orders)//80% of orders
+            {
+                order.DateDelivered = order.DateOrdered;
                 order.DateDelivered.Add(t);
+            }
             t = new TimeSpan(Number.Next(2, 9));
             if (i < 0.6 * orders)//60% of orders
+            {
+                order.DateReceived = order.DateDelivered;
                 order.DateReceived.Add(t);
+            }
+               
             Orders[Config.LastIndexOrder] = order;
         }
     }
@@ -80,7 +87,7 @@ public static class DataSource
 
     static void CreateOrderItemData()
     {
-        for (int i = 0; i < OrderItems.Length; i++)
+        for (int i = 0; i < orders; i++)
         {
             OrderItem orderItem = new OrderItem();
             int count = 0;
@@ -98,23 +105,19 @@ public static class DataSource
             orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)].ID;
             for (int j = 0; j < Items.Length; j++)
             {
-                if (Items[i].ID == orderItem.ItemId)
-                    orderItem.Price = Items[i].Price;
+                if (Items[j].ID == orderItem.ItemId)
+                    orderItem.Price = Items[j].Price;
             }
             orderItem.Amount = Number.Next(1, 3);
             OrderItems[Config.LastIndexOrderItem] = orderItem;
         }
     }
 
-    private static void s_Initalize()
+    public static void S_Initalize()
     {
         CreateProductData();
         CreateOrderData();
         CreateOrderItemData();
-    }
-  static DataSource()
-    {
-        s_Initalize();
     }
 }
 
