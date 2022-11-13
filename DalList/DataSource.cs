@@ -5,7 +5,7 @@ public static class DataSource
 {
     public static class Config
     {
-        private static int ItemId = 100000;
+        public static int ItemId = 100000;
         public static int OrderId = 1;
         public static int OrderItemId = 1;
         public static int IndexItem = 0;
