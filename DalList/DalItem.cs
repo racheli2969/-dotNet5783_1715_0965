@@ -1,11 +1,12 @@
-﻿
+﻿using DalApi;
 using DO;
 namespace Dal;
 /// <summary>
 /// item data layer
 /// </summary>
- public static class DalItem
- {
+
+internal class DalItem : IItem
+{
     /// <summary>
     /// gets a new item from the main and adds it to the item array
     /// </summary>
@@ -13,7 +14,7 @@ namespace Dal;
     /// <returns>returns the added item's id</returns>
      public static int Add(Item item)
      {
-        DataSource.Items[DataSource.Config.LastIndexItem] = item;
+        DataSource.Items[DataSource.Items.Count] = item;
         return DataSource.Config.ItemId;
      }
     /// <summary>
@@ -24,7 +25,7 @@ namespace Dal;
     /// <exception cref="Exception"></exception>
      public static Item ViewById(int Id)
      {
-        for (int i = 0; i < DataSource.Config.IndexItem; i++)
+        for (int i = 0; i < DataSource.Items.Count; i++)
         {
             if (DataSource.Items[i].ID == Id)
                 return DataSource.Items[i];
@@ -35,10 +36,10 @@ namespace Dal;
     /// returns all the existing items
     /// </summary>
     /// <returns></returns>
-     public static Item[] ViewAll()
+     public IEnumerable<Item> ViewAll()
      {
-        Item[] item = new Item[DataSource.Config.IndexItem];
-       for(int i = 0; i < DataSource.Config.IndexItem; i++)
+        Item[] item = new Item[DataSource.Items.Count];
+       for(int i = 0; i < DataSource.Items.Count; i++)
         {
             item[i] = DataSource.Items[i];
         }
@@ -53,7 +54,7 @@ namespace Dal;
      {
         bool b = false;
         int index = 0;
-        for (int i = 0; i < DataSource.Config.IndexItem; i++)
+        for (int i = 0; i < DataSource.Items.Count; i++)
         {
             if (DataSource.Items[i].ID == id)
             { 
@@ -62,8 +63,7 @@ namespace Dal;
             }
             if (b == true)
             {
-            DataSource.Items[index] = DataSource.Items[DataSource.Config.IndexItem];
-                DataSource.Config.IndexItem--;
+                DataSource.Items.RemoveAt(index);
             }
         }
         if (b == false)
@@ -77,7 +77,7 @@ namespace Dal;
      public static void Update(Item item)
      {
         bool b = false;
-        for(int i = 0; i < DataSource.Config.IndexItem; i++)
+        for(int i = 0; i < DataSource.Items.Count; i++)
         {
             if (DataSource.Items[i].ID == item.ID)
             {

@@ -1,7 +1,8 @@
 ﻿using DO;
+using DalApi;
 namespace Dal;
 
-public static class DalOrder
+internal  class DalOrder:IOrder
 {
     /// <summary>
     /// gets a new order from the main and adds it to the order array
@@ -10,12 +11,12 @@ public static class DalOrder
     /// <returns>returns the added order's id</returns>
     public static int Add(Order order)
     {
-        DataSource.Orders[DataSource.Config.IndexOrder] = order;
+        DataSource.Orders[DataSource.Orders.Count] = order;
         return DataSource.Config.OrderId;
     }
     public static Order ViewById(int id)
     {
-        for (int i = 0; i < DataSource.Config.IndexOrder; i++)
+        for (int i = 0; i < DataSource.Orders.Count; i++)
         {
             if (DataSource.Orders[i].OrderId == id)
                 return DataSource.Orders[i];
@@ -26,10 +27,10 @@ public static class DalOrder
     /// returns all existing orders
     /// </summary>
     /// <returns></returns>
-    public static Order[] ViewAll()
+    public IEnumerable<Order> ViewAll()
     {
-       Order[] order = new Order[DataSource.Config.IndexOrder];
-       for(int i=0;i< DataSource.Config.IndexOrder; i++)
+       Order[] order = new Order[DataSource.Orders.Count];
+       for(int i=0;i< DataSource.Orders.Count; i++)
        {
             order[i] = DataSource.Orders[i];
        }
@@ -44,7 +45,7 @@ public static class DalOrder
     {
         bool b = false;
         int index = 0;
-        for (int i = 0; i < DataSource.Config.IndexOrder; i++)
+        for (int i = 0; i < DataSource.Orders.Count; i++)
         {
             if (DataSource.Orders[i].OrderId == id)
             {
@@ -53,8 +54,7 @@ public static class DalOrder
             }
             if(b==true)
             {
-                DataSource.Config.IndexOrder--;
-                DataSource.Orders[index] = DataSource.Orders[DataSource.Config.IndexOrder-1];
+                DataSource.Orders.RemoveAt(index);
             }
         }
         if (b == false)
@@ -68,7 +68,7 @@ public static class DalOrder
     public static void Update(Order order)
     {
         bool b = false;
-        for (int i = 0; i < DataSource.Config.IndexOrder; i++)
+        for (int i = 0; i < DataSource.Orders.Count; i++)
         {
             if (DataSource.Orders[i].OrderId == order.OrderId)
             {

@@ -11,20 +11,20 @@ public static class DataSource
         public static int ItemId = 100000;
         public static int OrderId = 1;
         public static int OrderItemId = 1;
-        public static int IndexItem = 0;
+      /*  public static int IndexItem = 0;
         public static int IndexOrder = 0;
-        public static int IndexOrderItem = 0;
+        public static int IndexOrderItem = 0;*/
         public static int LastOrderId { get { return OrderId++; } }
         public static int LastOrderItemId { get { return OrderItemId++; } }
-        public static int LastIndexItem { get { return IndexItem++; } }
+      /*  public static int LastIndexItem { get { return IndexItem++; } }
         public static int LastIndexOrder { get { return IndexOrder++; } }//last Index available
-        public static int LastIndexOrderItem { get { return IndexOrderItem++; } }
+        public static int LastIndexOrderItem { get { return IndexOrderItem++; } }*/
         public static int LastItemId { get { return ItemId++; } }
     }
 
-    public static Item[] Items = new Item[50];
-    public static OrderItem[] OrderItems = new OrderItem[200];
-    public static Order[] Orders = new Order[100];
+    public static List<Item> Items = new List<Item>();
+    public static List<OrderItem>OrderItems = new List<OrderItem>();
+    public static List<Order>Orders = new List<Order>();
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
@@ -34,7 +34,7 @@ public static class DataSource
     static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children), ("Ivory", BookCategory.Teens), ("Danger", BookCategory.Adults), ("Diverse", BookCategory.Teens), ("Rainy days", BookCategory.Children), ("Rachel", BookCategory.Adults), ("The janitor's daughter", BookCategory.Adults), ("Esther", BookCategory.Children), ("Cell 35", BookCategory.Teens) };
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
-    static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
+    static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hahagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
     static string[] cities = { "Yerushalaim", "Rehovot", "Beit shemesh", "Beitar", "Rishon Letzion", "NesZiona" };
     public static readonly Random Number = new Random();
     /// <summary>
@@ -59,7 +59,7 @@ public static class DataSource
             item.Price = Number.NextInt64(35, 140);
             item.ID = Config.LastItemId;
             item.Category = Convert.ToInt16(bookNames[Number.NextInt64(1, bookNames.Length)].Item2);
-            Items[Config.LastIndexItem] = item;
+            Items[Items.Count-1] = item;
         }
     }
     /// <summary>
@@ -90,7 +90,8 @@ public static class DataSource
                 order.DateReceived=order.DateReceived.Add(ts);
             }
                
-            Orders[Config.LastIndexOrder] = order;
+            Orders[Orders.Count-1] = order;
+    
         }
     }
 
@@ -103,8 +104,8 @@ public static class DataSource
         {
             OrderItem orderItem = new OrderItem();
             orderItem.OrderItemId = Config.LastOrderItemId;
-            orderItem.OrderID = Number.Next(0, Orders.Length);
-            orderItem.OrderItemId = Number.Next(0, OrderItems.Length);
+            orderItem.OrderID = Number.Next(0, Orders.Count);
+            orderItem.OrderItemId = Number.Next(0, OrderItems.Count);
             if (i >= 20)
             {
                 orderItem.OrderID = Orders[i - 20].OrderId;
@@ -113,14 +114,14 @@ public static class DataSource
             {
                 orderItem.OrderID = Orders[i].OrderId;
             }
-            orderItem.ItemId = Items[Number.NextInt64(0, Items.Length)].ID;
-            for (int j = 0; j < Items.Length; j++)
+            orderItem.ItemId = Items[Number.Next(0, Items.Count)].ID;
+            for (int j = 0; j < Items.Count; j++)
             {
                 if (Items[j].ID == orderItem.ItemId)
                     orderItem.Price = Items[j].Price;
             }
             orderItem.Amount = Number.Next(1, 3);
-            OrderItems[Config.LastIndexOrderItem] = orderItem;
+            OrderItems[OrderItems.Count-1] = orderItem;
         }
     }
     /// <summary>

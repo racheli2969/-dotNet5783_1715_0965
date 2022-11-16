@@ -1,16 +1,17 @@
 ﻿
 using DO;
+using DalApi;
 namespace Dal;
-public static class DalOrderItem
+internal class DalOrderItem : IOrderItem
 {
     /// <summary>
     /// gets a new order item from the main and adds it to the order item array
     /// </summary>
     /// <param name="oi"></param>
     /// <returns>returns the added order item's id</returns>
-    public static int Add(OrderItem oi)
+    public  int Add(OrderItem oi)
     {
-            DataSource.OrderItems[DataSource.Config.LastIndexOrderItem] = oi;
+            DataSource.OrderItems[DataSource.OrderItems.Count] = oi;
             return DataSource.Config.OrderItemId;
     }
     /// <summary>
@@ -19,9 +20,9 @@ public static class DalOrderItem
     /// <param name="Id"></param>
     /// <returns>returns the order item</returns>
     /// <exception cref="Exception"></exception>
-    public static OrderItem ViewById(int Id)
+    public  OrderItem GetById(int Id)
     {
-        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderItemId == Id)
                 return DataSource.OrderItems[i];
@@ -31,10 +32,10 @@ public static class DalOrderItem
     /// <summary>
     /// returns existing order items
     /// </summary>
-    public static OrderItem[] ViewAll()
+    public IEnumerable<OrderItem> GetAll()
     {
-        OrderItem[] oi = new OrderItem[DataSource.Config.IndexOrderItem];
-        for(int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        OrderItem[] oi = new OrderItem[DataSource.OrderItems.Count-1];
+        for(int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             oi[i] = DataSource.OrderItems[i];
         }
@@ -45,11 +46,11 @@ public static class DalOrderItem
     /// </summary>
     /// <param name="id"></param>
     /// <exception cref="Exception"></exception>
-    public static void Delete(int id)
+    public  void Delete(int id)
     {
         bool b = false;
         int index = 0;
-        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderItemId == id)
             {
@@ -58,8 +59,7 @@ public static class DalOrderItem
             }
             if(b==true)
             {
-                DataSource.OrderItems[index] = DataSource.OrderItems[DataSource.Config.IndexOrderItem-1];
-                DataSource.Config.IndexOrderItem--;
+                DataSource.OrderItems.RemoveAt(index);
             }
         }
         if (b == false)
@@ -70,10 +70,10 @@ public static class DalOrderItem
     /// </summary>
     /// <param name="oi"> updated object</param>
     /// <exception cref="Exception"></exception>
-    public static void Update(OrderItem oi)
+    public void Update(OrderItem oi)
     {
         bool b = false;
-        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderItemId == oi.OrderItemId)
             {
