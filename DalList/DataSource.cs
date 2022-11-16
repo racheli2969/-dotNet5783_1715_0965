@@ -47,6 +47,11 @@ public static class DataSource
             Item item = new Item();
             int counter = 0;
             item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
+            item.Price = Number.NextInt64(35, 140);
+            item.ID = Config.LastItemId;
+            item.Category = Convert.ToInt16(bookNames[Number.NextInt64(1, bookNames.Length)].Item2);
+            Items.Add(item);
+
             for (int j = 0; j < items; j++)
             {
                 if (Items[i].InStock == false)
@@ -56,10 +61,6 @@ public static class DataSource
                 item.InStock = true;
             else
                 item.InStock = false;
-            item.Price = Number.NextInt64(35, 140);
-            item.ID = Config.LastItemId;
-            item.Category = Convert.ToInt16(bookNames[Number.NextInt64(1, bookNames.Length)].Item2);
-            Items[Items.Count-1] = item;
         }
     }
     /// <summary>
@@ -89,8 +90,8 @@ public static class DataSource
                 order.DateReceived = order.DateDelivered;
                 order.DateReceived=order.DateReceived.Add(ts);
             }
-               
-            Orders[Orders.Count-1] = order;
+
+            Orders.Add(order);
     
         }
     }
@@ -121,7 +122,7 @@ public static class DataSource
                     orderItem.Price = Items[j].Price;
             }
             orderItem.Amount = Number.Next(1, 3);
-            OrderItems[OrderItems.Count-1] = orderItem;
+            OrderItems.Add(orderItem);
         }
     }
     /// <summary>

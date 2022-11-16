@@ -30,8 +30,8 @@ public enum OptionsOfActions
 {   
     Exit=0,
     AddItem='a',
-    ViewById='b',
-    ViewAll='c',
+    GetById='b',
+    GetAll='c',
     UpdateItem='d',
     DeleteItem='e'
 }
