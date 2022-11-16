@@ -27,7 +27,7 @@ internal class DalOrderItem : IOrderItem
             if (DataSource.OrderItems[i].OrderItemId == Id)
                 return DataSource.OrderItems[i];
         }
-        throw new Exception("The item is not exist");
+        throw new EntityNotFoundException();
     }
     /// <summary>
     /// returns existing order items
@@ -63,7 +63,7 @@ internal class DalOrderItem : IOrderItem
             }
         }
         if (b == false)
-            throw new Exception("The item is not exist");
+            throw new EntityNotFoundException();
     }
     /// <summary>
     /// updates order item by id
@@ -82,7 +82,7 @@ internal class DalOrderItem : IOrderItem
             }
         }
         if (b == false)
-            throw new Exception("The item is not exist");
+            throw new EntityNotFoundException();
     }
 }
        
