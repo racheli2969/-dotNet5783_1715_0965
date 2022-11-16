@@ -20,7 +20,27 @@
       "ProjectGuid": "15faf109-f969-4284-ac62-f97e2b9efd9c",
       "DisplayName": "DalTest",
       "ColorIndex": 2
+    },
+    "96b7d077-c8ae-42c4-af52-f66345f6bbdf": {
+      "ProjectGuid": "96b7d077-c8ae-42c4-af52-f66345f6bbdf",
+      "DisplayName": "stage0",
+      "ColorIndex": 3
+    },
+    "ed9587ca-7200-4128-8f63-d5f6a3abea8b": {
+      "ProjectGuid": "ed9587ca-7200-4128-8f63-d5f6a3abea8b",
+      "DisplayName": "BL",
+      "ColorIndex": 4
+    },
+    "62e42215-78f4-4fc2-89ba-8381a1018389": {
+      "ProjectGuid": "62e42215-78f4-4fc2-89ba-8381a1018389",
+      "DisplayName": "BL",
+      "ColorIndex": 5
+    },
+    "5870e9b1-a9f9-44e9-8cb2-2ebedcb404be": {
+      "ProjectGuid": "5870e9b1-a9f9-44e9-8cb2-2ebedcb404be",
+      "DisplayName": "BL",
+      "ColorIndex": 6
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 7
 }
