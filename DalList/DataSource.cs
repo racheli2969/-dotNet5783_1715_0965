@@ -49,7 +49,7 @@ public static class DataSource
             item.Name = bookNames[Number.NextInt64(0, bookNames.Length)].Item1;
             item.Price = Number.NextInt64(35, 140);
             item.ID = Config.LastItemId;
-            item.Category = Convert.ToInt16(bookNames[Number.NextInt64(1, bookNames.Length)].Item2);
+            item.Category = bookNames[Number.NextInt64(1, bookNames.Length)].Item2;
             Items.Add(item);
 
             for (int j = 0; j < items; j++)

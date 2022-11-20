@@ -1,12 +1,12 @@
-﻿
+﻿using Dal;
 namespace DO;
 /// <summary>
 /// defines the item details
 /// </summary>
 public struct Item
 {
-    public string Name { get; set; }
-    public int Category { get; set; }
+    public string? Name { get; set; }
+    public BookCategory Category { get; set; }
     public double Price { get; set; }
     public bool InStock { get; set; }
     public int ID { get; set; }
@@ -15,6 +15,6 @@ public struct Item
 Product ID={ID}: {Name}, 
 category - {Category}
     	Price: {Price}
-    	Amount in stock: {InStock}
+    	 In stock: {InStock}
 ";
 }
