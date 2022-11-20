@@ -20,7 +20,12 @@
       "ProjectGuid": "15faf109-f969-4284-ac62-f97e2b9efd9c",
       "DisplayName": "DalTest",
       "ColorIndex": 2
+    },
+    "5870e9b1-a9f9-44e9-8cb2-2ebedcb404be": {
+      "ProjectGuid": "5870e9b1-a9f9-44e9-8cb2-2ebedcb404be",
+      "DisplayName": "BL",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }
