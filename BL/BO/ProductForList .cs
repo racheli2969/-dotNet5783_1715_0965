@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dal;
+namespace BO;
 
-namespace BL.BO
+public class ProductForList
 {
-    internal class ProductForList
-    {
-//        ○	מזהה
-//○	שם מוצר
-//○	מחיר מוצר
-//○	קטגוריה
+    public int ItemId { get; set; }
+    public string? ItemName { get; set; }
+    public double ItemPrice { get; set; }
+    public BookCategory Category { get; set; }
 
-    }
+    public override string ToString() => $@"
+
+item id:{ItemId}, 
+Item Name: {ItemName}, 
+Ptice per item: {ItemPrice}, 
+Category: {Category}
+";
+
 }
+

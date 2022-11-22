@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dal;
 
-namespace BL.BO
+namespace BO;
+public class ProductItem
 {
-    internal class ProductItem
-    {
-//○	מזהה
-//○	שם מוצר
-//○	מחיר מוצר
-//○	קטגוריה
-//○	זמינות(האם במלאי)
-//○	כמות בסל הקניות של הקונה
+    public int ID { get; set; }
+    public string? Name { get; set; }
+    public double Price { get; set; }
+    public BookCategory Category { get; set; }
+    public bool IsAvailable { get; set; }
+    public int AmountInStock { get; set; }
 
 
-    }
+    public override string ToString() => $@"
+Product ID={ID}, Name: {Name}, 
+    	Price: {Price},
+category - {Category},
+Available: {IsAvailable},
+    	Amount in stock: {AmountInStock}
+";
+
+
 }

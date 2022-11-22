@@ -13,3 +13,13 @@ namespace Dal;
     Delivered,
     Received
 }
+public enum BookGenre
+{
+    Fiction,
+    History,
+    Biography,
+    Fantasy,
+    SciFi,
+    Mystery,
+    Thriller
+}

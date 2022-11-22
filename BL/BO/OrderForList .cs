@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dal;
+namespace BO;
 
-namespace BL.BO
+public class OrderForList
 {
-    internal class OrderForList
-    {
-//        ○	מזהה
-//○	שם קונה
-//○	מצב הזמנה
-//○	כמות פריטים
-//○	מחיר כולל
+    public int Id { get; set; }
+    public string? CustomerName { get; set; }
+    public EnumOrderStatus OrderStatus { get; set; }
+    public int NumOfItems { get; set; }
+    public double Price { get; set; }
+    public override string ToString() => $@"
 
-    }
+ ID={Id}, Customer Name: {CustomerName}, 
+    	Order Status: {OrderStatus},
+Price: {Price}
+";
+
 }
+

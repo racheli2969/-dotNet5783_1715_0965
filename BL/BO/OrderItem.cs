@@ -2,14 +2,22 @@
 namespace BO;
 public class OrderItem
 {
-    // public ... { set; get; }
-//○	מזהה פריט הזמנה
-//○	מזהה מוצר
-//○	שם מוצר
-//○	מחיר מוצר
-//○	כמות פריטים של מוצר בסל\הזמנה
-//○	מחיר כולל של פריט(לפי מחיר מוצר וכמותו בזמנה\סל)
+    public int OrderItemId { get; set; }
+    public int ItemId { get; set; }
+    public string ?ItemName { get; set; }
+    public double ItemPrice { get; set; }
+    public int Amount { get; set; }
+    public double PriceOfItems { get; set; }
 
+    public override string ToString() => $@"
+
+ ID of order item={OrderItemId},
+item id:{ItemId}, 
+Customer Name: {ItemName}, 
+Ptice per item: {ItemPrice},
+amount: {Amount},
+price all together: {PriceOfItems}
+";
 
 
 }

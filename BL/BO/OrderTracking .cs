@@ -1,12 +1,18 @@
-﻿
-namespace BL.BO;
+﻿using Dal;
+namespace BO;
 
 internal class OrderTracking
 {
-//    ○	מזהה
-//○	מצב הזמנה
-//○	רשימה של צמדים(תאריך, תיאור התקדמות חבילה)
+    public int Id { get; set; }
+    public EnumOrderStatus OrderStatus { get; set; }
+    public List<(DateTime,EnumOrderStatus)>? TrackingTuples { get; set; }                    
+    public override string ToString() => $@"
 
+ ID={Id},
+    	Order Status: {OrderStatus},
+Tracking: {TrackingTuples}
 
+";
+   
 }
 
