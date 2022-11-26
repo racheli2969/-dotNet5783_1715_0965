@@ -1,6 +1,6 @@
 ﻿using DO;
 namespace BL.BO;
-internal class Cart
+public class Cart
 {
     public string? CustomerName { get; set; }
     public string? Email { get; set; }
