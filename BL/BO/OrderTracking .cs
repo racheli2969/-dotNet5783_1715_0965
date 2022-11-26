@@ -1,7 +1,7 @@
 ﻿using Dal;
 namespace BO;
 
-internal class OrderTracking
+public class OrderTracking
 {
     public int Id { get; set; }
     public EnumOrderStatus OrderStatus { get; set; }
