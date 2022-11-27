@@ -1,37 +1,56 @@
 ﻿
 using DO;
-
+using DalApi;
 namespace Dal;
-public class DalOrderItem
+internal class DalOrderItem : IOrderItem
 {
-    public int Add(OrderItem oi)
+    /// <summary>
+    /// gets a new order item from the main and adds it to the order item array
+    /// </summary>
+    /// <param name="oi"></param>
+    /// <returns>returns the added order item's id</returns>
+    public  int Add(OrderItem oi)
     {
-        DataSource.OrderItems[DataSource.Config.LastIndexOrderItem] = oi;
-        return DataSource.Config.IndexOrderItem;
+            DataSource.OrderItems[DataSource.OrderItems.Count] = oi;
+            return DataSource.Config.OrderItemId;
     }
-    public OrderItem ViewById(int Id)
+    /// <summary>
+    /// finds an order item by id
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <returns>returns the order item</returns>
+    /// <exception cref="Exception"></exception>
+    public  OrderItem GetById(int Id)
     {
-        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderItemId == Id)
                 return DataSource.OrderItems[i];
         }
-        throw new Exception("The item is not exist");
+        throw new EntityNotFoundException();
     }
-    public OrderItem[] ViewAll()
+    /// <summary>
+    /// returns existing order items
+    /// </summary>
+    public IEnumerable<OrderItem> GetAll()
     {
-        OrderItem[] oi = new OrderItem[DataSource.Config.IndexOrderItem];
-        for(int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        OrderItem[] oi = new OrderItem[DataSource.OrderItems.Count];
+        for(int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             oi[i] = DataSource.OrderItems[i];
         }
         return oi;
     }
-    public void Delete(int id)
+    /// <summary>
+    /// deletes order item by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="Exception"></exception>
+    public  void Delete(int id)
     {
         bool b = false;
         int index = 0;
-        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderItemId == id)
             {
@@ -40,17 +59,21 @@ public class DalOrderItem
             }
             if(b==true)
             {
-                DataSource.OrderItems[index] = DataSource.OrderItems[DataSource.Config.IndexOrderItem-1];
-                DataSource.Config.IndexOrderItem--;
+                DataSource.OrderItems.RemoveAt(index);
             }
         }
         if (b == false)
-            throw new Exception("The item is not exist");
+            throw new EntityNotFoundException();
     }
+    /// <summary>
+    /// updates order item by id
+    /// </summary>
+    /// <param name="oi"> updated object</param>
+    /// <exception cref="Exception"></exception>
     public void Update(OrderItem oi)
     {
         bool b = false;
-        for (int i = 0; i < DataSource.Config.IndexOrderItem; i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderItemId == oi.OrderItemId)
             {
@@ -59,7 +82,29 @@ public class DalOrderItem
             }
         }
         if (b == false)
-            throw new Exception("The item is not exist");
+            throw new EntityNotFoundException();
+    }
+    public OrderItem GetById(int orderId,int productId)
+    {
+        for(int i = 0; i < DataSource.OrderItems.Count; i++)
+        {
+            if (DataSource.OrderItems[i].OrderID == orderId && DataSource.OrderItems[i].ItemId == productId)
+                return DataSource.OrderItems[i];
+        }
+        throw new EntityNotFoundException();
+    }
+    public IEnumerable<OrderItem> GetByOrderId(int orderId)
+    {
+        int index = 0;
+        OrderItem[] product = new OrderItem[DataSource.OrderItems.Count];
+        for(int i = 0; i < DataSource.OrderItems.Count;i++)
+        {
+            if (DataSource.OrderItems[i].OrderID == orderId)
+            {
+                product[index++] = DataSource.OrderItems[i];
+            }
+        }
+        return product;
     }
 }
        

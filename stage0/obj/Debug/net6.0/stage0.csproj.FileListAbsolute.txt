@@ -51,3 +51,33 @@ C:\Users\acer\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.
 C:\Users\acer\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.genruntimeconfig.cache
 C:\Users\acer\Source\Repos\-dotNet5783_1715_0965\stage0\obj\Debug\net6.0\ref\stage0.dll
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\stage0\bin\Debug\net6.0\ref\stage0.dll
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\bin\Debug\net6.0\stage0.exe
+C:\Users\גרשון רחל\source\repos\dotNet5783_1715_0965\stage0\bin\Debug\net6.0\stage0.deps.json
+C:\Users\גרשון רחל\source\repos\dotNet5783_1715_0965\stage0\bin\Debug\net6.0\stage0.runtimeconfig.json
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\bin\Debug\net6.0\stage0.dll
+C:\Users\גרשון רחל\source\repos\dotNet5783_1715_0965\stage0\bin\Debug\net6.0\ref\stage0.dll
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\bin\Debug\net6.0\stage0.pdb
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.csproj.AssemblyReference.cache
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.AssemblyInfoInputs.cache
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.AssemblyInfo.cs
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.csproj.CoreCompileInputs.cache
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.dll
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\ref\stage0.dll
+C:\Users\גרשון רחל\Source\Repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.pdb
+C:\Users\גרשון רחל\source\repos\dotNet5783_1715_0965\stage0\obj\Debug\net6.0\stage0.genruntimeconfig.cache
+C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\Debug\net6.0\stage0.exe
+C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\Debug\net6.0\stage0.deps.json
+C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\Debug\net6.0\stage0.runtimeconfig.json
+C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\Debug\net6.0\stage0.dll
+C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\Debug\net6.0\ref\stage0.dll
+C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\Debug\net6.0\stage0.pdb
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\stage0.csproj.AssemblyReference.cache
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\stage0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\stage0.AssemblyInfoInputs.cache
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\stage0.AssemblyInfo.cs
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\stage0.csproj.CoreCompileInputs.cache
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\stage0.dll
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\ref\stage0.dll
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\stage0.pdb
+C:\Users\פוקרוי רחל\Source\Repos\stage0\obj\Debug\net6.0\stage0.genruntimeconfig.cache

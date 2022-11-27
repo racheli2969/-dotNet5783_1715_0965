@@ -1,36 +1,61 @@
-﻿
+﻿using DalApi;
 using DO;
 namespace Dal;
- public class DalItem
- {
-     public int Add(Item item)
+/// <summary>
+/// item data layer
+/// </summary>
+
+internal class DalItem :IItem
+{
+    /// <summary>
+    /// gets a new item from the main and adds it to the item array
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns>returns the added item's id</returns>
+     public  int Add(Item item)
      {
-        DataSource.Items[DataSource.Config.LastIndexItem] = item;
-        return DataSource.Config.IndexItem;
+        DataSource.Items[DataSource.Items.Count] = item;
+        return DataSource.Config.ItemId;
      }
-     public Item ViewById(int Id)
+    /// <summary>
+    /// finds an item by id 
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <returns>returns the item</returns>
+    /// <exception cref="Exception"></exception>
+     public  Item GetById(int Id)
      {
-        for (int i = 0; i < DataSource.Config.IndexItem; i++)
+        for (int i = 0; i < DataSource.Items.Count; i++)
         {
             if (DataSource.Items[i].ID == Id)
                 return DataSource.Items[i];
         }
-        throw new Exception("The item does not exist");
+
+        throw new EntityNotFoundException();
      }
-     public Item[] ViewAll()
+    /// <summary>
+    /// returns all the existing items
+    /// </summary>
+    /// <returns></returns>
+     public IEnumerable<Item> GetAll()
      {
-        Item[] item = new Item[DataSource.Config.IndexItem];
-       for(int i = 0; i < DataSource.Config.IndexItem; i++)
+        Item[] item = new Item[DataSource.Items.Count];
+       for(int i = 0; i < DataSource.Items.Count; i++)
         {
             item[i] = DataSource.Items[i];
         }
         return item;
      }
-     public void Delete(int id)
+    /// <summary>
+    /// gets an id and deletes that item
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="Exception"></exception>
+     public  void Delete(int id)
      {
         bool b = false;
         int index = 0;
-        for (int i = 0; i < DataSource.Config.IndexItem; i++)
+        for (int i = 0; i < DataSource.Items.Count; i++)
         {
             if (DataSource.Items[i].ID == id)
             { 
@@ -39,17 +64,21 @@ namespace Dal;
             }
             if (b == true)
             {
-            DataSource.Items[index] = DataSource.Items[DataSource.Config.IndexItem];
-                DataSource.Config.IndexItem--;
+                DataSource.Items.RemoveAt(index);
             }
         }
         if (b == false)
-            throw new Exception("The item does not exist");
-     }
-     public void Update(Item item)
+            throw new EntityNotFoundException();
+    }
+    /// <summary>
+    /// gets an object and searches for it's id in the data array and then replaces the updated object
+    /// </summary>
+    /// <param name="item"></param>
+    /// <exception cref="Exception">if there is no object with that id an exception is thrown</exception>
+     public  void Update(Item item)
      {
         bool b = false;
-        for(int i = 0; i < DataSource.Config.IndexItem; i++)
+        for(int i = 0; i < DataSource.Items.Count; i++)
         {
             if (DataSource.Items[i].ID == item.ID)
             {
@@ -58,6 +87,6 @@ namespace Dal;
             }
         }
         if (b == false)
-            throw new Exception("The item does not exist");
-     }
+            throw new EntityNotFoundException();
+    }
 }
