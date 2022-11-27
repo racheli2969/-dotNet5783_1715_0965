@@ -1,4 +1,4 @@
-﻿using Dal;
+﻿using BL;
 namespace BO;
 
 public class OrderForList

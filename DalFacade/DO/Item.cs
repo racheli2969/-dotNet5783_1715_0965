@@ -6,7 +6,7 @@ namespace DO;
 public struct Item
 {
     public string? Name { get; set; }
-    public BookCategory Category { get; set; }
+    public BookGenre Category { get; set; }
     public double Price { get; set; }
     public bool InStock { get; set; }
     public int ID { get; set; }

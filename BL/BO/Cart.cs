@@ -1,5 +1,5 @@
-﻿using DO;
-namespace BL.BO;
+﻿
+namespace BO;
 public class Cart
 {
     public string? CustomerName { get; set; }

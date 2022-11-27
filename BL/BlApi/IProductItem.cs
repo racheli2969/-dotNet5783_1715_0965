@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL.BlApi
 {
-    internal class Class1
+    internal class IProductItem
     {
     }
 }

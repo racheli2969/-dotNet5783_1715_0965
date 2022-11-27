@@ -1,25 +1,46 @@
-﻿using BL.BO;
+﻿
 using BO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace BlApi;
 
-namespace BL.BlApi
+public interface IProduct
 {
-    public interface IProduct
-    {
-        public IEnumerable<ProductForList> GetProductList();
-       
-        public ProductItem GetProductDetails(Cart C, int productId);
-        
-        public void AddProduct(Product p);
-        
-        public void RemoveProduct(int productId);
-       
-        public void UpdateProduct(Product p);
-        
+    /// <summary>
+    /// gets all the products for manager
+    /// </summary>
+    /// <returns>products</returns>
+    public IEnumerable<ProductForList> GetProductList();
+    /// <summary>
+    /// gets all the products for customers
+    /// </summary>
+    /// <returns>products</returns>
+    public IEnumerable<ProductItem> GetCatalog();
+    /// <summary>
+    /// gets id of product and searches for it in the BL layer if id does not exist will throw exception
+    /// </summary>
+    /// <param name="id">indetifier for product</param>
+    /// <returns>the product for manager</returns>
+    public Product GetProductForManager(int id);
+    /// <summary>
+    /// gets id of product and searches for it in the BL layer if id does not exist will throw exception
+    /// </summary>
+    /// <param name="id">indetifier for product</param>
+    /// <returns>the product for Customer</returns>
+    public Product GetProductForCustomer(int id);
+    /// <summary>
+    /// gets a product and adds it to the product list if information is not valid will throw exception
+    /// </summary>
+    /// <param name="p">new product to add</param>
+    public void AddProduct(Product p);
+    /// <summary>
+    /// deletes a product from the product list if id does not exist or product exists in orders will throw exception
+    /// </summary>
+    /// <param name="productId">product to delete</param>
+    public void RemoveProduct(int productId);
+    /// <summary>
+    /// updates the product to the new info if the information is not valid will throw exception
+    /// </summary>
+    /// <param name="p">product to update</param>
+    public void UpdateProduct(Product p);
 
-    }
+
 }

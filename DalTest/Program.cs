@@ -31,7 +31,7 @@ void Add(OptionsForMain characterType){
                 Item item = new Item();
                 Console.WriteLine("enter details for new book: Name, Category, Price, Is In Stock");
             item.Name = Console.ReadLine();
-                item.Category = (BookCategory)Convert.ToInt32(Console.ReadLine());
+                item.Category = (BookGenre)Convert.ToInt32(Console.ReadLine());
             double.TryParse(Console.ReadLine(), out doubleTemp);
                 item.Price = doubleTemp;
                 item.InStock = Convert.ToBoolean(Console.Read());
@@ -135,7 +135,7 @@ void Add(OptionsForMain characterType){
                 Item item = new Item();
                 Console.WriteLine("enter datails of book to update:Name, Category, Price, Is In Stock, ID");
                 item.Name = Console.ReadLine();
-                item.Category = (BookCategory)Convert.ToInt32(Console.ReadLine());
+                item.Category = (BookGenre)Convert.ToInt32(Console.ReadLine());
                 double.TryParse(Console.ReadLine(), out doubleTemp);
                 item.Price = doubleTemp;
                 item.InStock = Convert.ToBoolean(Console.Read());

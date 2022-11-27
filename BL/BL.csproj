@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BlApi\IOrderForList.cs" />
+    <Compile Remove="BlApi\IOrderItem.cs" />
+    <Compile Remove="BlApi\IOrderTracking .cs" />
+    <Compile Remove="BlApi\IProductForList .cs" />
+    <Compile Remove="BlApi\IProductItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DalFacade\DalFacade.csproj" />
   </ItemGroup>
 

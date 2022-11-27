@@ -1,7 +1,7 @@
 ﻿/// <summary>
 ///defines all the enums for BL layer
 /// </summary>
-namespace Dal;
+namespace BL;
 
 
  /// <summary>
