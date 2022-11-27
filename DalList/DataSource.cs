@@ -31,7 +31,14 @@ public static class DataSource
     /// <summary>
     /// data to randomize to initalize the data arrays
     /// </summary>
-    static (string, BookCategory)[] bookNames = { ("Danny", BookCategory.Children), ("Ivory", BookCategory.Teens), ("Danger", BookCategory.Adults), ("Diverse", BookCategory.Teens), ("Rainy days", BookCategory.Children), ("Rachel", BookCategory.Adults), ("The janitor's daughter", BookCategory.Adults), ("Esther", BookCategory.Children), ("Cell 35", BookCategory.Teens) };
+    /// Fiction,
+    History,
+    Biography,
+    Fantasy,
+    SciFi,
+    Mystery,
+    Thriller
+    static (string, BookGenre)[] bookNames = { ("Danny", BookGenre.Fiction), ("Ivory", BookGenre.Thriller), ("Danger", BookGenre.Mystery), ("Diverse", BookGenre.History), ("Rainy days", BookGenre.Fantasy), ("Rachel", BookGenre.Biography), ("The janitor's daughter", BookGenre.Fantasy), ("Esther", BookGenre.Mystery), ("Cell 35", BookGenre.SciFi) };
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
     static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hahagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
