@@ -4,5 +4,6 @@ namespace DalApi
 {
     public interface IItem : ICrud<Item>
     {
+
     }
 }
