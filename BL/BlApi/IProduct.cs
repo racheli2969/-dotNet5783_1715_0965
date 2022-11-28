@@ -5,15 +5,10 @@ namespace BlApi;
 public interface IProduct
 {
     /// <summary>
-    /// gets all the products for manager
+    /// gets all the products
     /// </summary>
     /// <returns>products</returns>
     public IEnumerable<ProductForList> GetProductList();
-    /// <summary>
-    /// gets all the products for customers
-    /// </summary>
-    /// <returns>products</returns>
-    public IEnumerable<ProductItem> GetCatalog();
     /// <summary>
     /// gets id of product and searches for it in the BL layer if id does not exist will throw exception
     /// </summary>
@@ -25,7 +20,7 @@ public interface IProduct
     /// </summary>
     /// <param name="id">indetifier for product</param>
     /// <returns>the product for Customer</returns>
-    public Product GetProductForCustomer(int id);
+    public ProductItem GetProductForCustomer(int id);
     /// <summary>
     /// gets a product and adds it to the product list if information is not valid will throw exception
     /// </summary>

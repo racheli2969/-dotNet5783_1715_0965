@@ -86,9 +86,9 @@ internal class DalOrderItem : IOrderItem
         if (b == false)
             throw new EntityNotFoundException();
     }
-    public OrderItem GetById(int orderId,int productId)
+    public OrderItem GetById(int orderId, int productId)
     {
-        for(int i = 0; i < DataSource.OrderItems.Count; i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderID == orderId && DataSource.OrderItems[i].ItemId == productId)
                 return DataSource.OrderItems[i];
@@ -99,7 +99,7 @@ internal class DalOrderItem : IOrderItem
     {
         int index = 0;
         OrderItem[] product = new OrderItem[DataSource.OrderItems.Count];
-        for(int i = 0; i < DataSource.OrderItems.Count;i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderID == orderId)
             {
