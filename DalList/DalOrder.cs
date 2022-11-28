@@ -11,6 +11,7 @@ internal class DalOrder : IOrder
     /// <returns>returns the added order's id</returns>
     public int Add(Order order)
     {
+        order.OrderId = DataSource.Config.OrderId;
         DataSource.Orders[DataSource.Orders.Count] = order;
         return DataSource.Config.OrderId;
     }
