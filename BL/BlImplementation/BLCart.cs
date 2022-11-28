@@ -9,10 +9,16 @@ internal class BLCart : ICart
         DO.Item product = dal.Item.GetById(productId);
         if (!dal.Item.Available(productId))
             throw new NotInStockException();
-        Action a=new Action(int id=>
-
-        c.Items.ForEach()
-        if (c.Items.Exists(product.ID))
+        //check if the item is in the cart already
+        int idx = ProductIndexInCart(c, productId);
+        if (idx > 0)
+        {
+            c.Items[idx].Amount++;
+        }
+        else
+        {
+           // c.Items.Add(product);
+        }
         //add to cart approvingly
         //return updated cart
         return c;
@@ -28,9 +34,10 @@ internal class BLCart : ICart
 
     }
 
-    /*public BO.ProductItem GetProductDetails(BO.Cart C, int productId)
+    public int ProductIndexInCart(BO.Cart C, int productId)
     {
-        return 
-    }*/
+        //search in c.items
+        return -1;
+    }
 
 }

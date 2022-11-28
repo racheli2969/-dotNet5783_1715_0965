@@ -33,7 +33,7 @@ public interface ICart
     /// </summary>
     /// <param name="C">the cart to search in</param>
     /// <param name="productId">the product id to search for</param>
-    /// <returns>the product details</returns>
-    //public ProductItem GetProductDetails(Cart C, int productId);
+    /// <returns>if the product exists returns index else -1</returns>
+    public int ProductIndexInCart(Cart C, int productId);
 
 }
