@@ -11,6 +11,7 @@ internal class DalOrderItem : IOrderItem
     /// <returns>returns the added order item's id</returns>
     public  int Add(OrderItem oi)
     {
+        oi.OrderItemId = DataSource.Config.OrderItemId;
             DataSource.OrderItems[DataSource.OrderItems.Count] = oi;
             return DataSource.Config.OrderItemId;
     }
@@ -22,6 +23,7 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public  OrderItem GetById(int Id)
     {
+
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderItemId == Id)
