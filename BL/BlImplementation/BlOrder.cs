@@ -22,7 +22,10 @@ namespace BL.BlImplementation
         {
             if (orderId < 0)
                 throw new NegativeIdException();
-
+            else
+            {
+                dal.Order.GetById(orderId);
+            }
             return
         }
         public Order UpdateOrderShipping(int orderId)

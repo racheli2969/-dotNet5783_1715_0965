@@ -46,7 +46,7 @@ public class NegativeAmountException : Exception
 }
 public class NegativeHouseNumberException : Exception
 {
-    public override string Message => " Amount is a positive number";
+    public override string Message => " HouseNumber is a positive number";
 }
 /// <summary>
 /// Exception for not in stock
@@ -58,4 +58,8 @@ public class NotInStockException : Exception
 public class WrongEmailFormatException : Exception
 {
     public override string Message => "wrong email format, email should be valid";
+}
+public class ErrorDeleting: Exception
+{
+    public override string Message => "Sorry, it is not possible to delete this product";
 }

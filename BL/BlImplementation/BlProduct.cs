@@ -24,8 +24,13 @@ namespace BL.BlImplementation
             Product p = new Product();
             if (id >= 100000)
             {
-
-                return
+                DO.Item product = dal.Item.GetById(id);
+                p.Name = product.Name;
+                p.ID = product.ID;
+                p.AmountInStock = product.AmountInStock;
+                p.Price = product.Price;
+                p.Category = (BookGenre)product.Category;
+                return p;
             }
             else
                 throw new ProductNotFoundException();
@@ -35,7 +40,23 @@ namespace BL.BlImplementation
             ProductItem p = new ProductItem();
             if (id >= 100000)
             {
-                return
+                int count = 0;
+                DO.Item product = dal.Item.GetById(id);
+                p.Name = product.Name;
+                p.ID = product.ID;
+                if (product.AmountInStock > 0)
+                    p.IsAvailable = true;
+                else
+                    p.IsAvailable = false;
+                p.Price = product.Price;
+                p.Category = (BookGenre)product.Category;
+                for (int i = 0; i < c.Items.Count(); i++)
+                {
+                    if (id == c.Items[i].ItemId)
+                        count++;
+                }
+                p.Amount = count;
+                return p;
             }
             else
                 throw new ProductNotFoundException();
@@ -51,35 +72,48 @@ namespace BL.BlImplementation
             if (p.AmountInStock < 0)
                 throw new NegativeAmountException();
             DO.Item item = new DO.Item();
-            dal.Item.Add(p);
+            item.Price = p.Price;
+            item.Name = p.Name;
+            item.ID = p.ID;
+            item.Category = (Dal.BookGenre)p.Category;
+            item.AmountInStock = p.AmountInStock;
+            dal.Item.Add(item);
         }
         public void RemoveProduct(int productId)
         {
-           
+            bool b = false;
+            List<DO.OrderItem> oi = (List<DO.OrderItem>)dal.OrderItem.GetAll();
+            List<DO.Order> o = (List<DO.Order>)dal.Order.GetAll();
+            for (int i = 0; i < oi.Count(); i++)
+            {
+                if (oi[i].ItemId == productId)
+                {
+                    b = true;
+                    for (int j = 0; j < o.Count(); j++)
+                    {
+                        if (oi[i].OrderID == o[j].OrderId)
+                        {
+                            if (o[j].DateDelivered == null)
+                                throw new ErrorDeleting();
+                        }
+                    }
+                }
+            }
+            if (b == false)
+                throw new ProductNotFoundException();
+            dal.Item.Delete(productId);
         }
         public void UpdateProduct(BO.Product p)
         {
             if (p.ID == 0)
-            {
                 throw new NegativeIdException();
-            }
             if (p.Price < 0)
-            {
                 throw new NegativePriceException();
-            }
             if (p.AmountInStock < 0)
-            {
                 throw new NegativeAmountException();
-            }
             if (p.Name == null || p.Category == null)
-            {
                 throw new EmptyStringException();
-            }
-
             dal.Item.Update(p);
-
-
-
         }
     }
 }
