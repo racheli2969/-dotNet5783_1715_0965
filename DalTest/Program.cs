@@ -34,7 +34,7 @@ void Add(OptionsForMain characterType){
                 item.Category = (BookGenre)Convert.ToInt32(Console.ReadLine());
             double.TryParse(Console.ReadLine(), out doubleTemp);
                 item.Price = doubleTemp;
-                item.InStock = Convert.ToBoolean(Console.Read());
+                item.AmountInStock = Convert.ToBoolean(Console.Read());
                 dalList.Item.Add(item);
                 break;
             case OptionsForMain.Order:
@@ -138,7 +138,7 @@ void Add(OptionsForMain characterType){
                 item.Category = (BookGenre)Convert.ToInt32(Console.ReadLine());
                 double.TryParse(Console.ReadLine(), out doubleTemp);
                 item.Price = doubleTemp;
-                item.InStock = Convert.ToBoolean(Console.Read());
+                item.AmountInStock = Convert.ToBoolean(Console.Read());
                 int.TryParse(Console.ReadLine(), out intTemp);
                 item.ID = intTemp;
                 dalList.Item.Update(item);

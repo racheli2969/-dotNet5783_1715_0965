@@ -8,7 +8,7 @@ internal class BLCart : ICart
     {
         DO.Item product = dal.Item.GetById(productId);
         if (!dal.Item.Available(productId))
-            throw new NotInStockException();
+            throw new NotAmountInStockException();
         //check if the item is in the cart already
         int idx = ProductIndexInCart(c, productId);
         if (idx > 0)

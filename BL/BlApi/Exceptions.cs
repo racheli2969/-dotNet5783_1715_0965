@@ -47,7 +47,7 @@ public class NegativeAmountException : Exception
 /// <summary>
 /// Exception for not in stock
 /// </summary>
-public class NotInStockException : Exception
+public class NotAmountInStockException : Exception
 {
     public override string Message => "Sorry, not in stock";
 }
