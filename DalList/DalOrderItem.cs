@@ -9,11 +9,11 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="oi"></param>
     /// <returns>returns the added order item's id</returns>
-    public  int Add(OrderItem oi)
+    public int Add(OrderItem oi)
     {
         oi.OrderItemId = DataSource.Config.OrderItemId;
-            DataSource.OrderItems[DataSource.OrderItems.Count] = oi;
-            return DataSource.Config.OrderItemId;
+        DataSource.OrderItems[DataSource.OrderItems.Count] = oi;
+        return DataSource.Config.OrderItemId;
     }
     /// <summary>
     /// finds an order item by id
@@ -21,7 +21,7 @@ internal class DalOrderItem : IOrderItem
     /// <param name="Id"></param>
     /// <returns>returns the order item</returns>
     /// <exception cref="Exception"></exception>
-    public  OrderItem GetById(int Id)
+    public OrderItem GetById(int Id)
     {
 
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
@@ -37,7 +37,7 @@ internal class DalOrderItem : IOrderItem
     public IEnumerable<OrderItem> GetAll()
     {
         OrderItem[] oi = new OrderItem[DataSource.OrderItems.Count];
-        for(int i = 0; i < DataSource.OrderItems.Count; i++)
+        for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             oi[i] = DataSource.OrderItems[i];
         }
@@ -48,7 +48,7 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="id"></param>
     /// <exception cref="Exception"></exception>
-    public  void Delete(int id)
+    public void Delete(int id)
     {
         bool b = false;
         int index = 0;
@@ -59,7 +59,7 @@ internal class DalOrderItem : IOrderItem
                 index = i;
                 b = true;
             }
-            if(b==true)
+            if (b == true)
             {
                 DataSource.OrderItems.RemoveAt(index);
             }
@@ -86,6 +86,7 @@ internal class DalOrderItem : IOrderItem
         if (b == false)
             throw new EntityNotFoundException();
     }
+
     public OrderItem GetById(int orderId, int productId)
     {
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
@@ -109,10 +110,10 @@ internal class DalOrderItem : IOrderItem
         return product;
     }
 }
-       
 
 
 
 
-       
+
+
 
