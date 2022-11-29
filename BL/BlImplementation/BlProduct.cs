@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlApi;
+using BO;
+using DO;
+
 namespace BL.BlImplementation
 {
 
@@ -18,39 +21,62 @@ namespace BL.BlImplementation
         }
         public BO.Product GetProductForManager(int id)
         {
+            Product p = new Product();
+            if (id >= 100000)
+            {
 
-            return
+                return
+            }
+            else
+                throw new ProductNotFoundException();
         }
-        public BO.ProductItem GetProductForCustomer(int id)
+        public BO.ProductItem GetProductForCustomer(int id, Cart c)
         {
-            return
+            ProductItem p = new ProductItem();
+            if (id >= 100000)
+            {
+                return
+            }
+            else
+                throw new ProductNotFoundException();
         }
         public void AddProduct(BO.Product p)
         {
-
+            if (p.ID < 100000)
+                throw new NegativeIdException();
+            if (p.Price < 0)
+                throw new NegativePriceException();
+            if (p.Name == null || p.Category == null)
+                throw new EmptyStringException();
+            if (p.AmountInStock < 0)
+                throw new NegativeAmountException();
+            dal.Item.Add(p);
         }
         public void RemoveProduct(int productId)
         {
-   
+           
         }
         public void UpdateProduct(BO.Product p)
         {
-            bool b = false;
-            if (p.ID == 0) 
+            if (p.ID == 0)
             {
-                b = true;
                 throw new NegativeIdException();
             }
-            if (p.Price < 0) 
+            if (p.Price < 0)
             {
-                b = true;
-                throw new NegativePriceException(); 
+                throw new NegativePriceException();
             }
-            if (p.Name != null && p.Category != null && p.AmountInStock >= 0 && b == false)
+            if (p.AmountInStock < 0)
             {
+                throw new NegativeAmountException();
+            }
+            if (p.Name == null || p.Category == null)
+            {
+                throw new EmptyStringException();
+            }
 
-                dal.Item.Update((DO.Item)p);
-            }
+            dal.Item.Update(p);
+
 
 
         }

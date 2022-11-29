@@ -8,7 +8,7 @@ public class ProductItem
     public double Price { get; set; }
     public BookCategory Category { get; set; }
     public bool IsAvailable { get; set; }
-    public int AmountInStock { get; set; }
+    public int AmountAmountInStock { get; set; }
 
 
     public override string ToString() => $@"
@@ -16,7 +16,7 @@ Product ID={ID}, Name: {Name},
     	Price: {Price},
 category - {Category},
 Available: {IsAvailable},
-    	Amount in stock: {AmountInStock}
+    	Amount in stock: {AmountAmountInStock}
 ";
 
 

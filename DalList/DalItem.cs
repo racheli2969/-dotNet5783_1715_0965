@@ -22,7 +22,7 @@ internal class DalItem : IItem
     /// </summary>
     /// <param name="Id"></param>
     /// <returns>returns the item</returns>
-    /// <exception cref="Exception">not found</exception>
+    /// <exception cref="Exception"></exception>
     public Item GetById(int Id)
     {
         for (int i = 0; i < DataSource.Items.Count; i++)
@@ -92,11 +92,11 @@ internal class DalItem : IItem
     public bool Available(int id)
     {
         Item item = GetById(id);
-        return item.Amount - 1 >= 0;
+        return item.AmountInStock - 1 >= 0;
     }
     public bool Available(int id, int amount)
     {
         Item item = GetById(id);
-        return item.Amount - amount >= 0;
+        return item.AmountInStock - amount >= 0;
     }
 }

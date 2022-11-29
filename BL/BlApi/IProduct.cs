@@ -20,7 +20,7 @@ public interface IProduct
     /// </summary>
     /// <param name="id">indetifier for product</param>
     /// <returns>the product for Customer</returns>
-    public ProductItem GetProductForCustomer(int id);
+    public ProductItem GetProductForCustomer(int id,Cart c);
     /// <summary>
     /// gets a product and adds it to the product list if information is not valid will throw exception
     /// </summary>
