@@ -9,7 +9,7 @@ public interface IOrder
     /// returns all the orders in the list
     /// </summary>
     /// <returns>orders</returns>
-    public IEnumerable<ProductForList> GetOrderList();
+    public IEnumerable<OrderForList> GetOrderList();
     /// <summary>
     /// searches for the order details
     /// </summary>

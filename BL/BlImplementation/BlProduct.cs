@@ -50,6 +50,7 @@ namespace BL.BlImplementation
                 throw new EmptyStringException();
             if (p.AmountInStock < 0)
                 throw new NegativeAmountException();
+            DO.Item item = new DO.Item();
             dal.Item.Add(p);
         }
         public void RemoveProduct(int productId)
