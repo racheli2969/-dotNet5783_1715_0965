@@ -113,7 +113,13 @@ namespace BL.BlImplementation
                 throw new NegativeAmountException();
             if (p.Name == null || p.Category == null)
                 throw new EmptyStringException();
-            dal.Item.Update(p);
+            DO.Item i=new DO.Item();
+            i.Price = p.Price;
+            i.Name = p.Name;
+            i.AmountInStock = p.AmountInStock;
+            i.ID = p.ID;
+            i.Category = (Dal.BookGenre)p.Category;
+            dal.Item.Update(i);
         }
     }
 }

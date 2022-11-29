@@ -21,7 +21,7 @@ internal class BLCart : ICart
         {
             //update the amount in the cart
             c.Items[idx].Amount++;
-            c.Items[idx].PriceOfItems = c.Items[idx].Amount * c.Items[idx].ItemPrice;
+            c.Items[idx].PriceOfItems +=  c.Items[idx].ItemPrice;
         }
         else
         {    //add the product
