@@ -4,6 +4,7 @@ namespace DalApi;
 
 public interface IItem : ICrud<Item>
 {
+    void Update(global::BO.Product p);
 <<<<<<< HEAD
     public interface IItem : ICrud<Item>
     {
