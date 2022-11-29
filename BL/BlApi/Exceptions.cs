@@ -44,10 +44,18 @@ public class NegativeAmountException : Exception
 {
     public override string Message => " Amount is a positive number";
 }
+public class NegativeHouseNumberException : Exception
+{
+    public override string Message => " Amount is a positive number";
+}
 /// <summary>
 /// Exception for not in stock
 /// </summary>
-public class NotAmountInStockException : Exception
+public class NotInStockException : Exception
 {
     public override string Message => "Sorry, not in stock";
+}
+public class WrongEmailFormatException : Exception
+{
+    public override string Message => "wrong email format, email should be valid";
 }
