@@ -4,35 +4,53 @@ namespace Dal;
 public static class DataSource
 {
     /// <summary>
-    /// configures all indexs needed for the data arrays
+    /// configures all indexs needed for ids
     /// </summary>
     public static class Config
     {
+        /// <summary>
+    /// id of product length of 6 digits
+    /// </summary>
         public static int ItemId = 100000;
+        /// <summary>
+        /// id of order
+        /// </summary>
         public static int OrderId = 1;
+        /// <summary>
+        /// id of order item
+        /// </summary>
         public static int OrderItemId = 1;
-      /*  public static int IndexItem = 0;
-        public static int IndexOrder = 0;
-        public static int IndexOrderItem = 0;*/
+        /// <summary>
+    /// forwards the order id in 1
+    /// </summary>
         public static int LastOrderId { get { return OrderId++; } }
+        /// <summary>
+        /// forwards the order item id by 1
+        /// </summary>
         public static int LastOrderItemId { get { return OrderItemId++; } }
-      /*  public static int LastIndexItem { get { return IndexItem++; } }
-        public static int LastIndexOrder { get { return IndexOrder++; } }//last Index available
-        public static int LastIndexOrderItem { get { return IndexOrderItem++; } }*/
+        /// <summary>
+     /// forwards the product id by 1
+     /// </summary>
         public static int LastItemId { get { return ItemId++; } }
     }
-
+    /// <summary>
+    /// product list
+    /// </summary>
     public static List<Item> Items = new List<Item>();
+    /// <summary>
+    /// order items list
+    /// </summary>
     public static List<OrderItem>OrderItems = new List<OrderItem>();
+    /// <summary>
+    /// orders list
+    /// </summary>
     public static List<Order>Orders = new List<Order>();
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
     /// <summary>
-    /// data to randomize to initalize the data arrays
+    /// data to randomize to initalize the data lists
     /// </summary>
-    /// Fiction,
-   
     static (string, BookGenre)[] bookNames = { ("Danny", BookGenre.Fiction), ("Ivory", BookGenre.Thriller), ("Danger", BookGenre.Mystery), ("Diverse", BookGenre.History), ("Rainy days", BookGenre.Fantasy), ("Rachel", BookGenre.Biography), ("The janitor's daughter", BookGenre.Fantasy), ("Esther", BookGenre.Mystery), ("Cell 35", BookGenre.SciFi) };
     static string[] customerNames = { "Ruth", "Esther", "Abigayil", "Leah", "Rachel", "Shlomo", "Meir", "Aharon", "Eliyahu", "Yehuda", "Iska", "Shoshana", "Ayala", "Shimon", "Chaim", "Yael", "Eliezer", "Moshe", "Dan" };
     static string[] emails = { "1234r@gmail.com", "rghf@gmail.com", "rsdjk@gmail.com", "rcvbn23245@gmail.com", "789rrrrr@gmail.com", "ythkjfr@gmail.com", "aaaa45r@gmail.com", "rlhjgj@gmail.com", "fgddgr@gmail.com", "rapoiqq@gmail.com", "51234r@gmail.com", "rjkl222@gmail.com", "r2023@gmail.com", "rstuv@gmail.com", "wxyz@gmail.com", "abc123@gmail.com" };
