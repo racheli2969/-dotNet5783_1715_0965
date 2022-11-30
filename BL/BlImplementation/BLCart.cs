@@ -42,19 +42,22 @@ internal class BLCart : ICart
         int idx = ProductIndexInCart(c, productId);
         if (c.Items[idx].Amount + quantity == 0)
         {
+            c.FinalPrice-=c.Items[idx].PriceOfItems;
             c.Items.RemoveAt(idx);
             return c;
         }
         if (quantity < 0 && c.Items[idx].Amount + quantity > 0)
         {
             c.Items[idx].Amount += quantity;
+            c.FinalPrice += c.Items[idx].ItemPrice*quantity;
             c.Items[idx].PriceOfItems = c.Items[idx].Amount * c.Items[idx].ItemPrice;
             return c;
         }
         if (!dal.Item.Available(productId, quantity))
             throw new NotInStockException();
         c.Items[idx].Amount += quantity;
-        c.Items[idx].PriceOfItems = c.Items[idx].Amount * c.Items[idx].ItemPrice;
+        c.Items[idx].PriceOfItems += quantity * c.Items[idx].ItemPrice;
+        c.FinalPrice += c.Items[idx].ItemPrice * quantity;
         return c;
     }
 
