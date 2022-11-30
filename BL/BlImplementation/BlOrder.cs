@@ -1,5 +1,7 @@
 ﻿
 using BL;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BlImplementation;
 
 public class BlOrder : BlApi.IOrder
