@@ -36,7 +36,7 @@ public interface IOrder
     /// <param name="productId">product to look for in order</param>
     /// <param name="amount">amount to change to</param>
     /// <returns>the updated order</returns>
-   /* public Order UpdateOrderDetails(int orderId,int productId, int amount);*/
+    public Order UpdateOrderDetails(int orderId, int productId, int amount);
 
 
 }
