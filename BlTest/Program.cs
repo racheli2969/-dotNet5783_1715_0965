@@ -2,15 +2,7 @@
 
 BlApi.IBl bl = new BlImplementation.Bl();
 
-/*public enum OptionsForOrder
-{
-    Exit,
-    GetOrderList,
-    GetOrderDetails,
-    UpdateOrderShipping,
-    UpdateOrderDelivery,
-    UpdateOrderDetails
-}*/
+
 
 /*public enum OptionsForProduct
 {
@@ -40,13 +32,15 @@ void NavigateCart()
             case BL.OptionsForCart.AddToCart:
                 Console.Write("Enter id of product to add to cart");
                 int.TryParse(Console.ReadLine(), out id);
-                bl.Cart.AddToCart(id, myCart);
+                myCart = bl.Cart.AddToCart(id, myCart);
+                Console.Write(myCart.ToString());
                 break;
             case BL.OptionsForCart.UpdateProductQuantity:
                 Console.Write("Enter id of product to add to cart and amount ");
                 int.TryParse(Console.ReadLine(), out id);
                 int.TryParse(Console.ReadLine(), out amount);
-                bl.Cart.UpdateProductQuantity(id, myCart, amount);
+                myCart = bl.Cart.UpdateProductQuantity(id, myCart, amount);
+                Console.Write(myCart.ToString());
                 break;
             case BL.OptionsForCart.OrderConfirmation:
                 string name, email, city, street;
@@ -58,20 +52,23 @@ void NavigateCart()
                 street = Console.ReadLine();
                 int.TryParse(Console.ReadLine(), out numOfHouse);
                 bl.Cart.OrderConfirmation(myCart, name, email, city, street, numOfHouse);
+
                 break;
             case BL.OptionsForCart.ProductIndexInCart:
                 Console.Write("Please enter the id of product to search for in your cart");
                 int.TryParse(Console.ReadLine(), out id);
-                bl.Cart.ProductIndexInCart(myCart, id);
+                id = bl.Cart.ProductIndexInCart(myCart, id);
+                Console.Write(myCart.Items[id].ToString());
                 break;
         }
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");
     }
 }
-static void NavigateOrder()
+void NavigateOrder()
 {
     BL.OptionsForOrder option;
+    BO.Order order;
     int id;
-    int amount;
     Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetOrderList:1, GetOrderDetails:2, UpdateOrderShipping:3, UpdateOrderDelivery:4, UpdateOrderDetails:5");
     BL.OptionsForOrder.TryParse(Console.ReadLine(), out option);
     while (option != BL.OptionsForOrder.Exit)
@@ -82,21 +79,50 @@ static void NavigateOrder()
                 Console.WriteLine("see you a different time...");
                 break;
             case BL.OptionsForOrder.GetOrderList:
-                IEnumerable<BO.OrderForList> order= bl.Order.GetOrderList();
+                List<BO.OrderForList> orders = (List<BO.OrderForList>)bl.Order.GetOrderList();
+                if (orders.Count == 0)
+                    Console.Write("No orders yet...");
+                else
+                    Console.Write("orders:");
+                {
+                    orders.ForEach(item =>
+                    {
+                        Console.WriteLine(item.ToString());
+                    });
+                }
                 break;
             case BL.OptionsForOrder.GetOrderDetails:
+                Console.Write("Enter id of order to search for");
+                int.TryParse(Console.ReadLine(), out id);
+                order = bl.Order.GetOrderDetails(id);
+                Console.Write(order.ToString());
                 break;
             case BL.OptionsForOrder.UpdateOrderShipping:
+                Console.Write("Enter id of order to update shipping date for");
+                int.TryParse(Console.ReadLine(), out id);
+                order = bl.Order.UpdateOrderShipping(id);
+                Console.Write(order.ToString());
                 break;
             case BL.OptionsForOrder.UpdateOrderDelivery:
+                Console.Write("Enter id of order to update delivery date for");
+                int.TryParse(Console.ReadLine(), out id);
+                order = bl.Order.UpdateOrderDelivery(id);
+                Console.Write(order.ToString());
                 break;
             case BL.OptionsForOrder.UpdateOrderDetails:
+                int amount, orderId;
+                Console.Write("Enter id of order to update,the amount and item to update ");
+                int.TryParse(Console.ReadLine(), out orderId);
+                int.TryParse(Console.ReadLine(), out id);
+                int.TryParse(Console.ReadLine(), out amount);
+                order = bl.Order.UpdateOrderDetails(orderId,id,amount);
+                Console.Write(order.ToString());
                 break;
         }
-
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetOrderList:1, GetOrderDetails:2, UpdateOrderShipping:3, UpdateOrderDelivery:4, UpdateOrderDetails:5");
     }
 }
-static void NavigateProduct()
+void NavigateProduct()
 {
 
 }

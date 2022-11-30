@@ -26,11 +26,11 @@ namespace BlImplementation
                 order.DateOrdered = O.DateOrdered;
                 order.DateReceived = O.DateReceived;
                 if (O.DateDelivered != null)
-                    order.OrderStatus = EnumOrderStatus.Delivered;
+                    order.OrderStatus = BL.EnumOrderStatus.Delivered;
                 if (O.DateReceived != null)
-                    order.OrderStatus = EnumOrderStatus.Received;
+                    order.OrderStatus = BL.EnumOrderStatus.Received;
                 else
-                    order.OrderStatus = EnumOrderStatus.Ordered;
+                    order.OrderStatus = BL.EnumOrderStatus.Ordered;
                 double finalPrice = 0;
                 for (int i = 0; i < oi.Count(); i++)
                 {
