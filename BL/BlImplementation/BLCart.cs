@@ -1,6 +1,4 @@
 ﻿using BlApi;
-using BO;
-using Dal;
 using System.Text.RegularExpressions;
 
 namespace BlImplementation;

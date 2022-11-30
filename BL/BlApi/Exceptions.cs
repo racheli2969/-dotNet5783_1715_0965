@@ -6,6 +6,7 @@ namespace BlApi;
 /// </summary>
 public class ProductNotFoundException : Exception
 {
+    public ProductNotFoundException(DalApi.EntityNotFoundException? inner = null) : base("Not Found", inner) { }
     public override string Message => "Book not found";
 }
 /// <summary>
@@ -13,6 +14,7 @@ public class ProductNotFoundException : Exception
 /// </summary>
 public class ProductExistsException : Exception
 {
+    public ProductExistsException(DalApi.EntityDuplicateException? inner = null) : base("Exists already", inner) { }
     public override string Message => "Product already exists";
 
 }
@@ -26,7 +28,7 @@ public class EmptyStringException : Exception
 /// <summary>
 /// Exception for negative id value
 /// </summary>
-public class NegativeIdException: Exception
+public class NegativeIdException : Exception
 {
     public override string Message => " Id is a positive number";
 }
@@ -59,7 +61,7 @@ public class WrongEmailFormatException : Exception
 {
     public override string Message => "wrong email format, email should be valid";
 }
-public class ErrorDeleting: Exception
+public class ErrorDeleting : Exception
 {
     public override string Message => "Sorry, it is not possible to delete this product";
 }

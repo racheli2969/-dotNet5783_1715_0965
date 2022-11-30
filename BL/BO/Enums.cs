@@ -23,3 +23,20 @@ public enum BookGenre
     Mystery,
     Thriller
 }
+
+public enum OptionsForMain
+{
+    Exit,
+    Cart,
+    Order,
+    Product
+}
+public enum OptionsOfActions
+{
+    Exit = 0,
+    AddItem = 'a',
+    GetById = 'b',
+    GetAll = 'c',
+    UpdateItem = 'd',
+    DeleteItem = 'e'
+}
