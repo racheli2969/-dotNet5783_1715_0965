@@ -89,14 +89,21 @@ internal class DalItem : IItem
         if (b == false)
             throw new EntityNotFoundException();
     }
+    public void Update(int id, int amount)
+    {
+        Item item = new Item();
+        item=GetById(id);
+        item.AmountInStock -= amount;
+        Update(item);
+    }
     public bool Available(int id)
     {
         Item item = GetById(id);
-        return item.InStock - 1 >= 0;
+        return item.AmountInStock - 1 >= 0;
     }
     public bool Available(int id, int amount)
     {
         Item item = GetById(id);
-        return item.InStock - amount >= 0;
+        return item.AmountInStock - amount >= 0;
     }
 }

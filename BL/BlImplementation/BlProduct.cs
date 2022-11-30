@@ -86,7 +86,7 @@ namespace BlImplementation
             }
             catch (DalApi.EntityDuplicateException)
             {
-                throw new BlApi.ProductExistsException();
+                throw new BlApi.ExistsAlreadyException();
             }
         }
         public void RemoveProduct(int productId)

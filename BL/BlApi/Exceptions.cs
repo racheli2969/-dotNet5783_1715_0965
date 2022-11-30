@@ -15,9 +15,9 @@ public class BlEntityNotFoundException : Exception
 /// </summary>
 
 
-    public class ProductExistsException : Exception
+    public class ExistsAlreadyException : Exception
 {
-    public ProductExistsException(DalApi.EntityDuplicateException? inner = null) : base("Exists already", inner) { }
+    public ExistsAlreadyException(DalApi.EntityDuplicateException? inner = null) : base("Exists already", inner) { }
 
     public override string Message => "Product already exists";
 

@@ -1,12 +1,14 @@
 
-﻿using BlApi;
+using BlApi;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace BlImplementation;
 
 internal class BLCart : BlApi.ICart
 {
     private DalApi.IDal dal = new Dal.DalList();
+
     public BO.Cart AddToCart(int productId, BO.Cart c)
     {
         //check if product exists if so get product
@@ -47,14 +49,14 @@ internal class BLCart : BlApi.ICart
         int idx = ProductIndexInCart(c, productId);
         if (c.Items[idx].Amount + quantity == 0)
         {
-            c.FinalPrice-=c.Items[idx].PriceOfItems;
+            c.FinalPrice -= c.Items[idx].PriceOfItems;
             c.Items.RemoveAt(idx);
             return c;
         }
         if (quantity < 0 && c.Items[idx].Amount + quantity > 0)
         {
             c.Items[idx].Amount += quantity;
-            c.FinalPrice += c.Items[idx].ItemPrice*quantity;
+            c.FinalPrice += c.Items[idx].ItemPrice * quantity;
             c.Items[idx].PriceOfItems = c.Items[idx].Amount * c.Items[idx].ItemPrice;
             return c;
         }
@@ -75,7 +77,31 @@ internal class BLCart : BlApi.ICart
         if (numOfHouse <= 0)
             throw new BlApi.NegativeHouseNumberException();
         c.Items.ForEach(validateItem);
-        //create order and send to dal
+       
+        //create in dal layer and move the info
+        DO.Order temp = new DO.Order();
+        temp.CustomerName = name;
+        temp.Email = email;
+        temp.Address = city+" "+street+" "+numOfHouse;
+        temp.DateOrdered = DateTime.Now;
+        temp.DateDelivered = DateTime.MinValue;
+        temp.DateReceived = DateTime.MinValue;
+        //send to dal
+        int id = dal.Order.Add(temp);
+      
+        //add the items to the order item array and update the products accordingly
+        DO.OrderItem tempItem = new DO.OrderItem();
+        for (int i = 0; i < c.Items.Count; i++)
+        {
+            //create order items in dal layer 
+            tempItem.Amount = c.Items[i].Amount;
+            tempItem.OrderID = temp.OrderId;
+            tempItem.ItemId = c.Items[i].ItemId;
+            id = dal.OrderItem.Add(tempItem);
+            tempItem.OrderItemId = id;
+            c.Items[i].OrderItemId = id;
+            dal.Item.Update(tempItem.ItemId, tempItem.Amount);
+        }
     }
 
     public int ProductIndexInCart(BO.Cart c, int productId)
