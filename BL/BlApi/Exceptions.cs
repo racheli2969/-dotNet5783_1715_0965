@@ -65,3 +65,7 @@ public class ErrorDeleting : Exception
 {
     public override string Message => "Sorry, it is not possible to delete this product";
 }
+public class SentAlreadyException : Exception
+{
+    public override string Message => "The order has already been sent";
+}
