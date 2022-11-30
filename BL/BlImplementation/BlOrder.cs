@@ -1,5 +1,7 @@
 ﻿
 using BL;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BlImplementation;
 
 public class BlOrder : BlApi.IOrder
@@ -8,7 +10,26 @@ public class BlOrder : BlApi.IOrder
     public IEnumerable<BO.OrderForList> GetOrderList()
     {
         List<BO.OrderForList> orders = new List<BO.OrderForList>();
-        orders.AddRange((IEnumerable<BO.OrderForList>)dal.Order.GetAll());
+        List<DO.Order> O = (List<DO.Order>)dal.Order.GetAll();
+        for (int i = 0; i < O.Count(); i++)
+        {
+            double sum = 0;
+            List<DO.OrderItem> oi = (List<DO.OrderItem>)dal.OrderItem.GetByOrderId(O[i].OrderId);
+            orders[i].CustomerName = O[i].CustomerName;
+            orders[i].Id = O[i].OrderId;
+            orders[i].NumOfItems = oi.Count();
+            for(int j=0;j<oi.Count(); j++)
+            {
+                sum += oi[j].Price;
+            }
+            orders[i].Price = sum;
+            if (O[i].DateReceived != null)
+                orders[i].OrderStatus = EnumOrderStatus.Received;
+            if (O[i].DateDelivered != null)
+                orders[i].OrderStatus = EnumOrderStatus.Delivered;
+            else
+                orders[i].OrderStatus = EnumOrderStatus.Ordered;
+        }
         return orders;
     }
     public BO.Order GetOrderDetails(int orderId)
@@ -28,10 +49,10 @@ public class BlOrder : BlApi.IOrder
                 order.DateDelivered = O.DateDelivered;
                 order.DateOrdered = O.DateOrdered;
                 order.DateReceived = O.DateReceived;
-                if (O.DateDelivered != null)
-                    order.OrderStatus = EnumOrderStatus.Delivered;
                 if (O.DateReceived != null)
                     order.OrderStatus = EnumOrderStatus.Received;
+                if (O.DateDelivered != null)
+                    order.OrderStatus = EnumOrderStatus.Delivered;
                 else
                     order.OrderStatus = EnumOrderStatus.Ordered;
                 double finalPrice = 0;
