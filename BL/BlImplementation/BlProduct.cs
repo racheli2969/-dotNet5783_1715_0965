@@ -10,7 +10,16 @@ namespace BlImplementation
         public IEnumerable<BO.ProductForList> GetProductList()
         {
             List<BO.ProductForList> products = new List<BO.ProductForList>();
-            products.AddRange((IEnumerable<BO.ProductForList>)dal.Item.GetAll());
+            List<DO.Item> productsFromDal = new List<DO.Item>();
+            productsFromDal = (List<DO.Item>)dal.Item.GetAll();
+            for (int i = 0; i < productsFromDal.Count; i++)
+            {
+                products[i].ItemId = productsFromDal[i].ID;
+                products[i].ItemName = productsFromDal[i].Name;
+                products[i].Category = (Dal.BookCategory)productsFromDal[i].Category;
+                products[i].ItemPrice = productsFromDal[i].Price;
+
+            }
             return products;
         }
         public BO.Product GetProductForManager(int id)

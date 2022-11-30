@@ -75,6 +75,7 @@ internal class BLCart : BlApi.ICart
         if (numOfHouse <= 0)
             throw new BlApi.NegativeHouseNumberException();
         c.Items.ForEach(validateItem);
+        //create order and send to dal
     }
 
     public int ProductIndexInCart(BO.Cart c, int productId)
