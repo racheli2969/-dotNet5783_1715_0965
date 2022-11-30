@@ -4,10 +4,10 @@
 namespace BL;
 
 
- /// <summary>
- /// enum for delivery state
- /// </summary>
- public enum EnumOrderStatus
+/// <summary>
+/// enum for delivery state
+/// </summary>
+public enum EnumOrderStatus
 {
     Ordered,
     Delivered,
@@ -31,12 +31,30 @@ public enum OptionsForMain
     Order,
     Product
 }
-public enum OptionsOfActions
+public enum OptionsForOrder
 {
-    Exit = 0,
-    AddItem = 'a',
-    GetById = 'b',
-    GetAll = 'c',
-    UpdateItem = 'd',
-    DeleteItem = 'e'
+    Exit,
+    GetOrderList,
+    GetOrderDetails,
+    UpdateOrderShipping,
+    UpdateOrderDelivery,
+    UpdateOrderDetails
+}
+public enum OptionsForProduct
+{
+    Exit,
+    GetProductList,
+    GetProductForManager,
+    GetProductForCustomer,
+    AddProduct,
+    RemoveProduct,
+    UpdateProduct
+}
+public enum OptionsForCart
+{
+    Exit,
+    AddToCart,
+    UpdateProductQuantity,
+    OrderConfirmation,
+    ProductIndexInCart
 }

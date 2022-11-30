@@ -6,7 +6,7 @@ namespace BlImplementation;
 internal class BLCart : ICart
 {
     private DalApi.IDal dal = new Dal.DalList();
-    public BO.Cart AddProduct(int productId, BO.Cart c)
+    public BO.Cart AddToCart(int productId, BO.Cart c)
     {
         //check if product exists if so get product
         DO.Item product = dal.Item.GetById(productId);

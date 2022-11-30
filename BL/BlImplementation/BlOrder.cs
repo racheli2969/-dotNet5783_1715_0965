@@ -5,7 +5,7 @@
 
 namespace BL.BlImplementation
 {
-    public class BlOrder : IOrder
+    public class BlOrder : BlApi.IOrder
     {
         private DalApi.IDal dal = new Dal.DalList();
         public IEnumerable<BO.OrderForList> GetOrderList()
