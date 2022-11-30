@@ -17,7 +17,7 @@ namespace BL.BlImplementation
         public BO.Order GetOrderDetails(int orderId)
         {
             if (orderId < 0)
-                throw new NegativeIdException();
+                throw new BlApi.NegativeIdException();
             else
             {
                 List<DO.OrderItem> oi = (List<DO.OrderItem>)dal.OrderItem.GetByOrderId(orderId);
@@ -68,7 +68,7 @@ namespace BL.BlImplementation
                 o.SumOfOrder = finalPrice;
                 return o;
             }
-            throw new SentAlreadyException();
+            throw new BlApi.SentAlreadyException();
         }
         public BO.Order UpdateOrderDelivery(int orderId)
         {
