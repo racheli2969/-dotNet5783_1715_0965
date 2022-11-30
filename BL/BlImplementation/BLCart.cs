@@ -1,4 +1,18 @@
 ﻿
+using BO;
+using Dal;
+using BO;
+using Dal;
+using BO;
+using Dal;
+using BO;
+using Dal;
+using BO;
+using Dal;
+using BO;
+using Dal;
+using BO;
+using Dal;
 using System.Text.RegularExpressions;
 
 namespace BlImplementation;
@@ -6,7 +20,7 @@ namespace BlImplementation;
 internal class BLCart : BlApi.ICart
 {
     private DalApi.IDal dal = new Dal.DalList();
-    public BO.Cart AddProduct(int productId, BO.Cart c)
+    public BO.Cart AddToCart(int productId, BO.Cart c)
     {
         //check if product exists if so get product
         DO.Item product = dal.Item.GetById(productId);

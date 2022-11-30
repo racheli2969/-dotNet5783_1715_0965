@@ -29,7 +29,7 @@ public class EmptyStringException : Exception
 /// <summary>
 /// Exception for negative id value
 /// </summary>
-public class NegativeIdException: Exception
+public class NegativeIdException : Exception
 {
     public override string Message => " Id is a positive number";
 }
@@ -62,7 +62,7 @@ public class WrongEmailFormatException : Exception
 {
     public override string Message => "wrong email format, email should be valid";
 }
-public class ErrorDeleting: Exception
+public class ErrorDeleting : Exception
 {
     public override string Message => "Sorry, it is not possible to delete this product";
 }
