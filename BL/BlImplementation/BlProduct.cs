@@ -1,12 +1,8 @@
 ﻿
-using BlApi;
-using BO;
-
-
 namespace BL.BlImplementation
 {
 
-    internal class BlProduct : IProduct
+    internal class BlProduct : BlApi.IProduct
     {
         private DalApi.IDal dal = new Dal.DalList();
         public IEnumerable<BO.ProductForList> GetProductList()
@@ -17,7 +13,7 @@ namespace BL.BlImplementation
         }
         public BO.Product GetProductForManager(int id)
         {
-            Product p = new Product();
+            BO.Product p = new BO.Product();
             if (id >= 100000)
             {
                 DO.Item product = dal.Item.GetById(id);
@@ -29,11 +25,11 @@ namespace BL.BlImplementation
                 return p;
             }
             else
-                throw new ProductNotFoundException();
+                throw new BlApi.BlEntityNotFoundException();
         }
-        public BO.ProductItem GetProductForCustomer(int id, Cart c)
+        public BO.ProductItem GetProductForCustomer(int id, BO.Cart c)
         {
-            ProductItem p = new ProductItem();
+            BO.ProductItem p = new BO.ProductItem();
             if (id >= 100000)
             {
                 int count = 0;
@@ -55,18 +51,18 @@ namespace BL.BlImplementation
                 return p;
             }
             else
-                throw new ProductNotFoundException();
+                throw new BlApi.BlEntityNotFoundException();
         }
         public void AddProduct(BO.Product p)
         {
             if (p.ID < 100000)
-                throw new NegativeIdException();
+                throw new BlApi.NegativeIdException();
             if (p.Price < 0)
-                throw new NegativePriceException();
+                throw new BlApi.NegativePriceException();
             if (p.Name == null || p.Category == null)
-                throw new EmptyStringException();
+                throw new BlApi.EmptyStringException();
             if (p.AmountInStock < 0)
-                throw new NegativeAmountException();
+                throw new BlApi.NegativeAmountException();
             DO.Item item = new DO.Item();
             item.Price = p.Price;
             item.Name = p.Name;
@@ -90,25 +86,25 @@ namespace BL.BlImplementation
                         if (oi[i].OrderID == o[j].OrderId)
                         {
                             if (o[j].DateDelivered == null)
-                                throw new ErrorDeleting();
+                                throw new BlApi.ErrorDeleting();
                         }
                     }
                 }
             }
             if (b == false)
-                throw new ProductNotFoundException();
+                throw new BlApi.BlEntityNotFoundException();
             dal.Item.Delete(productId);
         }
         public void UpdateProduct(BO.Product p)
         {
             if (p.ID == 0)
-                throw new NegativeIdException();
+                throw new BlApi.NegativeIdException();
             if (p.Price < 0)
-                throw new NegativePriceException();
+                throw new BlApi.NegativePriceException();
             if (p.AmountInStock < 0)
-                throw new NegativeAmountException();
+                throw new BlApi.NegativeAmountException();
             if (p.Name == null || p.Category == null)
-                throw new EmptyStringException();
+                throw new BlApi.EmptyStringException();
             DO.Item i=new DO.Item();
             i.Price = p.Price;
             i.Name = p.Name;

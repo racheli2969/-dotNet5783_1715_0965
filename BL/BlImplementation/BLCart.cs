@@ -1,11 +1,9 @@
-﻿using BlApi;
-using BO;
-using Dal;
+﻿
 using System.Text.RegularExpressions;
 
 namespace BlImplementation;
 
-internal class BLCart : ICart
+internal class BLCart : BlApi.ICart
 {
     private DalApi.IDal dal = new Dal.DalList();
     public BO.Cart AddProduct(int productId, BO.Cart c)
@@ -14,7 +12,7 @@ internal class BLCart : ICart
         DO.Item product = dal.Item.GetById(productId);
         //if not available
         if (!dal.Item.Available(productId))
-            throw new NotInStockException();
+            throw new BlApi.NotInStockException();
         //check if the item is in the cart already
         int idx = ProductIndexInCart(c, productId);
         if (idx >= 0)
@@ -54,7 +52,7 @@ internal class BLCart : ICart
             return c;
         }
         if (!dal.Item.Available(productId, quantity))
-            throw new NotInStockException();
+            throw new BlApi.NotInStockException();
         c.Items[idx].Amount += quantity;
         c.Items[idx].PriceOfItems += quantity * c.Items[idx].ItemPrice;
         c.FinalPrice += c.Items[idx].ItemPrice * quantity;
@@ -64,11 +62,11 @@ internal class BLCart : ICart
     public void OrderConfirmation(BO.Cart c, string name, string email, string city, string street, int numOfHouse)
     {
         if (name == null || email == null || city == null || street == null)
-            throw new EmptyStringException();
+            throw new BlApi.EmptyStringException();
         if (Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-            throw new WrongEmailFormatException();
+            throw new BlApi.WrongEmailFormatException();
         if (numOfHouse <= 0)
-            throw new NegativeHouseNumberException();
+            throw new BlApi.NegativeHouseNumberException();
         c.Items.ForEach(validateItem);
     }
 
@@ -87,9 +85,9 @@ internal class BLCart : ICart
         dal.Item.GetById(oi.ItemId);
         //amount is a positive number
         if (oi.Amount <= 0)
-            throw new NegativeAmountException();
+            throw new BlApi.NegativeAmountException();
         //item is in stock
         if (!dal.Item.Available(oi.ItemId, oi.Amount))
-            throw new NotInStockException();
+            throw new BlApi.NotInStockException();
     }
 }
