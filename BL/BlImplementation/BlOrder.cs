@@ -3,7 +3,7 @@
 
 
 
-namespace BL.BlImplementation
+namespace BlImplementation
 {
     public class BlOrder : BlApi.IOrder
     {
