@@ -6,16 +6,19 @@ namespace BlApi;
 /// </summary>
 public class BlEntityNotFoundException : Exception
 {
-    public BlEntityNotFoundException(DalApi.EntityNotFoundException? inner = null) : base("entity not found", inner) {}
+    public BlEntityNotFoundException(DalApi.EntityNotFoundException? inner = null) : base("entity not found", inner) { }
     public override string Message =>
                     "entity not found";
 }
 /// <summary>
 /// Exception for duplicated value
 /// </summary>
-public class ProductExistsException : Exception 
-{ 
-    public  ProductExistsException(DalApi.EntityDuplicateException? inner=null):base("Already exists",inner){}
+
+
+    public class ProductExistsException : Exception
+{
+    public ProductExistsException(DalApi.EntityDuplicateException? inner = null) : base("Exists already", inner) { }
+
     public override string Message => "Product already exists";
 
 }

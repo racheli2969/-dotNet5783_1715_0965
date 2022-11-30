@@ -1,81 +1,11 @@
 ﻿
-using BlApi;
-using BO;
 
-    internal class BlProduct : BlApi.IProduct
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-                throw new BlApi.BlEntityNotFoundException();
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-                throw new BlApi.BlEntityNotFoundException();
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
-using BO;
-
-
-namespace BL.BlImplementation
+namespace BlImplementation
 {
 
-    internal class BlProduct : IProduct
+    public class BlProduct : BlApi.IProduct
     {
+
         private DalApi.IDal dal = new Dal.DalList();
         public IEnumerable<BO.ProductForList> GetProductList()
         {
@@ -92,12 +22,12 @@ namespace BL.BlImplementation
                 p.Name = product.Name;
                 p.ID = product.ID;
                 p.AmountInStock = product.AmountInStock;
-                throw new BlApi.BlEntityNotFoundException();
+                p.Price = product.Price;
                 p.Category = (BL.BookGenre)product.Category;
                 return p;
             }
             else
-                throw new ProductNotFoundException();
+                throw new BlApi.BlEntityNotFoundException();
         }
         public BO.ProductItem GetProductForCustomer(int id, BO.Cart c)
         {
@@ -123,7 +53,7 @@ namespace BL.BlImplementation
                 return p;
             }
             else
-                throw new ProductNotFoundException();
+                throw new BlApi.BlEntityNotFoundException();
         }
         public void AddProduct(BO.Product p)
         {
@@ -141,7 +71,14 @@ namespace BL.BlImplementation
             item.ID = p.ID;
             item.Category = (Dal.BookGenre)p.Category;
             item.AmountInStock = p.AmountInStock;
-            dal.Item.Add(item);
+            try
+            {
+                dal.Item.Add(item);
+            }
+            catch (DalApi.EntityDuplicateException)
+            {
+                throw new BlApi.ProductExistsException();
+            }
         }
         public void RemoveProduct(int productId)
         {
@@ -164,7 +101,7 @@ namespace BL.BlImplementation
                 }
             }
             if (b == false)
-                throw new ProductNotFoundException();
+                throw new BlApi.BlEntityNotFoundException();
             dal.Item.Delete(productId);
         }
         public void UpdateProduct(BO.Product p)
@@ -177,7 +114,7 @@ namespace BL.BlImplementation
                 throw new BlApi.NegativeAmountException();
             if (p.Name == null || p.Category == null)
                 throw new BlApi.EmptyStringException();
-            DO.Item i=new DO.Item();
+            DO.Item i = new DO.Item();
             i.Price = p.Price;
             i.Name = p.Name;
             i.AmountInStock = p.AmountInStock;

@@ -1,18 +1,5 @@
-﻿
-using BO;
-using Dal;
-using BO;
-using Dal;
-using BO;
-using Dal;
-using BO;
-using Dal;
-using BO;
-using Dal;
-using BO;
-using Dal;
-using BO;
-using Dal;
+
+﻿using BlApi;
 using System.Text.RegularExpressions;
 
 namespace BlImplementation;
@@ -23,32 +10,38 @@ internal class BLCart : BlApi.ICart
     public BO.Cart AddToCart(int productId, BO.Cart c)
     {
         //check if product exists if so get product
-        DO.Item product = dal.Item.GetById(productId);
-        //if not available
-        if (!dal.Item.Available(productId))
-            throw new BlApi.NotInStockException();
-        //check if the item is in the cart already
-        int idx = ProductIndexInCart(c, productId);
-        if (idx >= 0)
+        try
         {
-            //update the amount in the cart
-            c.Items[idx].Amount++;
-            c.Items[idx].PriceOfItems +=  c.Items[idx].ItemPrice;
+            DO.Item product = dal.Item.GetById(productId);
+            //if not available
+            if (!dal.Item.Available(productId))
+                throw new BlApi.NotInStockException();
+            //check if the item is in the cart already
+            int idx = ProductIndexInCart(c, productId);
+            if (idx >= 0)
+            {
+                //update the amount in the cart
+                c.Items[idx].Amount++;
+                c.Items[idx].PriceOfItems += c.Items[idx].ItemPrice;
+            }
+            else
+            {    //add the product
+                BO.OrderItem oi = new BO.OrderItem();
+                oi.ItemId = product.ID;
+                oi.ItemName = product.Name;
+                oi.ItemPrice = product.Price;
+                oi.Amount = 1;
+                oi.PriceOfItems = product.Price;
+                c.Items.Add(oi);
+            }
+            //return updated cart
+            return c;
         }
-        else
-        {    //add the product
-            BO.OrderItem oi = new BO.OrderItem();
-            oi.ItemId = product.ID;
-            oi.ItemName = product.Name;
-            oi.ItemPrice = product.Price;
-            oi.Amount = 1;
-            oi.PriceOfItems = product.Price;
-            c.Items.Add(oi);
+        catch (DalApi.EntityNotFoundException)
+        {
+            throw new BlApi.BlEntityNotFoundException();
         }
-        //return updated cart
-        return c;
     }
-
     public BO.Cart UpdateProductQuantity(int productId, BO.Cart c, int quantity)
     {
         int idx = ProductIndexInCart(c, productId);

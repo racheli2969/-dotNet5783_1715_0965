@@ -74,13 +74,13 @@ public static class DataSource
 
             for (int j = 0; j < items; j++)
             {
-                if (Items[i].AmountInStock == false)
+                if (Items[i].AmountInStock == 0)
                     counter++;
             }
             if (items / counter > (0.05 * items))
-                item.AmountInStock = true;
+                item.AmountInStock = Number.Next(1,140);
             else
-                item.AmountInStock = false;
+                item.AmountInStock = 0;
         }
     }
     /// <summary>

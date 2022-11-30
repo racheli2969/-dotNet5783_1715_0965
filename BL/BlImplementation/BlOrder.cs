@@ -1,17 +1,5 @@
-﻿
-
-
-
-
-namespace BL.BlImplementation
-
-
-
-namespace BL.BlImplementation
-
-
-
-namespace BL.BlImplementation
+﻿using BL;
+namespace BlImplementation
 {
     public class BlOrder : BlApi.IOrder
     {
