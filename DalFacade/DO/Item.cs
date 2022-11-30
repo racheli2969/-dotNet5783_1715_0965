@@ -15,6 +15,6 @@ public struct Item
 Product ID={ID}: {Name}, 
 category - {Category}
     	Price: {Price}
-    	 In stock: {InStock}
+    	 In stock: {AmountInStock}
 ";
 }
