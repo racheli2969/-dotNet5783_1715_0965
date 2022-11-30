@@ -1,8 +1,4 @@
 ﻿
-
-
-
-
 namespace BlImplementation
 {
     public class BlOrder : BlApi.IOrder
