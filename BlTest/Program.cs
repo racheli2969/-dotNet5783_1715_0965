@@ -1,5 +1,4 @@
-﻿
-
+﻿Dal.DataSource.S_Initalize();
 BlApi.IBl bl = new BlImplementation.Bl();
 
 BO.Cart myCart = new BO.Cart();
