@@ -12,6 +12,7 @@ namespace BlImplementation
             List<BO.ProductForList> products = new List<BO.ProductForList>();
             List<DO.Item> productsFromDal = new List<DO.Item>();
             BO.ProductForList temp = new BO.ProductForList();
+            //gets all products from dal
             productsFromDal = (List<DO.Item>)dal.Item.GetAll();
             for (int i = 0; i < productsFromDal.Count; i++)
             {
