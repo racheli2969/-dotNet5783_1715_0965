@@ -12,7 +12,8 @@ public struct Item
     public int ID { get; set; }
 
     public override string ToString() => $@"
-Product ID={ID}: {Name}, 
+Product ID={ID} 
+name:{Name}
 category - {Category}
     	Price: {Price}
     	 In stock: {AmountInStock}

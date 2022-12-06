@@ -14,7 +14,7 @@ internal class DalItem : IItem
     /// <returns>returns the added item's id</returns>
     public int Add(Item item)
     {
-        DataSource.Items[DataSource.Items.Count] = item;
+        DataSource.Items[DataSource.Items.Count-1] = item;
         return DataSource.Config.ItemId;
     }
     /// <summary>
@@ -39,7 +39,7 @@ internal class DalItem : IItem
     /// <returns></returns>
     public IEnumerable<Item> GetAll()
     {
-        Item[] item = new Item[DataSource.Items.Count];
+        List<Item> item = new List<Item>(DataSource.Items.Count);
         for (int i = 0; i < DataSource.Items.Count; i++)
         {
             item[i] = DataSource.Items[i];
@@ -92,11 +92,11 @@ internal class DalItem : IItem
     public bool Available(int id)
     {
         Item item = GetById(id);
-        return item.InStock - 1 >= 0;
+        return item.AmountInStock - 1 >= 0;
     }
     public bool Available(int id, int amount)
     {
         Item item = GetById(id);
-        return item.InStock - amount >= 0;
+        return item.AmountInStock - amount >= 0;
     }
 }

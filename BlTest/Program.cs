@@ -171,8 +171,8 @@ void NavigateProduct()
                 Console.Write("Enter details of new product: id, price, name, Category, amount");
                 int.TryParse(Console.ReadLine(), out id);
                 double.TryParse(Console.ReadLine(), out price);
-                BL.BookGenre.TryParse(Console.ReadLine(), out category);
                 name = Console.ReadLine();
+                BL.BookGenre.TryParse(Console.ReadLine(), out category);
                 product.ID = id;
                 product.Price = price;
                 product.Name = name;
@@ -199,7 +199,8 @@ void NavigateProduct()
         }
         Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
         BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
-    }
+    
+  }
 }
 int Main()
 {
