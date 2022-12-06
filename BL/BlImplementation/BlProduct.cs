@@ -18,7 +18,6 @@ namespace BlImplementation
                 products[i].ItemName = productsFromDal[i].Name;
                 products[i].Category = (Dal.BookCategory)productsFromDal[i].Category;
                 products[i].ItemPrice = productsFromDal[i].Price;
-
             }
             return products;
         }
