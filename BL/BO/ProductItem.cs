@@ -12,10 +12,10 @@ public class ProductItem
 
 
     public override string ToString() => $@"
-Product ID={ID}, Name: {Name}, 
+        Product ID={ID}, Name: {Name}, 
     	Price: {Price},
-category - {Category},
-Available: {IsAvailable},
+        category - {Category},
+        Available: {IsAvailable},
     	Amount in stock: {Amount}
 ";
 
