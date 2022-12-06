@@ -11,9 +11,10 @@ void NavigateCart()
     BL.OptionsForCart option;
     Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");
     BL.OptionsForCart.TryParse(Console.ReadLine(), out option);
-    try
+
+    while (option != BL.OptionsForCart.Exit)
     {
-        while (option != BL.OptionsForCart.Exit)
+        try
         {
             switch (option)
             {
@@ -57,25 +58,28 @@ void NavigateCart()
             Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");
             BL.OptionsForCart.TryParse(Console.ReadLine(), out option);
         }
+        catch (BlApi.ExistsAlreadyException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.BlEntityNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.EmptyStringException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativeIdException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            Console.WriteLine("don't give up!!!");
+        }
     }
-    catch (BlApi.ExistsAlreadyException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    catch (BlApi.BlEntityNotFoundException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }catch(BlApi.EmptyStringException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }catch(BlApi.NegativeIdException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    finally
-    {
-        Console.WriteLine("don't give up!!!");
-    }
+
 }
 void NavigateOrder()
 {
@@ -84,9 +88,10 @@ void NavigateOrder()
     int id;
     Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetOrderList:1, GetOrderDetails:2, UpdateOrderShipping:3, UpdateOrderDelivery:4, UpdateOrderDetails:5");
     BL.OptionsForOrder.TryParse(Console.ReadLine(), out option);
-    try
+
+    while (option != BL.OptionsForOrder.Exit)
     {
-        while (option != BL.OptionsForOrder.Exit)
+        try
         {
             switch (option)
             {
@@ -137,19 +142,20 @@ void NavigateOrder()
             Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetOrderList:1, GetOrderDetails:2, UpdateOrderShipping:3, UpdateOrderDelivery:4, UpdateOrderDetails:5");
             BL.OptionsForOrder.TryParse(Console.ReadLine(), out option);
         }
+        catch (BlApi.ExistsAlreadyException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.BlEntityNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            Console.WriteLine("don't give up!!!");
+        }
     }
-    catch (BlApi.ExistsAlreadyException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    catch (BlApi.BlEntityNotFoundException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    finally
-    {
-        Console.WriteLine("don't give up!!!");
-    }
+
 }
 void NavigateProduct()
 {
@@ -159,9 +165,10 @@ void NavigateProduct()
     BO.Product product = new BO.Product();
     Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
     BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
-    try
+
+    while (option != BL.OptionsForProduct.Exit)
     {
-        while (option != BL.OptionsForProduct.Exit)
+        try
         {
             switch (option)
             {
@@ -230,19 +237,20 @@ void NavigateProduct()
             Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
             BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
         }
+        catch (BlApi.ExistsAlreadyException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.BlEntityNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        finally
+        {
+            Console.WriteLine("don't give up!!!");
+        }
     }
-    catch (BlApi.ExistsAlreadyException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    catch (BlApi.BlEntityNotFoundException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    finally
-    {
-        Console.WriteLine("don't give up!!!");
-    }
+
 }
 int Main()
 {
