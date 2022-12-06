@@ -96,10 +96,13 @@ public static class DataSource
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
             order.DateOrdered = DateTime.Now;
+            //all dates who are not started contain DateTime.MinValue
+            order.DateDelivered = DateTime.MinValue;
+            order.DateReceived = DateTime.Now;
             TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
             order.DateOrdered=order.DateOrdered.Subtract(ts);
              ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
-            if (i < 0.8 * orders)//80% of orders
+            if (i < 0.8 * orders)//80% of orders date of delivery started
             {
                 order.DateDelivered = order.DateOrdered;
                 order.DateDelivered= order.DateDelivered.Add(ts);

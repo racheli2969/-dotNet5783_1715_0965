@@ -23,4 +23,10 @@ public interface IItem : ICrud<Item>
     /// <param name="amount">the amount</param>
     /// <returns>true if available</returns>
     public bool Available(int id, int amount);
+    /// <summary>
+    /// overload for update gets an id and amount and takes off that amount from the stock
+    /// </summary>
+    /// <param name="id">product id</param>
+    /// <param name="amount">amount to subtract</param>
+    public void Update(int id, int amount);
 }
