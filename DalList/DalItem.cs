@@ -14,7 +14,7 @@ internal class DalItem : IItem
     /// <returns>returns the added item's id</returns>
     public int Add(Item item)
     {
-        DataSource.Items[DataSource.Items.Count-1] = item;
+        DataSource.Items[DataSource.Items.Count] = item;
         return DataSource.Config.ItemId;
     }
     /// <summary>
