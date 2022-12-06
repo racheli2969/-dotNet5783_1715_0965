@@ -4,16 +4,6 @@ BlApi.IBl bl = new BlImplementation.Bl();
 
 BO.Cart myCart = new BO.Cart();
 
-/*public enum OptionsForProduct
-{
-    Exit,
-    GetProductList,
-    GetProductForManager,
-    GetProductForCustomer,
-    AddProduct,
-    RemoveProduct,
-    UpdateProduct
-}*/
 void NavigateCart()
 {
     int id;
