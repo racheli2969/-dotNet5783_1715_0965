@@ -11,13 +11,15 @@ namespace BlImplementation
         {
             List<BO.ProductForList> products = new List<BO.ProductForList>();
             List<DO.Item> productsFromDal = new List<DO.Item>();
+            BO.ProductForList temp = new BO.ProductForList();
             productsFromDal = (List<DO.Item>)dal.Item.GetAll();
             for (int i = 0; i < productsFromDal.Count; i++)
             {
-                products[i].ItemId = productsFromDal[i].ID;
-                products[i].ItemName = productsFromDal[i].Name;
-                products[i].Category = (Dal.BookCategory)productsFromDal[i].Category;
-                products[i].ItemPrice = productsFromDal[i].Price;
+                temp.ItemId = productsFromDal[i].ID;
+                temp.ItemName = productsFromDal[i].Name;
+                temp.Category = (Dal.BookCategory)productsFromDal[i].Category;
+                temp.ItemPrice = productsFromDal[i].Price;
+                products.Add(temp);
             }
             return products;
         }

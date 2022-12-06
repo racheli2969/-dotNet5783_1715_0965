@@ -39,10 +39,12 @@ internal class DalItem : IItem
     /// <returns></returns>
     public IEnumerable<Item> GetAll()
     {
-        List<Item> item = new List<Item>(DataSource.Items.Count);
+        List<Item> item = new List<Item>();
+
         for (int i = 0; i < DataSource.Items.Count; i++)
         {
-            item[i] = DataSource.Items[i];
+            item.Add(DataSource.Items[i]);
+
         }
         return item;
     }
