@@ -7,8 +7,8 @@ public class OrderTracking
     public EnumOrderStatus OrderStatus { get; set; }
     public List<(DateTime, EnumOrderStatus)>? TrackingTuples { get; set; }
     public override string ToString() => $@"
- ID={Id},
-Order Status: {OrderStatus},
+   ID: {Id},
+   Order Status: {OrderStatus},
    Order Status: {OrderStatus},
    Tracking: {TrackingTuples}
 ";
