@@ -36,10 +36,10 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     public IEnumerable<OrderItem> GetAll()
     {
-        OrderItem[] oi = new OrderItem[DataSource.OrderItems.Count];
+        List<OrderItem> oi = new List<OrderItem>(DataSource.OrderItems.Count);
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
-            oi[i] = DataSource.OrderItems[i];
+            oi.Add(DataSource.OrderItems[i]);
         }
         return oi;
     }
@@ -99,12 +99,12 @@ internal class DalOrderItem : IOrderItem
     public IEnumerable<OrderItem> GetByOrderId(int orderId)
     {
         int index = 0;
-        OrderItem[] product = new OrderItem[DataSource.OrderItems.Count];
+        List<OrderItem>product = new List<OrderItem>(DataSource.OrderItems.Count);
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             if (DataSource.OrderItems[i].OrderID == orderId)
             {
-                product[index++] = DataSource.OrderItems[i];
+                product.Add(DataSource.OrderItems[i]);
             }
         }
         return product;

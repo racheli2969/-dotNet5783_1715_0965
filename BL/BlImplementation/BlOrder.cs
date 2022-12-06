@@ -11,12 +11,15 @@ public class BlOrder : BlApi.IOrder
     {
         List<BO.OrderForList> orders = new List<BO.OrderForList>();
         List<DO.Order> ordersFromDal = new List<DO.Order>();
+        BO.OrderForList temp = new BO.OrderForList();
         ordersFromDal = (List<DO.Order>)dal.Order.GetAll();
+
         for (int i = 0; i < ordersFromDal.Count; i++)
         {
-            orders[i].Id = ordersFromDal[i].OrderId;
-            orders[i].CustomerName = ordersFromDal[i].CustomerName;
-            orders[i].OrderStatus = ordersFromDal[i].DateReceived != DateTime.MinValue ? BL.EnumOrderStatus.Received : ordersFromDal[i].DateDelivered != DateTime.MinValue ? BL.EnumOrderStatus.Delivered : BL.EnumOrderStatus.Ordered;
+            temp.Id=ordersFromDal[i].OrderId;
+            temp.CustomerName= ordersFromDal[i].CustomerName;
+            temp.OrderStatus = ordersFromDal[i].DateReceived != DateTime.MinValue ? BL.EnumOrderStatus.Received : ordersFromDal[i].DateDelivered != DateTime.MinValue ? BL.EnumOrderStatus.Delivered : BL.EnumOrderStatus.Ordered;
+            orders.Add(temp);
         }
         return orders;
     }
@@ -44,24 +47,24 @@ public class BlOrder : BlApi.IOrder
                 else
                     order.OrderStatus = EnumOrderStatus.Ordered;
                 double finalPrice = 0;
-                for (int i = 0; i < oi.Count(); i++)
+                for (int i = 0; i < oi.Count; i++)
                 {
                     finalPrice += oi[i].Price;
                 }
                 order.SumOfOrder = finalPrice;
-
-                BO.OrderItem orderI = new BO.OrderItem();
-                DO.Item item = new DO.Item();
-                for (int i = 0; i < oi.Count(); i++)
+                for (int i = 0; i < oi.Count; i++)
                 {
+                    BO.OrderItem orderI = new BO.OrderItem();
+                    DO.Item item = new DO.Item();
                     orderI.ItemId = oi[i].ItemId;
                     orderI.OrderItemId = oi[i].OrderItemId;
                     orderI.Amount = oi[i].Amount;
                     item = dal.Item.GetById(oi[i].ItemId);
-                    orderI.ItemName = item.Name;
+                    orderI.ItemName= item.Name;
                     orderI.ItemPrice = item.Price;
                     orderI.PriceOfItems = (orderI.ItemPrice * orderI.Amount);
-                    order.Items.Insert(i, orderI);
+                    order.Items.Add(orderI);
+                  // order.Items.Insert(i, orderI);
                 }
                 return order;
             }

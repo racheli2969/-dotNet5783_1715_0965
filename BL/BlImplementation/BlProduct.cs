@@ -55,10 +55,13 @@ namespace BlImplementation
                     p.IsAvailable = false;
                 p.Price = product.Price;
                 p.Category = (BL.BookGenre)product.Category;
-                for (int i = 0; i < c.Items.Count(); i++)
+                if (c.Items.Count != null)
                 {
-                    if (id == c.Items[i].ItemId)
-                        count++;
+                    for (int i = 0; i < c.Items.Count; i++)
+                    {
+                        if (id == c.Items[i].ItemId)
+                            count++;
+                    }
                 }
                 p.Amount = count;
                 return p;
