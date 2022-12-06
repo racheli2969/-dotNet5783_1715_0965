@@ -12,7 +12,7 @@ internal class DalOrder : IOrder
     public int Add(Order order)
     {
         order.OrderId = DataSource.Config.OrderId;
-        DataSource.Orders[DataSource.Orders.Count] = order;
+        DataSource.Orders.Add(order);
         return DataSource.Config.OrderId;
     }
     public Order GetById(int id)

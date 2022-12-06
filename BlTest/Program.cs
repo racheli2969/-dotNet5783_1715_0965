@@ -1,7 +1,7 @@
 ﻿
 BlApi.IBl bl = new BlImplementation.Bl();
-
-BO.Cart myCart = new BO.Cart();
+ BO.Cart myCart = new();
+myCart.Items = new();
 
 void NavigateCart()
 {
@@ -21,12 +21,10 @@ void NavigateCart()
                     Console.WriteLine("see you a different time...");
                     break;
                 case BL.OptionsForCart.AddToCart:
-
                     Console.Write("Enter id of product to add to cart");
                     int.TryParse(Console.ReadLine(), out id);
                     myCart = bl.Cart.AddToCart(id, myCart);
                     Console.Write(myCart.ToString());
-
                     break;
                 case BL.OptionsForCart.UpdateProductQuantity:
                     Console.Write("Enter id of product to add to cart and amount ");
@@ -36,7 +34,7 @@ void NavigateCart()
                     Console.Write(myCart.ToString());
                     break;
                 case BL.OptionsForCart.OrderConfirmation:
-                    string name, email, city, street;
+                    string? name, email, city, street;
                     int numOfHouse;
                     Console.Write("Almost done, we just need a few details to complete your order.\nPlease enter: name, email, city, street, numOfHouse");
                     name = Console.ReadLine();
@@ -45,13 +43,15 @@ void NavigateCart()
                     street = Console.ReadLine();
                     int.TryParse(Console.ReadLine(), out numOfHouse);
                     bl.Cart.OrderConfirmation(myCart, name, email, city, street, numOfHouse);
-
+                    Console.WriteLine("order created successfully");
                     break;
                 case BL.OptionsForCart.ProductIndexInCart:
                     Console.Write("Please enter the id of product to search for in your cart");
                     int.TryParse(Console.ReadLine(), out id);
                     id = bl.Cart.ProductIndexInCart(myCart, id);
-                    Console.Write(myCart.Items[id].ToString());
+                    if (id > 0)
+                        Console.WriteLine(myCart.Items[id].ToString());
+                    else Console.WriteLine("not in cart");
                     break;
             }
             Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");

@@ -1,4 +1,7 @@
 ﻿using DO;
+using System;
+using System.Threading;
+
 namespace Dal;
 
 public static class DataSource
@@ -57,6 +60,7 @@ public static class DataSource
     static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hahagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
     static string[] cities = { "Yerushalaim", "Rehovot", "Beit shemesh", "Beitar", "Rishon Letzion", "NesZiona" };
     public static readonly Random Number = new Random();
+   
     /// <summary>
     /// creates product data
     /// </summary>
@@ -64,24 +68,26 @@ public static class DataSource
     {
         for (int i = 0; i < items; i++)
         {
-            Item item = new Item();
-            int counter = 0;
-            item.Name = bookNames[Number.Next(0, bookNames.Length)].Item1;
-            item.Price = Number.Next(35, 140);
-            item.ID = Config.LastItemId;
-            item.Category = bookNames[Number.Next(1, bookNames.Length)].Item2;
-            Items.Add(item);
+           
+                Item item = new Item();
+                int counter = 0;
+                item.Name = bookNames[Number.Next(0, bookNames.Length)].Item1;
+                item.Price = Number.Next(35, 140);
+                item.ID = Config.LastItemId;
+                item.Category = bookNames[Number.Next(1, bookNames.Length)].Item2;
 
-            for (int j = 0; j < items; j++)
-            {
-                if (Items[i].AmountInStock == 0)
-                    counter++;
+                for (int j = 0; j < items; j++)
+                {
+                    if (item.AmountInStock == 0)
+                        counter++;
+                }
+                if (items / counter > (0.05 * items))
+                    item.AmountInStock = Number.Next(1, 140);
+                else
+                    item.AmountInStock = 0;
+                Items.Add(item);
             }
-            if (items / counter > (0.05 * items))
-                item.AmountInStock = Number.Next(1,140);
-            else
-                item.AmountInStock = 0;
-        }
+        
     }
     /// <summary>
     /// creates order data

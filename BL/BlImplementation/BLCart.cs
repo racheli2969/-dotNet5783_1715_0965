@@ -1,7 +1,6 @@
 
 using BlApi;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace BlImplementation;
 
@@ -77,18 +76,18 @@ internal class BLCart : BlApi.ICart
         if (numOfHouse <= 0)
             throw new BlApi.NegativeHouseNumberException();
         c.Items.ForEach(validateItem);
-       
+
         //create in dal layer and move the info
         DO.Order temp = new DO.Order();
         temp.CustomerName = name;
         temp.Email = email;
-        temp.Address = city+" "+street+" "+numOfHouse;
+        temp.Address = city + " " + street + " " + numOfHouse;
         temp.DateOrdered = DateTime.Now;
         temp.DateDelivered = DateTime.MinValue;
         temp.DateReceived = DateTime.MinValue;
         //send to dal
         int id = dal.Order.Add(temp);
-      
+
         //add the items to the order item array and update the products accordingly
         DO.OrderItem tempItem = new DO.OrderItem();
         for (int i = 0; i < c.Items.Count; i++)
@@ -106,13 +105,11 @@ internal class BLCart : BlApi.ICart
 
     public int ProductIndexInCart(BO.Cart c, int productId)
     {
-        for (int i = 0; i < c.Items.Count; i++)
-        {
-            if (c.Items[i].ItemId == productId)
-                return i;
-        }
-        return -1;
+        if (c.Items == null)
+            return -1;
+        return c.Items.FindIndex(orderItem => orderItem.ItemId == productId);
     }
+
     private void validateItem(BO.OrderItem oi)
     {
         //product exists
