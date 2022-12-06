@@ -4,6 +4,16 @@ BlApi.IBl bl = new BlImplementation.Bl();
 
 BO.Cart myCart = new BO.Cart();
 
+/*public enum OptionsForProduct
+{
+    Exit,
+    GetProductList,
+    GetProductForManager,
+    GetProductForCustomer,
+    AddProduct,
+    RemoveProduct,
+    UpdateProduct
+}*/
 void NavigateCart()
 {
     int id;
@@ -251,6 +261,76 @@ void NavigateProduct()
         }
     }
 
+    while (option != BL.OptionsForProduct.Exit)
+    {
+        switch (option)
+        {
+            case BL.OptionsForProduct.Exit:
+                Console.WriteLine("see you a different time...");
+                break;
+            case BL.OptionsForProduct.GetProductList:
+                List<BO.ProductForList> products = (List<BO.ProductForList>)bl.Product.GetProductList();
+                if (products.Count == 0)
+                    Console.Write("No products yet...");
+                else
+                    Console.Write("products:");
+                {
+                    products.ForEach(item =>
+                    {
+                        Console.WriteLine(item.ToString());
+                    });
+                }
+                break;
+            case BL.OptionsForProduct.GetProductForManager:
+                Console.Write("Enter id of product to search for");
+                int.TryParse(Console.ReadLine(), out id);
+                BO.Product product1 = bl.Product.GetProductForManager(id);
+                Console.Write(product1.ToString());
+                break;
+            case BL.OptionsForProduct.GetProductForCustomer:
+                Console.Write("Enter id of product to search for");
+                int.TryParse(Console.ReadLine(), out id);
+                BO.ProductItem product2 = bl.Product.GetProductForCustomer(id, myCart);
+                Console.Write(product2.ToString());
+                break;
+            case BL.OptionsForProduct.AddProduct:
+                int amount;
+                double price;
+                BL.BookGenre category;
+                string name;
+                Console.Write("Enter details of new product: id, price, name, Category, amount");
+                int.TryParse(Console.ReadLine(), out id);
+                double.TryParse(Console.ReadLine(), out price);
+                name = Console.ReadLine();
+                BL.BookGenre.TryParse(Console.ReadLine(), out category);
+                product.ID = id;
+                product.Price = price;
+                product.Name = name;
+                product.Category = category;
+                bl.Product.AddProduct(product);
+                break;
+            case BL.OptionsForProduct.RemoveProduct:
+                Console.Write("Enter id of product to remove");
+                int.TryParse(Console.ReadLine(), out id);
+                bl.Product.RemoveProduct(id);
+                break;
+            case BL.OptionsForProduct.UpdateProduct:
+                Console.Write("Enter details of new product: id, price, name, Category, amount");
+                int.TryParse(Console.ReadLine(), out id);
+                double.TryParse(Console.ReadLine(), out price);
+                BL.BookGenre.TryParse(Console.ReadLine(), out category);
+                name = Console.ReadLine();
+                product.ID = id;
+                product.Price = price;
+                product.Name = name;
+                product.Category = category;
+                bl.Product.UpdateProduct(product);
+                break;
+        }
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
+        BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
+    
+  }
 }
 int Main()
 {
