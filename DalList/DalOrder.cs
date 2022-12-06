@@ -30,10 +30,10 @@ internal class DalOrder : IOrder
     /// <returns></returns>
     public IEnumerable<Order> GetAll()
     {
-        Order[] order = new Order[DataSource.Orders.Count];
+    List<Order> order = new List<Order> (DataSource.Orders.Count);
         for (int i = 0; i < DataSource.Orders.Count; i++)
         {
-            order[i] = DataSource.Orders[i];
+            order.Add(DataSource.Orders[i]);
         }
         return order;
     }
