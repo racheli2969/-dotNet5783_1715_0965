@@ -11,11 +11,12 @@ public class BlOrder : BlApi.IOrder
     {
         List<BO.OrderForList> orders = new List<BO.OrderForList>();
         List<DO.Order> ordersFromDal = new List<DO.Order>();
-        BO.OrderForList temp = new BO.OrderForList();
+        BO.OrderForList temp;
         ordersFromDal = (List<DO.Order>)dal.Order.GetAll();
 
         for (int i = 0; i < ordersFromDal.Count; i++)
         {
+            temp = new BO.OrderForList();
             temp.Id=ordersFromDal[i].OrderId;
             temp.CustomerName= ordersFromDal[i].CustomerName;
             temp.OrderStatus = ordersFromDal[i].DateReceived != DateTime.MinValue ? BL.EnumOrderStatus.Received : ordersFromDal[i].DateDelivered != DateTime.MinValue ? BL.EnumOrderStatus.Delivered : BL.EnumOrderStatus.Ordered;
