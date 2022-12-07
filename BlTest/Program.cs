@@ -73,9 +73,9 @@ void NavigateCart()
         {
             Console.WriteLine(ex.Message);
         }
-        finally
+        catch
         {
-            Console.WriteLine("don't give up!!!");
+            Console.WriteLine("unexplained error occured");
         }
     }
 
@@ -149,9 +149,9 @@ void NavigateOrder()
         {
             Console.WriteLine(ex.Message);
         }
-        finally
+        catch
         {
-            Console.WriteLine("don't give up!!!");
+            Console.WriteLine("unexplained error occured");
         }
     }
 
@@ -244,9 +244,13 @@ void NavigateProduct()
         {
             Console.WriteLine(ex.Message);
         }
-        finally
+        catch (BlApi.NegativeIdException ex)
         {
-            Console.WriteLine("don't give up!!!");
+            Console.WriteLine(ex.Message);
+        }
+        catch
+        {
+            Console.WriteLine("unexplained error occured");
         }
     }
 }

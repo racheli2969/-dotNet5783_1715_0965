@@ -11,11 +11,12 @@ namespace BlImplementation
         {
             List<BO.ProductForList> products = new List<BO.ProductForList>();
             List<DO.Item> productsFromDal = new List<DO.Item>();
-            BO.ProductForList temp = new BO.ProductForList();
+            BO.ProductForList temp; 
             //gets all products from dal
             productsFromDal = (List<DO.Item>)dal.Item.GetAll();
             for (int i = 0; i < productsFromDal.Count; i++)
             {
+                temp = new BO.ProductForList();
                 temp.ItemId = productsFromDal[i].ID;
                 temp.ItemName = productsFromDal[i].Name;
                 temp.Category = (Dal.BookGenre)productsFromDal[i].Category;
@@ -99,7 +100,7 @@ namespace BlImplementation
             bool b = false;
             List<DO.OrderItem> oi = (List<DO.OrderItem>)dal.OrderItem.GetAll();
             List<DO.Order> o = (List<DO.Order>)dal.Order.GetAll();
-            for (int i = 0; i < oi.Count(); i++)
+            for (int i = 0; i < oi.Count; i++)
             {
                 if (oi[i].ItemId == productId)
                 {
@@ -108,7 +109,7 @@ namespace BlImplementation
                     {
                         if (oi[i].OrderID == o[j].OrderId)
                         {
-                            if (o[j].DateDelivered == null)
+                            if (o[j].DateDelivered == DateTime.MinValue)
                                 throw new BlApi.ErrorDeleting();
                         }
                     }
