@@ -16,7 +16,7 @@ public class ProductItem
     	Price: {Price},
         category - {Category},
         Available: {IsAvailable},
-    	Amount in stock: {Amount}
+    	Amount in cart: {Amount}
 ";
 
 
