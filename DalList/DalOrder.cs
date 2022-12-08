@@ -30,12 +30,12 @@ internal class DalOrder : IOrder
     /// <returns></returns>
     public IEnumerable<Order> GetAll()
     {
-    List<Order> order = new List<Order> (DataSource.Orders.Count);
+        List<Order> orderList = new List<Order>(DataSource.Orders.Count);
         for (int i = 0; i < DataSource.Orders.Count; i++)
         {
-            order.Add(DataSource.Orders[i]);
+            orderList.Add(DataSource.Orders[i]);
         }
-        return order;
+        return orderList;
     }
     /// <summary>
     /// delete's an order by id
@@ -44,22 +44,10 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">if the item does not exist</exception>
     public void Delete(int id)
     {
-        bool b = false;
-        int index = 0;
-        for (int i = 0; i < DataSource.Orders.Count; i++)
-        {
-            if (DataSource.Orders[i].OrderId == id)
-            {
-                b = true;
-                index = i;
-            }
-            if (b == true)
-            {
-                DataSource.Orders.RemoveAt(index);
-            }
-        }
-        if (b == false)
+        int idx = DataSource.Orders.FindIndex(order => order.OrderId == id);
+        if (idx == -1)
             throw new EntityNotFoundException();
+        DataSource.Orders.RemoveAt(idx);
     }
     /// <summary>
     /// finds an order by id and updates it with the order
@@ -68,18 +56,10 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception"></exception>
     public void Update(Order order)
     {
-        bool b = false;
-        for (int i = 0; i < DataSource.Orders.Count; i++)
-        {
-            if (DataSource.Orders[i].OrderId == order.OrderId)
-            {
-                DataSource.Orders[i] = order;
-                b = true;
-            }
-        }
-        if (b == false)
+        int idx = DataSource.Orders.FindIndex(order => order.OrderId == order.OrderId);
+        if (idx == -1)
             throw new EntityNotFoundException();
+
+        DataSource.Orders[idx] = order;
     }
-
-
 }

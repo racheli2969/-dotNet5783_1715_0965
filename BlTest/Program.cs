@@ -73,10 +73,28 @@ void NavigateCart()
         {
             Console.WriteLine(ex.Message);
         }
+        catch (BlApi.NegativeHouseNumberException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativeAmountException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativePriceException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NotInStockException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
         catch
         {
             Console.WriteLine("unexplained error occured");
         }
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");
+        BL.OptionsForCart.TryParse(Console.ReadLine(), out option);
     }
 
 }
@@ -153,6 +171,9 @@ void NavigateOrder()
         {
             Console.WriteLine("unexplained error occured");
         }
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetOrderList:1, GetOrderDetails:2, UpdateOrderShipping:3, UpdateOrderDelivery:4, UpdateOrderDetails:5");
+        BL.OptionsForOrder.TryParse(Console.ReadLine(), out option);
+
     }
 
 }
@@ -163,7 +184,7 @@ void NavigateProduct()
     int id;
     BO.Product product = new BO.Product();
     Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
-    BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
+   BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
     List<BO.ProductForList> products = new List<BO.ProductForList>();
     while (option != BL.OptionsForProduct.Exit)
     {
@@ -230,6 +251,8 @@ void NavigateProduct()
                     product.Price = price;
                     product.Name = name;
                     product.Category = category;
+                    int.TryParse(Console.ReadLine(), out id);
+                    product.AmountInStock=id;
                     bl.Product.UpdateProduct(product);
                     break;
             }
@@ -244,7 +267,23 @@ void NavigateProduct()
         {
             Console.WriteLine(ex.Message);
         }
+        catch (BlApi.ErrorDeleting ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
         catch (BlApi.NegativeIdException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativeAmountException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativePriceException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(BlApi.EmptyStringException ex)
         {
             Console.WriteLine(ex.Message);
         }
@@ -252,6 +291,8 @@ void NavigateProduct()
         {
             Console.WriteLine("unexplained error occured");
         }
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
+       BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
     }
 }
 int Main()

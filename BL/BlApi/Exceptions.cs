@@ -6,6 +6,7 @@ namespace BlApi;
 /// </summary>
 public class BlEntityNotFoundException : Exception
 {
+    public BlEntityNotFoundException() { }
     public BlEntityNotFoundException(DalApi.EntityNotFoundException? inner = null) : base("entity not found", inner) { }
     public override string Message =>
                     "entity not found";
@@ -34,7 +35,7 @@ public class EmptyStringException : Exception
 /// </summary>
 public class NegativeIdException : Exception
 {
-    public override string Message => " Id is a positive number";
+    public override string Message => " Id is a positive number bigger than 100000";
 }
 /// <summary>
 /// Exception for negative price value

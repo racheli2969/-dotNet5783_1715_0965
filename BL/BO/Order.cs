@@ -53,7 +53,7 @@ public class Order
     Date Ordered: {DateOrdered},
 	Date Delivered: {DateDelivered},
 	Date Received: {DateReceived},
-    items ordered: {Items.ToString},
+    items ordered: Items.ForEach(item=>Console.WriteLine(item.ToString),
     Sum of order: {SumOfOrder}
 ";
 }

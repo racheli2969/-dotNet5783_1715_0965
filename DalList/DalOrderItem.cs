@@ -50,22 +50,11 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
-        bool b = false;
-        int index = 0;
-        for (int i = 0; i < DataSource.OrderItems.Count; i++)
-        {
-            if (DataSource.OrderItems[i].OrderItemId == id)
-            {
-                index = i;
-                b = true;
-            }
-            if (b == true)
-            {
-                DataSource.OrderItems.RemoveAt(index);
-            }
-        }
-        if (b == false)
+        int index = DataSource.OrderItems.FindIndex(orderItem => orderItem.OrderItemId == id);
+        if (index < 0)
             throw new EntityNotFoundException();
+        DataSource.OrderItems.RemoveAt(index);
+
     }
     /// <summary>
     /// updates order item by id
@@ -74,17 +63,10 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public void Update(OrderItem oi)
     {
-        bool b = false;
-        for (int i = 0; i < DataSource.OrderItems.Count; i++)
-        {
-            if (DataSource.OrderItems[i].OrderItemId == oi.OrderItemId)
-            {
-                DataSource.OrderItems[i] = oi;
-                b = true;
-            }
-        }
-        if (b == false)
+        int index = DataSource.OrderItems.FindIndex(orderItem => orderItem.OrderItemId == oi.OrderItemId);
+        if (index < 0)
             throw new EntityNotFoundException();
+        DataSource.OrderItems[index] = oi;
     }
     /// <summary>
     /// in dal layer receives an order id and productid and searches for them in the order item list
@@ -109,14 +91,8 @@ internal class DalOrderItem : IOrderItem
     /// <returns>the items</returns>
     public IEnumerable<OrderItem> GetByOrderId(int orderId)
     {
-        List<OrderItem>product = new List<OrderItem>(DataSource.OrderItems.Count);
-        for (int i = 0; i < DataSource.OrderItems.Count; i++)
-        {
-            if (DataSource.OrderItems[i].OrderID == orderId)
-            {
-                product.Add(DataSource.OrderItems[i]);
-            }
-        }
+        List<OrderItem> product = new List<OrderItem>(DataSource.OrderItems.Count);
+       product= DataSource.OrderItems.FindAll(p=>p.OrderItemId == orderId);
         return product;
     }
 }
