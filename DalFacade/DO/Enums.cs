@@ -14,7 +14,7 @@ public enum BookGenre
     Thriller
 }
 public enum BookCategory
-{ 
+{
     Children,
     Teens,
     Adults
