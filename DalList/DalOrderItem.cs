@@ -86,7 +86,13 @@ internal class DalOrderItem : IOrderItem
         if (b == false)
             throw new EntityNotFoundException();
     }
-
+    /// <summary>
+    /// in dal layer receives an order id and productid and searches for them in the order item list
+    /// </summary>
+    /// <param name="orderId">order id</param>
+    /// <param name="productId">product id</param>
+    /// <returns>the order item found or exception</returns>
+    /// <exception cref="EntityNotFoundException"></exception>
     public OrderItem GetById(int orderId, int productId)
     {
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
@@ -96,9 +102,13 @@ internal class DalOrderItem : IOrderItem
         }
         throw new EntityNotFoundException();
     }
+    /// <summary>
+    ///in dal searches for all items in a certain order
+    /// </summary>
+    /// <param name="orderId">order id</param>
+    /// <returns>the items</returns>
     public IEnumerable<OrderItem> GetByOrderId(int orderId)
     {
-        int index = 0;
         List<OrderItem>product = new List<OrderItem>(DataSource.OrderItems.Count);
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {

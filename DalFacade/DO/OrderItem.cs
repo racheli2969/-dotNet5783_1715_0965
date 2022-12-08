@@ -1,5 +1,4 @@
-﻿
-namespace DO;
+﻿namespace DO;
 /// <summary>
 /// defines the order item details
 /// </summary>
@@ -15,9 +14,11 @@ public struct OrderItem
     public double Price { get; set; }
 
     public override string ToString() => $@"
+-------------------------------------------
  ID={OrderID}, {OrderItemId}, {ItemId}, 
-    	Price: {Price}
-    	Amount : {Amount}
+ Price: {Price}
+ Amount : {Amount}
+-------------------------------------------
 ";
 
 }

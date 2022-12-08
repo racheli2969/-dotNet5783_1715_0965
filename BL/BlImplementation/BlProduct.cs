@@ -19,7 +19,7 @@ namespace BlImplementation
                 temp = new BO.ProductForList();
                 temp.ItemId = productsFromDal[i].ID;
                 temp.ItemName = productsFromDal[i].Name;
-                temp.Category = (Dal.BookGenre)productsFromDal[i].Category;
+                temp.Category = (Dal.BookCategory)productsFromDal[i].Category;
                 temp.ItemPrice = productsFromDal[i].Price;
                 products.Add(temp);
             }

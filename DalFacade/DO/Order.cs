@@ -14,11 +14,13 @@ public struct Order
     public DateTime DateReceived { get; set; }
 
     public override string ToString() => $@"
+=================================================
 Order ID={OrderId}, Customer Name: {CustomerName}, 
 Email: {Email},
-    	Address: {Address},
-    	Date Ordered: {DateOrdered},
-	Date Delivered: {DateDelivered},
-	Date Received: {DateReceived}
+Address: {Address},
+Date Ordered: {DateOrdered},
+Date Delivered: {DateDelivered},
+Date Received: {DateReceived}
+==================================================
 ";
 }

@@ -14,11 +14,8 @@ internal class DalItem : IItem
     /// <returns>returns the added item's id</returns>
     public int Add(Item item)
     {
-        for (int i = 0; i < DataSource.Items.Count; i++)
-        {
-            if (DataSource.Items[i].ID == item.ID)
-              //  throw new
-        }
+        if (GetById(item.ID).ID == item.ID)
+            throw new EntityDuplicateException();
         DataSource.Items.Add(item);
         return DataSource.Config.ItemId;
     }
