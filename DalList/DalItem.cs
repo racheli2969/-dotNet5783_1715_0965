@@ -30,7 +30,9 @@ internal class DalItem : IItem
     /// <exception cref="Exception">not found</exception>
     public Item GetById(int Id)
     {
-        DataSource.Items.Find(x => x.ID == Id);
+        Item i = DataSource.Items.Find(x => x.ID == Id);
+        if (i.ID != 0)
+            return i;
         throw new EntityNotFoundException();
     }
     /// <summary>
@@ -82,8 +84,12 @@ internal class DalItem : IItem
     {
         Item item = new Item();
         item = GetById(id);
-        item.AmountInStock -= amount;
-        Update(item);
+        if (item.AmountInStock - amount >= 0)
+        {
+            item.AmountInStock -= amount;
+            Update(item);
+        }
+        else throw new NegativeAmount();
     }
     /// <summary>
     /// checks if there's enough to order one

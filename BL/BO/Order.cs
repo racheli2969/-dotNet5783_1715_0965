@@ -46,13 +46,13 @@ public class Order
     /// </summary>
     /// <returns> Order ID , Customer Name, Email,Order Status,	Date Ordered,Date Delivered, Date Received, items ordered,Sum of order</returns>
     public override string ToString() => $@"
-    Order ID: {OrderId}, 
-    Customer Name: {CustomerName}, 
-    Email: {Email},
-    Order Status: {OrderStatus},
-    Date Ordered: {DateOrdered},
-	Date Delivered: {DateDelivered},
-	Date Received: {DateReceived},
+    Order ID: {OrderId} 
+    Customer Name: {CustomerName} 
+    Email: {Email}
+    Order Status: {OrderStatus}
+    Date Ordered: {DateOrdered}
+	Date Delivered: {DateDelivered}
+	Date Received: {DateReceived}
     items ordered: Items.ForEach(item=>Console.WriteLine(item.ToString),
     Sum of order: {SumOfOrder}
 ";

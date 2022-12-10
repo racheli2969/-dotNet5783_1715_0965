@@ -104,7 +104,7 @@ public static class DataSource
             order.DateOrdered = DateTime.Now;
             //all dates who are not started contain DateTime.MinValue
             order.DateDelivered = DateTime.MinValue;
-            order.DateReceived = DateTime.Now;
+            order.DateReceived = DateTime.MinValue;
             TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
             order.DateOrdered=order.DateOrdered.Subtract(ts);
              ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
@@ -134,15 +134,14 @@ public static class DataSource
         {
             OrderItem orderItem = new OrderItem();
             orderItem.OrderItemId = Config.LastOrderItemId;
-            orderItem.OrderID = Number.Next(0, Orders.Count);
-            orderItem.OrderItemId = Number.Next(0, OrderItems.Count);
-            if (i >= 20)
+            if (i < 20)
             {
-                orderItem.OrderID = Orders[i - 20].OrderId;
+                orderItem.OrderID = Orders[i].OrderId;
+                
             }
             else
             {
-                orderItem.OrderID = Orders[i].OrderId;
+                orderItem.OrderID = Orders[i - 20].OrderId;
             }
             orderItem.ItemId = Items[Number.Next(0, Items.Count)].ID;
             for (int j = 0; j < Items.Count; j++)

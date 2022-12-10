@@ -1,6 +1,8 @@
 ﻿
 using BL;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.ConstrainedExecution;
 
 namespace BlImplementation;
 
@@ -13,13 +15,20 @@ public class BlOrder : BlApi.IOrder
         List<DO.Order> ordersFromDal = new List<DO.Order>();
         BO.OrderForList temp;
         ordersFromDal = (List<DO.Order>)dal.Order.GetAll();
-
         for (int i = 0; i < ordersFromDal.Count; i++)
         {
+            List<DO.OrderItem> oi = new List<DO.OrderItem>();
+            oi = (List<DO.OrderItem>)dal.OrderItem.GetByOrderId(ordersFromDal[i].OrderId);
+            double finalPrice = 0;
+            for (int j = 0; j < oi.Count; j++)
+            {
+                finalPrice = finalPrice + (oi[j].Price * oi[j].Amount);
+            }
             temp = new BO.OrderForList();
-            temp.Id=ordersFromDal[i].OrderId;
-            temp.CustomerName= ordersFromDal[i].CustomerName;
+            temp.Id = ordersFromDal[i].OrderId;
+            temp.CustomerName = ordersFromDal[i].CustomerName;
             temp.OrderStatus = ordersFromDal[i].DateReceived != DateTime.MinValue ? BL.EnumOrderStatus.Received : ordersFromDal[i].DateDelivered != DateTime.MinValue ? BL.EnumOrderStatus.Delivered : BL.EnumOrderStatus.Ordered;
+            temp.Price = finalPrice;
             orders.Add(temp);
         }
         return orders;
@@ -50,7 +59,7 @@ public class BlOrder : BlApi.IOrder
                 double finalPrice = 0;
                 for (int i = 0; i < oi.Count; i++)
                 {
-                    finalPrice += oi[i].Price;
+                    finalPrice =finalPrice+ (oi[i].Price * oi[i].Amount);
                 }
                 order.SumOfOrder = finalPrice;
                 for (int i = 0; i < oi.Count; i++)
@@ -61,11 +70,11 @@ public class BlOrder : BlApi.IOrder
                     orderI.OrderItemId = oi[i].OrderItemId;
                     orderI.Amount = oi[i].Amount;
                     item = dal.Item.GetById(oi[i].ItemId);
-                    orderI.ItemName= item.Name;
+                    orderI.ItemName = item.Name;
                     orderI.ItemPrice = item.Price;
                     orderI.PriceOfItems = (orderI.ItemPrice * orderI.Amount);
                     order.Items.Add(orderI);
-                  // order.Items.Insert(i, orderI);
+                    // order.Items.Insert(i, orderI);
                 }
                 return order;
             }
@@ -86,15 +95,16 @@ public class BlOrder : BlApi.IOrder
                 order.DateDelivered = DateTime.Now;
                 dal.Order.Update(order);
                 BO.Order o = new BO.Order();
+                o.OrderId = orderId;
                 o.CustomerName = order.CustomerName;
                 o.Email = order.Email;
                 o.DateDelivered = order.DateDelivered;
                 o.DateOrdered = order.DateOrdered;
                 o.OrderStatus = EnumOrderStatus.Delivered;
                 double finalPrice = 0;
-                for (int i = 0; i < oi.Count(); i++)
+                for (int i = 0; i < oi.Count; i++)
                 {
-                    finalPrice += oi[i].Price;
+                    finalPrice = finalPrice + (oi[i].Price * oi[i].Amount);
                 }
                 o.SumOfOrder = finalPrice;
                 return o;
@@ -111,7 +121,7 @@ public class BlOrder : BlApi.IOrder
         try
         {
             DO.Order order = dal.Order.GetById(orderId);
-            if (order.DateReceived == DateTime.MinValue)
+            if (order.DateReceived == DateTime.MinValue&&order.DateDelivered!=DateTime.MinValue)
             {
                 List<DO.OrderItem> oi = (List<DO.OrderItem>)dal.OrderItem.GetByOrderId(orderId);
                 order.DateReceived = DateTime.Now;
@@ -121,11 +131,12 @@ public class BlOrder : BlApi.IOrder
                 o.Email = order.Email;
                 o.DateDelivered = order.DateDelivered;
                 o.DateOrdered = order.DateOrdered;
-                o.OrderStatus = EnumOrderStatus.Delivered;
+                o.OrderStatus = EnumOrderStatus.Received;
+                o.OrderId = orderId;
                 double finalPrice = 0;
-                for (int i = 0; i < oi.Count(); i++)
+                for (int i = 0; i < oi.Count; i++)
                 {
-                    finalPrice += oi[i].Price;
+                    finalPrice = finalPrice + (oi[i].Price * oi[i].Amount);
                 }
                 o.SumOfOrder = finalPrice;
                 return o;
@@ -135,7 +146,7 @@ public class BlOrder : BlApi.IOrder
         {
             throw new BlApi.BlEntityNotFoundException();
         }
-        throw new BlApi.SentAlreadyException();
+        throw new BlApi.deliveredAlreadyException();
     }
     public BO.OrderTracking OrderTracking(int orderId)
     {
