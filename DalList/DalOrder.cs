@@ -17,18 +17,21 @@ internal class DalOrder : IOrder
     }
     public Order GetById(int id)
     {
-        for (int i = 0; i < DataSource.Orders.Count; i++)
-        {
-            if (((Order)DataSource.Orders[i]).OrderId == id)
-                return (Order)DataSource.Orders[i];
-        }
-        throw new EntityNotFoundException();
+        /* for (int i = 0; i < DataSource.Orders.Count; i++)
+         {
+             if (((Order)DataSource.Orders[i]).OrderId == id)
+                 return (Order)DataSource.Orders[i];
+         }*/
+        Order? order = (Order)DataSource.Orders.Find(order => ((Order)order).OrderId == id);
+        if (order == null)
+            throw new EntityNotFoundException();
+        return (Order)order;
     }
     /// <summary>
     /// returns all existing orders
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<Order>? GetAll(Func<Order,bool>? func=null)
+    public IEnumerable<Order>? GetAll(Func<Order, bool>? func = null)
     {
         List<Order>? orderList = new List<Order>(DataSource.Orders.Count);
         for (int i = 0; i < DataSource.Orders.Count; i++)

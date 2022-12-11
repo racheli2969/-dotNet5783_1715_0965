@@ -1,6 +1,8 @@
 ﻿
 using DO;
 using DalApi;
+using System.Linq;
+
 namespace Dal;
 internal class DalOrderItem : IOrderItem
 {
@@ -36,12 +38,13 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool>? func=null)
     {
-        List<OrderItem>? oi = new List<OrderItem>(DataSource.OrderItems.Count);
+        return func == null ? (IEnumerable<OrderItem>?)DataSource.OrderItems : DataSource.OrderItems.Where(func).ToList();
+       /* List<OrderItem>? oi = new List<OrderItem>(DataSource.OrderItems.Count);
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
             oi.Add((OrderItem)DataSource.OrderItems[i]);
         }
-        return oi ;
+        return oi ;*/
     }
     /// <summary>
     /// deletes order item by id
