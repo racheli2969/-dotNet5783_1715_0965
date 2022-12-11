@@ -1,14 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "sjpyEwqFkicGtEBacYzH6jkI2OKEOpKveohUrHvx1NmodmMDzS2j3TsUpD8C6o8NkkwVRmXX80tbhHOSr5jmsA==",
+  "dgSpecHash": "7qtfwE2DzRuns9JNULpRub4k0bIoOaJvXjs7sPVZUelbN/xnCtPm/3qzvvKv7d98ojh+09oB8QCKQ2IJ64Z88Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
-=======
-  "dgSpecHash": "xV6gdrYUkMp2dMQTAJw3JEJahAIaAmDlYSY4WI/w7iglfFF2OLCKR2QJ/1ISSoCPaw+0SBhlly5zU9/gw1dCnQ==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
->>>>>>> df9cd3901b1181e0e68426e3805d9ebc80cb35b7
+  "projectFilePath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\stage0\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
