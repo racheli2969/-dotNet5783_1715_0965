@@ -21,19 +21,19 @@ public class Order
     /// <summary>
     /// order status
     /// </summary>
-    public EnumOrderStatus OrderStatus { get; set; }
+    public EnumOrderStatus? OrderStatus { get; set; }
     /// <summary>
     /// date of order
     /// </summary>
-    public DateTime DateOrdered { get; set; }
+    public DateTime? DateOrdered { get; set; }
     /// <summary>
     /// date of delivery
     /// </summary>
-    public DateTime DateDelivered { get; set; }
+    public DateTime? DateDelivered { get; set; }
     /// <summary>
     /// date received
     /// </summary>
-    public DateTime DateReceived { get; set; }
+    public DateTime? DateReceived { get; set; }
     /// <summary>
     /// list of items of type orderItem
     /// </summary>

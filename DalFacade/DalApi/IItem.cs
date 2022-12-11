@@ -4,12 +4,6 @@ namespace DalApi;
 
 public interface IItem : ICrud<Item>
 {
-
-    public interface IItem : ICrud<Item>
-    {
-
-    }
-
     /// <summary>
     /// checks if there is enough in stock 
     /// </summary>

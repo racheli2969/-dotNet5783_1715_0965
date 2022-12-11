@@ -39,15 +39,15 @@ public static class DataSource
     /// <summary>
     /// product list
     /// </summary>
-    public static List<Item> Items = new List<Item>();
+    public static List<Item?> Items = new List<Item?>();
     /// <summary>
     /// order items list
     /// </summary>
-    public static List<OrderItem>OrderItems = new List<OrderItem>();
+    public static List<OrderItem?>OrderItems = new List<OrderItem?>();
     /// <summary>
     /// orders list
     /// </summary>
-    public static List<Order>Orders = new List<Order>();
+    public static List<Order?>Orders = new List<Order?>();
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
@@ -106,18 +106,18 @@ public static class DataSource
             order.DateDelivered = DateTime.MinValue;
             order.DateReceived = DateTime.MinValue;
             TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
-            order.DateOrdered=order.DateOrdered.Subtract(ts);
+            order.DateOrdered= ((DateTime)((Order)order).DateOrdered).Subtract(ts);
              ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
             if (i < 0.8 * orders)//80% of orders date of delivery started
             {
                 order.DateDelivered = order.DateOrdered;
-                order.DateDelivered= order.DateDelivered.Add(ts);
+                order.DateDelivered= ((DateTime)((Order)order).DateDelivered).Add(ts);
             }
             ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
             if (i < 0.6 * orders)//60% of orders
             {
                 order.DateReceived = order.DateDelivered;
-                order.DateReceived=order.DateReceived.Add(ts);
+                order.DateReceived=((DateTime)((Order)order).DateReceived).Add(ts);
             }
 
             Orders.Add(order);
@@ -136,18 +136,18 @@ public static class DataSource
             orderItem.OrderItemId = Config.LastOrderItemId;
             if (i < 20)
             {
-                orderItem.OrderID = Orders[i].OrderId;
+                orderItem.OrderID = ((Order)Orders[i]).OrderId;
                 
             }
             else
             {
-                orderItem.OrderID = Orders[i - 20].OrderId;
+                orderItem.OrderID = ((Order)Orders[i - 20]).OrderId;
             }
-            orderItem.ItemId = Items[Number.Next(0, Items.Count)].ID;
+            orderItem.ItemId = ((Item)Items[Number.Next(0, Items.Count)]).ID;
             for (int j = 0; j < Items.Count; j++)
             {
-                if (Items[j].ID == orderItem.ItemId)
-                    orderItem.Price = Items[j].Price;
+                if (((Item)Items[j]).ID == orderItem.ItemId)
+                    orderItem.Price = ((Item)Items[j]).Price;
             }
             orderItem.Amount = Number.Next(1, 3);
             OrderItems.Add(orderItem);

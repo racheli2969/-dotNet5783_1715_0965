@@ -1,11 +1,5 @@
-﻿
-using BL;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.ConstrainedExecution;
-
+﻿using BL;
 namespace BlImplementation;
-
 public class BlOrder : BlApi.IOrder
 {
     private DalApi.IDal dal = new Dal.DalList();
@@ -159,17 +153,17 @@ public class BlOrder : BlApi.IOrder
             DO.Order order = dal.Order.GetById(orderId);
             BO.OrderTracking ot = new BO.OrderTracking();
             ot.Id = orderId;
-            (DateTime, EnumOrderStatus) myTuple = (order.DateOrdered, EnumOrderStatus.Delivered);
+            (DateTime, EnumOrderStatus) myTuple = ((DateTime)((DO.Order)order).DateOrdered, EnumOrderStatus.Delivered);
             ot.TrackingTuples.Add(myTuple);
             if (order.DateDelivered != DateTime.MinValue)
             {
                 ot.OrderStatus = EnumOrderStatus.Delivered;
-                ot.TrackingTuples[1] = (order.DateDelivered, EnumOrderStatus.Delivered);
+                ot.TrackingTuples[1] = ((DateTime)((DO.Order)order).DateDelivered, EnumOrderStatus.Delivered);
             }
             if (order.DateReceived != DateTime.MinValue)
             {
                 ot.OrderStatus = EnumOrderStatus.Received;
-                ot.TrackingTuples[2] = (order.DateReceived, EnumOrderStatus.Delivered);
+                ot.TrackingTuples[2] = ((DateTime)((DO.Order)order).DateReceived, EnumOrderStatus.Delivered);
             }
             else
                 ot.OrderStatus = EnumOrderStatus.Ordered;

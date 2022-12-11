@@ -16,7 +16,7 @@ internal class DalItem : IItem
     public int Add(Item item)
     {
         //if item exists already
-        if (DataSource.Items.FindIndex(x => x.ID == item.ID) > 0)
+        if (DataSource.Items.FindIndex(x => ((Item)x).ID == item.ID) > 0)
             throw new EntityDuplicateException();
         DataSource.Items.Add(item);
         return DataSource.Config.ItemId;
@@ -30,25 +30,24 @@ internal class DalItem : IItem
     /// <exception cref="Exception">not found</exception>
     public Item GetById(int Id)
     {
-        Item i = DataSource.Items.Find(x => x.ID == Id);
-        if (i.ID != 0)
-            return i;
+        Item? item = DataSource.Items.Find(x => ((Item)x).ID == Id);
+        if (((Item)item).ID != 0)
+            return ((Item)item);
         throw new EntityNotFoundException();
     }
     /// <summary>
     /// returns all the existing items
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<Item> GetAll()
+    public IEnumerable<Item>? GetAll(Func<Item,bool>?func=null)
     {
-        List<Item> item = new List<Item>();
+        List<Item>? item = new();
 
         for (int i = 0; i < DataSource.Items.Count; i++)
         {
-            item.Add(DataSource.Items[i]);
-
+            item.Add((Item)DataSource.Items[i]);
         }
-        return item;
+        return item ;
     }
     /// <summary>
     /// gets an id and deletes that item
@@ -58,7 +57,7 @@ internal class DalItem : IItem
     public void Delete(int id)
     {
         //check if exists
-        int index = DataSource.Items.FindIndex(x => x.ID == id);
+        int index = DataSource.Items.FindIndex(x => ((Item)x).ID == id);
         if (index < 0)
             throw new EntityNotFoundException();
         DataSource.Items.RemoveAt(index);
@@ -70,7 +69,7 @@ internal class DalItem : IItem
     /// <exception cref="Exception">if there is no object with that id an exception is thrown</exception>
     public void Update(Item item)
     {
-        int index = DataSource.Items.FindIndex(x => x.ID == item.ID);
+        int index = DataSource.Items.FindIndex(x => ((Item)x).ID == item.ID);
         if (index < 0)
             throw new EntityNotFoundException();
         DataSource.Items[index] = item;

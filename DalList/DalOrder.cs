@@ -19,8 +19,8 @@ internal class DalOrder : IOrder
     {
         for (int i = 0; i < DataSource.Orders.Count; i++)
         {
-            if (DataSource.Orders[i].OrderId == id)
-                return DataSource.Orders[i];
+            if (((Order)DataSource.Orders[i]).OrderId == id)
+                return (Order)DataSource.Orders[i];
         }
         throw new EntityNotFoundException();
     }
@@ -28,12 +28,12 @@ internal class DalOrder : IOrder
     /// returns all existing orders
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<Order> GetAll()
+    public IEnumerable<Order>? GetAll(Func<Order,bool>? func=null)
     {
-        List<Order> orderList = new List<Order>(DataSource.Orders.Count);
+        List<Order>? orderList = new List<Order>(DataSource.Orders.Count);
         for (int i = 0; i < DataSource.Orders.Count; i++)
         {
-            orderList.Add(DataSource.Orders[i]);
+            orderList.Add((Order)DataSource.Orders[i]);
         }
         return orderList;
     }
@@ -44,7 +44,7 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception">if the item does not exist</exception>
     public void Delete(int id)
     {
-        int idx = DataSource.Orders.FindIndex(order => order.OrderId == id);
+        int idx = DataSource.Orders.FindIndex(order => ((Order)order).OrderId == id);
         if (idx == -1)
             throw new EntityNotFoundException();
         DataSource.Orders.RemoveAt(idx);
@@ -56,7 +56,7 @@ internal class DalOrder : IOrder
     /// <exception cref="Exception"></exception>
     public void Update(Order order)
     {
-        int idx = DataSource.Orders.FindIndex(order => order.OrderId == order.OrderId);
+        int idx = DataSource.Orders.FindIndex(order => ((Order)order).OrderId == ((Order)order).OrderId);
         if (idx == -1)
             throw new EntityNotFoundException();
 
