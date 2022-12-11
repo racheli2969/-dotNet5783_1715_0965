@@ -1,8 +1,7 @@
 ﻿
-
 BlApi.IBl bl = new BlImplementation.Bl();
-
-BO.Cart myCart = new BO.Cart();
+ BO.Cart myCart = new();
+myCart.Items = new();
 
 void NavigateCart()
 {
@@ -11,9 +10,10 @@ void NavigateCart()
     BL.OptionsForCart option;
     Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");
     BL.OptionsForCart.TryParse(Console.ReadLine(), out option);
-    try
+
+    while (option != BL.OptionsForCart.Exit)
     {
-        while (option != BL.OptionsForCart.Exit)
+        try
         {
             switch (option)
             {
@@ -21,12 +21,10 @@ void NavigateCart()
                     Console.WriteLine("see you a different time...");
                     break;
                 case BL.OptionsForCart.AddToCart:
-
                     Console.Write("Enter id of product to add to cart");
                     int.TryParse(Console.ReadLine(), out id);
                     myCart = bl.Cart.AddToCart(id, myCart);
                     Console.Write(myCart.ToString());
-
                     break;
                 case BL.OptionsForCart.UpdateProductQuantity:
                     Console.Write("Enter id of product to add to cart and amount ");
@@ -36,7 +34,7 @@ void NavigateCart()
                     Console.Write(myCart.ToString());
                     break;
                 case BL.OptionsForCart.OrderConfirmation:
-                    string name, email, city, street;
+                    string? name, email, city, street;
                     int numOfHouse;
                     Console.Write("Almost done, we just need a few details to complete your order.\nPlease enter: name, email, city, street, numOfHouse");
                     name = Console.ReadLine();
@@ -45,37 +43,60 @@ void NavigateCart()
                     street = Console.ReadLine();
                     int.TryParse(Console.ReadLine(), out numOfHouse);
                     bl.Cart.OrderConfirmation(myCart, name, email, city, street, numOfHouse);
-
+                    Console.WriteLine("order created successfully");
                     break;
                 case BL.OptionsForCart.ProductIndexInCart:
                     Console.Write("Please enter the id of product to search for in your cart");
                     int.TryParse(Console.ReadLine(), out id);
                     id = bl.Cart.ProductIndexInCart(myCart, id);
-                    Console.Write(myCart.Items[id].ToString());
+                    if (id > 0)
+                        Console.WriteLine(myCart.Items[id].ToString());
+                    else Console.WriteLine("not in cart");
                     break;
             }
             Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");
             BL.OptionsForCart.TryParse(Console.ReadLine(), out option);
         }
+        catch (BlApi.ExistsAlreadyException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.BlEntityNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.EmptyStringException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativeIdException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativeHouseNumberException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativeAmountException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativePriceException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NotInStockException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch
+        {
+            Console.WriteLine("unexplained error occured");
+        }
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");
+        BL.OptionsForCart.TryParse(Console.ReadLine(), out option);
     }
-    catch (BlApi.ExistsAlreadyException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    catch (BlApi.BlEntityNotFoundException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }catch(BlApi.EmptyStringException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }catch(BlApi.NegativeIdException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    finally
-    {
-        Console.WriteLine("don't give up!!!");
-    }
+
 }
 void NavigateOrder()
 {
@@ -84,9 +105,10 @@ void NavigateOrder()
     int id;
     Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetOrderList:1, GetOrderDetails:2, UpdateOrderShipping:3, UpdateOrderDelivery:4, UpdateOrderDetails:5");
     BL.OptionsForOrder.TryParse(Console.ReadLine(), out option);
-    try
+
+    while (option != BL.OptionsForOrder.Exit)
     {
-        while (option != BL.OptionsForOrder.Exit)
+        try
         {
             switch (option)
             {
@@ -137,19 +159,23 @@ void NavigateOrder()
             Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetOrderList:1, GetOrderDetails:2, UpdateOrderShipping:3, UpdateOrderDelivery:4, UpdateOrderDetails:5");
             BL.OptionsForOrder.TryParse(Console.ReadLine(), out option);
         }
+        catch (BlApi.ExistsAlreadyException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.BlEntityNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch
+        {
+            Console.WriteLine("unexplained error occured");
+        }
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetOrderList:1, GetOrderDetails:2, UpdateOrderShipping:3, UpdateOrderDelivery:4, UpdateOrderDetails:5");
+        BL.OptionsForOrder.TryParse(Console.ReadLine(), out option);
+
     }
-    catch (BlApi.ExistsAlreadyException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    catch (BlApi.BlEntityNotFoundException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    finally
-    {
-        Console.WriteLine("don't give up!!!");
-    }
+
 }
 void NavigateProduct()
 {
@@ -158,10 +184,11 @@ void NavigateProduct()
     int id;
     BO.Product product = new BO.Product();
     Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
-    BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
-    try
+   BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
+    List<BO.ProductForList> products = new List<BO.ProductForList>();
+    while (option != BL.OptionsForProduct.Exit)
     {
-        while (option != BL.OptionsForProduct.Exit)
+        try
         {
             switch (option)
             {
@@ -169,7 +196,7 @@ void NavigateProduct()
                     Console.WriteLine("see you a different time...");
                     break;
                 case BL.OptionsForProduct.GetProductList:
-                    List<BO.ProductForList> products = (List<BO.ProductForList>)bl.Product.GetProductList();
+                    products = (List<BO.ProductForList>)bl.Product.GetProductList();
                     if (products.Count == 0)
                         Console.Write("No products yet...");
                     else
@@ -202,11 +229,13 @@ void NavigateProduct()
                     int.TryParse(Console.ReadLine(), out id);
                     double.TryParse(Console.ReadLine(), out price);
                     BL.BookGenre.TryParse(Console.ReadLine(), out category);
+                    int.TryParse(Console.ReadLine(), out amount);
                     name = Console.ReadLine();
                     product.ID = id;
                     product.Price = price;
                     product.Name = name;
                     product.Category = category;
+                    product.AmountInStock=amount;
                     bl.Product.AddProduct(product);
                     break;
                 case BL.OptionsForProduct.RemoveProduct:
@@ -218,34 +247,59 @@ void NavigateProduct()
                     Console.Write("Enter details of new product: id, price, name, Category, amount");
                     int.TryParse(Console.ReadLine(), out id);
                     double.TryParse(Console.ReadLine(), out price);
-                    BL.BookGenre.TryParse(Console.ReadLine(), out category);
                     name = Console.ReadLine();
+                    BL.BookGenre.TryParse(Console.ReadLine(), out category);
+                    int.TryParse(Console.ReadLine(), out amount);
                     product.ID = id;
                     product.Price = price;
                     product.Name = name;
                     product.Category = category;
+                    product.AmountInStock = amount;
                     bl.Product.UpdateProduct(product);
                     break;
             }
             Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
             BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
         }
-    }
-    catch (BlApi.ExistsAlreadyException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    catch (BlApi.BlEntityNotFoundException ex)
-    {
-        Console.WriteLine(ex.Message);
-    }
-    finally
-    {
-        Console.WriteLine("don't give up!!!");
+        catch (BlApi.ExistsAlreadyException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.BlEntityNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.ErrorDeleting ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativeIdException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativeAmountException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.NegativePriceException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch(BlApi.EmptyStringException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch
+        {
+            Console.WriteLine("unexplained error occured");
+        }
+        Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, GetProductList:1, GetProductForManager:2, GetProductForCustomer:3, AddProduct:4, RemoveProduct:5, UpdateProduct:6");
+       BL.OptionsForProduct.TryParse(Console.ReadLine(), out option);
     }
 }
 int Main()
 {
+    Dal.DataSource.S_Initalize();
     BL.OptionsForMain num;
     Console.WriteLine("welcome to the store, start testing...\nEnter a number between 0-3 as follows: 0 to Exit, 1 to Cart, 2 to Order, 3 to Product");
     BL.OptionsForMain.TryParse(Console.ReadLine(), out num);

@@ -6,7 +6,7 @@ public class ProductForList
     public int ItemId { get; set; }
     public string? ItemName { get; set; }
     public double ItemPrice { get; set; }
-    public BookCategory Category { get; set; }
+    public BookGenre? Category { get; set; }
 
     public override string ToString() => $@"
 

@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "sjpyEwqFkicGtEBacYzH6jkI2OKEOpKveohUrHvx1NmodmMDzS2j3TsUpD8C6o8NkkwVRmXX80tbhHOSr5jmsA==",
   "success": true,
   "projectFilePath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
+=======
+  "dgSpecHash": "xV6gdrYUkMp2dMQTAJw3JEJahAIaAmDlYSY4WI/w7iglfFF2OLCKR2QJ/1ISSoCPaw+0SBhlly5zU9/gw1dCnQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
+>>>>>>> df9cd3901b1181e0e68426e3805d9ebc80cb35b7
   "expectedPackageFiles": [],
   "logs": []
 }

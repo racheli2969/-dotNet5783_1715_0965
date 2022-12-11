@@ -34,7 +34,7 @@ public class EmptyStringException : Exception
 /// </summary>
 public class NegativeIdException : Exception
 {
-    public override string Message => " Id is a positive number";
+    public override string Message => " Id is a positive number bigger than 100000";
 }
 /// <summary>
 /// Exception for negative price value
@@ -72,4 +72,8 @@ public class ErrorDeleting : Exception
 public class SentAlreadyException : Exception
 {
     public override string Message => "The order has already been sent";
+}
+public class deliveredAlreadyException : Exception
+{
+    public override string Message => "The order has already been delivered";
 }
