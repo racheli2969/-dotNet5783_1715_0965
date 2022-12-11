@@ -1,4 +1,5 @@
 ﻿using BL;
+using System.Text;
 namespace BO;
 /// <summary>
 /// class for order 
@@ -45,17 +46,14 @@ public class Order
     /// override of the class to string
     /// </summary>
     /// <returns> Order ID , Customer Name, Email,Order Status,	Date Ordered,Date Delivered, Date Received, items ordered,Sum of order</returns>
-    //private delegate string k=BO.OrderItem.ToString;
-    public override string ToString() => $@"
-Order ID: {OrderId} 
-Customer Name: {CustomerName} 
-Email: {Email}
-Order Status: {OrderStatus}
-Date Ordered: {DateOrdered}
-Date Delivered: {DateDelivered}
-Date Received: {DateReceived}
-Items.ForEach(item => item.ToString)
-items ordered: {Items.ToString},
-Sum of order: {SumOfOrder}
-";   
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendFormat("Order ID:{0}\n Customer Name:{1}\n Email:{2}\n Order Status:{3}\nDate Ordered:{4}\n Date Delivered{5}\nDate Received: {6}\n", OrderId, CustomerName, Email, OrderStatus, DateOrdered, DateDelivered, DateReceived);
+        foreach (BO.OrderItem item in Items)
+        {
+            sb.AppendFormat(" Order Item: {0}\n", item);
+        }
+        return sb.ToString();
+    }
 }

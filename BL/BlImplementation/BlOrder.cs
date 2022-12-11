@@ -182,6 +182,7 @@ public class BlOrder : BlApi.IOrder
         }
     }
 
+    //for bonus
     public BO.Order UpdateOrderDetails(int orderId, int productId, int amount)
     {
         BO.Order order = new BO.Order();
