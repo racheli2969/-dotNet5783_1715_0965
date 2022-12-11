@@ -57,6 +57,5 @@ Date Received: {DateReceived}
 Items.ForEach(item => item.ToString)
 items ordered: {Items.ToString},
 Sum of order: {SumOfOrder}
-";
-    
+";   
 }
