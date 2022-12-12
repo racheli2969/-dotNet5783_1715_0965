@@ -2,14 +2,15 @@
 using DalApi;
 using DO;
 
-  IDal dalList = new DalList();
-void PrintOptions(){
+IDal dalList = new DalList();
+void PrintOptions()
+{
     Console.WriteLine("To Exit:0,\r\nTo  Add: a,\r\nTo View By Id: b,\r\nTo View All:c,\r\nTo Update: d,\r\nTo Delete: e");
 }
 
-  DateTime DateInputControl(string? s)
+DateTime DateInputControl(string? s)
 {
-    DateTime result=DateTime.MinValue;
+    DateTime result = DateTime.MinValue;
     bool a = false;
     while (a == false)
     {
@@ -18,51 +19,53 @@ void PrintOptions(){
         {
             Console.WriteLine("not legal input, try again\n");
             s = Console.ReadLine();
-        }  
+        }
     }
     return result;
 }
-void Add(OptionsForMain characterType){
+void Add(OptionsForMain characterType)
+{
     int intTemp;
-   double doubleTemp;
-        switch (characterType)
-        {
-            case OptionsForMain.Item:
-                Item item = new Item();
-                Console.WriteLine("enter details for new book: Name, Category, Price, Is In Stock");
+    double doubleTemp;
+    switch (characterType)
+    {
+        case OptionsForMain.Item:
+            Item item = new Item();
+            Console.WriteLine("enter details for new book: Name, Category, Price, Is In Stock");
             item.Name = Console.ReadLine();
-                item.Category = (BookGenre)Convert.ToInt32(Console.ReadLine());
+            item.Category = (BookGenre)Convert.ToInt32(Console.ReadLine());
             double.TryParse(Console.ReadLine(), out doubleTemp);
-                item.Price = doubleTemp;
-                item.InStock = Convert.ToBoolean(Console.Read());
-                dalList.Item.Add(item);
-                break;
-            case OptionsForMain.Order:
-                Order order = new Order();
-                Console.WriteLine("enter details for new order: CustomerName, Email, Address, DateOrdered, DateDelivered, DateReceived  ");
-                order.CustomerName = Console.ReadLine();
-                order.Email = Console.ReadLine();
-                order.Address = Console.ReadLine();
-                order.DateOrdered = DateInputControl(Console.ReadLine());
-                order.DateDelivered = DateInputControl(Console.ReadLine());
-                order.DateReceived = DateInputControl(Console.ReadLine());
-                dalList.Order.Add(order);
-                break;
+            item.Price = doubleTemp;
+            int.TryParse(Console.ReadLine(), out intTemp);
+            item.AmountInStock = intTemp;
+            dalList.Item.Add(item);
+            break;
+        case OptionsForMain.Order:
+            Order order = new Order();
+            Console.WriteLine("enter details for new order: CustomerName, Email, Address, DateOrdered, DateDelivered, DateReceived  ");
+            order.CustomerName = Console.ReadLine();
+            order.Email = Console.ReadLine();
+            order.Address = Console.ReadLine();
+            order.DateOrdered = DateInputControl(Console.ReadLine());
+            order.DateDelivered = DateInputControl(Console.ReadLine());
+            order.DateReceived = DateInputControl(Console.ReadLine());
+            dalList.Order.Add(order);
+            break;
         case OptionsForMain.OrderItem:
-                OrderItem orderItem = new OrderItem();
-                Console.WriteLine("enter details for new orderItem:");
-                Console.WriteLine("enter details for new orderItem:: Amount,  OrderItemId, Price");
-                int.TryParse(Console.ReadLine(), out intTemp);
-                orderItem.Amount = intTemp;
-                int.TryParse(Console.ReadLine(), out intTemp);
-                orderItem.OrderItemId = intTemp;
-                double.TryParse(Console.ReadLine(), out doubleTemp);
-                orderItem.Price = doubleTemp;
+            OrderItem orderItem = new OrderItem();
+            Console.WriteLine("enter details for new orderItem:");
+            Console.WriteLine("enter details for new orderItem:: Amount,  OrderItemId, Price");
+            int.TryParse(Console.ReadLine(), out intTemp);
+            orderItem.Amount = intTemp;
+            int.TryParse(Console.ReadLine(), out intTemp);
+            orderItem.OrderItemId = intTemp;
+            double.TryParse(Console.ReadLine(), out doubleTemp);
+            orderItem.Price = doubleTemp;
             dalList.OrderItem.Add(orderItem);
-                break;
-        }
+            break;
+    }
 }
- void GetById(OptionsForMain characterType)
+void GetById(OptionsForMain characterType)
 {
     int a;
     try
@@ -93,8 +96,8 @@ void Add(OptionsForMain characterType){
     {
         Console.WriteLine(msg);
     }
-}            
- void GetAll(OptionsForMain characterType)
+}
+void GetAll(OptionsForMain characterType)
 {
     try
     {
@@ -111,7 +114,7 @@ void Add(OptionsForMain characterType){
                     Console.WriteLine(order.ToString());
                 break;
             case OptionsForMain.OrderItem:
-                IEnumerable<OrderItem>orderItems = dalList.OrderItem.GetAll();
+                IEnumerable<OrderItem> orderItems = dalList.OrderItem.GetAll();
                 foreach (OrderItem orderItem in orderItems)
                     Console.WriteLine(orderItem.ToString());
                 break;
@@ -121,9 +124,9 @@ void Add(OptionsForMain characterType){
     {
         Console.WriteLine(msg);
     }
-} 
+}
 
- void Update(OptionsForMain characterType)
+void Update(OptionsForMain characterType)
 {
     int intTemp;
     double doubleTemp;
@@ -138,7 +141,8 @@ void Add(OptionsForMain characterType){
                 item.Category = (BookGenre)Convert.ToInt32(Console.ReadLine());
                 double.TryParse(Console.ReadLine(), out doubleTemp);
                 item.Price = doubleTemp;
-                item.InStock = Convert.ToBoolean(Console.Read());
+                int.TryParse(Console.ReadLine(), out intTemp);
+                item.AmountInStock = intTemp;
                 int.TryParse(Console.ReadLine(), out intTemp);
                 item.ID = intTemp;
                 dalList.Item.Update(item);
@@ -178,7 +182,7 @@ void Add(OptionsForMain characterType){
         Console.WriteLine(msg);
     }
 }
- void Delete(OptionsForMain characterType)
+void Delete(OptionsForMain characterType)
 {
     int id;
     try
@@ -206,14 +210,15 @@ void Add(OptionsForMain characterType){
     {
         Console.WriteLine(msg);
     }
-}               
+}
 /// <summary>
 /// navigates between the options of deleting etc...
 /// </summary>
- void ControlOptions(OptionsForMain characterType){
+void ControlOptions(OptionsForMain characterType)
+{
     PrintOptions();
-    OptionsOfActions x =(OptionsOfActions)Convert.ToInt32(Console.ReadLine());
-    while (x!=OptionsOfActions.Exit)
+    OptionsOfActions x = (OptionsOfActions)Convert.ToInt32(Console.ReadLine());
+    while (x != OptionsOfActions.Exit)
     {
         switch (x)
         {
@@ -240,14 +245,14 @@ void Add(OptionsForMain characterType){
     }
 }
 
- void Main()
+void Main()
 {
     OptionsForMain number;
     string input;
     DataSource.S_Initalize();
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
     input = Console.ReadLine();
-   OptionsForMain.TryParse(input, out number);
+    OptionsForMain.TryParse(input, out number);
     while (number < OptionsForMain.Exit || number > OptionsForMain.OrderItem)
     {
         Console.WriteLine("Input needs to be between 0 and 3\nPlease try again");//three options:order, item and order item

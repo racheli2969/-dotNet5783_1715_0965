@@ -9,7 +9,7 @@ public class Cart
     public double FinalPrice { get; set; }
     public override string ToString() => $@"
 
- Customer Name: {CustomerName}, 
+Customer Name: {CustomerName}, 
 Email: {Email},
 Address: {Address},
 items ordered: {Items.ToString},

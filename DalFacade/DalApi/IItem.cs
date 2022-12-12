@@ -4,12 +4,6 @@ namespace DalApi;
 
 public interface IItem : ICrud<Item>
 {
-<<<<<<< HEAD
-    public interface IItem : ICrud<Item>
-    {
-
-    }
-=======
     /// <summary>
     /// checks if there is enough in stock 
     /// </summary>
@@ -23,5 +17,10 @@ public interface IItem : ICrud<Item>
     /// <param name="amount">the amount</param>
     /// <returns>true if available</returns>
     public bool Available(int id, int amount);
->>>>>>> c34552946d767b17d56c053c26b6271d100f3b9a
+    /// <summary>
+    /// overload for update gets an id and amount and takes off that amount from the stock
+    /// </summary>
+    /// <param name="id">product id</param>
+    /// <param name="amount">amount to subtract</param>
+    public void Update(int id, int amount);
 }

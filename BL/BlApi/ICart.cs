@@ -9,7 +9,7 @@ public interface ICart
     /// <param name="productId">gets product id</param>
     /// <param name="c">gets the cart</param>
     /// <returns> the updated cart</returns>
-    public Cart AddProduct(int productId, Cart c);
+    public Cart AddToCart(int productId, Cart c);
   /// <summary>
   /// gets a product id the cart and quantity and updates the amount to the quantity
   /// </summary>
@@ -33,7 +33,7 @@ public interface ICart
     /// </summary>
     /// <param name="C">the cart to search in</param>
     /// <param name="productId">the product id to search for</param>
-    /// <returns>the product details</returns>
-    //public ProductItem GetProductDetails(Cart C, int productId);
+    /// <returns>if the product exists returns index else -1</returns>
+    public int ProductIndexInCart(Cart C, int productId);
 
 }

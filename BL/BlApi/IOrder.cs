@@ -9,7 +9,7 @@ public interface IOrder
     /// returns all the orders in the list
     /// </summary>
     /// <returns>orders</returns>
-    public IEnumerable<ProductForList> GetOrderList();
+    public IEnumerable<OrderForList> GetOrderList();
     /// <summary>
     /// searches for the order details
     /// </summary>
@@ -28,7 +28,7 @@ public interface IOrder
     /// <param name="orderId">order id</param>
     /// <returns>the updated order</returns>
     public Order UpdateOrderDelivery(int orderId);
-    //public OrderTracking OrderTracking(int orderId);
+    public OrderTracking OrderTracking(int orderId);
     /// <summary>
     /// update the amount of a product in order for manager
     /// </summary>
@@ -36,6 +36,7 @@ public interface IOrder
     /// <param name="productId">product to look for in order</param>
     /// <param name="amount">amount to change to</param>
     /// <returns>the updated order</returns>
-    public Order UpdateOrderDetails(int orderId,int productId, int amount);
+    public Order UpdateOrderDetails(int orderId, int productId, int amount);
+
 
 }

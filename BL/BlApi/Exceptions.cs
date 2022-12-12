@@ -4,15 +4,21 @@ namespace BlApi;
 /// <summary>
 /// Exception for not found
 /// </summary>
-public class ProductNotFoundException : Exception
+public class BlEntityNotFoundException : Exception
 {
-    public override string Message => "Book not found";
+    public BlEntityNotFoundException(DalApi.EntityNotFoundException? inner = null) : base("entity not found", inner) { }
+    public override string Message =>
+                    "entity not found";
 }
 /// <summary>
 /// Exception for duplicated value
 /// </summary>
-public class ProductExistsException : Exception
+
+
+    public class ExistsAlreadyException : Exception
 {
+    public ExistsAlreadyException(DalApi.EntityDuplicateException? inner = null) : base("Exists already", inner) { }
+
     public override string Message => "Product already exists";
 
 }
@@ -26,9 +32,9 @@ public class EmptyStringException : Exception
 /// <summary>
 /// Exception for negative id value
 /// </summary>
-public class NegativeIdException: Exception
+public class NegativeIdException : Exception
 {
-    public override string Message => " Id is a positive number";
+    public override string Message => " Id is a positive number bigger than 100000";
 }
 /// <summary>
 /// Exception for negative price value
@@ -44,10 +50,30 @@ public class NegativeAmountException : Exception
 {
     public override string Message => " Amount is a positive number";
 }
+public class NegativeHouseNumberException : Exception
+{
+    public override string Message => " HouseNumber is a positive number";
+}
 /// <summary>
 /// Exception for not in stock
 /// </summary>
 public class NotInStockException : Exception
 {
     public override string Message => "Sorry, not in stock";
+}
+public class WrongEmailFormatException : Exception
+{
+    public override string Message => "wrong email format, email should be valid";
+}
+public class ErrorDeleting : Exception
+{
+    public override string Message => "Sorry, it is not possible to delete this product";
+}
+public class SentAlreadyException : Exception
+{
+    public override string Message => "The order has already been sent";
+}
+public class deliveredAlreadyException : Exception
+{
+    public override string Message => "The order has already been delivered";
 }

@@ -6,15 +6,16 @@ namespace DO;
 public struct Item
 {
     public string? Name { get; set; }
-    public BookGenre Category { get; set; }
+    public BookGenre? Category { get; set; }
     public double Price { get; set; }
-    public int InStock { get; set; }
+    public int AmountInStock { get; set; }
     public int ID { get; set; }
 
     public override string ToString() => $@"
-Product ID={ID}: {Name}, 
+Product ID={ID} 
+name:{Name}
 category - {Category}
     	Price: {Price}
-    	 In stock: {InStock}
+    	 In stock: {AmountInStock}
 ";
 }

@@ -7,4 +7,12 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = stage0
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\
+=======
+<<<<<<< HEAD
+build_property.ProjectDir = C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\stage0\
+=======
+build_property.ProjectDir = C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\stage0\
+>>>>>>> df9cd3901b1181e0e68426e3805d9ebc80cb35b7
+>>>>>>> ad8bc2bef1a679b7db0980f085a7dc118193722f

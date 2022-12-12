@@ -1,36 +1,124 @@
-﻿using BlApi;
+
+using BlApi;
+using System.Text.RegularExpressions;
+
 namespace BlImplementation;
 
-internal class BLCart : ICart
+internal class BLCart : BlApi.ICart
 {
     private DalApi.IDal dal = new Dal.DalList();
-    public BO.Cart AddProduct(int productId, BO.Cart c)
+
+    public BO.Cart AddToCart(int productId, BO.Cart c)
     {
-        DO.Item product = dal.Item.GetById(productId);
-        if (!dal.Item.Available(productId))
-            throw new NotInStockException();
-        Action a=new Action(int id=>
-
-        c.Items.ForEach()
-        if (c.Items.Exists(product.ID))
-        //add to cart approvingly
-        //return updated cart
-        return c;
+        //check if product exists if so get product
+        try
+        {
+            DO.Item product = dal.Item.GetById(productId);
+            //if not available
+            if (!dal.Item.Available(productId))
+                throw new BlApi.NotInStockException();
+            //check if the item is in the cart already
+            int idx = ProductIndexInCart(c, productId);
+            if (idx >= 0)
+            {
+                //update the amount in the cart
+                c.Items[idx].Amount++;
+                c.Items[idx].PriceOfItems += c.Items[idx].ItemPrice;
+            }
+            else
+            {    //add the product
+                BO.OrderItem oi = new BO.OrderItem();
+                oi.ItemId = product.ID;
+                oi.ItemName = product.Name;
+                oi.ItemPrice = product.Price;
+                oi.Amount = 1;
+                oi.PriceOfItems = product.Price;
+                c.Items.Add(oi);
+            }
+            //return updated cart
+            return c;
+        }
+        catch (DalApi.EntityNotFoundException)
+        {
+            throw new BlApi.BlEntityNotFoundException();
+        }
     }
-
     public BO.Cart UpdateProductQuantity(int productId, BO.Cart c, int quantity)
     {
+        int idx = ProductIndexInCart(c, productId);
+        if (c.Items[idx].Amount + quantity == 0)
+        {
+            c.FinalPrice -= c.Items[idx].PriceOfItems;
+            c.Items.RemoveAt(idx);
+            return c;
+        }
+        if (quantity < 0 && c.Items[idx].Amount + quantity > 0)
+        {
+            c.Items[idx].Amount += quantity;
+            c.FinalPrice += c.Items[idx].ItemPrice * quantity;
+            c.Items[idx].PriceOfItems = c.Items[idx].Amount * c.Items[idx].ItemPrice;
+            return c;
+        }
+        if (!dal.Item.Available(productId, quantity))
+            throw new BlApi.NotInStockException();
+        c.Items[idx].Amount += quantity;
+        c.Items[idx].PriceOfItems += quantity * c.Items[idx].ItemPrice;
+        c.FinalPrice += c.Items[idx].ItemPrice * quantity;
         return c;
     }
 
     public void OrderConfirmation(BO.Cart c, string name, string email, string city, string street, int numOfHouse)
     {
+        if (name == null || email == null || city == null || street == null)
+            throw new BlApi.EmptyStringException();
+        if (Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            throw new BlApi.WrongEmailFormatException();
+        if (numOfHouse <= 0)
+            throw new BlApi.NegativeHouseNumberException();
+        c.Items.ForEach(validateItem);
 
+        //create in dal layer and move the info
+        DO.Order temp = new DO.Order();
+        temp.CustomerName = name;
+        temp.Email = email;
+        temp.Address = city + " " + street + " " + numOfHouse;
+        temp.DateOrdered = DateTime.Now;
+        temp.DateDelivered = DateTime.MinValue;
+        temp.DateReceived = DateTime.MinValue;
+        //send to dal
+        int id = dal.Order.Add(temp);
+
+        //add the items to the order item array and update the products accordingly
+        DO.OrderItem tempItem = new DO.OrderItem();
+        for (int i = 0; i < c.Items.Count; i++)
+        {
+            //create order items in dal layer 
+            tempItem.Amount = c.Items[i].Amount;
+            tempItem.OrderID = temp.OrderId;
+            tempItem.ItemId = c.Items[i].ItemId;
+            id = dal.OrderItem.Add(tempItem);
+            tempItem.OrderItemId = id;
+            c.Items[i].OrderItemId = id;
+            dal.Item.Update(tempItem.ItemId, tempItem.Amount);
+        }
     }
 
-    /*public BO.ProductItem GetProductDetails(BO.Cart C, int productId)
+    public int ProductIndexInCart(BO.Cart c, int productId)
     {
-        return 
-    }*/
+        if (c.Items == null)
+            return -1;
+        return c.Items.FindIndex(orderItem => orderItem.ItemId == productId);
+    }
 
+    private void validateItem(BO.OrderItem oi)
+    {
+        //product exists
+        dal.Item.GetById(oi.ItemId);
+        //amount is a positive number
+        if (oi.Amount <= 0)
+            throw new BlApi.NegativeAmountException();
+        //item is in stock
+        if (!dal.Item.Available(oi.ItemId, oi.Amount))
+            throw new BlApi.NotInStockException();
+    }
 }
