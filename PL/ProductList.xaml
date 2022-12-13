@@ -33,5 +33,12 @@
             </ComboBox>
             <Label Content="Category:" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.174,-8.387" Grid.ColumnSpan="2" Width="400" FontSize="20"/>
         </Grid>
+        <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
