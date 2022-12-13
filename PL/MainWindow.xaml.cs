@@ -24,7 +24,8 @@ namespace PL
         {
             InitializeComponent();
         }
-        public BlApi.IBl bl=new BlImplementation.Bl();
-        private void btnEnter_Click(object sender, RoutedEventArgs e) => new ProductList(bl).Show();
+        //public BlApi.IBl bl=new BlImplementation.Bl();
+        //private void btnEnter_Click(object sender, RoutedEventArgs e) => new ProductList(bl).Show();
+        private void btnEnter_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
     }
 }

@@ -27,5 +27,8 @@ public partial class ProductList : Window
         bl = b;
         InitializeComponent();
     }
-
+    public ProductList()
+    {
+        InitializeComponent();
+    }
 }
