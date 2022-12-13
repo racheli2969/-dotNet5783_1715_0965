@@ -167,6 +167,14 @@ void NavigateOrder()
         {
             Console.WriteLine(ex.Message);
         }
+        catch (BlApi.deliveredAlreadyException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (BlApi.SentAlreadyException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
         catch
         {
             Console.WriteLine("unexplained error occured");
@@ -196,6 +204,7 @@ void NavigateProduct()
                     Console.WriteLine("see you a different time...");
                     break;
                 case BL.OptionsForProduct.GetProductList:
+                    
                     products = (List<BO.ProductForList>)bl.Product.GetProductList();
                     if (products.Count == 0)
                         Console.Write("No products yet...");
