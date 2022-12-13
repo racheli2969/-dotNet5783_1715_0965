@@ -106,26 +106,11 @@ public class BlProduct : BlApi.IProduct
     {
         try
         {
-            List<DO.OrderItem> orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll();
-            List<DO.Order> orders = (List<DO.Order>)dal.Order.GetAll();
-
-            try
-            {
-                //take all the order items with the id of product to delete if there are none will throw error but is a sign that it's not in any order and we can try deleting
-                List<DO.OrderItem> productToDeleteAsOrderItems = orderItems.FindAll(item => item.ItemId == productId);
-                //check if the product is in any order if so throws exception
-                productToDeleteAsOrderItems.ForEach((item) =>
-                {
-                    if (orders.FindIndex(order => order.OrderId == item.OrderID) > 0)
-                        throw new BlApi.ErrorDeleting();
-                });
-                dal.Item.Delete(productId);
-            }
-
-            catch (ArgumentNullException)
-            {
-                dal.Item.Delete(productId);
-            }
+            List<DO.OrderItem> orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll(i => i.ItemId == productId);
+            List<DO.Order> orders = (List<DO.Order>)dal.Order.GetAll(o => orderItems.FindIndex(i => i.OrderID == o.OrderId) > 0);
+            if (orders.Count > 0)
+                throw new BlApi.ErrorDeleting();
+            dal.Item.Delete(productId);
         }
         catch (DalApi.EntityNotFoundException ex)
         {
