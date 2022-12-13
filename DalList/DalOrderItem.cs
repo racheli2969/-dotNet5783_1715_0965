@@ -1,6 +1,8 @@
 ﻿
 using DO;
 using DalApi;
+using System.Linq;
+
 namespace Dal;
 internal class DalOrderItem : IOrderItem
 {
@@ -26,22 +28,23 @@ internal class DalOrderItem : IOrderItem
 
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
-            if (DataSource.OrderItems[i].OrderItemId == Id)
-                return DataSource.OrderItems[i];
+            if (((OrderItem)DataSource.OrderItems[i]).OrderItemId == Id)
+                return (OrderItem)DataSource.OrderItems[i];
         }
         throw new EntityNotFoundException();
     }
     /// <summary>
     /// returns existing order items
     /// </summary>
-    public IEnumerable<OrderItem> GetAll()
+    public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool>? func=null)
     {
-        List<OrderItem> oi = new List<OrderItem>(DataSource.OrderItems.Count);
+        return func == null ? (IEnumerable<OrderItem>?)DataSource.OrderItems : DataSource.OrderItems.Where(func).ToList();
+       /* List<OrderItem>? oi = new List<OrderItem>(DataSource.OrderItems.Count);
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
-            oi.Add(DataSource.OrderItems[i]);
+            oi.Add((OrderItem)DataSource.OrderItems[i]);
         }
-        return oi;
+        return oi ;*/
     }
     /// <summary>
     /// deletes order item by id
@@ -50,7 +53,7 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
-        int index = DataSource.OrderItems.FindIndex(orderItem => orderItem.OrderItemId == id);
+        int index = DataSource.OrderItems.FindIndex(orderItem => ((OrderItem)orderItem).OrderItemId == id);
         if (index < 0)
             throw new EntityNotFoundException();
         DataSource.OrderItems.RemoveAt(index);
@@ -63,7 +66,7 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public void Update(OrderItem oi)
     {
-        int index = DataSource.OrderItems.FindIndex(orderItem => orderItem.OrderItemId == oi.OrderItemId);
+        int index = DataSource.OrderItems.FindIndex(orderItem => ((OrderItem)orderItem).OrderItemId == oi.OrderItemId);
         if (index < 0)
             throw new EntityNotFoundException();
         DataSource.OrderItems[index] = oi;
@@ -79,8 +82,8 @@ internal class DalOrderItem : IOrderItem
     {
         for (int i = 0; i < DataSource.OrderItems.Count; i++)
         {
-            if (DataSource.OrderItems[i].OrderID == orderId && DataSource.OrderItems[i].ItemId == productId)
-                return DataSource.OrderItems[i];
+            if (((OrderItem)DataSource.OrderItems[i]).OrderID == orderId && ((OrderItem)DataSource.OrderItems[i]).ItemId == productId)
+                return (OrderItem)DataSource.OrderItems[i];
         }
         throw new EntityNotFoundException();
     }
@@ -89,10 +92,10 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="orderId">order id</param>
     /// <returns>the items</returns>
-    public IEnumerable<OrderItem> GetByOrderId(int orderId)
+    public IEnumerable<OrderItem?>? GetByOrderId(int orderId)
     {
-        List<OrderItem> product = new List<OrderItem>(DataSource.OrderItems.Count);
-       product= DataSource.OrderItems.FindAll(p=>p.OrderItemId == orderId);
+        List<OrderItem?>? product = new(DataSource.OrderItems.Count);
+        product = DataSource.OrderItems.FindAll(p => ((OrderItem)p).OrderItemId == orderId);
         return product;
     }
 }

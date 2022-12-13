@@ -17,8 +17,8 @@ public interface ICrud<T>
     /// <param name="Id"></param>
     /// <returns>returns the item</returns>
     /// <exception cref="Exception">not found</exception>
-    public T GetById(int id);
-    public IEnumerable<T> GetAll();
+    public T? GetById(int id);
+    public IEnumerable<T?>? GetAll(Func<T,bool>?func=null);
 
 }
 

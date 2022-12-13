@@ -1,8 +1,5 @@
-﻿
-using DalApi;
-
+﻿using DalApi;
 namespace Dal;
-
 sealed public class DalList : IDal
 {
     public IItem Item => new DalItem();

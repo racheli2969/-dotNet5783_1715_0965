@@ -229,11 +229,13 @@ void NavigateProduct()
                     int.TryParse(Console.ReadLine(), out id);
                     double.TryParse(Console.ReadLine(), out price);
                     BL.BookGenre.TryParse(Console.ReadLine(), out category);
+                    int.TryParse(Console.ReadLine(), out amount);
                     name = Console.ReadLine();
                     product.ID = id;
                     product.Price = price;
                     product.Name = name;
                     product.Category = category;
+                    product.AmountInStock=amount;
                     bl.Product.AddProduct(product);
                     break;
                 case BL.OptionsForProduct.RemoveProduct:
@@ -245,14 +247,14 @@ void NavigateProduct()
                     Console.Write("Enter details of new product: id, price, name, Category, amount");
                     int.TryParse(Console.ReadLine(), out id);
                     double.TryParse(Console.ReadLine(), out price);
-                    BL.BookGenre.TryParse(Console.ReadLine(), out category);
                     name = Console.ReadLine();
+                    BL.BookGenre.TryParse(Console.ReadLine(), out category);
+                    int.TryParse(Console.ReadLine(), out amount);
                     product.ID = id;
                     product.Price = price;
                     product.Name = name;
                     product.Category = category;
-                    int.TryParse(Console.ReadLine(), out id);
-                    product.AmountInStock=id;
+                    product.AmountInStock = amount;
                     bl.Product.UpdateProduct(product);
                     break;
             }

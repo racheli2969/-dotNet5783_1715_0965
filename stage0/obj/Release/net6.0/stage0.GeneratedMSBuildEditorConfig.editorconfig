@@ -7,4 +7,8 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = stage0
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\brach\source\repos\-dotNet5783_1715_0965\stage0\
+=======
+build_property.ProjectDir = C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\
+>>>>>>> 1f5770acda487d755d6af00e76f53f06584b9dbe

@@ -11,12 +11,12 @@ public class OrderItem
 
     public override string ToString() => $@"
 
-ID of order item: {OrderItemId},
-item id: {ItemId}, 
-Customer Name: {ItemName}, 
-Ptice per item: {ItemPrice},
-amount: {Amount},
-price all together: {PriceOfItems}
+ ID of order item: {OrderItemId},
+ item id: {ItemId}, 
+ Customer Name: {ItemName}, 
+ Price per item: {ItemPrice},
+ amount: {Amount},
+ price all together: {PriceOfItems}
 ";
 
 
