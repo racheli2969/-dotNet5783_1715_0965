@@ -1,12 +1,10 @@
-﻿using BL;
-
-namespace BO;
+﻿namespace BO;
 public class ProductItem
 {
     public int ID { get; set; }
     public string? Name { get; set; }
     public double Price { get; set; }
-    public BookGenre? Category { get; set; }
+    public BookGenre Category { get; set; }
     public bool IsAvailable { get; set; }
     public int Amount { get; set; }
 

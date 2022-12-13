@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace PL;
-
 /// <summary>
 /// Interaction logic for ProductList.xaml
 /// </summary>
@@ -24,11 +23,9 @@ public partial class ProductList : Window
     private BlApi.IBl bl;
     public ProductList(IBl b)
     {
+        InitializeComponent();
         bl = b;
-        InitializeComponent();
+        ProductsListView.ItemsSource=bl.Product.GetProductList();
     }
-    public ProductList()
-    {
-        InitializeComponent();
-    }
+    
 }

@@ -1,5 +1,4 @@
-﻿using BL;
-namespace BO;
+﻿namespace BO;
 
 public class OrderForList
 {

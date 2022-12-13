@@ -1,5 +1,4 @@
-﻿using BL;
-using System.Text;
+﻿using System.Text;
 namespace BO;
 /// <summary>
 /// class for order 

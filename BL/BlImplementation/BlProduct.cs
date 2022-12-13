@@ -18,7 +18,7 @@ public class BlProduct : BlApi.IProduct
             temp = new BO.ProductForList();
             temp.ItemId = productsFromDal[i].ID;
             temp.ItemName = productsFromDal[i].Name;
-            temp.Category = (Dal.BookGenre)productsFromDal[i].Category;
+            temp.Category = (BO.BookGenre)(DO.BookGenre)productsFromDal[i].Category;
             temp.ItemPrice = productsFromDal[i].Price;
             products.Add(temp);
         }
@@ -36,7 +36,7 @@ public class BlProduct : BlApi.IProduct
             p.ID = product.ID;
             p.AmountInStock = product.AmountInStock;
             p.Price = product.Price;
-            p.Category = (BL.BookGenre)product.Category;
+            p.Category = (BO.BookGenre)product.Category;
             return p;
         }
         catch (DalApi.EntityNotFoundException ex)
@@ -60,7 +60,7 @@ public class BlProduct : BlApi.IProduct
             else
                 p.IsAvailable = false;
             p.Price = product.Price;
-            p.Category = (BL.BookGenre)product.Category;
+            p.Category = (BO.BookGenre)product.Category;
             if (c.Items != null)
             {
                 for (int i = 0; i < c.Items.Count; i++)
@@ -93,7 +93,7 @@ public class BlProduct : BlApi.IProduct
             item.Price = p.Price;
             item.Name = p.Name;
             item.ID = p.ID;
-            item.Category = (Dal.BookGenre)p.Category;
+            item.Category = (DO.BookGenre)p.Category;
             item.AmountInStock = p.AmountInStock;
             dal.Item.Add(item);
         }
@@ -149,7 +149,7 @@ public class BlProduct : BlApi.IProduct
             i.Name = p.Name;
             i.AmountInStock = p.AmountInStock;
             i.ID = p.ID;
-            i.Category = (Dal.BookGenre)p.Category;
+            i.Category = (DO.BookGenre)p.Category;
             dal.Item.Update(i);
         }
         catch (DalApi.EntityNotFoundException ex)

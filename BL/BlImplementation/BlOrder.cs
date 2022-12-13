@@ -1,4 +1,4 @@
-﻿using BL;
+﻿using BO;
 namespace BlImplementation;
 public class BlOrder : BlApi.IOrder
 {
@@ -21,7 +21,7 @@ public class BlOrder : BlApi.IOrder
             temp = new BO.OrderForList();
             temp.Id = ordersFromDal[i].OrderId;
             temp.CustomerName = ordersFromDal[i].CustomerName;
-            temp.OrderStatus = ordersFromDal[i].DateReceived != DateTime.MinValue ? BL.EnumOrderStatus.Received : ordersFromDal[i].DateDelivered != DateTime.MinValue ? BL.EnumOrderStatus.Delivered : BL.EnumOrderStatus.Ordered;
+            temp.OrderStatus = ordersFromDal[i].DateReceived != DateTime.MinValue ? BO.EnumOrderStatus.Received : ordersFromDal[i].DateDelivered != DateTime.MinValue ? BO.EnumOrderStatus.Delivered : BO.EnumOrderStatus.Ordered;
             temp.Price = finalPrice;
             orders.Add(temp);
         }
