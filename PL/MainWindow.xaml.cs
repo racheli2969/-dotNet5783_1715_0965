@@ -24,5 +24,7 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void btnEnter_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
     }
 }
