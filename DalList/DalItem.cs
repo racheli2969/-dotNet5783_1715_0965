@@ -39,7 +39,7 @@ internal class DalItem : IItem
     /// returns all the existing items
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<Item>? GetAll(Func<Item,bool>?func=null)
+    public IEnumerable<Item>? GetAll(Func<Item,bool>func)
     {
         List<Item>? item = new();
 

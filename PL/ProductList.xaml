@@ -33,10 +33,13 @@
             </ComboBox>
             <Label Content="Category:" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.174,-8.387" Grid.ColumnSpan="2" Width="400" FontSize="20"/>
         </Grid>
-        <ListView x:Name="ProductsListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.Row="1">
+        <ListView x:Name="ProductListView" Grid.Row="1" >
             <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
+                <GridView AllowsColumnReorder="true" >
+                    <GridViewColumn x:Name="gvcId" DisplayMemberBinding="{Binding Path=ID}" Header="ID" Width="100"/>
+                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="150"/>
+                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
+                    <GridViewColumn x:Name="gvcCategory" DisplayMemberBinding="{Binding Path=Category}" Header="Category" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>

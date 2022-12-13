@@ -1,5 +1,4 @@
-﻿using BO;
-namespace BlImplementation;
+﻿namespace BlImplementation;
 public class BlOrder : BlApi.IOrder
 {
     private DalApi.IDal dal = new Dal.DalList();
@@ -48,11 +47,11 @@ public class BlOrder : BlApi.IOrder
             order.DateOrdered = O.DateOrdered;
             order.DateReceived = O.DateReceived;
             if (O.DateDelivered != DateTime.MinValue)
-                order.OrderStatus = EnumOrderStatus.Delivered;
+                order.OrderStatus = BO.EnumOrderStatus.Delivered;
             if (O.DateReceived != DateTime.MinValue)
-                order.OrderStatus = EnumOrderStatus.Received;
+                order.OrderStatus = BO.EnumOrderStatus.Received;
             else
-                order.OrderStatus = EnumOrderStatus.Ordered;
+                order.OrderStatus = BO.EnumOrderStatus.Ordered;
             double finalPrice = 0;
             for (int i = 0; i < oi.Count; i++)
             {
@@ -101,7 +100,7 @@ public class BlOrder : BlApi.IOrder
                 o.Email = order.Email;
                 o.DateDelivered = order.DateDelivered;
                 o.DateOrdered = order.DateOrdered;
-                o.OrderStatus = EnumOrderStatus.Delivered;
+                o.OrderStatus = BO.EnumOrderStatus.Delivered;
                 double finalPrice = 0;
                 for (int i = 0; i < oi.Count; i++)
                 {
@@ -132,7 +131,7 @@ public class BlOrder : BlApi.IOrder
                 o.Email = order.Email;
                 o.DateDelivered = order.DateDelivered;
                 o.DateOrdered = order.DateOrdered;
-                o.OrderStatus = EnumOrderStatus.Received;
+                o.OrderStatus = BO.EnumOrderStatus.Received;
                 o.OrderId = orderId;
                 double finalPrice = 0;
                 for (int i = 0; i < oi.Count; i++)
@@ -156,20 +155,20 @@ public class BlOrder : BlApi.IOrder
             DO.Order order = dal.Order.GetById(orderId);
             BO.OrderTracking ot = new BO.OrderTracking();
             ot.Id = orderId;
-            (DateTime, EnumOrderStatus) myTuple = ((DateTime)((DO.Order)order).DateOrdered, EnumOrderStatus.Delivered);
+            (DateTime, BO.EnumOrderStatus) myTuple = ((DateTime)((DO.Order)order).DateOrdered, BO.EnumOrderStatus.Delivered);
             ot.TrackingTuples.Add(myTuple);
             if (order.DateDelivered != DateTime.MinValue)
             {
-                ot.OrderStatus = EnumOrderStatus.Delivered;
-                ot.TrackingTuples[1] = ((DateTime)((DO.Order)order).DateDelivered, EnumOrderStatus.Delivered);
+                ot.OrderStatus = BO.EnumOrderStatus.Delivered;
+                ot.TrackingTuples[1] = ((DateTime)((DO.Order)order).DateDelivered, BO.EnumOrderStatus.Delivered);
             }
             if (order.DateReceived != DateTime.MinValue)
             {
-                ot.OrderStatus = EnumOrderStatus.Received;
-                ot.TrackingTuples[2] = ((DateTime)((DO.Order)order).DateReceived, EnumOrderStatus.Delivered);
+                ot.OrderStatus = BO.EnumOrderStatus.Received;
+                ot.TrackingTuples[2] = ((DateTime)((DO.Order)order).DateReceived, BO.EnumOrderStatus.Delivered);
             }
             else
-                ot.OrderStatus = EnumOrderStatus.Ordered;
+                ot.OrderStatus = BO.EnumOrderStatus.Ordered;
 
             return ot;
         }

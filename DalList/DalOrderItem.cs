@@ -36,7 +36,7 @@ internal class DalOrderItem : IOrderItem
     /// <summary>
     /// returns existing order items
     /// </summary>
-    public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool>? func=null)
+    public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool> func)
     {
         return func == null ? (IEnumerable<OrderItem>?)DataSource.OrderItems : (IEnumerable<OrderItem>?)DataSource.OrderItems;//.Where(func).ToList();
        /* List<OrderItem>? oi = new List<OrderItem>(DataSource.OrderItems.Count);
