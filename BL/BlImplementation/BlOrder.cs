@@ -8,7 +8,10 @@ public class BlOrder : BlApi.IOrder
         List<BO.OrderForList> orders = new List<BO.OrderForList>();
         List<DO.Order> ordersFromDal = new List<DO.Order>();
         BO.OrderForList temp;
+        //gets all orders from dal
         ordersFromDal = (List<DO.Order>)dal.Order.GetAll();
+        //get for each order orderItems
+       // ordersFromDal.ForEach(order=>)
         for (int i = 0; i < ordersFromDal.Count; i++)
         {
             List<DO.OrderItem> oi = new List<DO.OrderItem>();
