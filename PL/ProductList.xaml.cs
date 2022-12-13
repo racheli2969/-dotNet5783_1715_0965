@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using BlImplementation;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,19 @@ namespace PL;
 /// </summary>
 public partial class ProductList : Window
 {
-    private BlApi.IBl bl;
+    private IBl bl { get; set; }
     public ProductList(IBl b)
     {
         InitializeComponent();
         bl = b;
-        ProductsListView.ItemsSource=bl.Product.GetProductList();
+        ProductsListView.ItemsSource = bl.Product.GetProductList();
+        CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
     }
-    
+
+    /* public ProductList()
+     {
+         InitializeComponent();
+
+         //ProductsListView.ItemsSource = bl.Product.GetProductList();
+     }*/
 }

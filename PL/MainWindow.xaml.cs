@@ -22,12 +22,13 @@ namespace PL;
 /// </summary>
 public partial class MainWindow : Window
 {
-    
+    private IBl bl { get; set; }
     public MainWindow()
     {
-        //bl = 
         InitializeComponent();
+        bl = new Bl();
     }
-    private BlApi.IBl bl=new BlImplementation.Bl();
     private void btnEnter_Click(object sender, RoutedEventArgs e) => new ProductList(bl).Show();
+    
+    //private void btnEnter_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
 }

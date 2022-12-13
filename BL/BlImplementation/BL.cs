@@ -1,8 +1,8 @@
-﻿
+﻿using BlApi;
 namespace BlImplementation;
-sealed public class Bl : BlApi.IBl
+sealed public class Bl : IBl
 { 
-    public BlApi.ICart Cart => new BlImplementation.BLCart();
-    public BlApi.IOrder Order => new BlImplementation.BlOrder();
-    public BlApi.IProduct Product => new BlImplementation.BlProduct();
+    public ICart Cart => new BLCart();
+    public IOrder Order => new BlOrder();
+    public IProduct Product => new BlProduct();
 }
