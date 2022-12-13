@@ -1,6 +1,6 @@
 ﻿
 BlApi.IBl bl = new BlImplementation.Bl();
- BO.Cart myCart = new();
+BO.Cart myCart = new();
 myCart.Items = new();
 
 void NavigateCart()
