@@ -3,7 +3,6 @@ using BO;
 using BlImplementation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,14 +20,20 @@ namespace PL;
 /// </summary>
 public partial class ProductList : Window
 {
-    private IBl Bl { get; set; }
+    private IBl Bl { get; set; } 
     public ProductList(IBl b)
     {
         InitializeComponent();
-        Bl = b;
-        ProductListView.ItemsSource = Bl.Product.GetProductList();
+        try
+        {
+            Bl = b;
+        }catch(Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+        //ProductListView.ItemsSource = Bl.Product.GetProductList();
         CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
-
+    
     }
 
     /* public ProductList()
