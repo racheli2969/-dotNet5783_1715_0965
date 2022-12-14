@@ -6,13 +6,16 @@ namespace BlImplementation;
 public class BlProduct : BlApi.IProduct
 {
     private DalApi.IDal dal = new Dal.DalList();
-    public IEnumerable<BO.ProductForList> GetProductList()
+    public IEnumerable<BO.ProductForList> GetProductList(BO.BookGenre? category)
     {
         List<BO.ProductForList> products = new List<BO.ProductForList>();
         List<DO.Item> productsFromDal = new List<DO.Item>();
         BO.ProductForList temp;
         //gets all products from dal
-        productsFromDal = (List<DO.Item>)dal.Item.GetAll();
+        if (category != null)
+            productsFromDal = (List<DO.Item>)dal.Item.GetAll(o => o.Category.Equals(category));
+        else
+            productsFromDal = (List<DO.Item>)dal.Item.GetAll();
         for (int i = 0; i < productsFromDal.Count; i++)
         {
             temp = new BO.ProductForList();
@@ -143,4 +146,5 @@ public class BlProduct : BlApi.IProduct
         }
 
     }
+    
 }

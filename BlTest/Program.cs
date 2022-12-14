@@ -205,7 +205,7 @@ void NavigateProduct()
                     break;
                 case BO.OptionsForProduct.GetProductList:
 
-                    products = (List<BO.ProductForList>)bl.Product.GetProductList();
+                    products = (List<BO.ProductForList>)bl.Product.GetProductList(null);
                     if (products.Count == 0)
                         Console.Write("No products yet...");
                     else

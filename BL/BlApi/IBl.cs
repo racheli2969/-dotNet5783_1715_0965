@@ -8,13 +8,13 @@ public interface IBl
     /// <summary>
 /// attribute of type product interface 
 /// </summary>
-   // public IProduct Product { get; }
+    public IProduct Product { get; }
     /// <summary>
     ///attribute of type order interface 
     /// </summary>
-   // public IOrder Order { get; }
+    public IOrder Order { get; }
     /// <summary>
     /// attribute of type Cart interface 
     /// </summary>
-  //  public ICart Cart { get; }
+   public ICart Cart { get; }
 }
