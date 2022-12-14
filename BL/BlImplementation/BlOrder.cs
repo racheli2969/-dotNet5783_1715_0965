@@ -10,7 +10,6 @@ public class BlOrder : BlApi.IOrder
         //gets all orders from dal
         ordersFromDal = (List<DO.Order>)dal.Order.GetAll();
         //get for each order orderItems
-       // ordersFromDal.ForEach(order=>)
         for (int i = 0; i < ordersFromDal.Count; i++)
         {
             List<DO.OrderItem> oi = new List<DO.OrderItem>();
@@ -155,7 +154,7 @@ public class BlOrder : BlApi.IOrder
             DO.Order order = dal.Order.GetById(orderId);
             BO.OrderTracking ot = new BO.OrderTracking();
             ot.Id = orderId;
-            (DateTime, BO.EnumOrderStatus) myTuple = ((DateTime)((DO.Order)order).DateOrdered, BO.EnumOrderStatus.Delivered);
+            (DateTime, BO.EnumOrderStatus) myTuple = ((DateTime)(order).DateOrdered, BO.EnumOrderStatus.Delivered);
             ot.TrackingTuples.Add(myTuple);
             if (order.DateDelivered != DateTime.MinValue)
             {
