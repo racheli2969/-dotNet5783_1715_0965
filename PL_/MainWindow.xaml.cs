@@ -12,25 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-<<<<<<< HEAD
-//using BlApi;
-//using BlImplementation;
+
 using BO;
-=======
 using BlApi;
 using BlImplementation;
->>>>>>> 2239648d27eb74dab295007bcbd2514a472beb52
 
 namespace PL
 {
-<<<<<<< HEAD
-    public BlApi.IBl Bl { get; set; } 
-    //private BlApi.IBl Bl_ { get; set; }
-    public MainWindow()
-    {
-        InitializeComponent();
-        Bl = new BlImplementation.Bl();
-=======
+    //private BlAp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -45,8 +34,8 @@ namespace PL
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
-          new ProductList(Bl).Show();
+            ProductList PL = new(Bl);
+            PL.Show();
         }
->>>>>>> 2239648d27eb74dab295007bcbd2514a472beb52
     }
 }

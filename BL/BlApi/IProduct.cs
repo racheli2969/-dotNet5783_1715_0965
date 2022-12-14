@@ -8,7 +8,7 @@ public interface IProduct
     /// gets all the products
     /// </summary>
     /// <returns>products</returns>
-    public IEnumerable<ProductForList> GetProductList(BO.BookGenre? c);
+    public IEnumerable<ProductForList> GetProductList(BO.BookGenre? c = null);
     /// <summary>
     /// gets id of product and searches for it in the BL layer if id does not exist will throw exception
     /// </summary>
