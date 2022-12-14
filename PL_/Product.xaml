@@ -8,10 +8,26 @@
         Title="Product" Height="450" Width="800">
     <Grid>
         <Label x:Name="Id" Content="Id" HorizontalAlignment="Left" Margin="258,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="4.57,1.341"/>
-        <Label x:Name="Name" Content="Name" HorizontalAlignment="Left" Margin="247,113,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Category" Content="Category" HorizontalAlignment="Left" Margin="258,54,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Name" Content="Name" HorizontalAlignment="Left" Margin="247,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.74,0.763"/>
+        <Label x:Name="Category" Content="Category" HorizontalAlignment="Left" Margin="242,181,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.343,5.878"/>
         <Label x:Name="Price" Content="Price" HorizontalAlignment="Left" Margin="255,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.639,8.534"/>
-        <Label x:Name="Amount" Content="Amount" HorizontalAlignment="Left" Margin="270,316,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Amount" Content="Amount" HorizontalAlignment="Left" Margin="247,318,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbCategoryForProduct" HorizontalAlignment="Left" Margin="378,185,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtProductId" HorizontalAlignment="Left" Margin="378,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtProductName" HorizontalAlignment="Left" Margin="378,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtProductPrice" HorizontalAlignment="Left" Margin="378,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtProductAmount" HorizontalAlignment="Left" Margin="378,322,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnAddProduct" Content="Add" HorizontalAlignment="Left" Margin="578,379,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.511,0.613" Height="35" Width="72">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.522"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="btnUpdateProduct" Content="Update" HorizontalAlignment="Left" Margin="583,379,0,0" VerticalAlignment="Top" Height="34" Width="66" Click="btnUpdateProduct_Click"/>
 
     </Grid>
 </Window>

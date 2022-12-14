@@ -32,7 +32,7 @@ namespace PL
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
-            ProductList PL = new(Bl);
+            ProductListWindow PL = new(Bl);
             PL.Show();
             this.Hide();
         }

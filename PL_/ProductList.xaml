@@ -1,39 +1,43 @@
-﻿<Window x:Class="PL.ProductList"
+﻿<Window x:Class="PL.ProductListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ProductList" Height="450" Width="800">
-    <Grid Name="MainGrid">
-        <Grid.RowDefinitions >
+        Title="ProductList" Height="650" Width="800">
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,319">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,380" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="CategorySelector" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="30" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" FontSize="20" SelectionChanged="CategorySelector_SelectionChanged">
-                <ComboBox.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.144"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </ComboBox.RenderTransform>
-                <ComboBox Height="20" Width="300"/>
-            </ComboBox>
-            <Label Content="Category:" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.174,-8.387" Grid.ColumnSpan="2" Width="400" FontSize="20"/>
-            <Button x:Name="AddProduct" Grid.Column="3" Content="Add new product" HorizontalAlignment="Left" Margin="66,379,0,0" VerticalAlignment="Top" Click="AddProduct_Click"/>
+            <ComboBox x:Name="CategorySelector" Grid.Column="1" Margin="172,80,108,0" Width="120" RenderTransformOrigin="0.004,-0.118" Height="26" VerticalAlignment="Top" Background="#FFD1F6FD" BorderBrush="#FFD1F6FD" SelectionChanged="CategorySelector_SelectionChanged"/>
+            <Label x:Name="lbl" Content="choose a category " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.681,0.745" Height="37" Width="132" Margin="59,77,0,0" Grid.Column="1"/>
         </Grid>
-        <ListView x:Name="ProductListView" Grid.Row="1" >
+
+        <ListView x:Name="ProductListView" Grid.Row="1"   >
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" >
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemId}" Header="ID" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemName}" Header="Name" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice}" Header="Price" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Category}" Header="category" Width="100"/>
+                </GridView>
+            </ListView.View>
         </ListView>
+        <Button x:Name="AddProduct" Content="Add Product" HorizontalAlignment="Left" Margin="566,38,0,0" Grid.Row="2" VerticalAlignment="Top" Height="64" Width="186" IsCancel="True" FontSize="22" FontWeight="Bold" Foreground="#FF02059C" FontFamily="Segoe UI" Background="#FFD1F6FD" Click="AddProduct_Click">
+            <Button.BorderBrush>
+                <SolidColorBrush Color="#FF02059C" />
+            </Button.BorderBrush>
+        </Button>
+
+
     </Grid>
 </Window>

@@ -13,7 +13,7 @@ public class BlProduct : BlApi.IProduct
         BO.ProductForList temp;
         //gets all products from dal
         if (category != null)
-            productsFromDal = (List<DO.Item>)dal.Item.GetAll(o => o.Category.Equals(category));
+            productsFromDal = (List<DO.Item>)dal.Item.GetAll(o => ((BO.BookGenre)o.Category).CompareTo(category)==0);
         else
             productsFromDal = (List<DO.Item>)dal.Item.GetAll();
         for (int i = 0; i < productsFromDal.Count; i++)

@@ -51,6 +51,7 @@ public static class DataSource
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
+   public static bool wasInitalized = false;
     /// <summary>
     /// data to randomize to initalize the data lists
     /// </summary>
@@ -161,6 +162,7 @@ public static class DataSource
         CreateProductData();
         CreateOrderData();
         CreateOrderItemData();
+        wasInitalized=true;
     }
     
 }

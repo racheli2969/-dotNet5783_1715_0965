@@ -19,10 +19,10 @@ namespace PL
     /// <summary>
     /// Interaction logic for ProductList.xaml
     /// </summary>
-    public partial class ProductList : Window
+    public partial class ProductListWindow : Window
     {
         private IBl Bl { get; set; }
-        public ProductList(IBl b)
+        public ProductListWindow(IBl b)
         {
             InitializeComponent();
             Bl = b;
@@ -31,7 +31,7 @@ namespace PL
             ProductListView.ItemsSource = Bl.Product.GetProductList();
         }
 
-        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CategorySelector_SelectionChange(object sender, SelectionChangedEventArgs e)
         {
             ProductListView.ItemsSource = Bl.Product.GetProductList((BO.BookGenre?)CategorySelector.SelectedItem);
 
@@ -42,6 +42,12 @@ namespace PL
             Product p = new(Bl);
             p.Show();
             this.Hide();
+        }
+
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProductListView.ItemsSource = Bl.Product.GetProductList((BO.BookGenre?)CategorySelector.SelectedItem);
+
         }
     }
 }

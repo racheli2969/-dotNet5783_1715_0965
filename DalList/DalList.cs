@@ -4,6 +4,7 @@ sealed public class DalList : IDal
 {
     public DalList()
     {
+        if(DataSource.wasInitalized==false)
         Dal.DataSource.S_Initalize();
     }
     public IItem Item => new DalItem();

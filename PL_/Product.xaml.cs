@@ -32,5 +32,10 @@ namespace PL_
             InitializeComponent();
             Bl = b;
         }
+
+        private void btnUpdateProduct_Click(object sender, RoutedEventArgs e)
+        {
+            Bl.
+        }
     }
 }
