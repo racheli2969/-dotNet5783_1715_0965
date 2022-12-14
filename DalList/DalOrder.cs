@@ -11,29 +11,29 @@ internal class DalOrder : IOrder
     /// <returns>returns the added order's id</returns>
     public int Add(Order order)
     {
-        order.OrderId = DataSource.Config.OrderId;
+        order.OrderId = DataSource.Config.LastOrderId;
         DataSource.Orders.Add(order);
         return DataSource.Config.OrderId;
     }
-    public Order GetById(int id)
+   /* public Order GetById(int id)
     {
-        /* for (int i = 0; i < DataSource.Orders.Count; i++)
-         {
-             if (((Order)DataSource.Orders[i]).OrderId == id)
-                 return (Order)DataSource.Orders[i];
-         }*/
+        for (int i = 0; i < DataSource.Orders.Count; i++)
+        {
+            if (((Order)DataSource.Orders[i]).OrderId == id)
+                return (Order)DataSource.Orders[i];
+        }
         Order? order = (Order)DataSource.Orders.Find(order => ((Order)order).OrderId == id);
         if (order == null)
             throw new EntityNotFoundException();
         return (Order)order;
-    }
+    }*/
     /// <summary>
     /// returns all existing orders
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<Order>? GetAll(Func<Order, bool> func )
+    public IEnumerable<Order>? GetAll(Func<Order, bool> func)
     {
-        return func == null ? (IEnumerable<Order>)DataSource.Orders : ((IEnumerable<Order>)DataSource.Orders).Where(func).ToList();
+        return func == null ? DataSource.Orders : DataSource.Orders.Where(func).ToList();
     }
     /// <summary>
     /// delete's an order by id

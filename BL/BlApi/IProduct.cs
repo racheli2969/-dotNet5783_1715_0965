@@ -25,7 +25,7 @@ public interface IProduct
     /// gets a product and adds it to the product list if information is not valid will throw exception
     /// </summary>
     /// <param name="p">new product to add</param>
-    public void AddProduct(Product p);
+    public int AddProduct(Product p);
     /// <summary>
     /// deletes a product from the product list if id does not exist or product exists in orders will throw exception
     /// </summary>

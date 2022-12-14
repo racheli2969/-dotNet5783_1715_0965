@@ -22,21 +22,17 @@
             <Label x:Name="lbl" Content="choose a category " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.681,0.745" Height="37" Width="132" Margin="59,77,0,0" Grid.Column="1"/>
         </Grid>
 
-        <ListView x:Name="ProductListView" Grid.Row="1"   >
+        <ListView x:Name="ProductListView" Grid.Row="1" SelectionChanged="ProductListView_SelectionChanged" MouseDoubleClick="ProductListView_MouseDoubleClick"   >
             <ListView.View>
                 <GridView AllowsColumnReorder="true" >
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemId}" Header="ID" Width="100"/>
+                    <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=ItemId}" Header="ID" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ItemName}" Header="Name" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice}" Header="Price" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Category}" Header="category" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="AddProduct" Content="Add Product" HorizontalAlignment="Left" Margin="566,38,0,0" Grid.Row="2" VerticalAlignment="Top" Height="64" Width="186" IsCancel="True" FontSize="22" FontWeight="Bold" Foreground="#FF02059C" FontFamily="Segoe UI" Background="#FFD1F6FD" Click="AddProduct_Click">
-            <Button.BorderBrush>
-                <SolidColorBrush Color="#FF02059C" />
-            </Button.BorderBrush>
-        </Button>
+        <Button x:Name="AddProduct" Content="Add Product" HorizontalAlignment="Left" Margin="610,38,0,0" Grid.Row="2" VerticalAlignment="Top" Height="40" Width="142" IsCancel="True" FontSize="14" FontWeight="Bold" FontFamily="Segoe UI" Click="AddProduct_Click"/>
 
 
     </Grid>

@@ -43,11 +43,11 @@ public static class DataSource
     /// <summary>
     /// order items list
     /// </summary>
-    public static List<OrderItem?>OrderItems = new List<OrderItem?>();
+    public static List<OrderItem>?OrderItems = new List<OrderItem>();
     /// <summary>
     /// orders list
     /// </summary>
-    public static List<Order?>Orders = new List<Order?>();
+    public static List<Order>?Orders = new List<Order>();
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;

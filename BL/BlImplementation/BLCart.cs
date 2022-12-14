@@ -10,7 +10,7 @@ internal class BLCart : BlApi.ICart
         //check if product exists if so get product
         try
         {
-            DO.Item product = dal.Item.GetById(productId);
+           List<DO.Item> product = (List<DO.Item>)dal.Item.GetAll(x => x.ID == productId);
             //if not available
             if (!dal.Item.Available(productId))
                 throw new BlApi.NotInStockException();
@@ -25,11 +25,11 @@ internal class BLCart : BlApi.ICart
             else
             {    //add the product
                 BO.OrderItem oi = new BO.OrderItem();
-                oi.ItemId = product.ID;
-                oi.ItemName = product.Name;
-                oi.ItemPrice = product.Price;
+                oi.ItemId = product[0].ID;
+                oi.ItemName = product[0].Name;
+                oi.ItemPrice = product[0].Price;
                 oi.Amount = 1;
-                oi.PriceOfItems = product.Price;
+                oi.PriceOfItems = product[0].Price;
                 c.Items.Add(oi);
             }
             //return updated cart
@@ -110,7 +110,7 @@ internal class BLCart : BlApi.ICart
     private void validateItem(BO.OrderItem oi)
     {
         //product exists
-        dal.Item.GetById(oi.ItemId);
+        dal.Item.GetAll(o=>o.ID==oi.ItemId);
         //amount is a positive number
         if (oi.Amount <= 0)
             throw new BlApi.NegativeAmountException();

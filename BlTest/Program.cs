@@ -234,13 +234,11 @@ void NavigateProduct()
                     double price;
                     BO.BookGenre category;
                     string name;
-                    Console.Write("Enter details of new product: id, price, name, Category, amount");
-                    int.TryParse(Console.ReadLine(), out id);
+                    Console.Write("Enter details of new product: price, name, Category, amount");
                     double.TryParse(Console.ReadLine(), out price);
-                    BO.BookGenre.TryParse(Console.ReadLine(), out category);
+                    Enum.TryParse(Console.ReadLine(), out category);
                     int.TryParse(Console.ReadLine(), out amount);
                     name = Console.ReadLine();
-                    product.ID = id;
                     product.Price = price;
                     product.Name = name;
                     product.Category = category;
