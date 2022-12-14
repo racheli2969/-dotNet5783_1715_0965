@@ -41,13 +41,7 @@ internal class DalItem : IItem
     /// <returns></returns>
     public IEnumerable<Item>? GetAll(Func<Item,bool>func)
     {
-        List<Item>? item = new();
-
-        for (int i = 0; i < DataSource.Items.Count; i++)
-        {
-            item.Add((Item)DataSource.Items[i]);
-        }
-        return item ;
+        return func == null ? ((IEnumerable<Item>)DataSource.Items) : ((IEnumerable<Item>)DataSource.Items).Where(func).ToList();
     }
     /// <summary>
     /// gets an id and deletes that item
