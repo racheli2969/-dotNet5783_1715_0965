@@ -5,6 +5,29 @@
 		<TargetFramework>net6.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
+<<<<<<< HEAD
+
+		<BaseOutputPath>$(SolutionDir)\bin\</BaseOutputPath>
+		<OutputPath>$(SolutionDir)\bin\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+
+
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BL\BL.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="Product\Product.xaml">
+			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+		</Page>
+		<Page Update="Product\ProductList.xaml">
+			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+		</Page>
+	</ItemGroup>
+=======
 		<BaseOutputPath>$(SolutionDir)\bin\</BaseOutputPath>
 		<OutputPath>$(SolutionDir)\bin\</OutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -15,5 +38,6 @@
 	<ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
+>>>>>>> 2239648d27eb74dab295007bcbd2514a472beb52
 
 </Project>
