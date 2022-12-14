@@ -21,7 +21,7 @@ public class BlProduct : BlApi.IProduct
             temp = new BO.ProductForList();
             temp.ItemId = productsFromDal[i].ID;
             temp.ItemName = productsFromDal[i].Name;
-            temp.Category = (BO.BookGenre)(DO.BookGenre)productsFromDal[i].Category;
+            temp.Category = (BO.BookGenre)productsFromDal[i].Category;
             temp.ItemPrice = productsFromDal[i].Price;
             products.Add(temp);
         }

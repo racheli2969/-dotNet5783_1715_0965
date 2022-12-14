@@ -308,7 +308,6 @@ void NavigateProduct()
 }
 int Main()
 {
-    Dal.DataSource.S_Initalize();
     BO.OptionsForMain num;
     Console.WriteLine("welcome to the store, start testing...\nEnter a number between 0-3 as follows: 0 to Exit, 1 to Cart, 2 to Order, 3 to Product");
     BO.OptionsForMain.TryParse(Console.ReadLine(), out num);

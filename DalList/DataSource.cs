@@ -39,7 +39,7 @@ public static class DataSource
     /// <summary>
     /// product list
     /// </summary>
-    public static List<Item?> Items = new List<Item?>();
+    public static List<Item>? Items = new List<Item>();
     /// <summary>
     /// order items list
     /// </summary>
@@ -162,6 +162,7 @@ public static class DataSource
         CreateOrderData();
         CreateOrderItemData();
     }
+    
 }
 
 

@@ -8,19 +8,18 @@
         Title="ProductList" Height="450" Width="800">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions >
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-        VerticalAlignment="Stretch" Width="auto">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,319">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox Name="CategorySelector" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="30" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" FontSize="20">
+            <ComboBox Name="CategorySelector" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="30" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" FontSize="20" SelectionChanged="CategorySelector_SelectionChanged">
                 <ComboBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -32,16 +31,9 @@
                 <ComboBox Height="20" Width="300"/>
             </ComboBox>
             <Label Content="Category:" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.174,-8.387" Grid.ColumnSpan="2" Width="400" FontSize="20"/>
+            <Button x:Name="AddProduct" Grid.Column="3" Content="Add new product" HorizontalAlignment="Left" Margin="66,379,0,0" VerticalAlignment="Top" Click="AddProduct_Click"/>
         </Grid>
         <ListView x:Name="ProductListView" Grid.Row="1" >
-            <ListView.View>
-                <GridView AllowsColumnReorder="true" >
-                    <GridViewColumn x:Name="gvcId" DisplayMemberBinding="{Binding Path=ID}" Header="ID" Width="100"/>
-                    <GridViewColumn x:Name="gvcName" DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="150"/>
-                    <GridViewColumn x:Name="gvcPrice" DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
-                    <GridViewColumn x:Name="gvcCategory" DisplayMemberBinding="{Binding Path=Category}" Header="Category" Width="100"/>
-                </GridView>
-            </ListView.View>
         </ListView>
     </Grid>
 </Window>

@@ -11,8 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BlApi;
-using BO;
 using BlImplementation;
+using PL_;
 
 namespace PL
 {
@@ -26,9 +26,22 @@ namespace PL
         {
             InitializeComponent();
             Bl = b;
-            ProductListView.ItemsSource = Bl.Product.GetProductList();
+            CategorySelector.Items.Clear();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
+            ProductListView.ItemsSource = Bl.Product.GetProductList();
+        }
 
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProductListView.ItemsSource = Bl.Product.GetProductList((BO.BookGenre?)CategorySelector.SelectedItem);
+
+        }
+
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            Product p = new(Bl);
+            p.Show();
+            this.Hide();
         }
     }
 }
