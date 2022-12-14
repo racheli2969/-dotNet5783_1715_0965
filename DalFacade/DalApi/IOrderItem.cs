@@ -9,7 +9,7 @@ public interface IOrderItem : ICrud<OrderItem>
     /// </summary>
     /// <param name="orderId"> order id</param>
     /// <returns>products with the same order id</returns>
-    public IEnumerable<OrderItem?>? GetByOrderId(int orderId);
+    public IEnumerable<OrderItem?> GetByOrderId(int orderId);
     /// <summary>
     /// gets by order id and the product id
     /// </summary>

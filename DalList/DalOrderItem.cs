@@ -25,26 +25,18 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public OrderItem GetById(int Id)
     {
-
-        for (int i = 0; i < DataSource.OrderItems.Count; i++)
-        {
-            if (((OrderItem)DataSource.OrderItems[i]).OrderItemId == Id)
-                return (OrderItem)DataSource.OrderItems[i];
-        }
-        throw new EntityNotFoundException();
+        OrderItem? orderItem = DataSource.OrderItems.Find(o => ((OrderItem)o).OrderItemId == Id);
+        if(orderItem==null)
+            throw new EntityNotFoundException();
+        return (OrderItem)orderItem;
+       
     }
     /// <summary>
     /// returns existing order items
     /// </summary>
     public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool> func)
     {
-        return func == null ? (IEnumerable<OrderItem>?)DataSource.OrderItems : (IEnumerable<OrderItem>?)DataSource.OrderItems;//.Where(func).ToList();
-       /* List<OrderItem>? oi = new List<OrderItem>(DataSource.OrderItems.Count);
-        for (int i = 0; i < DataSource.OrderItems.Count; i++)
-        {
-            oi.Add((OrderItem)DataSource.OrderItems[i]);
-        }
-        return oi ;*/
+        return func == null ? (IEnumerable<OrderItem>?)DataSource.OrderItems : ((IEnumerable<OrderItem>)DataSource.OrderItems).Where(func).ToList();
     }
     /// <summary>
     /// deletes order item by id
@@ -80,12 +72,10 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="EntityNotFoundException"></exception>
     public OrderItem GetById(int orderId, int productId)
     {
-        for (int i = 0; i < DataSource.OrderItems.Count; i++)
-        {
-            if (((OrderItem)DataSource.OrderItems[i]).OrderID == orderId && ((OrderItem)DataSource.OrderItems[i]).ItemId == productId)
-                return (OrderItem)DataSource.OrderItems[i];
-        }
-        throw new EntityNotFoundException();
+        OrderItem? orderItem = DataSource.OrderItems.Find(o => ((OrderItem)o).OrderID == orderId && ((OrderItem)o).ItemId==productId);
+        if (orderItem == null)
+            throw new EntityNotFoundException();
+        return (OrderItem)orderItem;
     }
     /// <summary>
     ///in dal searches for all items in a certain order

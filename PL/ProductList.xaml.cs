@@ -1,9 +1,5 @@
-﻿using BlApi;
-using BO;
-using BlImplementation;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,27 +10,42 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BlApi;
+using BO;
+using BlImplementation;
 
-namespace PL;
-/// <summary>
-/// Interaction logic for ProductList.xaml
-/// </summary>
-public partial class ProductList : Window
+namespace PL
 {
-    private IBl Bl { get; set; }
+<<<<<<< HEAD
+    private IBl Bl { get; set; } 
     public ProductList(IBl b)
     {
         InitializeComponent();
-        Bl = b;
-        ProductListView.ItemsSource = Bl.Product.GetProductList();
+        try
+        {
+            Bl = b;
+        }catch(Exception e)
+        {
+            MessageBox.Show(e.Message);
+        }
+        //ProductListView.ItemsSource = Bl.Product.GetProductList();
         CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
+    
+=======
+    /// <summary>
+    /// Interaction logic for ProductList.xaml
+    /// </summary>
+    public partial class ProductList : Window
+    {
+        private IBl Bl { get; set; }
+        public ProductList(IBl b)
+        {
+            InitializeComponent();
+            Bl = b;
+            ProductListView.ItemsSource = Bl.Product.GetProductList();
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
 
+        }
+>>>>>>> 2239648d27eb74dab295007bcbd2514a472beb52
     }
-
-    /* public ProductList()
-     {
-         InitializeComponent();
-
-         //ProductsListView.ItemsSource = bl.Product.GetProductList();
-     }*/
 }
