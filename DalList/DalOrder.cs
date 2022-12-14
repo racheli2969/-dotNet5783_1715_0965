@@ -31,14 +31,9 @@ internal class DalOrder : IOrder
     /// returns all existing orders
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<Order> GetAll(Func<Order, bool> func=null )
+    public IEnumerable<Order>? GetAll(Func<Order, bool> func )
     {
-        List<Order>? orderList = new List<Order>(DataSource.Orders.Count);
-        for (int i = 0; i < DataSource.Orders.Count; i++)
-        {
-            orderList.Add((Order)DataSource.Orders[i]);
-        }
-        return orderList;
+        return func == null ? (IEnumerable<Order>)DataSource.Orders : ((IEnumerable<Order>)DataSource.Orders).Where(func).ToList();
     }
     /// <summary>
     /// delete's an order by id
