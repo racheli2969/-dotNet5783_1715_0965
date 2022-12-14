@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\פוקרוי רחל\\source\\repos\\‏‏-dotNet5783_1715_0965 - עותק\\stage0\\stage0.csproj": {}
+    "C:\\Users\\גרשון רחל\\source\\repos\\1715_0965\\stage0\\stage0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\פוקרוי רחל\\source\\repos\\‏‏-dotNet5783_1715_0965 - עותק\\stage0\\stage0.csproj": {
+    "C:\\Users\\גרשון רחל\\source\\repos\\1715_0965\\stage0\\stage0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\פוקרוי רחל\\source\\repos\\‏‏-dotNet5783_1715_0965 - עותק\\stage0\\stage0.csproj",
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\1715_0965\\stage0\\stage0.csproj",
         "projectName": "stage0",
-        "projectPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\‏‏-dotNet5783_1715_0965 - עותק\\stage0\\stage0.csproj",
-        "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\‏‏-dotNet5783_1715_0965 - עותק\\stage0\\obj\\",
+        "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\1715_0965\\stage0\\stage0.csproj",
+        "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\גרשון רחל\\source\\repos\\1715_0965\\stage0\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -19,7 +19,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\גרשון רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
