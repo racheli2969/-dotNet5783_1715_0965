@@ -42,7 +42,7 @@ namespace PL
         {
             InitializeComponent();
             Bl = b;
-            //ProductListView.ItemsSource = Bl.Product.GetProductList();
+            ProductListView.ItemsSource = Bl.Product.GetProductList();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
 
         }
