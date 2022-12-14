@@ -1,7 +1,4 @@
-﻿using BlApi;
-using BO;
-using BlImplementation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,27 +11,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BlApi;
+using BO;
+using BlImplementation;
 
-namespace PL;
-/// <summary>
-/// Interaction logic for ProductList.xaml
-/// </summary>
-public partial class ProductList : Window
+namespace PL
 {
-    private IBl Bl { get; set; }
-    public ProductList(IBl b)
+    /// <summary>
+    /// Interaction logic for ProductList.xaml
+    /// </summary>
+    public partial class ProductList : Window
     {
-        InitializeComponent();
-        Bl = b;
-        ProductListView.ItemsSource = Bl.Product.GetProductList();
-        CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
+        private IBl Bl { get; set; }
+        public ProductList(IBl b)
+        {
+            InitializeComponent();
+            Bl = b;
+            //ProductListView.ItemsSource = Bl.Product.GetProductList();
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
 
+        }
     }
-
-    /* public ProductList()
-     {
-         InitializeComponent();
-
-         //ProductsListView.ItemsSource = bl.Product.GetProductList();
-     }*/
 }

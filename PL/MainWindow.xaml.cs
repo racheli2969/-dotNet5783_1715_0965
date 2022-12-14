@@ -14,22 +14,24 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BlApi;
 using BlImplementation;
-using BO;
 
-namespace PL;
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
+namespace PL
 {
-    private IBl Bl { get; set; }
-    public MainWindow()
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
+        private IBl Bl { get; set; }
+        public MainWindow()
+        {
+            InitializeComponent();
+            Bl = new Bl();
+        }
 
-        InitializeComponent();
-        Bl = new Bl();
+        private void BtnEnter_Click(object sender, RoutedEventArgs e)
+        {
+          new ProductList(Bl).Show();
+        }
     }
-    private void btnEnter_Click(object sender, RoutedEventArgs e) => new ProductList(Bl).Show();
-
-    //private void btnEnter_Click(object sender, RoutedEventArgs e) => new ProductList().Show();
 }
