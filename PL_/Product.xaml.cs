@@ -35,7 +35,13 @@ namespace PL_
 
         private void btnUpdateProduct_Click(object sender, RoutedEventArgs e)
         {
-            Bl.
+            BO.Product product = new();
+            product.ID = id;
+            product.Price = price;
+            product.Name = name;
+            product.Category = category;
+            product.AmountInStock = amount;
+            Bl.Product.UpdateProduct(product);
         }
     }
 }
