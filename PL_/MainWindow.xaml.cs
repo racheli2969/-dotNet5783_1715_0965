@@ -28,6 +28,7 @@ namespace PL
         {
             InitializeComponent();
             Bl = new Bl();
+            MessageBox.Show("Welcome to My store");
         }
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)

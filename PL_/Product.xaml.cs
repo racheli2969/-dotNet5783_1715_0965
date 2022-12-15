@@ -123,11 +123,19 @@ namespace PL_
         {
             if (MessageBox.Show($"are you sure you want to delete {product.Name}","", MessageBoxButton.OKCancel)==MessageBoxResult.OK)
             {
-                Bl.Product.RemoveProduct(product.ID);
-                MessageBox.Show("successfully deleted");
-                ProductListWindow PL = new(Bl);
-                PL.Show();
-                this.Close();
+                try
+                {
+                    Bl.Product.RemoveProduct(product.ID);
+                    MessageBox.Show("successfully deleted");
+                    ProductListWindow PL = new(Bl);
+                    PL.Show();
+                    this.Close();
+                }
+                catch (BlApi.ErrorDeleting ex)
+                {
+                   MessageBox.Show(ex.Message);
+                }
+
             }
 
         }
