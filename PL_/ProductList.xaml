@@ -32,7 +32,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="AddProduct" Content="Add Product" HorizontalAlignment="Left" Margin="610,38,0,0" Grid.Row="2" VerticalAlignment="Top" Height="40" Width="142" IsCancel="True" FontSize="14" FontWeight="Bold" FontFamily="Segoe UI" Click="AddProduct_Click"/>
+        <Button x:Name="AddProduct" Content="Add Product" HorizontalAlignment="Left" Margin="610,38,0,0" Grid.Row="2" VerticalAlignment="Top" Height="40" Width="142" IsCancel="True" FontSize="14" FontWeight="Normal" FontFamily="Segoe UI" Click="AddProduct_Click" FontStyle="Italic"/>
 
 
     </Grid>
