@@ -3,14 +3,15 @@ namespace BlImplementation;
 
 internal class BLCart : BlApi.ICart
 {
-    private DalApi.IDal dal = new Dal.DalList();
+ 
+    private DalApi.IDal? dal = DalApi.Factory.Get();
 
     public BO.Cart AddToCart(int productId, BO.Cart c)
     {
         //check if product exists if so get product
         try
         {
-           List<DO.Item> product = (List<DO.Item>)dal.Item.GetAll(x => x.ID == productId);
+           List<DO.Item>? product = (List<DO.Item>?)dal?.Item.GetAll(x => x.ID == productId);
             //if not available
             if (!dal.Item.Available(productId))
                 throw new BlApi.NotInStockException();
@@ -110,7 +111,7 @@ internal class BLCart : BlApi.ICart
     private void validateItem(BO.OrderItem oi)
     {
         //product exists
-        dal.Item.GetAll(o=>o.ID==oi.ItemId);
+        dal?.Item.GetAll(o=>o.ID==oi.ItemId);
         //amount is a positive number
         if (oi.Amount <= 0)
             throw new BlApi.NegativeAmountException();

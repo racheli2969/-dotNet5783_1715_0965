@@ -5,18 +5,18 @@ namespace BlImplementation;
 /// </summary>
 public class BlProduct : BlApi.IProduct
 {
-    private DalApi.IDal dal = new Dal.DalList();
+    private DalApi.IDal? dal = DalApi.Factory.Get();
     public IEnumerable<BO.ProductForList> GetProductList(BO.BookGenre? category)
     {
-        List<BO.ProductForList> products = new List<BO.ProductForList>();
-        List<DO.Item> productsFromDal = new List<DO.Item>();
+        List<BO.ProductForList>? products = new List<BO.ProductForList>();
+        List<DO.Item>? productsFromDal = new List<DO.Item>();
         BO.ProductForList temp;
         //gets all products from dal
         if (category != null)
-            productsFromDal = (List<DO.Item>)dal.Item.GetAll(o => ((BO.BookGenre)o.Category).CompareTo(category)==0);
+            productsFromDal = (List<DO.Item>?)dal?.Item.GetAll(o => ((BO.BookGenre)o.Category).CompareTo(category)==0);
         else
-            productsFromDal = (List<DO.Item>)dal.Item.GetAll();
-        for (int i = 0; i < productsFromDal.Count; i++)
+            productsFromDal = (List<DO.Item>?)dal?.Item.GetAll();
+        for (int i = 0; i < productsFromDal?.Count; i++)
         {
             temp = new BO.ProductForList();
             temp.ItemId = productsFromDal[i].ID;
@@ -34,7 +34,7 @@ public class BlProduct : BlApi.IProduct
             BO.Product p = new BO.Product();
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
-            List<DO.Item> product = (List<DO.Item>)dal.Item.GetAll(i=>i.ID==id);
+            List<DO.Item>? product = (List<DO.Item>?)dal?.Item.GetAll(i=>i.ID==id);
             p.Name = product[0].Name;
             p.ID = product[0].ID;
             p.AmountInStock = product[0].AmountInStock;
@@ -55,7 +55,7 @@ public class BlProduct : BlApi.IProduct
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
             int count = 0;
-            List<DO.Item> product = (List<DO.Item>)dal.Item.GetAll(i => i.ID==id);
+            List<DO.Item> product = (List<DO.Item>?)dal?.Item.GetAll(i => i.ID==id);
             p.Name = product[0].Name;
             p.ID = product[0].ID;
             if (product[0].AmountInStock > 0)
@@ -107,11 +107,11 @@ public class BlProduct : BlApi.IProduct
     {
         try
         {
-            List<DO.OrderItem> orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll(i => i.ItemId == productId);
-            List<DO.Order> orders = (List<DO.Order>)dal.Order.GetAll(o => orderItems.FindIndex(i => i.OrderID == o.OrderId) > 0);
-            if (orders.Count > 0)
+            List<DO.OrderItem>? orderItems = (List<DO.OrderItem>?)dal?.OrderItem.GetAll(i => i.ItemId == productId);
+            List<DO.Order>? orders = (List<DO.Order>?)dal?.Order.GetAll(o => orderItems?.FindIndex(i => i.OrderID == o.OrderId) > 0);
+            if (orders?.Count > 0)
                 throw new BlApi.ErrorDeleting();
-            dal.Item.Delete(productId);
+            dal?.Item.Delete(productId);
         }
         catch (DalApi.EntityNotFoundException ex)
         {
