@@ -8,7 +8,7 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\": {},
+    "C:\\Users\\גרשון רחל\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
@@ -16,11 +16,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\פוקרוי רחל\\source\\repos\\‏‏-dotNet5783_1715_0965 - עותק\\stage0\\stage0.csproj",
+      "projectUniqueName": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_\\stage0\\stage0.csproj",
       "projectName": "stage0",
-      "projectPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\‏‏-dotNet5783_1715_0965 - עותק\\stage0\\stage0.csproj",
-      "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\‏‏-dotNet5783_1715_0965 - עותק\\stage0\\obj\\",
+      "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_\\stage0\\stage0.csproj",
+      "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_\\stage0\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -28,7 +28,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\גרשון רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"

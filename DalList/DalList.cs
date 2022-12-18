@@ -1,8 +1,9 @@
 ﻿using DalApi;
 namespace Dal;
-sealed public class DalList : IDal
+sealed internal class DalList : IDal
 {
-    public DalList()
+    public static IDal Instance { get; } = new DalList();
+    private DalList()
     {
         if(DataSource.wasInitalized==false)
         Dal.DataSource.S_Initalize();
