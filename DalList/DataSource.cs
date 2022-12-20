@@ -39,18 +39,19 @@ public static class DataSource
     /// <summary>
     /// product list
     /// </summary>
-    public static List<Item?> Items = new List<Item?>();
+    public static List<Item>? Items = new List<Item>();
     /// <summary>
     /// order items list
     /// </summary>
-    public static List<OrderItem?>OrderItems = new List<OrderItem?>();
+    public static List<OrderItem>?OrderItems = new List<OrderItem>();
     /// <summary>
     /// orders list
     /// </summary>
-    public static List<Order?>Orders = new List<Order?>();
+    public static List<Order>?Orders = new List<Order>();
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
+   public static bool wasInitalized = false;
     /// <summary>
     /// data to randomize to initalize the data lists
     /// </summary>
@@ -161,7 +162,9 @@ public static class DataSource
         CreateProductData();
         CreateOrderData();
         CreateOrderItemData();
+        wasInitalized=true;
     }
+    
 }
 
 

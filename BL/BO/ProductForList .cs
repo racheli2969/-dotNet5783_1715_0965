@@ -8,13 +8,7 @@ public class ProductForList
     public double ItemPrice { get; set; }
     public BookGenre Category { get; set; }
 
-    public override string ToString() => $@"
-
-item id:{ItemId}, 
-Item Name: {ItemName}, 
-Ptice per item: {ItemPrice}, 
-Category: {Category}
-";
+    public override string ToString() => $@"item id:{ItemId}, Item Name: {ItemName}, Price per item: {ItemPrice}, Category: {Category}";
 
 }
 

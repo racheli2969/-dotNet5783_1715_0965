@@ -15,11 +15,9 @@ internal class DalItem : IItem
     /// <returns>returns the added item's id</returns>
     public int Add(Item item)
     {
-        //if item exists already
-        if (DataSource.Items.FindIndex(x => ((Item)x).ID == item.ID) > 0)
-            throw new EntityDuplicateException();
+        item.ID=DataSource.Config.LastItemId;
         DataSource.Items.Add(item);
-        return DataSource.Config.ItemId;
+        return DataSource.Config.ItemId-1;
 
     }
     /// <summary>
@@ -28,26 +26,26 @@ internal class DalItem : IItem
     /// <param name="Id"></param>
     /// <returns>returns the item</returns>
     /// <exception cref="Exception">not found</exception>
-    public Item GetById(int Id)
+    /*public Item GetById(int Id)
     {
         Item? item = DataSource.Items.Find(x => ((Item)x).ID == Id);
         if (((Item)item).ID != 0)
             return ((Item)item);
         throw new EntityNotFoundException();
-    }
+    }*/
     /// <summary>
     /// returns all the existing items
     /// </summary>
     /// <returns></returns>
     public IEnumerable<Item>? GetAll(Func<Item,bool>func)
     {
-        List<Item>? item = new();
-
-        for (int i = 0; i < DataSource.Items.Count; i++)
-        {
-            item.Add((Item)DataSource.Items[i]);
-        }
-        return item ;
+        List<Item>? items = new();
+        if (func==null)
+            items=DataSource.Items;
+        else items=DataSource.Items.Where(func).ToList();
+        if (items==null)
+            throw new EntityNotFoundException();
+        return items;
     }
     /// <summary>
     /// gets an id and deletes that item
@@ -69,7 +67,7 @@ internal class DalItem : IItem
     /// <exception cref="Exception">if there is no object with that id an exception is thrown</exception>
     public void Update(Item item)
     {
-        int index = DataSource.Items.FindIndex(x => ((Item)x).ID == item.ID);
+        int index = DataSource.Items.FindIndex(x => x.ID == item.ID);
         if (index < 0)
             throw new EntityNotFoundException();
         DataSource.Items[index] = item;
@@ -82,7 +80,8 @@ internal class DalItem : IItem
     public void Update(int id, int amount)
     {
         Item item = new Item();
-        item = GetById(id);
+        int index = DataSource.Items.FindIndex(x => x.ID == id);
+        item=DataSource.Items[index];
         if (item.AmountInStock - amount >= 0)
         {
             item.AmountInStock -= amount;
@@ -97,7 +96,8 @@ internal class DalItem : IItem
     /// <returns>true if available</returns>
     public bool Available(int id)
     {
-        Item item = GetById(id);
+        Item item = new Item();
+        item=DataSource.Items[DataSource.Items.FindIndex(x => x.ID == id)];
         return item.AmountInStock - 1 >= 0;
     }
     /// <summary>
@@ -108,7 +108,8 @@ internal class DalItem : IItem
     /// <returns>true if available</returns>
     public bool Available(int id, int amount)
     {
-        Item item = GetById(id);
+        Item item = new Item();
+        item=DataSource.Items[DataSource.Items.FindIndex(x => x.ID == id)];
         return item.AmountInStock - amount >= 0;
     }
 }

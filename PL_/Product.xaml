@@ -1,0 +1,42 @@
+﻿<Window x:Class="PL_.Product"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL_"
+        mc:Ignorable="d"
+        Title="Product" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="Name" Content="Name" HorizontalAlignment="Left" Margin="247,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.74,0.763" FontSize="14"/>
+        <Label x:Name="Category" Content="Category" HorizontalAlignment="Left" Margin="242,174,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.343,5.878" FontSize="14"/>
+        <Label x:Name="Price" Content="Price" HorizontalAlignment="Left" Margin="256,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.639,8.534" FontSize="14"/>
+        <Label x:Name="Amount" Content="Amount" HorizontalAlignment="Left" Margin="247,305,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <ComboBox x:Name="cmbCategoryForProduct" HorizontalAlignment="Left" Margin="378,178,0,0" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <TextBox x:Name="txtProductName" HorizontalAlignment="Left" Margin="378,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <TextBox x:Name="txtProductPrice" HorizontalAlignment="Left" Margin="378,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <TextBox x:Name="txtProductAmount" HorizontalAlignment="Left" Margin="378,313,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="14"/>
+        <Button x:Name="btnAddProduct" Content="Add" HorizontalAlignment="Left" Margin="619,352,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.511,0.613" Height="35" Width="72" Click="btnAddProduct_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.522"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="btnUpdateProduct" Content="Update" HorizontalAlignment="Left" Margin="691,357,0,0" VerticalAlignment="Top" Height="34" Width="66" Click="btnUpdateProduct_Click" RenderTransformOrigin="-0.915,0.825"/>
+        <Button x:Name="btnBackToProductList" Content="ToProductList" HorizontalAlignment="Left" Margin="76,52,0,0" VerticalAlignment="Top" Click="btnBackToProductList_Click" Height="29"/>
+        <Button x:Name="btnDeleteProduct" Content="Delete" HorizontalAlignment="Left" Margin="622,357,0,0" VerticalAlignment="Top" Height="34" Width="66" RenderTransformOrigin="0.408,2.127" Click="btnDeleteProduct_Click">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.476"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+    </Grid>
+</Window>

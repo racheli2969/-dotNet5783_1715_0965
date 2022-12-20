@@ -5,20 +5,23 @@ namespace BlImplementation;
 /// </summary>
 public class BlProduct : BlApi.IProduct
 {
-    private DalApi.IDal dal = new Dal.DalList();
-    public IEnumerable<BO.ProductForList> GetProductList()
+    private DalApi.IDal? dal = DalApi.Factory.Get();
+    public IEnumerable<BO.ProductForList> GetProductList(BO.BookGenre? category)
     {
-        List<BO.ProductForList> products = new List<BO.ProductForList>();
-        List<DO.Item> productsFromDal = new List<DO.Item>();
+        List<BO.ProductForList>? products = new List<BO.ProductForList>();
+        List<DO.Item>? productsFromDal = new List<DO.Item>();
         BO.ProductForList temp;
         //gets all products from dal
-        productsFromDal = (List<DO.Item>)dal.Item.GetAll();
-        for (int i = 0; i < productsFromDal.Count; i++)
+        if (category != null)
+            productsFromDal = (List<DO.Item>?)dal?.Item.GetAll(o => ((BO.BookGenre)o.Category).CompareTo(category)==0);
+        else
+            productsFromDal = (List<DO.Item>?)dal?.Item.GetAll();
+        for (int i = 0; i < productsFromDal?.Count; i++)
         {
             temp = new BO.ProductForList();
             temp.ItemId = productsFromDal[i].ID;
             temp.ItemName = productsFromDal[i].Name;
-            temp.Category = (BO.BookGenre)(DO.BookGenre)productsFromDal[i].Category;
+            temp.Category = (BO.BookGenre)productsFromDal[i].Category;
             temp.ItemPrice = productsFromDal[i].Price;
             products.Add(temp);
         }
@@ -31,12 +34,12 @@ public class BlProduct : BlApi.IProduct
             BO.Product p = new BO.Product();
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
-            DO.Item product = dal.Item.GetById(id);
-            p.Name = product.Name;
-            p.ID = product.ID;
-            p.AmountInStock = product.AmountInStock;
-            p.Price = product.Price;
-            p.Category = (BO.BookGenre)product.Category;
+            List<DO.Item>? product = (List<DO.Item>?)dal?.Item.GetAll(i=>i.ID==id);
+            p.Name = product[0].Name;
+            p.ID = product[0].ID;
+            p.AmountInStock = product[0].AmountInStock;
+            p.Price = product[0].Price;
+            p.Category = (BO.BookGenre)product[0].Category;
             return p;
         }
         catch (DalApi.EntityNotFoundException ex)
@@ -52,15 +55,15 @@ public class BlProduct : BlApi.IProduct
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
             int count = 0;
-            DO.Item product = dal.Item.GetById(id);
-            p.Name = product.Name;
-            p.ID = product.ID;
-            if (product.AmountInStock > 0)
+            List<DO.Item> product = (List<DO.Item>?)dal?.Item.GetAll(i => i.ID==id);
+            p.Name = product[0].Name;
+            p.ID = product[0].ID;
+            if (product[0].AmountInStock > 0)
                 p.IsAvailable = true;
             else
                 p.IsAvailable = false;
-            p.Price = product.Price;
-            p.Category = (BO.BookGenre)product.Category;
+            p.Price = product[0].Price;
+            p.Category = (BO.BookGenre)product[0].Category;
             if (c.Items != null)
             {
                 for (int i = 0; i < c.Items.Count; i++)
@@ -77,12 +80,10 @@ public class BlProduct : BlApi.IProduct
             throw new BlApi.BlEntityNotFoundException(ex);
         }
     }
-    public void AddProduct(BO.Product p)
+    public int AddProduct(BO.Product p)
     {
         try
-        {
-            if (p.ID < 100000)
-                throw new BlApi.NegativeIdException();
+        { 
             if (p.Price < 0)
                 throw new BlApi.NegativePriceException();
             if (p.Name == null || p.Category == null)
@@ -95,7 +96,7 @@ public class BlProduct : BlApi.IProduct
             item.ID = p.ID;
             item.Category = (DO.BookGenre)p.Category;
             item.AmountInStock = p.AmountInStock;
-            dal.Item.Add(item);
+          return dal.Item.Add(item);
         }
         catch (DalApi.EntityDuplicateException)
         {
@@ -106,11 +107,11 @@ public class BlProduct : BlApi.IProduct
     {
         try
         {
-            List<DO.OrderItem> orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll(i => i.ItemId == productId);
-            List<DO.Order> orders = (List<DO.Order>)dal.Order.GetAll(o => orderItems.FindIndex(i => i.OrderID == o.OrderId) > 0);
-            if (orders.Count > 0)
+            List<DO.OrderItem>? orderItems = (List<DO.OrderItem>?)dal?.OrderItem.GetAll(i => i.ItemId == productId);
+            List<DO.Order>? orders = (List<DO.Order>?)dal?.Order.GetAll(o => orderItems?.FindIndex(i => i.OrderID == o.OrderId) > 0);
+            if (orders?.Count > 0)
                 throw new BlApi.ErrorDeleting();
-            dal.Item.Delete(productId);
+            dal?.Item.Delete(productId);
         }
         catch (DalApi.EntityNotFoundException ex)
         {
@@ -143,4 +144,5 @@ public class BlProduct : BlApi.IProduct
         }
 
     }
+    
 }

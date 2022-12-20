@@ -205,7 +205,7 @@ void NavigateProduct()
                     break;
                 case BO.OptionsForProduct.GetProductList:
 
-                    products = (List<BO.ProductForList>)bl.Product.GetProductList();
+                    products = (List<BO.ProductForList>)bl.Product.GetProductList(null);
                     if (products.Count == 0)
                         Console.Write("No products yet...");
                     else
@@ -234,13 +234,11 @@ void NavigateProduct()
                     double price;
                     BO.BookGenre category;
                     string name;
-                    Console.Write("Enter details of new product: id, price, name, Category, amount");
-                    int.TryParse(Console.ReadLine(), out id);
+                    Console.Write("Enter details of new product: price, name, Category, amount");
                     double.TryParse(Console.ReadLine(), out price);
-                    BO.BookGenre.TryParse(Console.ReadLine(), out category);
+                    Enum.TryParse(Console.ReadLine(), out category);
                     int.TryParse(Console.ReadLine(), out amount);
                     name = Console.ReadLine();
-                    product.ID = id;
                     product.Price = price;
                     product.Name = name;
                     product.Category = category;
@@ -308,7 +306,6 @@ void NavigateProduct()
 }
 int Main()
 {
-    Dal.DataSource.S_Initalize();
     BO.OptionsForMain num;
     Console.WriteLine("welcome to the store, start testing...\nEnter a number between 0-3 as follows: 0 to Exit, 1 to Cart, 2 to Order, 3 to Product");
     BO.OptionsForMain.TryParse(Console.ReadLine(), out num);
