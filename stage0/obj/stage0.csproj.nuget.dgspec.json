@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj": {}
+    "C:\\Users\\acer\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj": {
+    "C:\\Users\\acer\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
+        "projectUniqueName": "C:\\Users\\acer\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
         "projectName": "stage0",
-        "projectPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
+        "projectPath": "C:\\Users\\acer\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
         "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\obj\\",
         "projectStyle": "PackageReference",
