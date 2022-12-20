@@ -11,6 +11,7 @@ public class OrderForList
     ID: {Id},
     Customer Name: {CustomerName}, 
     Order Status: {OrderStatus},
+    Numbers of items: {NumOfItems},
     Price: {Price}
 ";
 

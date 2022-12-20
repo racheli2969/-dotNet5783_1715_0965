@@ -15,14 +15,17 @@ public class BlOrder : BlApi.IOrder
             List<DO.OrderItem>? oi = new List<DO.OrderItem>();
             oi = dal?.OrderItem?.GetAll(p => p.OrderID == ordersFromDal[i].OrderId).ToList();
             double finalPrice = 0;
+            int amountOfProducts = 0;
             for (int j = 0; j < oi?.Count; j++)
             {
                 finalPrice = finalPrice + (oi[j].Price * oi[j].Amount);
+                amountOfProducts += oi[j].Amount;
             }
             temp = new BO.OrderForList();
             temp.Id = ordersFromDal[i].OrderId;
             temp.CustomerName = ordersFromDal[i].CustomerName;
             temp.OrderStatus = ordersFromDal[i].DateReceived != DateTime.MinValue ? BO.EnumOrderStatus.Received : ordersFromDal[i].DateDelivered != DateTime.MinValue ? BO.EnumOrderStatus.Delivered : BO.EnumOrderStatus.Ordered;
+            temp.NumOfItems = amountOfProducts;
             temp.Price = finalPrice;
             orders.Add(temp);
         }
