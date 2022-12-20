@@ -10,13 +10,8 @@ static class DalConfig
 
     static DalConfig()
     {
-        //string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        //string sFile = System.IO.Path.Combine(sCurrentDirectory, @"..\\..\\xml\dal-config.xml");
-        //string sFilePath = Path.GetFullPath(sFile);
-        //XElement dalConfig = XElement.Load(sFilePath)
-            XElement dalConfig = XElement.Load(@"C:\Users\brach\source\repos\-dotNet5783_1715_0965\xml\dal-config.xml")
-           // C: \Users\brach\source\repos\-dotNet5783_1715_0965\DalFacade\DalApi\DalConfig.cs
-           ?? throw new DalConfigException("dal-config.xml file is not found");
+        XElement dalConfig = XElement.Load(@"..\..\..\..\xml\dal-config.xml")
+      ?? throw new DalConfigException("dal-config.xml file is not found");
         s_dalName = dalConfig?.Element("dal")?.Value
             ?? throw new DalConfigException("<dal> element is missing");
         var packages = dalConfig?.Element("dal-packages")?.Elements()
