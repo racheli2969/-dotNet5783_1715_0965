@@ -36,7 +36,13 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool> func)
     {
-        return func == null ? DataSource.OrderItems : DataSource.OrderItems.Where(func).ToList();
+        List<OrderItem?> orderItems;
+        if (func == null)
+            orderItems = DataSource.OrderItems;
+        else orderItems = DataSource.OrderItems.Where(x => x.HasValue && func((OrderItem)x)).ToList();
+        if (orderItems == null)
+            throw new EntityNotFoundException();
+        return orderItems.Cast<OrderItem>();
     }
     /// <summary>
     /// deletes order item by id

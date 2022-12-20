@@ -17,4 +17,9 @@ category - {Category}
     	Price: {Price}
     	 In stock: {AmountInStock}
 ";
+
+    public static explicit operator Item(int? v)
+    {
+        throw new NotImplementedException();
+    }
 }

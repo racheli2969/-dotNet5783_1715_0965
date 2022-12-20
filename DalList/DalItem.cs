@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DO;
+using System.Linq;
 
 namespace Dal;
 /// <summary>
@@ -15,9 +16,9 @@ internal class DalItem : IItem
     /// <returns>returns the added item's id</returns>
     public int Add(Item item)
     {
-        item.ID=DataSource.Config.LastItemId;
-        DataSource.Items.Add(item);
-        return DataSource.Config.ItemId-1;
+        item.ID = DataSource.Config.LastItemId;
+        DataSource.Items?.Add(item);
+        return DataSource.Config.ItemId - 1;
 
     }
     /// <summary>
@@ -37,16 +38,18 @@ internal class DalItem : IItem
     /// returns all the existing items
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<Item>? GetAll(Func<Item,bool>func)
+ 
+    public IEnumerable<Item>? GetAll(Func<Item, bool>? func)
     {
-        List<Item>? items = new();
-        if (func==null)
-            items=DataSource.Items;
-        else items=DataSource.Items.Where(func).ToList();
-        if (items==null)
+        List<Item?> items;
+        if (func == null)
+            items = DataSource.Items;
+        else items = DataSource.Items.Where(x => x.HasValue && func((Item)x)).ToList();
+        if (items == null)
             throw new EntityNotFoundException();
-        return items;
+        return items.Cast<Item>(); 
     }
+    
     /// <summary>
     /// gets an id and deletes that item
     /// </summary>
@@ -55,7 +58,7 @@ internal class DalItem : IItem
     public void Delete(int id)
     {
         //check if exists
-        int index = DataSource.Items.FindIndex(x => ((Item)x).ID == id);
+        int index = DataSource.Items.FindIndex(x => x.HasValue && x.Value.ID == id);
         if (index < 0)
             throw new EntityNotFoundException();
         DataSource.Items.RemoveAt(index);
@@ -67,10 +70,10 @@ internal class DalItem : IItem
     /// <exception cref="Exception">if there is no object with that id an exception is thrown</exception>
     public void Update(Item item)
     {
-        int index = DataSource.Items.FindIndex(x => x.ID == item.ID);
-        if (index < 0)
+        int? index = DataSource.Items?.FindIndex(x => x.HasValue && x.Value.ID == item.ID);
+        if (index < 0 || index == null)
             throw new EntityNotFoundException();
-        DataSource.Items[index] = item;
+        DataSource.Items[(int)index] = item;
     }
     /// <summary>
     /// overload for the update gets an id and updates that product's amount
@@ -79,9 +82,11 @@ internal class DalItem : IItem
     /// <param name="amount">amount to update to</param>
     public void Update(int id, int amount)
     {
-        Item item = new Item();
-        int index = DataSource.Items.FindIndex(x => x.ID == id);
-        item=DataSource.Items[index];
+        Item item = new();
+        int? index = DataSource.Items?.FindIndex(x => x.HasValue && x.Value.ID == id);
+        if (index == null || index < 0)
+            throw new EntityNotFoundException();
+        item = (Item)DataSource.Items[(int)index];
         if (item.AmountInStock - amount >= 0)
         {
             item.AmountInStock -= amount;
@@ -96,9 +101,9 @@ internal class DalItem : IItem
     /// <returns>true if available</returns>
     public bool Available(int id)
     {
-        Item item = new Item();
-        item=DataSource.Items[DataSource.Items.FindIndex(x => x.ID == id)];
-        return item.AmountInStock - 1 >= 0;
+        Item? item = new Item();
+        item = DataSource.Items?[DataSource.Items.FindIndex(x => x.HasValue && x.Value.ID == id)];
+        return item?.AmountInStock - 1 >= 0;
     }
     /// <summary>
     /// checks if there's enough to order the amount
@@ -108,8 +113,8 @@ internal class DalItem : IItem
     /// <returns>true if available</returns>
     public bool Available(int id, int amount)
     {
-        Item item = new Item();
-        item=DataSource.Items[DataSource.Items.FindIndex(x => x.ID == id)];
-        return item.AmountInStock - amount >= 0;
+        Item? item = new Item();
+        item = DataSource.Items?[DataSource.Items.FindIndex(x => x.HasValue && x.Value.ID == id)];
+        return item?.AmountInStock - amount >= 0;
     }
 }

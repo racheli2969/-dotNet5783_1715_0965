@@ -39,15 +39,15 @@ public static class DataSource
     /// <summary>
     /// product list
     /// </summary>
-    public static List<Item>? Items = new List<Item>();
+    public static List<Item?> Items = new List<Item?>();
     /// <summary>
     /// order items list
     /// </summary>
-    public static List<OrderItem>?OrderItems = new List<OrderItem>();
+    public static List<OrderItem?>OrderItems = new List<OrderItem?>();
     /// <summary>
     /// orders list
     /// </summary>
-    public static List<Order>?Orders = new List<Order>();
+    public static List<Order?>Orders = new List<Order?>();
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
@@ -86,7 +86,7 @@ public static class DataSource
                     item.AmountInStock = Number.Next(1, 140);
                 else
                     item.AmountInStock = 0;
-                Items.Add(item);
+                Items?.Add(item);
             }
         
     }
@@ -137,18 +137,21 @@ public static class DataSource
             orderItem.OrderItemId = Config.LastOrderItemId;
             if (i < 20)
             {
-                orderItem.OrderID = ((Order)Orders[i]).OrderId;
+                if(Orders[i].HasValue)
+                orderItem.OrderID = Orders[i].Value.OrderId;
                 
             }
             else
             {
-                orderItem.OrderID = ((Order)Orders[i - 20]).OrderId;
+                if (Orders[i - 20].HasValue)
+                    orderItem.OrderID = Orders[i - 20].Value.OrderId;
             }
-            orderItem.ItemId = ((Item)Items[Number.Next(0, Items.Count)]).ID;
+            if(Items[Number.Next(0, Items.Count)].HasValue)
+            orderItem.ItemId = Items[Number.Next(0, Items.Count)].Value.ID;
             for (int j = 0; j < Items.Count; j++)
             {
-                if (((Item)Items[j]).ID == orderItem.ItemId)
-                    orderItem.Price = ((Item)Items[j]).Price;
+                if (Items[j].Value.ID == orderItem.ItemId)
+                    orderItem.Price =Items[j].Value.Price;
             }
             orderItem.Amount = Number.Next(1, 3);
             OrderItems.Add(orderItem);

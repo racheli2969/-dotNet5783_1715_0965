@@ -21,4 +21,8 @@ public struct OrderItem
 -------------------------------------------
 ";
 
+    public static explicit operator OrderItem(Order? v)
+    {
+        throw new NotImplementedException();
+    }
 }

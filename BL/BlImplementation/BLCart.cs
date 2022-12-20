@@ -11,9 +11,9 @@ internal class BLCart : BlApi.ICart
         //check if product exists if so get product
         try
         {
-           List<DO.Item>? product = (List<DO.Item>?)dal?.Item.GetAll(x => x.ID == productId);
+           List<DO.Item>? product = dal?.Item?.GetAll(x => x.ID == productId).ToList();
             //if not available
-            if (!dal.Item.Available(productId))
+            if (dal?.Item?.Available(productId)==false)
                 throw new BlApi.NotInStockException();
             //check if the item is in the cart already
             int idx = ProductIndexInCart(c, productId);
@@ -44,7 +44,7 @@ internal class BLCart : BlApi.ICart
     public BO.Cart UpdateProductQuantity(int productId, BO.Cart c, int quantity)
     {
         int idx = ProductIndexInCart(c, productId);
-        if (c.Items[idx].Amount + quantity == 0)
+        if (c?.Items[idx].Amount + quantity == 0)
         {
             c.FinalPrice -= c.Items[idx].PriceOfItems;
             c.Items.RemoveAt(idx);
@@ -57,7 +57,7 @@ internal class BLCart : BlApi.ICart
             c.Items[idx].PriceOfItems = c.Items[idx].Amount * c.Items[idx].ItemPrice;
             return c;
         }
-        if (!dal.Item.Available(productId, quantity))
+        if (dal?.Item?.Available(productId, quantity)==false)
             throw new BlApi.NotInStockException();
         c.Items[idx].Amount += quantity;
         c.Items[idx].PriceOfItems += quantity * c.Items[idx].ItemPrice;
@@ -111,12 +111,12 @@ internal class BLCart : BlApi.ICart
     private void validateItem(BO.OrderItem oi)
     {
         //product exists
-        dal?.Item.GetAll(o=>o.ID==oi.ItemId);
+        dal?.Item?.GetAll(o=>o.ID==oi.ItemId).ToList();
         //amount is a positive number
         if (oi.Amount <= 0)
             throw new BlApi.NegativeAmountException();
         //item is in stock
-        if (!dal.Item.Available(oi.ItemId, oi.Amount))
+        if (dal?.Item?.Available(oi.ItemId, oi.Amount)==false)
             throw new BlApi.NotInStockException();
     }
 }
