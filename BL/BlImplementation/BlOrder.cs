@@ -35,7 +35,7 @@ public class BlOrder : BlApi.IOrder
         try
         {
             //gets the order items from dal
-            List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderItemId == orderId)?.ToList();
+            List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderID == orderId)?.ToList();
             List<DO.Order>? O = dal?.Order?.GetAll(o => o.OrderId == orderId)?.ToList();
             BO.Order order = new BO.Order();
             //move info from dal order to bo order
