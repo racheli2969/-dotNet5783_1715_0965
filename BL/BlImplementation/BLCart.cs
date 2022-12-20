@@ -11,7 +11,7 @@ internal class BLCart : BlApi.ICart
         //check if product exists if so get product
         try
         {
-           List<DO.Item>? product = dal?.Item?.GetAll(x => x.ID == productId).ToList();
+           List<DO.Item>? product = dal?.Item?.GetAll(x => x.ID == productId)?.ToList();
             //if not available
             if (dal?.Item?.Available(productId)==false)
                 throw new BlApi.NotInStockException();
@@ -50,7 +50,7 @@ internal class BLCart : BlApi.ICart
             c.Items.RemoveAt(idx);
             return c;
         }
-        if (quantity < 0 && c.Items[idx].Amount + quantity > 0)
+        if (quantity < 0 && c?.Items[idx].Amount + quantity > 0)
         {
             c.Items[idx].Amount += quantity;
             c.FinalPrice += c.Items[idx].ItemPrice * quantity;
@@ -111,7 +111,7 @@ internal class BLCart : BlApi.ICart
     private void validateItem(BO.OrderItem oi)
     {
         //product exists
-        dal?.Item?.GetAll(o=>o.ID==oi.ItemId).ToList();
+        dal?.Item?.GetAll(o=>o.ID==oi.ItemId)?.ToList();
         //amount is a positive number
         if (oi.Amount <= 0)
             throw new BlApi.NegativeAmountException();

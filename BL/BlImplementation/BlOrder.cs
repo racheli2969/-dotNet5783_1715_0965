@@ -35,8 +35,8 @@ public class BlOrder : BlApi.IOrder
         try
         {
             //gets the order items from dal
-            List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderItemId == orderId).ToList();
-            List<DO.Order>? O = dal?.Order?.GetAll(o => o.OrderId == orderId).ToList();
+            List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderItemId == orderId)?.ToList();
+            List<DO.Order>? O = dal?.Order?.GetAll(o => o.OrderId == orderId)?.ToList();
             BO.Order order = new BO.Order();
             //move info from dal order to bo order
             order.Email = O[0].Email;
@@ -68,7 +68,7 @@ public class BlOrder : BlApi.IOrder
                 orderI.OrderItemId = oi[i].OrderItemId;
                 orderI.Amount = oi[i].Amount;
                 //gets the item from dal
-                item = dal?.Item?.GetAll(i => i.ID == orderI.ItemId).ToList();
+                item = dal?.Item?.GetAll(i => i.ID == orderI.ItemId)?.ToList();
                 orderI.ItemName = item[0].Name;
                 orderI.ItemPrice = item[0].Price;
                 orderI.PriceOfItems = (orderI.ItemPrice * orderI.Amount);
@@ -88,10 +88,10 @@ public class BlOrder : BlApi.IOrder
         try
         {
             //get the order
-            List<DO.Order>? order = dal?.Order.GetAll(o => o.OrderId == orderId).ToList();
+            List<DO.Order>? order = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList();
             if (order[0].DateDelivered == DateTime.MinValue)
             {
-                List<DO.OrderItem>? oi = dal?.OrderItem.GetAll(p => p.OrderItemId == orderId).ToList();
+                List<DO.OrderItem>? oi = dal?.OrderItem.GetAll(p => p.OrderItemId == orderId)?.ToList();
                 DO.Order order_ = new();
                 order_ = order[0];
                 order_.DateDelivered = DateTime.Now;
@@ -123,10 +123,10 @@ public class BlOrder : BlApi.IOrder
         try
         {
             //get the order
-            List<DO.Order>? order = dal?.Order?.GetAll(o => o.OrderId == orderId).ToList();
+            List<DO.Order>? order = dal?.Order?.GetAll(o => o.OrderId == orderId)?.ToList();
             if (order[0].DateReceived == DateTime.MinValue && order[0].DateDelivered != DateTime.MinValue)
             {
-                List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderItemId == orderId).ToList();
+                List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderItemId == orderId)?.ToList();
                 DO.Order order_ = new();
                 order_ = order[0];
                 order_.DateReceived = DateTime.Now;
@@ -159,7 +159,7 @@ public class BlOrder : BlApi.IOrder
         {
 
             //get the order
-            List<DO.Order>? order = dal?.Order.GetAll(o => o.OrderId == orderId).ToList();
+            List<DO.Order>? order = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList();
             BO.OrderTracking ot = new BO.OrderTracking();
             ot.Id = orderId;
             (DateTime, BO.EnumOrderStatus) myTuple = ((DateTime)(order)[0].DateOrdered, BO.EnumOrderStatus.Delivered);
