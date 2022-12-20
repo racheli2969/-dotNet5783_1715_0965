@@ -31,9 +31,19 @@ internal class BLCart : BlApi.ICart
                 oi.ItemPrice = product[0].Price;
                 oi.Amount = 1;
                 oi.PriceOfItems = product[0].Price;
+               // oi.OrderItemId=
                 c.Items.Add(oi);
             }
+            double finalPrice = 0;
+            foreach(BO.OrderItem item in c.Items)
+            {
+                finalPrice += item.ItemPrice;
+            }
             //return updated cart
+            c.FinalPrice = finalPrice;
+            //c.Address =;
+            //c.Email =;
+            //c.CustomerName =;
             return c;
         }
         catch (DalApi.EntityNotFoundException)
@@ -103,7 +113,7 @@ internal class BLCart : BlApi.ICart
 
     public int ProductIndexInCart(BO.Cart c, int productId)
     {
-        if (c.Items == null)
+        if (c.Items.Count == 0)
             return -1;
         return c.Items.FindIndex(orderItem => orderItem.ItemId == productId);
     }
