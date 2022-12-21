@@ -61,7 +61,7 @@ internal class DalOrder : IOrder
     public void Update(Order order)
     {
         int? idx = DataSource.Orders?.FindIndex(order => order.Value.OrderId == order.Value.OrderId);
-        if (idx == -1 || idx == null)
+        if (idx == -1 || idx == null || DataSource.Orders==null)
             throw new EntityNotFoundException();
         DataSource.Orders[(int)idx] = order;
     }

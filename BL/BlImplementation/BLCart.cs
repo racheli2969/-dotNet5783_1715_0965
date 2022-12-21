@@ -32,7 +32,7 @@ internal class BLCart : BlApi.ICart
                 oi.Amount = 1;
                 oi.PriceOfItems = product[0].Price;
                // oi.OrderItemId=
-                c.Items.Add(oi);
+                c?.Items?.Add(oi);
             }
             double finalPrice = 0;
             foreach(BO.OrderItem item in c.Items)
@@ -54,13 +54,13 @@ internal class BLCart : BlApi.ICart
     public BO.Cart UpdateProductQuantity(int productId, BO.Cart c, int quantity)
     {
         int idx = ProductIndexInCart(c, productId);
-        if (c?.Items[idx].Amount + quantity == 0)
+        if (c?.Items?[idx].Amount + quantity == 0)
         {
             c.FinalPrice -= c.Items[idx].PriceOfItems;
             c.Items.RemoveAt(idx);
             return c;
         }
-        if (quantity < 0 && c?.Items[idx].Amount + quantity > 0)
+        if (quantity < 0 && c?.Items?[idx].Amount + quantity > 0)
         {
             c.Items[idx].Amount += quantity;
             c.FinalPrice += c.Items[idx].ItemPrice * quantity;
@@ -83,7 +83,7 @@ internal class BLCart : BlApi.ICart
             throw new BlApi.WrongEmailFormatException();
         if (numOfHouse <= 0)
             throw new BlApi.NegativeHouseNumberException();
-        c.Items.ForEach(validateItem);
+        c?.Items?.ForEach(validateItem);
 
         //create in dal layer and move the info
         DO.Order temp = new DO.Order();
@@ -98,7 +98,7 @@ internal class BLCart : BlApi.ICart
 
         //add the items to the order item array and update the products accordingly
         DO.OrderItem tempItem = new DO.OrderItem();
-        for (int i = 0; i < c.Items.Count; i++)
+        for (int i = 0; i < c?.Items?.Count; i++)
         {
             //create order items in dal layer 
             tempItem.Amount = c.Items[i].Amount;
@@ -111,9 +111,15 @@ internal class BLCart : BlApi.ICart
         }
     }
 
-    public int ProductIndexInCart(BO.Cart c, int productId)
+    /// <summary>
+    /// gets a cart and product id and searches for the product in the cart
+    /// </summary>
+    /// <param name="C">the cart to search in</param>
+    /// <param name="productId">the product id to search for</param>
+    /// <returns>if the product exists returns index else -1</returns>
+    private int ProductIndexInCart(BO.Cart c, int productId)
     {
-        if (c.Items.Count == 0)
+        if (c?.Items?.Count == 0||c?.Items==null)
             return -1;
         return c.Items.FindIndex(orderItem => orderItem.ItemId == productId);
     }

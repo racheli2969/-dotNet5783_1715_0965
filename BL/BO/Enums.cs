@@ -55,6 +55,5 @@ public enum OptionsForCart
     Exit,
     AddToCart,
     UpdateProductQuantity,
-    OrderConfirmation,
-    ProductIndexInCart
+    OrderConfirmation
 }

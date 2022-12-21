@@ -56,7 +56,7 @@ public class BlProduct : BlApi.IProduct
                 throw new BlApi.NegativeIdException();
             int count = 0;
             List<DO.Item>? product = dal?.Item?.GetAll(i => i.ID == id)?.ToList();
-            p.Name = product[0].Name;
+            p.Name = product?[0].Name;
             p.ID = product[0].ID;
             if (product[0].AmountInStock > 0)
                 p.IsAvailable = true;

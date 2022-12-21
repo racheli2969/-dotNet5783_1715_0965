@@ -45,14 +45,6 @@ void NavigateCart()
                     bl.Cart.OrderConfirmation(myCart, name, email, city, street, numOfHouse);
                     Console.WriteLine("order created successfully");
                     break;
-                case BO.OptionsForCart.ProductIndexInCart:
-                    Console.Write("Please enter the id of product to search for in your cart");
-                    int.TryParse(Console.ReadLine(), out id);
-                    id = bl.Cart.ProductIndexInCart(myCart, id);
-                    if (id > 0)
-                        Console.WriteLine(myCart.Items[id].ToString());
-                    else Console.WriteLine("not in cart");
-                    break;
             }
             Console.WriteLine("What Would you like to check?\nhere are the options to choose from:\nExit:0, AddToCart:1, UpdateProductQuantity:2, OrderConfirmation:3, ProductIndexInCart:4");
             BO.OptionsForCart.TryParse(Console.ReadLine(), out option);

@@ -18,20 +18,6 @@ internal class DalOrderItem : IOrderItem
         return DataSource.Config.OrderItemId;
     }
     /// <summary>
-    /// finds an order item by id
-    /// </summary>
-    /// <param name="Id"></param>
-    /// <returns>returns the order item</returns>
-    /// <exception cref="Exception"></exception>
-   /* public OrderItem GetById(int Id)
-    {
-        OrderItem? orderItem = DataSource.OrderItems.Find(o => ((OrderItem)o).OrderItemId == Id);
-        if(orderItem==null)
-            throw new EntityNotFoundException();
-        return (OrderItem)orderItem;
-       
-    }*/
-    /// <summary>
     /// returns existing order items
     /// </summary>
     public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool> func)
@@ -93,6 +79,20 @@ internal class DalOrderItem : IOrderItem
         List<OrderItem> product = new(DataSource.OrderItems.Count);
         product = DataSource.OrderItems.FindAll(p => ((OrderItem)p).OrderItemId == orderId);
         return product;
+    }*/
+    /// <summary>
+    /// finds an order item by id
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <returns>returns the order item</returns>
+    /// <exception cref="Exception"></exception>
+   /* public OrderItem GetById(int Id)
+    {
+        OrderItem? orderItem = DataSource.OrderItems.Find(o => ((OrderItem)o).OrderItemId == Id);
+        if(orderItem==null)
+            throw new EntityNotFoundException();
+        return (OrderItem)orderItem;
+       
     }*/
 }
 
