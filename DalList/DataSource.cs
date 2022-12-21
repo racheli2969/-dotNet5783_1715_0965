@@ -131,7 +131,7 @@ public static class DataSource
     /// </summary>
     static void CreateOrderItemData()
     {
-        for (int i = 0; i < orders; i++)
+        for (int i = 0; i < 2*orders; i++)
         {
             OrderItem orderItem = new OrderItem();
             orderItem.OrderItemId = Config.LastOrderItemId;
@@ -143,8 +143,8 @@ public static class DataSource
             }
             else
             {
-                if (Orders[i - 20].HasValue)
-                    orderItem.OrderID = Orders[i - 20].Value.OrderId;
+                if (Orders[i-20].HasValue)
+                    orderItem.OrderID = Orders[i-20].Value.OrderId;
             }
             if(Items[Number.Next(0, Items.Count)].HasValue)
             orderItem.ItemId = Items[Number.Next(0, Items.Count)].Value.ID;

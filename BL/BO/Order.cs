@@ -48,7 +48,7 @@ public class Order
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendFormat("Order ID:{0}\n Customer Name:{1}\n Email:{2}\n Order Status:{3}\nDate Ordered:{4}\n Date Delivered{5}\nDate Received: {6}\n", OrderId, CustomerName, Email, OrderStatus, DateOrdered, DateDelivered, DateReceived);
+        sb.AppendFormat("Order ID:{0}\n Customer Name:{1}\n Email:{2}\n Order Status:{3}\nDate Ordered:{4}\n Date Delivered{5}\nDate Received: {6}\nfinal price:{7};", OrderId, CustomerName, Email, OrderStatus, DateOrdered, DateDelivered, DateReceived, SumOfOrder);
         foreach (BO.OrderItem item in Items)
         {
             sb.AppendFormat(" Order Item: {0}\n", item);

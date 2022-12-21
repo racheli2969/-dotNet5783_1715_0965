@@ -132,7 +132,7 @@ void NavigateOrder()
                     Console.Write("Enter id of order to search for");
                     int.TryParse(Console.ReadLine(), out id);
                     order = bl.Order.GetOrderDetails(id);
-                    Console.Write(order.ToString());
+                    Console.Write(order);
                     break;
                 case BO.OptionsForOrder.UpdateOrderShipping:
                     Console.Write("Enter id of order to update shipping date for");

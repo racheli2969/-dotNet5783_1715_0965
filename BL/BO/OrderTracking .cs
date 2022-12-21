@@ -8,7 +8,6 @@ public class OrderTracking
     public override string ToString() => $@"
    ID: {Id},
    Order Status: {OrderStatus},
-   Order Status: {OrderStatus},
    Tracking: {TrackingTuples}
 ";
 
