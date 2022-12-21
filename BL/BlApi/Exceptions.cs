@@ -23,7 +23,7 @@ public class BlEntityNotFoundException : Exception
 
 }
 /// <summary>
-/// Exception for missing info
+/// Exception for missing string type info
 /// </summary>
 public class EmptyStringException : Exception
 {
@@ -61,9 +61,10 @@ public class NotInStockException : Exception
 {
     public override string Message => "Sorry, not in stock";
 }
-public class WrongEmailFormatException : Exception
+
+    public class NotInCartException : Exception
 {
-    public override string Message => "wrong email format, email should be valid";
+    public override string Message => "Sorry, not in cart";
 }
 public class ErrorDeleting : Exception
 {
