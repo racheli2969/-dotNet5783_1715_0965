@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Orders>
+	<Order>
+		<OrderId></OrderId>
+		<CustomerName></CustomerName>
+		<Email></Email>
+		<Address></Address>
+		<DateOrdered></DateOrdered>
+		<DateDelivered ></DateDelivered>
+		<DateReceived ></DateReceived>
+	</Order>
+</Orders>
