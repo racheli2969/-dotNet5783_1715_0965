@@ -26,14 +26,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{FAEE621D-D77
 	ProjectSection(SolutionItems) = preProject
 		Config.xml = Config.xml
 		..\xml\dal-config.xml = ..\xml\dal-config.xml
-		Item.xml = Item.xml
+		..\xml\Item.xml = ..\xml\Item.xml
 		Order.xml = Order.xml
 		OrderItem.xml = OrderItem.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "..\DalXml\DalXml.csproj", "{716231AE-93AC-4E8A-A17F-E9208EA719DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "..\DalXml\DalXml.csproj", "{716231AE-93AC-4E8A-A17F-E9208EA719DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlTest", "..\XmlTest\XmlTest.csproj", "{30575C9B-D20E-4AA3-B7D9-9ABA936976CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXmlTest", "..\XmlTest\DalXmlTest.csproj", "{30575C9B-D20E-4AA3-B7D9-9ABA936976CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

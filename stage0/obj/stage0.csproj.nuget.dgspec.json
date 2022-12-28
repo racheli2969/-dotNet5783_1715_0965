@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj": {}
+    "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj": {
+    "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
+        "projectUniqueName": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
         "projectName": "stage0",
-        "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
+        "projectPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
         "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\obj\\",
         "projectStyle": "PackageReference",

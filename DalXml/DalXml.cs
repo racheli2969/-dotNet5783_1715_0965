@@ -1,6 +1,6 @@
 ﻿namespace Dal;
 using DalApi;
-sealed internal class DalXml : IDal
+sealed public class DalXml : IDal
 {
     public IItem Item { get; } = new Dal.Item();
 
