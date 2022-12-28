@@ -2,7 +2,7 @@
 using DalApi;
 using Dal;
 IDal dalxml = new DalXml();
- void main()
+void main()
 {
     double doubleTemp;
     int intTemp;
@@ -10,7 +10,7 @@ IDal dalxml = new DalXml();
     Console.WriteLine("enter details for new book: Name, Category, Price, Is In Stock");
     item.Name = Console.ReadLine();
     BookGenre bookg;// = new BookCategory();
-     BookGenre.TryParse(Console.ReadLine(),out bookg);
+    BookGenre.TryParse(Console.ReadLine(), out bookg);
     item.Category = bookg;
     double.TryParse(Console.ReadLine(), out doubleTemp);
     item.Price = doubleTemp;
