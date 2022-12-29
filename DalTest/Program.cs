@@ -1,4 +1,4 @@
-﻿using Dal;
+﻿/*using Dal;
 using DalApi;
 using DO;
 
@@ -75,13 +75,13 @@ void GetById(OptionsForMain characterType)
             case OptionsForMain.Item:
                 Console.WriteLine("enter id");
                 int.TryParse(Console.ReadLine(), out a);
-                Item item = dalList.Item.GetById(a);
+                //Item item = dalList.Item.GetById(a);
                 Console.WriteLine(item.ToString());
                 break;
             case OptionsForMain.Order:
                 Console.WriteLine("enter id");
                 int.TryParse(Console.ReadLine(), out a);
-                Order order = dalList.Order.GetById(a);
+               // Order order = dalList.Order.GetById(a);
                 Console.WriteLine(order.ToString());
                 break;
             case OptionsForMain.OrderItem:
@@ -262,4 +262,4 @@ void Main()
     if (number != 0)
         ControlOptions(number);
 }
-Main();
+Main();*/
