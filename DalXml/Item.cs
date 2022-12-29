@@ -3,7 +3,9 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 internal class Item : IItem
 {
@@ -11,13 +13,18 @@ internal class Item : IItem
     {
         int temp;
         XElement? root = XDocument.Load(@"..\..\..\..\xml\Item.xml").Root;
-        XElement? config = XDocument.Load(@"..\..\..\..\xml\Config.xml")?.Root;
-        //הגישה לא עובדת צריך לבדוק
-        string? id = config?.Element("ItemId")?.Value;
+       // XmlDocument config = new XmlDocument();
+        //config.Load(@"..\..\..\..\xml\Config.xml");
+        XDocument doc = XDocument.Load(@"..\..\..\..\xml\Config.xml");
+        string? id = doc?.XPathSelectElement("//ItemId")?.Value;
         item.ID = Convert.ToInt32(id);
+
+        //update in the config
         id = (item.ID + 1).ToString();
-        config?.SetAttributeValue("ItemId", id);
+        // doc?.XPathSelectElement("//ItemId").Value;
+        //need to save changes to xml
         root?.Add(item);
+        // root.Save(@"..\..\..\..\xml\Item.xml");
         return item.ID;
     }
 

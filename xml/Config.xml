@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<Item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">-->
-<Items>
-	<Item>
-		<Name></Name>
-		<Category></Category>
-		<Price></Price>
-		<AmountInStock></AmountInStock>
-		<ID></ID>
-	</Item>
-</Items>
+<config>
+	<ItemId >100000</ItemId>
+	<OrderId>1</OrderId>
+	<OrderItemId >1</OrderItemId>
+</config>

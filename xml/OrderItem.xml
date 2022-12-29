@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OrderItems>
+	<OrderItem>
+		<Amount></Amount>
+		<OrderID ></OrderID>
+		<ItemId ></ItemId>
+		<OrderItemId ></OrderItemId>
+		<Price></Price>
+	</OrderItem>
+</OrderItems>
