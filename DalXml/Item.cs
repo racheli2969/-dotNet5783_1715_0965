@@ -80,6 +80,11 @@ internal class Item : IItem
         return (IEnumerable<DO.Item>?)items;
     }
 
+    public IEnumerable<DO.Item>? GetAll(Func<DO.Item, bool>? func = null)
+    {
+        throw new NotImplementedException();
+    }
+
     public void Update(int id, int amount)
     {
         throw new NotImplementedException();
