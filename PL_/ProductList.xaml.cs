@@ -45,7 +45,7 @@ namespace PL
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (CategorySelector.SelectedItem.ToString().CompareTo("GetAll")!=0)
+            if (CategorySelector?.SelectedItem?.ToString()?.CompareTo("GetAll")!=0)
                 ProductListView.ItemsSource = Bl.Product.GetProductList((BO.BookGenre?)Enum.Parse( typeof(BO.BookGenre),CategorySelector.SelectedItem.ToString()));
             else
                 ProductListView.ItemsSource = Bl.Product.GetProductList();

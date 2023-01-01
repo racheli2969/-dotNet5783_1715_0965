@@ -3,49 +3,81 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using System.Xml.XPath;
 
 internal class Item : IItem
 {
+    //another way to access config
+    //  XDocument doc = XDocument.Load(@"..\..\..\..\xml\Config.xml");
+    //string? id = doc?.XPathSelectElement("//ItemId")?.Value;
+    private XElement? itemsXml = XDocument.Load(@"..\..\..\..\xml\Item.xml").Root;
     public int Add(DO.Item item)
     {
-        int temp;
-        XElement? root = XDocument.Load(@"..\..\..\..\xml\Item.xml").Root;
-       // XmlDocument config = new XmlDocument();
-        //config.Load(@"..\..\..\..\xml\Config.xml");
-        XDocument doc = XDocument.Load(@"..\..\..\..\xml\Config.xml");
-        string? id = doc?.XPathSelectElement("//ItemId")?.Value;
+        XElement? configXml = XDocument.Load(@"..\..\..\..\xml\Config.xml").Root;
+        string? id = (string?)(configXml?.Element("ItemId"));
         item.ID = Convert.ToInt32(id);
-
         //update in the config
         id = (item.ID + 1).ToString();
-        // doc?.XPathSelectElement("//ItemId").Value;
-        //need to save changes to xml
-        root?.Add(item);
-        // root.Save(@"..\..\..\..\xml\Item.xml");
+        configXml?.Element("ItemId")?.SetValue(id);
+        configXml?.Save(@"..\..\..\..\xml\Config.xml");
+        XElement newItem = new("Item");
+        newItem.Add(new XElement("Id", item.ID));
+        newItem.Add(new XElement("Name", item.Name));
+        newItem.Add(new XElement("Category", item.Category));
+        newItem.Add(new XElement("Price", item.Price));
+        newItem.Add(new XElement("AmountInStock", item.AmountInStock));
+        itemsXml?.Add(newItem);
+        itemsXml?.Save(@"..\..\..\..\xml\Item.xml");
         return item.ID;
     }
 
     public bool Available(int id)
     {
-        throw new NotImplementedException();
+        // Item? item = new Item();
+        XElement? item = (itemsXml?.Elements("Item")?.
+                      Where(s => (id.ToString().CompareTo(s.Element("Id").Value.ToString()) == 0))
+                      .Elements("AmountInStock").FirstOrDefault());
+        int t = Convert.ToInt32((string?)item?.Value.ToString());
+        return t - 1 >= 0;
     }
 
     public bool Available(int id, int amount)
     {
-        throw new NotImplementedException();
+        XElement? item = (itemsXml?.Elements("Item")?.
+                      Where(s => (id.ToString().CompareTo(s.Element("Id").ToString()) == 0))
+                      .Elements("AmountInStock").FirstOrDefault());
+        int t = Convert.ToInt32((string?)item?.Value.ToString());
+        return t - amount >= 0;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        XElement? item = (itemsXml?.Elements("Item")?.
+                       Where(s => (id.ToString().CompareTo(s.Element("Id")?.ToString()) == 0))
+                     .FirstOrDefault());
+        item?.Remove();
     }
 
-    public IEnumerable<DO.Item>? GetAll(Func<DO.Item, bool>? func = null)
+    public IEnumerable<DO.Item>? GetAll(Func<XElement, bool>? func = null)
     {
-        throw new NotImplementedException();
+        List<Item?>? items;
+        if(func==null)
+        items = (itemsXml?.Elements("Item")) as List<Item?>;
+        else
+       
+            //ParallelQuery<Item> items1=items.
+            //ParallelEnumerable.Where<Item>(ParallelQuery<Item>, Func<Item, bool>)//ParallelQuery<Item>'   
+           // items = items.Where<Item>(func);
+        items = (itemsXml?.Elements("Item")?.Where(func)) as List<Item?>;
+        if (items == null)
+            throw new EntityNotFoundException();
+        return (IEnumerable<DO.Item>?)items;
     }
 
     public void Update(int id, int amount)

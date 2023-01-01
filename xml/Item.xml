@@ -1,11 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--<Item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">-->
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
-	<Item>
-		<Name></Name>
-		<Category></Category>
-		<Price></Price>
-		<AmountInStock></AmountInStock>
-		<ID></ID>
-	</Item>
+  <Item>
+    <Id>100000</Id>
+    <Name>4</Name>
+    <Category>SciFi</Category>
+    <Price>4</Price>
+    <AmountInStock>4</AmountInStock>
+  </Item>
+  <Item>
+    <Id>100001</Id>
+    <Name>4</Name>
+    <Category>SciFi</Category>
+    <Price>4</Price>
+    <AmountInStock>4</AmountInStock>
+  </Item>
+  <Item>
+    <Id>100002</Id>
+    <Name>5</Name>
+    <Category>Mystery</Category>
+    <Price>5</Price>
+    <AmountInStock>5</AmountInStock>
+  </Item>
+  <Item>
+    <Id>100003</Id>
+    <Name>r</Name>
+    <Category>Fantasy</Category>
+    <Price>34</Price>
+    <AmountInStock>34</AmountInStock>
+  </Item>
 </Items>
