@@ -41,7 +41,7 @@ internal class Item : IItem
     {
         // Item? item = new Item();
         XElement? item = (itemsXml?.Elements("Item")?.
-                      Where(s => (id.ToString().CompareTo(s.Element("Id").Value.ToString()) == 0))
+                      Where(s => (id.ToString().CompareTo(s.Element("Id")?.Value.ToString()) == 0))
                       .Elements("AmountInStock").FirstOrDefault());
         int t = Convert.ToInt32((string?)item?.Value.ToString());
         return t - 1 >= 0;
@@ -70,10 +70,6 @@ internal class Item : IItem
         if(func==null)
         items = (itemsXml?.Elements("Item")) as List<Item?>;
         else
-       
-            //ParallelQuery<Item> items1=items.
-            //ParallelEnumerable.Where<Item>(ParallelQuery<Item>, Func<Item, bool>)//ParallelQuery<Item>'   
-           // items = items.Where<Item>(func);
         items = (itemsXml?.Elements("Item")?.Where(func)) as List<Item?>;
         if (items == null)
             throw new EntityNotFoundException();
