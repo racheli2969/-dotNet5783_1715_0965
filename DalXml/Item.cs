@@ -1,21 +1,12 @@
 ﻿namespace Dal;
 using DalApi;
-using DO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Schema;
-using System.Xml.XPath;
 
 internal class Item : IItem
 {
-    //another way to access config
-    //  XDocument doc = XDocument.Load(@"..\..\..\..\xml\Config.xml");
-    //string? id = doc?.XPathSelectElement("//ItemId")?.Value;
     private XElement? itemsXml = XDocument.Load(@"..\..\..\..\xml\Item.xml").Root;
     public int Add(DO.Item item)
     {
@@ -78,16 +69,29 @@ internal class Item : IItem
 
     public IEnumerable<DO.Item>? GetAll(Func<DO.Item, bool>? func = null)
     {
-        throw new NotImplementedException();
+        List < Item? >? items=new();
+        return (IEnumerable<DO.Item>?)items;
     }
 
     public void Update(int id, int amount)
     {
-        throw new NotImplementedException();
+        XElement? item = (itemsXml?.Elements("Item")?.
+                       Where(s => (id.ToString().CompareTo(s.Element("Id")?.ToString()) == 0))
+                     .FirstOrDefault());
+        int a =Convert.ToInt32( item?.Element("AmountInStock")?.Value.ToString()) - amount;
+        item?.Element("Amount")?.SetValue(a);
+        itemsXml?.Save(@"..\..\..\..\xml\Item.xml");
     }
 
-    public void Update(DO.Item item)
+    public void Update(DO.Item itemToUpdate)
     {
-        throw new NotImplementedException();
+        XElement? item = (itemsXml?.Elements("Item")?.
+                       Where(s => ((itemToUpdate.ID).ToString().CompareTo(s.Element("Id")?.ToString()) == 0))
+                     .FirstOrDefault());
+        item?.Element("Name")?.SetValue(itemToUpdate.Name);
+        item?.Element("Category")?.SetValue(itemToUpdate.Category);
+        item?.Element("Price")?.SetValue(itemToUpdate.Price);
+        item?.Element("AmountInStock")?.SetValue(itemToUpdate.AmountInStock);
+        itemsXml?.Save(@"..\..\..\..\xml\Item.xml");
     }
 }
