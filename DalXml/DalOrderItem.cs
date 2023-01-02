@@ -1,7 +1,7 @@
 ﻿using DalApi;
 
 namespace Dal;
-internal class OrderItem : IOrderItem
+internal class DalOrderItem : IOrderItem
 {
     public int Add(DO.OrderItem item)
     {
