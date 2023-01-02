@@ -58,13 +58,14 @@ internal class DalItem : IItem
         item?.Remove();
     }
 
-    public IEnumerable<DO.Item>? GetAll(Func<XElement, bool>? func = null)
+    private IEnumerable<DO.Item>? GetAll(Func<XElement, bool>? func = null, string? a = null)
     {
         List<DalItem?>? items;
-        if(func==null)
-        items = (itemsXml?.Elements("Item")) as List<DalItem?>;
+        if (func == null)
+            //returns null
+            items = (itemsXml?.Elements("Item")) as List<DalItem?>;
         else
-        items = (itemsXml?.Elements("Item")?.Where(func)) as List<DalItem?>;
+            items = (itemsXml?.Elements("Item")?.Where(func)) as List<DalItem?>;
         if (items == null)
             throw new EntityNotFoundException();
         return (IEnumerable<DO.Item>?)items;
@@ -72,8 +73,8 @@ internal class DalItem : IItem
 
     public IEnumerable<DO.Item>? GetAll(Func<DO.Item, bool>? func = null)
     {
-        List < DalItem? >? items=new();
-        return (IEnumerable<DO.Item>?)items;
+
+        return GetAll(null);
     }
 
     public void Update(int id, int amount)
@@ -81,7 +82,7 @@ internal class DalItem : IItem
         XElement? item = (itemsXml?.Elements("Item")?.
                        Where(s => (id.ToString().CompareTo(s.Element("Id")?.Value.ToString()) == 0))
                      .FirstOrDefault());
-        int a =Convert.ToInt32( item?.Element("AmountInStock")?.Value.ToString()) - amount;
+        int a = Convert.ToInt32(item?.Element("AmountInStock")?.Value.ToString()) - amount;
         item?.Element("Amount")?.SetValue(a);
         itemsXml?.Save(@"..\..\..\..\xml\Item.xml");
     }

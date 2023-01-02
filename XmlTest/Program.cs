@@ -280,23 +280,27 @@ void ControlOptions(OptionsForMain characterType)
 
 void Main()
 {
+    //dalxml?.Item.GetAll();
+
     //double doubleTemp;
     //int intTemp;
+
     DO.Order order = new DO.Order();
     Console.WriteLine("enter details for new order: CustomerName, Email, Address, DateOrdered, DateDelivered, DateReceived  ");
     order.CustomerName = "Rachel";
     order.Email = "r@g.c";
     order.Address = "hahagana 23";
     order.DateOrdered = DateTime.MinValue;
-   order.DateDelivered = DateTime.MinValue;
+    order.DateDelivered = DateTime.MinValue;
     order.DateReceived = DateTime.MinValue;
+
     //order.CustomerName = Console.ReadLine();
     //order.Email = Console.ReadLine();
     //order.Address = Console.ReadLine();
     //order.DateOrdered = DateInputControl(Console.ReadLine());
     //order.DateDelivered = DateInputControl(Console.ReadLine());
     //order.DateReceived = DateInputControl(Console.ReadLine());
-    dalxml?.Order.Add(order);
+    //dalxml?.Order.Add(order);
 
 
     //OptionsForMain number = OptionsForMain.Exit;
