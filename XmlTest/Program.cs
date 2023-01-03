@@ -236,6 +236,7 @@ void Delete(OptionsForMain characterType)
         Console.WriteLine(msg);
     }
 }
+
 /// <summary>
 /// navigates between the options of deleting etc...
 /// </summary>
@@ -285,14 +286,15 @@ void Main()
     //double doubleTemp;
     //int intTemp;
 
-    DO.Order order = new DO.Order();
-    Console.WriteLine("enter details for new order: CustomerName, Email, Address, DateOrdered, DateDelivered, DateReceived  ");
-    order.CustomerName = "Rachel";
-    order.Email = "r@g.c";
-    order.Address = "hahagana 23";
-    order.DateOrdered = DateTime.MinValue;
-    order.DateDelivered = DateTime.MinValue;
-    order.DateReceived = DateTime.MinValue;
+    //DO.Order order = new DO.Order();
+    //Console.WriteLine("enter details for new order: CustomerName, Email, Address, DateOrdered, DateDelivered, DateReceived  ");
+    //order.CustomerName = "Rachel";
+    //order.Email = "r@g.c";
+    //order.Address = "hahagana 23";
+    //order.DateOrdered = DateTime.MinValue;
+    //order.DateDelivered = DateTime.MinValue;
+    //order.DateReceived = DateTime.MinValue;
+    dalxml?.Order.Delete(1);
 
     //order.CustomerName = Console.ReadLine();
     //order.Email = Console.ReadLine();

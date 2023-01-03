@@ -25,11 +25,11 @@ internal class DalOrder : IOrder
             XmlRootAttribute xRoot = new XmlRootAttribute();
             xRoot.ElementName = "orders";
             xRoot.IsNullable = true;
-            XmlSerializer ser = new XmlSerializer(typeof(List<DO.Order>), xRoot);
+            XmlSerializer ser = new XmlSerializer(typeof(DO.Order), xRoot);
 
             StreamReader? r = new(@"..\..\..\..\xml\Order.xml");
             //r.Read();
-            XmlSerializer? serList = new(typeof(List<DO.Order>));
+            XmlSerializer? serList = new(typeof(DO.Order));
             List<DO.Order>? lst = (List<DO.Order>?)ser.Deserialize(r);
            // var lst = serList.Deserialize(r);
            lst?.Add(order);
@@ -68,6 +68,7 @@ internal class DalOrder : IOrder
         XmlSerializer serializer = new XmlSerializer(typeof(DO.Order));
         StreamReader reader = new StreamReader(@"..\..\..\..\xml\Order.xml");
         List<DO.Order> lst = (List<DO.Order>?)serializer.Deserialize(reader);
+        reader.Close();
         if (func == null)
         {
             return lst;
@@ -76,8 +77,29 @@ internal class DalOrder : IOrder
         return l;
     }
 
-    public void Update(DO.Order item)
+    public void Update(DO.Order order)
     {
+        XmlSerializer serializer = new XmlSerializer(typeof(DO.Order));
+        StreamReader reader = new StreamReader(@"..\..\..\..\xml\Order.xml");
+        List<DO.Order> lst = (List<DO.Order>?)serializer.Deserialize(reader);
+        List<DO.Order> l = (List<DO.Order>)lst.Where(o => order.OrderId == o.OrderId);
+        if (l.Count() > 0)
+        {
+            int i = lst.FindIndex(o => order.OrderId == o.OrderId);
+            DO.Order o = l[0];
+            o.Address = order.Address;
+            o.Email = order.Email;
+            o.OrderId = order.OrderId;
+            o.CustomerName = order.CustomerName;
+            o.DateDelivered = order.DateOrdered;
+            o.DateOrdered = order.DateOrdered;
+            o.DateReceived = order.DateReceived;
+            lst[i] = o;
+            StreamWriter writer = new StreamWriter(@"..\..\..\..\xml\Order.xml");
+            serializer.Serialize(writer, lst);
+            writer.Close();
+            reader.Close();
+        }
         throw new NotImplementedException();
     }
 }
