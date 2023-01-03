@@ -53,15 +53,27 @@ internal class DalOrder : IOrder
         StreamReader reader = new StreamReader(@"..\..\..\..\xml\Order.xml");
         List<DO.Order>lst = (List<DO.Order>?)serializer.Deserialize(reader);
         List<DO.Order> l = (List<DO.Order>)lst.Where(s => s.OrderId == id);
+        reader.Close();
+        if (l.Count==0)
+            throw new NotImplementedException();
         DO.Order o = l[0];
         lst.Remove(o);
-        throw new NotImplementedException();
-        reader.Close();
+        StreamWriter writer = new StreamWriter(@"..\..\..\..\xml\Order.xml");
+        serializer.Serialize(writer,lst);
+        writer.Close();
     }
 
     public IEnumerable<DO.Order>? GetAll(Func<DO.Order, bool>? func = null)
     {
-        throw new NotImplementedException();
+        XmlSerializer serializer = new XmlSerializer(typeof(DO.Order));
+        StreamReader reader = new StreamReader(@"..\..\..\..\xml\Order.xml");
+        List<DO.Order> lst = (List<DO.Order>?)serializer.Deserialize(reader);
+        if (func == null)
+        {
+            return lst;
+        }
+        List<DO.Order> l = (List<DO.Order>)lst.Where(func);
+        return l;
     }
 
     public void Update(DO.Order item)
