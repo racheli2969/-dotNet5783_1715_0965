@@ -1,5 +1,7 @@
 ﻿using DalApi;
 using DO;
+using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -47,7 +49,14 @@ internal class DalOrder : IOrder
 
     public void Delete(int id)
     {
+        XmlSerializer serializer = new XmlSerializer(typeof(DO.Order));
+        StreamReader reader = new StreamReader(@"..\..\..\..\xml\Order.xml");
+        List<DO.Order>lst = (List<DO.Order>?)serializer.Deserialize(reader);
+        List<DO.Order> l = (List<DO.Order>)lst.Where(s => s.OrderId == id);
+        DO.Order o = l[0];
+        lst.Remove(o);
         throw new NotImplementedException();
+        reader.Close();
     }
 
     public IEnumerable<DO.Order>? GetAll(Func<DO.Order, bool>? func = null)
