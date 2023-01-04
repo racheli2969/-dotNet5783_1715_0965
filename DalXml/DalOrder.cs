@@ -2,6 +2,8 @@
 using DO;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
+using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -17,31 +19,27 @@ internal class DalOrder : IOrder
         string? id = (string?)(configXml?.Element("OrderId"));
         order.OrderId = Convert.ToInt32(id);
         id = (order.OrderId + 1).ToString();
-        configXml?.Element("ItemId")?.SetValue(id);
+        configXml?.Element("OrderId")?.SetValue(id);
         configXml?.Save(@"..\..\..\..\xml\Config.xml");
+
 
         try
         {
+            StreamReader r = new("..\\..\\..\\..\\xml\\Order.xml");
             XmlRootAttribute xRoot = new XmlRootAttribute();
-            xRoot.ElementName = "orders";
+            xRoot.ElementName = "Orders";
             xRoot.IsNullable = true;
-            XmlSerializer ser = new XmlSerializer(typeof(DO.Order), xRoot);
-
-            StreamReader? r = new(@"..\..\..\..\xml\Order.xml");
-            //r.Read();
-            XmlSerializer? serList = new(typeof(DO.Order));
-            List<DO.Order>? lst = (List<DO.Order>?)ser.Deserialize(r);
-           // var lst = serList.Deserialize(r);
-           lst?.Add(order);
+            XmlSerializer ser = new XmlSerializer(typeof(List<DO.Order>), xRoot);
+            List<DO.Order>? lst = new();
+            lst = (List<DO.Order>?)ser.Deserialize(r);
             r.Close();
-            StreamWriter w = new StreamWriter(@"..\..\..\..\xml\Order.xml");
-           // serList.Serialize(w, lst);
+            StreamWriter w = new("..\\..\\..\\..\\xml\\Order.xml");
+            lst?.Add(order);
+            ser.Serialize(w, lst);
             w.Close();
-            return order.OrderId;
         }
-        catch (Exception ex)
+        catch
         {
-            Console.WriteLine(ex.GetBaseException());
         }
         return order.OrderId;
 
@@ -49,23 +47,29 @@ internal class DalOrder : IOrder
 
     public void Delete(int id)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(DO.Order));
+        XmlRootAttribute xRoot = new XmlRootAttribute();
+        xRoot.ElementName = "Orders";
+        xRoot.IsNullable = true;
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Order>), xRoot);
         StreamReader reader = new StreamReader(@"..\..\..\..\xml\Order.xml");
-        List<DO.Order>lst = (List<DO.Order>?)serializer.Deserialize(reader);
-        List<DO.Order> l = (List<DO.Order>)lst.Where(s => s.OrderId == id);
+        List<DO.Order>? lst = new();
+        lst = (List<DO.Order>?)serializer.Deserialize(reader);
         reader.Close();
-        if (l.Count==0)
-            throw new NotImplementedException();
-        DO.Order o = l[0];
-        lst.Remove(o);
+        int idx = lst.FindIndex(s => s.OrderId == id);
+        if (idx == -1)
+            throw new DalApi.EntityNotFoundException();
+        lst.RemoveAt(idx);
         StreamWriter writer = new StreamWriter(@"..\..\..\..\xml\Order.xml");
-        serializer.Serialize(writer,lst);
+        serializer.Serialize(writer, lst);
         writer.Close();
     }
 
     public IEnumerable<DO.Order>? GetAll(Func<DO.Order, bool>? func = null)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(DO.Order));
+        XmlRootAttribute xRoot = new XmlRootAttribute();
+        xRoot.ElementName = "Orders";
+        xRoot.IsNullable = true;
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Order>), xRoot);
         StreamReader reader = new StreamReader(@"..\..\..\..\xml\Order.xml");
         List<DO.Order> lst = (List<DO.Order>?)serializer.Deserialize(reader);
         reader.Close();
@@ -79,7 +83,7 @@ internal class DalOrder : IOrder
 
     public void Update(DO.Order order)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(DO.Order));
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Order>));
         StreamReader reader = new StreamReader(@"..\..\..\..\xml\Order.xml");
         List<DO.Order> lst = (List<DO.Order>?)serializer.Deserialize(reader);
         List<DO.Order> l = (List<DO.Order>)lst.Where(o => order.OrderId == o.OrderId);
@@ -100,7 +104,7 @@ internal class DalOrder : IOrder
             writer.Close();
             reader.Close();
         }
-        throw new NotImplementedException();
+        throw new NotImplementedException(); throw new NotImplementedException();
     }
 }
 

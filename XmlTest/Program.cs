@@ -251,7 +251,7 @@ void ControlOptions(OptionsForMain characterType)
     //    Console.WriteLine("Sorry, didn't catch that try again\n");
     //    a = Enum.TryParse(Console.ReadLine(), out x);  
     //}
-    
+
     while (x != OptionsOfActions.Exit)
     {
         switch (x)
@@ -286,15 +286,15 @@ void Main()
     //double doubleTemp;
     //int intTemp;
 
-    //DO.Order order = new DO.Order();
-    //Console.WriteLine("enter details for new order: CustomerName, Email, Address, DateOrdered, DateDelivered, DateReceived  ");
-    //order.CustomerName = "Rachel";
-    //order.Email = "r@g.c";
-    //order.Address = "hahagana 23";
-    //order.DateOrdered = DateTime.MinValue;
-    //order.DateDelivered = DateTime.MinValue;
-    //order.DateReceived = DateTime.MinValue;
-    dalxml?.Order.Delete(1);
+    DO.Order order = new DO.Order();
+    Console.WriteLine("enter details for new order: CustomerName, Email, Address, DateOrdered, DateDelivered, DateReceived  ");
+    order.CustomerName = "Rachel";
+    order.Email = "r@g.c";
+    order.Address = "hahagana 23";
+    order.DateOrdered = DateTime.MinValue;
+    order.DateDelivered = DateTime.MinValue;
+    order.DateReceived = DateTime.MinValue;
+
 
     //order.CustomerName = Console.ReadLine();
     //order.Email = Console.ReadLine();
@@ -303,7 +303,20 @@ void Main()
     //order.DateDelivered = DateInputControl(Console.ReadLine());
     //order.DateReceived = DateInputControl(Console.ReadLine());
     //dalxml?.Order.Add(order);
+    try
+    {
+        IEnumerable<Order>? orders = dalxml?.Order?.GetAll();
+        for(int i=0;i<orders?.Count?;i++)
+        {
+            Console.WriteLine(order.ToString());
+        }
+        //foreach (Order order in orders)
+        //    Console.WriteLine(order.ToString());
+    }
+    catch
+    {
 
+    }
 
     //OptionsForMain number = OptionsForMain.Exit;
     //string? input;
@@ -328,6 +341,6 @@ void Main()
     //    }
     //}
     //if (number != 0)
-    //   ControlOptions(number);
+    //    ControlOptions(number);
 }
 Main();
