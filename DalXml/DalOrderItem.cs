@@ -1,11 +1,23 @@
 ﻿using DalApi;
+using DO;
+using System.Xml.Linq;
 
 namespace Dal;
 internal class DalOrderItem : IOrderItem
 {
-    public int Add(DO.OrderItem item)
+    public int Add(DO.OrderItem orderItem)
     {
-        throw new NotImplementedException();
+        //
+        XElement? configXml = XDocument.Load(@"..\..\..\..\xml\Config.xml").Root;
+        string? id = (string?)(configXml?.Element("OrderItemId"));
+        orderItem.OrderItemId = Convert.ToInt32(id);
+        id = (orderItem.OrderItemId + 1).ToString();
+        configXml?.Element("OrderItemId")?.SetValue(id);
+        configXml?.Save(@"..\..\..\..\xml\Config.xml");
+        StreamReader? reader = new(@"..\..\..\..\xml\OrderItem.xml");
+
+
+        return 1;
     }
 
     public void Delete(int id)

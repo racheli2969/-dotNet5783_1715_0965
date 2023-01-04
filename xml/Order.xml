@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Orders>
-	<order>
-	<OrderId>1</OrderId>
-	<CustomerName>gg</CustomerName>
-	<Email>hh</Email>
-	<Address>55</Address>
-	<DateOrdered>555</DateOrdered>
-	<DateDelivered>555</DateDelivered>
-	<DateReceived>55</DateReceived>
-	</order>
-</Orders>
+<Orders xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
