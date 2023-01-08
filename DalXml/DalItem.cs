@@ -2,7 +2,6 @@
 using DalApi;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Linq;
 
 internal class DalItem : IItem
@@ -17,12 +16,13 @@ internal class DalItem : IItem
         id = (item.ID + 1).ToString();
         configXml?.Element("ItemId")?.SetValue(id);
         configXml?.Save(@"..\..\..\..\xml\Config.xml");
-        XElement newItem = new("Item");
-        newItem.Add(new XElement("Id", item.ID));
-        newItem.Add(new XElement("Name", item.Name));
-        newItem.Add(new XElement("Category", item.Category));
-        newItem.Add(new XElement("Price", item.Price));
-        newItem.Add(new XElement("AmountInStock", item.AmountInStock));
+        XElement newItem = new("Item",
+                               new XElement("Id", item.ID),
+                               new XElement("Name", item.Name),
+                               new XElement("Category", item.Category),
+                               new XElement("Price", item.Price),
+                               new XElement("AmountInStock", item.AmountInStock)
+                               );
         itemsXml?.Add(newItem);
         itemsXml?.Save(@"..\..\..\..\xml\Item.xml");
         return item.ID;
@@ -40,9 +40,6 @@ internal class DalItem : IItem
 
     public bool Available(int id, int amount)
     {
-        //from v in itemsXml?.Elements("Item")
-        //where id.ToString().CompareTo(v.Element("Id").Value.ToString())//(s => (id.ToString().CompareTo(s.Element("Id").ToString()) == 0))
-        //select v.Elements("AmountInStock").FirstOrDefault();
         XElement? item = (itemsXml?.Elements("Item")?.
                       Where(s => (id.ToString().CompareTo(s?.Element("Id")?.ToString()) == 0))
                       .Elements("AmountInStock").FirstOrDefault());
@@ -57,24 +54,30 @@ internal class DalItem : IItem
                      .FirstOrDefault());
         item?.Remove();
     }
-
-    private IEnumerable<DO.Item>? GetAll(Func<XElement, bool>? func = null, string? a = null)
-    {
-        List<DalItem?>? items;
-        if (func == null)
-            //returns null
-            items = (itemsXml?.Elements("Item")) as List<DalItem?>;
-        else
-            items = (itemsXml?.Elements("Item")?.Where(func)) as List<DalItem?>;
-        if (items == null)
-            throw new EntityNotFoundException();
-        return (IEnumerable<DO.Item>?)items;
-    }
-
     public IEnumerable<DO.Item>? GetAll(Func<DO.Item, bool>? func = null)
     {
 
-        return GetAll(null);
+        List<XElement>? itemsXelement;
+        List<DO.Item?>? items = new();
+        itemsXelement = ((itemsXml?.Elements("Item"))?.ToList());
+        if (itemsXelement == null)
+            throw new EntityNotFoundException();
+        DO.Item item;
+        for (int i = 0; i < itemsXelement?.Count; i++)
+        {
+            item = new();
+            item.ID = int.Parse(itemsXelement.ElementAt(i).Element("Id")?.Value ?? 0.ToString());
+            item.Name = itemsXelement.ElementAt(i).Element("Name")?.Value.ToString();
+            DO.BookGenre bookGenre = new DO.BookGenre();
+            Enum.TryParse(itemsXelement.ElementAt(i).Element("Category")?.Value.ToString(), out bookGenre);
+            item.Category = bookGenre;
+            item.Price = double.Parse(itemsXelement.ElementAt(i)?.Element("Price")?.Value ?? 0.ToString());
+            item.AmountInStock = int.Parse(itemsXelement.ElementAt(i).Element("AmountInStock")?.Value ?? 0.ToString());
+            items.Add(item);
+        }
+        if (func != null)
+            items = items.Where(item => item.HasValue && func((DO.Item)item)).ToList();
+        return (IEnumerable<DO.Item>?)items.Cast<DO.Item>();
     }
 
     public void Update(int id, int amount)
@@ -92,7 +95,7 @@ internal class DalItem : IItem
         XElement? item = (itemsXml?.Elements("Item")?.
                        Where(s => ((itemToUpdate.ID).ToString().CompareTo(s.Element("Id")?.Value.ToString()) == 0))
                      .FirstOrDefault());
-        item?.Element("Name")?.SetValue(itemToUpdate.Name);
+        item?.Element("Name")?.SetValue(itemToUpdate.Name ?? "");
         item?.Element("Category")?.SetValue(itemToUpdate.Category);
         item?.Element("Price")?.SetValue(itemToUpdate.Price);
         item?.Element("AmountInStock")?.SetValue(itemToUpdate.AmountInStock);

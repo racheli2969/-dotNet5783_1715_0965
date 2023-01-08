@@ -303,15 +303,21 @@ void Main()
     //order.DateDelivered = DateInputControl(Console.ReadLine());
     //order.DateReceived = DateInputControl(Console.ReadLine());
     //dalxml?.Order.Add(order);
+    //dalxml?.Order.Add(order);
+    IEnumerable<Item>? items = dalxml?.Item?.GetAll();
+    foreach (Item item in items)
+        Console.WriteLine(item.ToString());
+
     try
     {
-        IEnumerable<Order>? orders = dalxml?.Order?.GetAll();
-        for(int i=0;i<orders?.Count?;i++)
-        {
-            Console.WriteLine(order.ToString());
-        }
+        List<Order>? orders = (List<Order>?)(dalxml?.Order?.GetAll(o=>o.OrderId<3));
+
         //foreach (Order order in orders)
-        //    Console.WriteLine(order.ToString());
+        for (int i = 0; i < orders?.Count; i++)
+        {
+            Console.WriteLine(orders[i]);
+        }
+         
     }
     catch
     {
