@@ -2,7 +2,7 @@
 using DalApi;
 using DO;
 
-IDal dalList = new DalList();
+IDal? dalList = DalApi.Factory.Get();
 void PrintOptions()
 {
     Console.WriteLine("To Exit:0,\r\nTo  Add: a,\r\nTo View By Id: b,\r\nTo View All:c,\r\nTo Update: d,\r\nTo Delete: e");
@@ -38,7 +38,7 @@ void Add(OptionsForMain characterType)
             item.Price = doubleTemp;
             int.TryParse(Console.ReadLine(), out intTemp);
             item.AmountInStock = intTemp;
-            dalList.Item.Add(item);
+            dalList?.Item.Add(item);
             break;
         case OptionsForMain.Order:
             Order order = new Order();
@@ -49,7 +49,7 @@ void Add(OptionsForMain characterType)
             order.DateOrdered = DateInputControl(Console.ReadLine());
             order.DateDelivered = DateInputControl(Console.ReadLine());
             order.DateReceived = DateInputControl(Console.ReadLine());
-            dalList.Order.Add(order);
+            dalList?.Order.Add(order);
             break;
         case OptionsForMain.OrderItem:
             OrderItem orderItem = new OrderItem();
@@ -61,7 +61,7 @@ void Add(OptionsForMain characterType)
             orderItem.OrderItemId = intTemp;
             double.TryParse(Console.ReadLine(), out doubleTemp);
             orderItem.Price = doubleTemp;
-            dalList.OrderItem.Add(orderItem);
+            dalList?.OrderItem.Add(orderItem);
             break;
     }
 }
@@ -75,20 +75,20 @@ void GetById(OptionsForMain characterType)
             case OptionsForMain.Item:
                 Console.WriteLine("enter id");
                 int.TryParse(Console.ReadLine(), out a);
-                Item item = dalList.Item.GetById(a);
-                Console.WriteLine(item.ToString());
+                List<Item>? item = (List<Item>?)dalList?.Item?.GetAll(b => b.ID == a);
+                Console.WriteLine(item?[0].ToString());
                 break;
             case OptionsForMain.Order:
                 Console.WriteLine("enter id");
                 int.TryParse(Console.ReadLine(), out a);
-                Order order = dalList.Order.GetById(a);
-                Console.WriteLine(order.ToString());
+                List<Order>? order = (List<Order>?)dalList?.Order?.GetAll(b => b.OrderId == a);
+                Console.WriteLine(order?[0].ToString());
                 break;
             case OptionsForMain.OrderItem:
                 Console.WriteLine("enter id");
                 int.TryParse(Console.ReadLine(), out a);
-                OrderItem orderItem = dalList.OrderItem.GetById(a);
-                Console.WriteLine(orderItem.ToString());
+                List<OrderItem>? orderItem = (List<OrderItem>?)dalList?.OrderItem?.GetAll(b => b.OrderItemId == a);
+                Console.WriteLine(orderItem?[0].ToString());
                 break;
         }
     }
@@ -104,17 +104,17 @@ void GetAll(OptionsForMain characterType)
         switch (characterType)
         {
             case OptionsForMain.Item:
-                IEnumerable<Item> items = dalList.Item.GetAll();
+                IEnumerable<Item>? items = dalList?.Item?.GetAll();
                 foreach (Item item in items)
                     Console.WriteLine(item.ToString());
                 break;
             case OptionsForMain.Order:
-                IEnumerable<Order> orders = dalList.Order.GetAll();
+                IEnumerable<Order>? orders = dalList?.Order?.GetAll();
                 foreach (Order order in orders)
                     Console.WriteLine(order.ToString());
                 break;
             case OptionsForMain.OrderItem:
-                IEnumerable<OrderItem> orderItems = dalList.OrderItem.GetAll();
+                IEnumerable<OrderItem>? orderItems = dalList?.OrderItem?.GetAll();
                 foreach (OrderItem orderItem in orderItems)
                     Console.WriteLine(orderItem.ToString());
                 break;
@@ -158,7 +158,7 @@ void Update(OptionsForMain characterType)
                 order.DateOrdered = DateInputControl(Console.ReadLine());
                 order.DateDelivered = DateInputControl(Console.ReadLine());
                 order.DateReceived = DateInputControl(Console.ReadLine());
-                dalList.Order.Update(order);
+                dalList?.Order.Update(order);
                 break;
             case OptionsForMain.OrderItem:
                 OrderItem orderItem = new OrderItem();
@@ -173,7 +173,7 @@ void Update(OptionsForMain characterType)
                 orderItem.OrderItemId = intTemp;
                 double.TryParse(Console.ReadLine(), out doubleTemp);
                 orderItem.Price = doubleTemp;
-                dalList.OrderItem.Update(orderItem);
+                dalList?.OrderItem.Update(orderItem);
                 break;
         }
     }
@@ -192,17 +192,17 @@ void Delete(OptionsForMain characterType)
             case OptionsForMain.Item:
                 Console.WriteLine("enter id of book to be deleted");
                 int.TryParse(Console.ReadLine(), out id);
-                dalList.Item.Delete(id);
+                dalList?.Item.Delete(id);
                 break;
             case OptionsForMain.Order:
                 Console.WriteLine("enter id of order to be deleted");
                 int.TryParse(Console.ReadLine(), out id);
-                dalList.Order.Delete(id);
+                dalList?.Order.Delete(id);
                 break;
             case OptionsForMain.OrderItem:
                 Console.WriteLine("enter id of order item to be deleted");
                 int.TryParse(Console.ReadLine(), out id);
-                dalList.OrderItem.Delete(id);
+                dalList?.OrderItem.Delete(id);
                 break;
         }
     }
@@ -248,7 +248,7 @@ void ControlOptions(OptionsForMain characterType)
 void Main()
 {
     OptionsForMain number;
-    string input;
+    string? input;
     DataSource.S_Initalize();
     Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
     input = Console.ReadLine();

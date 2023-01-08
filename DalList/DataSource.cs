@@ -12,8 +12,8 @@ public static class DataSource
     public static class Config
     {
         /// <summary>
-    /// id of product length of 6 digits
-    /// </summary>
+        /// id of product length of 6 digits
+        /// </summary>
         public static int ItemId = 100000;
         /// <summary>
         /// id of order
@@ -24,16 +24,16 @@ public static class DataSource
         /// </summary>
         public static int OrderItemId = 1;
         /// <summary>
-    /// forwards the order id in 1
-    /// </summary>
+        /// forwards the order id in 1
+        /// </summary>
         public static int LastOrderId { get { return OrderId++; } }
         /// <summary>
         /// forwards the order item id by 1
         /// </summary>
         public static int LastOrderItemId { get { return OrderItemId++; } }
         /// <summary>
-     /// forwards the product id by 1
-     /// </summary>
+        /// forwards the product id by 1
+        /// </summary>
         public static int LastItemId { get { return ItemId++; } }
     }
     /// <summary>
@@ -43,15 +43,15 @@ public static class DataSource
     /// <summary>
     /// order items list
     /// </summary>
-    public static List<OrderItem?>OrderItems = new List<OrderItem?>();
+    public static List<OrderItem?> OrderItems = new List<OrderItem?>();
     /// <summary>
     /// orders list
     /// </summary>
-    public static List<Order?>Orders = new List<Order?>();
+    public static List<Order?> Orders = new List<Order?>();
     const int items = 10;
     const int orders = 20;
     const int orderItems = 40;
-   public static bool wasInitalized = false;
+    public static bool wasInitalized = false;
     /// <summary>
     /// data to randomize to initalize the data lists
     /// </summary>
@@ -61,7 +61,7 @@ public static class DataSource
     static string[] streets = { "Zait", "Tamar", "Hertzl", "Menachem Begin", "Hahagana", "Lehi", "Palmach", "Rimon", "Yachad shivtei israel", "Ezra", "Binyamin", "Yaakov" };
     static string[] cities = { "Yerushalaim", "Rehovot", "Beit shemesh", "Beitar", "Rishon Letzion", "NesZiona" };
     public static readonly Random Number = new Random();
-   
+
     /// <summary>
     /// creates product data
     /// </summary>
@@ -69,26 +69,26 @@ public static class DataSource
     {
         for (int i = 0; i < items; i++)
         {
-           
-                Item item = new Item();
-                int counter = 0;
-                item.Name = bookNames[Number.Next(0, bookNames.Length)].Item1;
-                item.Price = Number.Next(35, 140);
-                item.ID = Config.LastItemId;
-                item.Category = bookNames[Number.Next(1, bookNames.Length)].Item2;
 
-                for (int j = 0; j < items; j++)
-                {
-                    if (item.AmountInStock == 0)
-                        counter++;
-                }
-                if (items / counter > (0.05 * items))
-                    item.AmountInStock = Number.Next(1, 140);
-                else
-                    item.AmountInStock = 0;
-                Items?.Add(item);
+            Item item = new Item();
+            int counter = 0;
+            item.Name = bookNames[Number.Next(0, bookNames.Length)].Item1;
+            item.Price = Number.Next(35, 140);
+            item.ID = Config.LastItemId;
+            item.Category = bookNames[Number.Next(1, bookNames.Length)].Item2;
+
+            for (int j = 0; j < items; j++)
+            {
+                if (item.AmountInStock == 0)
+                    counter++;
             }
-        
+            if (items / counter > (0.05 * items))
+                item.AmountInStock = Number.Next(1, 140);
+            else
+                item.AmountInStock = 0;
+            Items?.Add(item);
+        }
+
     }
     /// <summary>
     /// creates order data
@@ -99,7 +99,7 @@ public static class DataSource
         for (int i = 0; i < orders; i++)
         {
             order.OrderId = Config.LastOrderId;
-            order.Address = streets[Number.NextInt64(0, streets.Length)] +", "+ Number.Next(0, 100) + ", " + cities[Number.Next(0, cities.Length)];
+            order.Address = streets[Number.NextInt64(0, streets.Length)] + ", " + Number.Next(0, 100) + ", " + cities[Number.Next(0, cities.Length)];
             order.CustomerName = customerNames[Number.NextInt64(0, customerNames.Length)];
             order.Email = emails[Number.NextInt64(0, emails.Length)];
             order.DateOrdered = DateTime.Now;
@@ -107,22 +107,22 @@ public static class DataSource
             order.DateDelivered = DateTime.MinValue;
             order.DateReceived = DateTime.MinValue;
             TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
-            order.DateOrdered= ((DateTime)((Order)order).DateOrdered).Subtract(ts);
-             ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
+            order.DateOrdered = ((DateTime)((Order)order).DateOrdered).Subtract(ts);
+            ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
             if (i < 0.8 * orders)//80% of orders date of delivery started
             {
                 order.DateDelivered = order.DateOrdered;
-                order.DateDelivered= ((DateTime)((Order)order).DateDelivered).Add(ts);
+                order.DateDelivered = ((DateTime)((Order)order).DateDelivered).Add(ts);
             }
             ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
             if (i < 0.6 * orders)//60% of orders
             {
                 order.DateReceived = order.DateDelivered;
-                order.DateReceived=((DateTime)((Order)order).DateReceived).Add(ts);
+                order.DateReceived = ((DateTime)((Order)order).DateReceived).Add(ts);
             }
 
             Orders.Add(order);
-    
+
         }
     }
 
@@ -131,27 +131,27 @@ public static class DataSource
     /// </summary>
     static void CreateOrderItemData()
     {
-        for (int i = 0; i < 2*orders; i++)
+        for (int i = 0; i < 2 * orders; i++)
         {
             OrderItem orderItem = new OrderItem();
             orderItem.OrderItemId = Config.LastOrderItemId;
             if (i < 20)
             {
-                if(Orders[i].HasValue)
-                orderItem.OrderID = Orders[i].Value.OrderId;
-                
+                if (Orders[i].HasValue)
+                    orderItem.OrderID = Orders[i].Value.OrderId;
+
             }
             else
             {
-                if (Orders[i-20].HasValue)
-                    orderItem.OrderID = Orders[i-20].Value.OrderId;
+                if (Orders[i - 20].HasValue)
+                    orderItem.OrderID = Orders[i - 20].Value.OrderId;
             }
-            if(Items[Number.Next(0, Items.Count)].HasValue)
-            orderItem.ItemId = Items[Number.Next(0, Items.Count)].Value.ID;
+            if (Items[Number.Next(0, Items.Count)].HasValue)
+                orderItem.ItemId = Items[Number.Next(0, Items.Count)].Value.ID;
             for (int j = 0; j < Items.Count; j++)
             {
                 if (Items[j].Value.ID == orderItem.ItemId)
-                    orderItem.Price =Items[j].Value.Price;
+                    orderItem.Price = Items[j].Value.Price;
             }
             orderItem.Amount = Number.Next(1, 3);
             OrderItems.Add(orderItem);
@@ -165,9 +165,9 @@ public static class DataSource
         CreateProductData();
         CreateOrderData();
         CreateOrderItemData();
-        wasInitalized=true;
+        wasInitalized = true;
     }
-    
+
 }
 
 

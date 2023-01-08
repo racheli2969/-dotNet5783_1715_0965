@@ -11,15 +11,11 @@ public struct Item
     public int ID { get; set; }
 
     public override string ToString() => $@"
-Product ID={ID} 
-name:{Name}
-category - {Category}
-    	Price: {Price}
-    	 In stock: {AmountInStock}
+ID: {ID} 
+Name: {Name}
+Category: {Category}
+Price: {Price}
+AmountInStock: {AmountInStock}
 ";
 
-    public static explicit operator Item(int? v)
-    {
-        throw new NotImplementedException();
-    }
 }
