@@ -22,23 +22,9 @@ internal class DalItem : IItem
 
     }
     /// <summary>
-    /// finds an item by id 
-    /// </summary>
-    /// <param name="Id"></param>
-    /// <returns>returns the item</returns>
-    /// <exception cref="Exception">not found</exception>
-    /*public Item GetById(int Id)
-    {
-        Item? item = DataSource.Items.Find(x => ((Item)x).ID == Id);
-        if (((Item)item).ID != 0)
-            return ((Item)item);
-        throw new EntityNotFoundException();
-    }*/
-    /// <summary>
     /// returns all the existing items
     /// </summary>
     /// <returns></returns>
- 
     public IEnumerable<Item>? GetAll(Func<Item, bool>? func)
     {
         List<Item?> items;
@@ -48,8 +34,7 @@ internal class DalItem : IItem
         if (items == null)
             throw new EntityNotFoundException();
         return items.Cast<Item>(); 
-    }
-    
+    } 
     /// <summary>
     /// gets an id and deletes that item
     /// </summary>

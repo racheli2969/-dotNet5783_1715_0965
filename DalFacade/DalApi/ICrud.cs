@@ -9,16 +9,22 @@ public interface ICrud<T>
     /// <param name="item">an object with a type of:item/order/orderitem</param>
     /// <returns>the id of the added obj</returns>
     public int Add(T item);
+    /// <summary>
+    /// deletes the item from the data 
+    /// </summary>
+    /// <param name="id">id of the item to delete</param>
     public void Delete(int id);
+    /// <summary>
+    /// updates the item to the received object
+    /// </summary>
+    /// <param name="item"> updated item</param>
     public void Update(T item);
     /// <summary>
-    /// finds a specified type by id 
+    /// gets all items that match the requested paremeter
     /// </summary>
-    /// <param name="Id"></param>
-    /// <returns>returns the item</returns>
-    /// <exception cref="Exception">not found</exception>
-    //public T? GetById(int id);
-    public IEnumerable<T?>? GetAll(Func<T,bool>?func=null);
+    /// <param name="func">required function condition</param>
+    /// <returns>requested elements</returns>
+    public IEnumerable<T?>? GetAll(Func<T,bool>? func=null);
 
 }
 

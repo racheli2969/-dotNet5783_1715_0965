@@ -26,12 +26,12 @@ namespace PL
         {
             InitializeComponent();
             Bl = b;
-            CategorySelector.Items.Clear();
-        string[] enumOptions= Enum.GetNames(typeof(BO.BookGenre));
+            //CategorySelector.Items.Clear();
+            string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
             List<string> options = new();
             options.Insert(0, "GetAll");
             options.AddRange(enumOptions);
-            CategorySelector.ItemsSource =options;
+            CategorySelector.ItemsSource = options;
             ProductListView.ItemsSource = Bl.Product.GetProductList();
         }
 
@@ -45,8 +45,8 @@ namespace PL
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (CategorySelector?.SelectedItem?.ToString()?.CompareTo("GetAll")!=0)
-                ProductListView.ItemsSource = Bl.Product.GetProductList((BO.BookGenre?)Enum.Parse( typeof(BO.BookGenre),CategorySelector.SelectedItem.ToString()));
+            if (CategorySelector?.SelectedItem?.ToString()?.CompareTo("GetAll") != 0)
+                ProductListView.ItemsSource = Bl.Product.GetProductList((BO.BookGenre?)Enum.Parse(typeof(BO.BookGenre), CategorySelector.SelectedItem.ToString()));
             else
                 ProductListView.ItemsSource = Bl.Product.GetProductList();
 
@@ -54,7 +54,7 @@ namespace PL
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Product p = new(Bl,(ProductListView.SelectedItem as BO.ProductForList).ItemId);
+            Product p = new(Bl, (ProductListView.SelectedItem as BO.ProductForList).ItemId);
             p.Show();
             this.Close();
         }

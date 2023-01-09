@@ -10,7 +10,7 @@
   <Item>
     <Id>100001</Id>
     <Name>4</Name>
-    <Category>SciFi</Category>
+    <Category>Biography</Category>
     <Price>4</Price>
     <AmountInStock>4</AmountInStock>
   </Item>
@@ -28,5 +28,4 @@
     <Price>34</Price>
     <AmountInStock>34</AmountInStock>
   </Item>
- 
 </Items>
