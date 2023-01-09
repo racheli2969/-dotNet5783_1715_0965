@@ -236,19 +236,22 @@ void Delete(OptionsForMain characterType)
         Console.WriteLine(msg);
     }
 }
+
 /// <summary>
 /// navigates between the options of deleting etc...
 /// </summary>
 void ControlOptions(OptionsForMain characterType)
 {
     PrintOptions();
-    bool a=false;
-    OptionsOfActions x= OptionsOfActions.Exit;
-    while (!a)
-    {
-       a= OptionsOfActions.TryParse(Console.ReadLine(), out x);
-        Console.WriteLine("Sorry, didn't catch that try again\n");
-    }
+    bool a = false;
+    OptionsOfActions x = DO.OptionsOfActions.Exit;
+    a = DO.OptionsOfActions.TryParse(Console.ReadLine(), out x);
+    //while (!a)
+    //{
+    //    Console.WriteLine("Sorry, didn't catch that try again\n");
+    //    a = Enum.TryParse(Console.ReadLine(), out x);  
+    //}
+
     while (x != OptionsOfActions.Exit)
     {
         switch (x)
@@ -278,35 +281,72 @@ void ControlOptions(OptionsForMain characterType)
 
 void Main()
 {
+    //dalxml?.Item.GetAll();
+
     //double doubleTemp;
     //int intTemp;
-    //Item item = new Item();
-    //Console.WriteLine("enter details for new book: Name, Category, Price, Is In Stock");
-    //item.Name = Console.ReadLine();
-    //BookGenre bookg;// = new BookCategory();
-    //BookGenre.TryParse(Console.ReadLine(), out bookg);
-    //item.Category = bookg;
-    //double.TryParse(Console.ReadLine(), out doubleTemp);
-    //item.Price = doubleTemp;
-    //int.TryParse(Console.ReadLine(), out intTemp);
-    //item.AmountInStock = intTemp;
-    //dalxml.Item.Add(item);
-    //int id =int.Parse(Console.ReadLine());
-    //dalxml.Item.Available(id);
+
+    DO.Order order = new DO.Order();
+    Console.WriteLine("enter details for new order: CustomerName, Email, Address, DateOrdered, DateDelivered, DateReceived  ");
+    order.CustomerName = "Rachel";
+    order.Email = "r@g.c";
+    order.Address = "hahagana 23";
+    order.DateOrdered = DateTime.MinValue;
+    order.DateDelivered = DateTime.MinValue;
+    order.DateReceived = DateTime.MinValue;
 
 
-    OptionsForMain number;
-    string? input;
-    Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
-    input = Console.ReadLine();
-    OptionsForMain.TryParse(input, out number);
-    while (number < OptionsForMain.Exit || number > OptionsForMain.OrderItem)
+    //order.CustomerName = Console.ReadLine();
+    //order.Email = Console.ReadLine();
+    //order.Address = Console.ReadLine();
+    //order.DateOrdered = DateInputControl(Console.ReadLine());
+    //order.DateDelivered = DateInputControl(Console.ReadLine());
+    //order.DateReceived = DateInputControl(Console.ReadLine());
+    //dalxml?.Order.Add(order);
+    //dalxml?.Order.Add(order);
+    IEnumerable<Item>? items = dalxml?.Item?.GetAll();
+    foreach (Item item in items)
+        Console.WriteLine(item.ToString());
+
+    try
     {
-        Console.WriteLine("Input needs to be between 0 and 3\nPlease try again");//three options:order, item and order item
-        input = Console.ReadLine();
-        OptionsForMain.TryParse(input, out number);
+        List<Order>? orders = (List<Order>?)(dalxml?.Order?.GetAll(o=>o.OrderId<3));
+
+        //foreach (Order order in orders)
+        for (int i = 0; i < orders?.Count; i++)
+        {
+            Console.WriteLine(orders[i]);
+        }
+         
     }
-    if (number != 0)
-        ControlOptions(number);
+    catch
+    {
+
+    }
+
+    //OptionsForMain number = OptionsForMain.Exit;
+    //string? input;
+    //Console.WriteLine("For Item Enter 1\nFor Order Enter 2\nFor Order Item Enter 3\nTo Exit Enter 0\n");
+    //input = Console.ReadLine();
+    //bool b = false;
+    //b = OptionsForMain.TryParse(input, out number);
+    //while (!b)
+    //{
+    //    Console.WriteLine("Sorry, didn't catch that try again\n");
+    //    b = OptionsForMain.TryParse(input, out number);
+    //}
+    //while (number < OptionsForMain.Exit || number > OptionsForMain.OrderItem)
+    //{
+    //    Console.WriteLine("Input needs to be between 0 and 3\nPlease try again");//three options:order, item and order item
+    //    input = Console.ReadLine();
+    //    b = OptionsForMain.TryParse(input, out number);
+    //    while (!b)
+    //    {
+    //        Console.WriteLine("Sorry, didn't catch that try again\n");
+    //        b = OptionsForMain.TryParse(input, out number);
+    //    }
+    //}
+    //if (number != 0)
+    //    ControlOptions(number);
 }
 Main();

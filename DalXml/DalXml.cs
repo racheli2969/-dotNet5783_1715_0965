@@ -2,9 +2,9 @@
 using DalApi;
 sealed public class DalXml : IDal
 {
-    public IItem Item { get; } = new Dal.Item();
+    public IItem Item { get; } = new Dal.DalItem();
 
-    public IOrder Order { get; } = new Dal.Order();
+    public IOrder Order { get; } = new Dal.DalOrder();
 
-    public IOrderItem OrderItem { get; } = new Dal.OrderItem();
+    public IOrderItem OrderItem { get; } = new Dal.DalOrderItem();
 }
