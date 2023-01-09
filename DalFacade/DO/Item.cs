@@ -18,4 +18,8 @@ Price: {Price}
 AmountInStock: {AmountInStock}
 ";
 
+    public static explicit operator Item(double v)
+    {
+        throw new NotImplementedException();
+    }
 }
