@@ -19,7 +19,7 @@ internal class DalOrderItem : IOrderItem
         XmlRootAttribute xRoot = new XmlRootAttribute();
         xRoot.ElementName = "OrderItems";
         xRoot.IsNullable = true;
-        XmlSerializer ser = new XmlSerializer(typeof(List<DO.Order>), xRoot);
+        XmlSerializer ser = new XmlSerializer(typeof(List<DO.OrderItem>), xRoot);
         List<DO.OrderItem>? lst;
         lst = (List<DO.OrderItem>?)ser.Deserialize(r);
         r.Close();
@@ -35,7 +35,7 @@ internal class DalOrderItem : IOrderItem
         XmlRootAttribute xRoot = new XmlRootAttribute();
         xRoot.ElementName = "OrderItems";
         xRoot.IsNullable = true;
-        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Order>), xRoot);
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>), xRoot);
         StreamReader reader = new StreamReader(@"..\..\..\..\xml\OrderItem.xml");
         List<DO.OrderItem>? lst = new();
         lst = (List<DO.OrderItem>?)serializer.Deserialize(reader);
@@ -54,7 +54,7 @@ internal class DalOrderItem : IOrderItem
         XmlRootAttribute xRoot = new XmlRootAttribute();
         xRoot.ElementName = "OrderItems";
         xRoot.IsNullable = true;
-        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Order>), xRoot);
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>), xRoot);
         StreamReader reader = new StreamReader(@"..\..\..\..\xml\OrderItem.xml");
         List<DO.OrderItem>? lst = (List<DO.OrderItem>?)serializer.Deserialize(reader);
         reader.Close();
@@ -71,7 +71,7 @@ internal class DalOrderItem : IOrderItem
         XmlRootAttribute xRoot = new XmlRootAttribute();
         xRoot.ElementName = "OrderItems";
         xRoot.IsNullable = true;
-        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.Order>), xRoot);
+        XmlSerializer serializer = new XmlSerializer(typeof(List<DO.OrderItem>), xRoot);
         StreamReader reader = new StreamReader(@"..\..\..\..\xml\OrderItem.xml");
         List<DO.OrderItem>? lst = (List<DO.OrderItem>?)serializer.Deserialize(reader);
         int i = lst.FindIndex(o => orderItem.OrderItemId == o.OrderItemId);

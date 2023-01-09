@@ -25,7 +25,7 @@ public class BlProduct : BlApi.IProduct
             temp.ItemPrice = productsFromDal[i].Price;
             products.Add(temp);
         }
-        return products;
+        return products??throw new BlApi.BlEntityNotFoundException();
     }
     public BO.Product GetProductForManager(int id)
     {

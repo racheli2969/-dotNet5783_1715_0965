@@ -27,7 +27,7 @@ using DalApi;
 using DO;
 using System;
 
-IDal dalxml = new DalXml();
+IDal? dalxml = DalApi.Factory.Get();
 void PrintOptions()
 {
     Console.WriteLine("To Exit:0,\r\nTo  Add: a,\r\nTo View By Id: b,\r\nTo View All:c,\r\nTo Update: d,\r\nTo Delete: e");
