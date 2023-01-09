@@ -13,12 +13,16 @@ namespace PL_
     {
         private IBl Bl { get; set; }
         private BO.Product product = new();
+        /// <summary>
+        /// a constructor for adding 
+        /// </summary>
+        /// <param name="b"></param>
         public Product(IBl b)
         {
             InitializeComponent();
             Bl = b;
-            btnUpdateProduct.Visibility=Visibility.Hidden;
-            btnDeleteProduct.Visibility=Visibility.Hidden;
+            btnUpdateProduct.Visibility = Visibility.Hidden;
+            btnDeleteProduct.Visibility = Visibility.Hidden;
             cmbCategoryForProduct.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
         }
         public Product(IBl b, int id)
