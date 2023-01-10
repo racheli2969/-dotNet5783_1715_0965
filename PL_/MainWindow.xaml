@@ -8,5 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Margin="10,10,0,-342" RenderTransformOrigin="0,0.5">
         <Button x:Name="btnEnter" Content="Admin" HorizontalAlignment="Left" Margin="326,129,0,0" VerticalAlignment="Top" Click="BtnEnter_Click" RenderTransformOrigin="2.532,3.557" Height="57" Width="97"/>
+        <TextBox TextWrapping="Wrap" Text="Id" Margin="577,210,174,522"/>
+        <Button Content="Track" Margin="577,249,150,477"/>
+        <Button Content="New Order" Margin="131,269,559,443" Click="Button_Click"/>
     </Grid>
 </Window>

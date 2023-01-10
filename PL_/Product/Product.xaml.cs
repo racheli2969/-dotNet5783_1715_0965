@@ -2,9 +2,8 @@
 using System.Windows;
 using BlApi;
 using System.Text.RegularExpressions;
-using PL;
 
-namespace PL_
+namespace PL
 {
     /// <summary>
     /// Interaction logic for Product.xaml

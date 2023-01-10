@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using PL_.Product;
+using System.Windows;
 
 namespace PL
 {
@@ -9,17 +10,26 @@ namespace PL
     public partial class MainWindow : Window
     {
         private BlApi.IBl? Bl { get; set; }
+        private ProductListWindow productListWindow { get; set; }
+        private PL_.Product.ProductCatalog ProductCatalog { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             Bl = BlApi.Factory.Get();
-           // MessageBox.Show("Welcome to My store");
+            productListWindow= new(b: Bl ?? null, this);
+            ProductCatalog=new(b: Bl?? null,this);
+            // MessageBox.Show("Welcome to My store");
         }
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
-            ProductListWindow PL = new(b: Bl??null,this);
-            PL.Show();
+            productListWindow.Show();
+            this.Hide();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           ProductCatalog.Show();
             this.Hide();
         }
     }
