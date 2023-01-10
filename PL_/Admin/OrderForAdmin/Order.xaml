@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="Order" Height="450" Width="800">
     <Grid>
-        
+        <!--OrderId 
+        CustomerName 
+        Email 
+        OrderStatus 
+        DateDelivered 
+        DateReceived
+        <OrderItem>Items SumOfOrder-->
     </Grid>
 </Window>
