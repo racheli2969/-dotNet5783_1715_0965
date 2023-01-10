@@ -20,7 +20,9 @@ internal class DalOrderItem : IOrderItem
     /// <summary>
     /// returns existing order items
     /// </summary>
+#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
     public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool> func)
+#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
     {
         List<OrderItem?> orderItems;
         if (func == null)
@@ -37,7 +39,7 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public void Delete(int id)
     {
-        int index = DataSource.OrderItems.FindIndex(orderItem => ((OrderItem)orderItem).OrderItemId == id);
+        int index = DataSource.OrderItems.FindIndex(orderItem => orderItem.HasValue&&((OrderItem)orderItem).OrderItemId == id);
         if (index < 0)
             throw new EntityNotFoundException();
         DataSource.OrderItems.RemoveAt(index);
@@ -50,7 +52,7 @@ internal class DalOrderItem : IOrderItem
     /// <exception cref="Exception"></exception>
     public void Update(OrderItem oi)
     {
-        int index = DataSource.OrderItems.FindIndex(orderItem => ((OrderItem)orderItem).OrderItemId == oi.OrderItemId);
+        int index = DataSource.OrderItems.FindIndex(orderItem => orderItem.HasValue&&((OrderItem)orderItem).OrderItemId == oi.OrderItemId);
         if (index < 0)
             throw new EntityNotFoundException();
         DataSource.OrderItems[index] = oi;

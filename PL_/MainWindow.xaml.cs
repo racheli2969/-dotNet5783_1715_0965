@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PL_.Product;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PL
 {
@@ -22,18 +10,27 @@ namespace PL
     public partial class MainWindow : Window
     {
         private BlApi.IBl? Bl { get; set; }
+        private ProductListWindow productListWindow { get; set; }
+        private PL_.Product.ProductCatalog ProductCatalog { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             Bl = BlApi.Factory.Get();
-           // MessageBox.Show("Welcome to My store");
+            productListWindow= new(b: Bl ?? null, this);
+            ProductCatalog=new(b: Bl?? null,this);
+            // MessageBox.Show("Welcome to My store");
         }
 
         private void BtnEnter_Click(object sender, RoutedEventArgs e)
         {
-            ProductListWindow PL = new(Bl);
-            PL.Show();
-            this.Close();
+            productListWindow.Show();
+            this.Hide();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           ProductCatalog.Show();
+            this.Hide();
         }
     }
 }
