@@ -145,7 +145,7 @@ void Update(OptionsForMain characterType)
                 item.AmountInStock = intTemp;
                 int.TryParse(Console.ReadLine(), out intTemp);
                 item.ID = intTemp;
-                dalList.Item.Update(item);
+                dalList?.Item.Update(item);
                 break;
             case OptionsForMain.Order:
                 Order order = new Order();
@@ -217,7 +217,7 @@ void Delete(OptionsForMain characterType)
 void ControlOptions(OptionsForMain characterType)
 {
     PrintOptions();
-    OptionsOfActions x = (OptionsOfActions)Convert.ToInt32(Console.ReadLine());
+    OptionsOfActions x = (OptionsOfActions)char.Parse(Console.ReadLine() ?? "");
     while (x != OptionsOfActions.Exit)
     {
         switch (x)
@@ -241,7 +241,7 @@ void ControlOptions(OptionsForMain characterType)
                 break;
         }
         PrintOptions();
-        x = (OptionsOfActions)Convert.ToInt32(Console.ReadLine());
+        x = (OptionsOfActions)char.Parse(Console.ReadLine() ?? "");
     }
 }
 

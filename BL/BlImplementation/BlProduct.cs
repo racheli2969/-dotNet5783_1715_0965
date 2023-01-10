@@ -6,7 +6,9 @@ namespace BlImplementation;
 public class BlProduct : BlApi.IProduct
 {
     private DalApi.IDal? dal = DalApi.Factory.Get();
+#pragma warning disable CS8613 // Nullability of reference types in return type doesn't match implicitly implemented member.
     public IEnumerable<BO.ProductForList?> GetProductList(BO.BookGenre? category)
+#pragma warning restore CS8613 // Nullability of reference types in return type doesn't match implicitly implemented member.
     {
         List<BO.ProductForList>? products = new();
         List<DO.Item>? productsFromDal = new();
@@ -35,7 +37,7 @@ public class BlProduct : BlApi.IProduct
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
             List<DO.Item>? product = dal?.Item.GetAll(i=>i.ID==id)?.ToList();
-            p.Name = product[0].Name;
+            p.Name = product?[0].Name;
             p.ID = product[0].ID;
             p.AmountInStock = product[0].AmountInStock;
             p.Price = product[0].Price;

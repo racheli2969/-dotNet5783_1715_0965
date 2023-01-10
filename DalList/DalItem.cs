@@ -27,14 +27,19 @@ internal class DalItem : IItem
     /// <returns></returns>
     public IEnumerable<Item>? GetAll(Func<Item, bool>? func)
     {
-        List<Item?> items;
+        List<Item> items=new();
         if (func == null)
-            items = DataSource.Items;
-        else items = DataSource.Items.Where(x => x.HasValue && func((Item)x)).ToList();
+        {
+            items = (from Items in DataSource.Items
+                      select DataSource.Items).Cast<Item>().ToList();
+        }
+        else items = (from item in DataSource.Items
+                         where func((Item)item)!=false
+                      select item).Cast<Item>().ToList();
         if (items == null)
             throw new EntityNotFoundException();
-        return items.Cast<Item>(); 
-    } 
+        return items.Cast<Item>();
+    }
     /// <summary>
     /// gets an id and deletes that item
     /// </summary>
