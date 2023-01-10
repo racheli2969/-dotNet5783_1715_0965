@@ -33,8 +33,8 @@ internal class DalItem : IItem
         else items = DataSource.Items.Where(x => x.HasValue && func((Item)x)).ToList();
         if (items == null)
             throw new EntityNotFoundException();
-        return items.Cast<Item>(); 
-    } 
+        return items.Cast<Item>();
+    }
     /// <summary>
     /// gets an id and deletes that item
     /// </summary>

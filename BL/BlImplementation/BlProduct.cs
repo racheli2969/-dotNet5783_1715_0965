@@ -6,7 +6,9 @@ namespace BlImplementation;
 public class BlProduct : BlApi.IProduct
 {
     private DalApi.IDal? dal = DalApi.Factory.Get();
+#pragma warning disable CS8613 // Nullability of reference types in return type doesn't match implicitly implemented member.
     public IEnumerable<BO.ProductForList?> GetProductList(BO.BookGenre? category)
+#pragma warning restore CS8613 // Nullability of reference types in return type doesn't match implicitly implemented member.
     {
         List<BO.ProductForList>? products = new();
         List<DO.Item>? productsFromDal = new();

@@ -11,31 +11,37 @@ namespace PL_
     /// </summary>
     public partial class Product : Window
     {
-        private IBl Bl { get; set; }
-        private BO.Product product = new();
+        private IBl? Bl { get; set; }
+        private BO.Product? product = new();
+        private ProductListWindow productListWindow { get; set; }
         /// <summary>
         /// a constructor for adding 
         /// </summary>
         /// <param name="b"></param>
-        public Product(IBl b)
+        public Product(IBl? b, ProductListWindow pwl)
         {
             InitializeComponent();
             Bl = b;
+            productListWindow = pwl;
             btnUpdateProduct.Visibility = Visibility.Hidden;
             btnDeleteProduct.Visibility = Visibility.Hidden;
             cmbCategoryForProduct.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
         }
-        public Product(IBl b, int id)
+        public Product(IBl? b, int id, ProductListWindow pwl)
         {
             InitializeComponent();
             Bl = b;
-            btnAddProduct.Visibility=Visibility.Hidden;
-            product=Bl.Product.GetProductForManager(id);
-            txtProductName.Text=product.Name;
-            txtProductPrice.Text=product.Price.ToString();
-            txtProductAmount.Text=product.AmountInStock.ToString();
-            cmbCategoryForProduct.SelectedItem=product.Category;
-            cmbCategoryForProduct.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
+            productListWindow = pwl;
+            btnAddProduct.Visibility = Visibility.Hidden;
+            product = Bl?.Product.GetProductForManager(id);
+            txtProductName.Text = product?.Name;
+            if (product != null)
+            {
+                txtProductPrice.Text = product.Price.ToString();
+                txtProductAmount.Text = product.AmountInStock.ToString();
+                cmbCategoryForProduct.SelectedItem = product.Category;
+                cmbCategoryForProduct.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
+            }
         }
         private void btnUpdateProduct_Click(object sender, RoutedEventArgs e)
         {
@@ -43,10 +49,10 @@ namespace PL_
             {
                 validateInput();
                 buildProduct();
-                Bl.Product.UpdateProduct(product);
+                if (product != null)
+                    Bl?.Product.UpdateProduct(product);
                 MessageBox.Show("product was updated successfully");
-                ProductListWindow PL = new(Bl);
-                PL.Show();
+                productListWindow.Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -61,11 +67,14 @@ namespace PL_
             int temp;
             double t;
             double.TryParse(txtProductPrice.Text, out t);
-            product.Price = t;
-            product.Name =txtProductName.Text;
-            product.Category = (BO.BookGenre)cmbCategoryForProduct.SelectedItem;
-            int.TryParse(txtProductAmount.Text, out temp);
-            product.AmountInStock =temp;
+            if (product != null)
+            {
+                product.Price = t;
+                product.Name = txtProductName.Text;
+                product.Category = (BO.BookGenre)cmbCategoryForProduct.SelectedItem;
+                int.TryParse(txtProductAmount.Text, out temp);
+                product.AmountInStock = temp;
+            }
         }
 
         private void validateInput()
@@ -92,10 +101,12 @@ namespace PL_
             {
                 validateInput();
                 buildProduct();
-                int result = Bl.Product.AddProduct(product);
-                MessageBox.Show("the product was successfully added with id: "+result);
-                ProductListWindow PL = new(Bl);
-                PL.Show();
+                if (product != null)
+                {
+                    int? result = Bl?.Product.AddProduct(product);
+                    MessageBox.Show("the product was successfully added with id: " + result);
+                }
+                productListWindow.Show();
                 this.Close();
             }
             catch (Exception ex)
@@ -106,26 +117,25 @@ namespace PL_
 
         private void btnBackToProductList_Click(object sender, RoutedEventArgs e)
         {
-            ProductListWindow PL = new(Bl);
-            PL.Show();
+            productListWindow.Show();
             this.Close();
         }
 
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show($"are you sure you want to delete {product.Name}","", MessageBoxButton.OKCancel)==MessageBoxResult.OK)
+            if (MessageBox.Show($"are you sure you want to delete {product?.Name}", "", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 try
                 {
-                    Bl.Product.RemoveProduct(product.ID);
+                    if (product != null)
+                        Bl?.Product.RemoveProduct(product.ID);
                     MessageBox.Show("successfully deleted");
-                    ProductListWindow PL = new(Bl);
-                    PL.Show();
+                     productListWindow.Show();
                     this.Close();
                 }
                 catch (BlApi.ErrorDeleting ex)
                 {
-                   MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
 
             }
