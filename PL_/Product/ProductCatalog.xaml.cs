@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL_.Product
+namespace PL.Product
 {
     /// <summary>
     /// Interaction logic for ProductCatalog.xaml
@@ -47,7 +47,9 @@ namespace PL_.Product
 
         private void ProductCatalogView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            //PL.Product p = new(Bl, ((BO.ProductForList)ProductCatalog.SelectedItem).ItemId, this);
+            //p.Show();
+            //this.Hide();
         }
 
         private void ToCart_Click(object sender, RoutedEventArgs e)
