@@ -15,7 +15,7 @@ public class BlProduct : BlApi.IProduct
         BO.ProductForList temp;
         //gets all products from dal
         if (category != null)
-            productsFromDal = dal?.Item?.GetAll(o =>((BO.BookGenre)o.Category).CompareTo(category)==0)?.ToList();
+            productsFromDal = dal?.Item?.GetAll(o => ((BO.BookGenre)o.Category).CompareTo(category) == 0)?.ToList();
         else
             productsFromDal = dal?.Item?.GetAll()?.ToList();
         for (int i = 0; i < productsFromDal?.Count; i++)
@@ -27,7 +27,7 @@ public class BlProduct : BlApi.IProduct
             temp.ItemPrice = productsFromDal[i].Price;
             products.Add(temp);
         }
-        return products??throw new BlApi.BlEntityNotFoundException();
+        return products ?? throw new BlApi.BlEntityNotFoundException();
     }
     public BO.Product GetProductForManager(int id)
     {
@@ -36,7 +36,7 @@ public class BlProduct : BlApi.IProduct
             BO.Product p = new BO.Product();
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
-            List<DO.Item>? product = dal?.Item.GetAll(i=>i.ID==id)?.ToList();
+            List<DO.Item>? product = dal?.Item.GetAll(i => i.ID == id)?.ToList();
             p.Name = product[0].Name;
             p.ID = product[0].ID;
             p.AmountInStock = product[0].AmountInStock;
@@ -59,13 +59,16 @@ public class BlProduct : BlApi.IProduct
             int count = 0;
             List<DO.Item>? product = dal?.Item?.GetAll(i => i.ID == id)?.ToList();
             p.Name = product?[0].Name;
-            p.ID = product[0].ID;
-            if (product[0].AmountInStock > 0)
-                p.IsAvailable = true;
-            else
-                p.IsAvailable = false;
-            p.Price = product[0].Price;
-            p.Category = (BO.BookGenre)product[0].Category;
+            if (product != null)
+            {
+                p.ID = product[0].ID;
+                if (product[0].AmountInStock > 0)
+                    p.IsAvailable = true;
+                else
+                    p.IsAvailable = false;
+                p.Price = product[0].Price;
+                p.Category = (BO.BookGenre)product[0].Category;
+            }
             if (c.Items != null)
             {
                 for (int i = 0; i < c.Items.Count; i++)
@@ -85,7 +88,7 @@ public class BlProduct : BlApi.IProduct
     public int AddProduct(BO.Product p)
     {
         try
-        { 
+        {
             if (p.Price < 0)
                 throw new BlApi.NegativePriceException();
             if (p.Name == null || p.Category.ToString() == null)
@@ -98,7 +101,7 @@ public class BlProduct : BlApi.IProduct
             item.ID = p.ID;
             item.Category = (DO.BookGenre)p.Category;
             item.AmountInStock = p.AmountInStock;
-          return dal.Item.Add(item);
+            return dal.Item.Add(item);
         }
         catch (DalApi.EntityDuplicateException)
         {
@@ -146,5 +149,5 @@ public class BlProduct : BlApi.IProduct
         }
 
     }
-    
+
 }
