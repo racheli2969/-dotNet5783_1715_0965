@@ -1,6 +1,6 @@
 ﻿using BlApi;
+using BO;
 using PL;
-using PL.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL_.Product
+namespace PL.Product
 {
     /// <summary>
     /// Interaction logic for ProductItem.xaml
@@ -27,6 +27,9 @@ namespace PL_.Product
         public ProductItem(IBl? b, int id, PL.Product.ProductCatalog pc)
         {
             Bl = b;
+            productCatalog = pc;
+            BO.ProductItem product = Bl?.Product.;
+
 
             InitializeComponent();
         }

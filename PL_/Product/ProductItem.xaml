@@ -1,27 +1,27 @@
-﻿<Window x:Class="PL_.Product.ProductItem"
+﻿<Window x:Class="PL.Product.ProductItem"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL_.Product"
+        xmlns:local="clr-namespace:PL.Product"
         mc:Ignorable="d"
         Title="ProductItem" Height="450" Width="800">
     <Grid Margin="0,0,0,15">
-        <Label Content="ID" Margin="218,29,525,359"/>
-        <Label Content="Name" Margin="218,61,525,323" />
-        <Label Content="Price" Margin="218,97,525,291" />
-        <Label Content="Category" Margin="218,138,525,250" />
-        <Label Content="Amount" Margin="218,179,525,207" />
+        <Label  Content="ID" Margin="218,29,525,359"/>
+        <Label  Content="Name" Margin="218,61,525,323" />
+        <Label  Content="Price" Margin="218,97,525,291" />
+        <Label  Content="Category" Margin="218,138,525,250" />
+        <Label  Content="Amount" Margin="218,179,525,207" />
         <ComboBox Margin="321,177,422,207"/>
-        <Label Content="" Margin="321,138,422,250"/>
-        <Label Content="" Margin="321,138,422,250"/>
-        <Label Content="" Margin="321,138,422,250"/>
-        <Label Content="" Margin="321,138,422,250"/>
+        <Label x:Name="lblId" Content="" Margin="321,138,422,250"/>
+        <Label x:Name="lblName" Content="" Margin="321,138,422,250"/>
+        <Label x:Name="lblPrice" Content="" Margin="321,138,422,250"/>
+        <Label x:Name="lblCategory" Content="" Margin="321,138,422,250"/>
         <Button Content="Add To Cart" Margin="551,285,171,92"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="321,29,422,359"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="321,137,422,250"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="321,105,422,283"/>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="321,65,422,323"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="321,102,422,286"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="321,66,422,322"/>
 
 
     </Grid>
