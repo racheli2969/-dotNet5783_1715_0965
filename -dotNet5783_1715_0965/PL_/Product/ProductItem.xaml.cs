@@ -28,7 +28,8 @@ namespace PL.Product
         {
             Bl = b;
             productCatalog = pc;
-            BO.ProductItem product = Bl?.Product.;
+            
+            BO.ProductItem product = Bl?.Product.GetProductForCustomer(id,)
 
 
             InitializeComponent();
