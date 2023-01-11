@@ -1,0 +1,16 @@
+﻿<Window x:Class="PL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="10,10,0,-342" RenderTransformOrigin="0,0.5">
+        <Button x:Name="btnEnter" Content="Admin" HorizontalAlignment="Left" Margin="340,194,0,0" VerticalAlignment="Top" Click="BtnEnter_Click" RenderTransformOrigin="2.532,3.557" Height="57" Width="97"/>
+        <TextBox TextWrapping="Wrap" Text="Id" Margin="601,183,150,549"/>
+        <Button Content="Track" Margin="577,249,150,477"/>
+        <Button Content="New Order" Margin="124,200,566,512" Click="Button_Click"/>
+        <Label Content="Welcome To Rachel&amp; Racheli's BookStore!!!!!!!!" HorizontalAlignment="Left" Height="63" Margin="124,61,0,0" VerticalAlignment="Top" Width="626" Background="#FFDDECD1" FontSize="24"/>
+    </Grid>
+</Window>

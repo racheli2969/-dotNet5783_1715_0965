@@ -1,0 +1,31 @@
+﻿<Window x:Class="PL_.Cart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL_"
+        mc:Ignorable="d"
+        Title="Cart" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="lblCustomerName" Content="CustomerName" Margin="235,54,471,355"/>
+        <TextBox x:Name="txtCustomerName" Margin="379,54,284,355"/>
+        <Label x:Name="lblEmail" Content="Email" Margin="238,82,478,320"/>
+        <TextBox x:Name="txtEmail" Margin="379,84,284,318"/>
+        <Label x:Name="lblAddress" Content="Address" Margin="235,121,476,279"/>
+        <TextBox x:Name="txtAddress" Margin="379,121,284,279"/>
+        <Label x:Name="lblFinalPrice" Content="FinalPrice" Margin="224,155,495,247"/>
+        <Border BorderBrush="Black" Margin="379,160,284,242">
+            <Label x:Name="lblFinalPriceValue"  Margin="224,155,495,247"/>
+        </Border>
+        <!--
+    public List
+        <OrderItem>? Items { get; set; }
+    public double FinalPrice { get; set; }-->
+        <!--<Style x:Key="MyBorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="CornerRadius" Value="3" />
+        </Style>-->
+
+    </Grid>
+</Window>
