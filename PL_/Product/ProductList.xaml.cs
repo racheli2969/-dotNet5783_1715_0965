@@ -33,7 +33,7 @@ namespace PL
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
-            Product p = new(Bl,this);
+            ProductWindow p = new(Bl,this);
             p.Show();
             this.Hide();
         }
@@ -52,7 +52,7 @@ namespace PL
         {
             try
             {
-                Product p = new(Bl, ((BO.ProductForList)ProductListView.SelectedItem).ItemId, this);
+                ProductWindow p = new(Bl, ((BO.ProductForList)ProductListView.SelectedItem).ItemId, this);
                 p.Show();
                 this.Hide();
             }
