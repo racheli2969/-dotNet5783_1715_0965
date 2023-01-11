@@ -17,6 +17,7 @@
         <Border BorderBrush="Black" Margin="379,160,284,242">
             <Label x:Name="lblFinalPriceValue"  Margin="224,155,495,247"/>
         </Border>
+        <Button Content="BACK" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <!--
     public List
         <OrderItem>? Items { get; set; }

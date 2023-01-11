@@ -14,16 +14,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL_.Admin.OrderForAdmin
+namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for Order.xaml
     /// </summary>
-    public partial class Order : Window
+    public partial class OrderWindow : Window
     {
         private IBl? Bl { get; set; }
         private OrderList orderListWindow { get; set; }
-        public Order(IBl? bl,int id, OrderList ol)
+        public OrderWindow(IBl? bl,int id, OrderList ol)
         {
             InitializeComponent();
             Bl = bl;

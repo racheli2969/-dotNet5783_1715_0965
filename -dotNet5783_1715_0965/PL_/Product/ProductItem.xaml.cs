@@ -22,5 +22,10 @@ namespace PL.Product
             DataContext= product;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            productCatalog.Show();
+            this.Hide();
+        }
     }
 }

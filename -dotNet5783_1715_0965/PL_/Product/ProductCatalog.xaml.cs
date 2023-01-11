@@ -15,12 +15,15 @@ namespace PL.Product
         private IBl? Bl { get; set; }
         private MainWindow mainWindow { get; set; }
         private BO.Cart cart { get; set; }
+        private PL_.Cart cartWindow { get; set; }
         public ProductCatalog(IBl? b, MainWindow mw)
         {
             InitializeComponent();
             Bl = b;
             mainWindow = mw;
             cart = new BO.Cart();
+            cartWindow= new PL_.Cart(this);
+            //the combo box
             string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
             List<string> options = new();
             options.Insert(0, "GetAll");
@@ -53,7 +56,8 @@ namespace PL.Product
 
         private void ToCart_Click(object sender, RoutedEventArgs e)
         {
-
+            cartWindow.Show();
+            this.Hide();
         }
     }
 }

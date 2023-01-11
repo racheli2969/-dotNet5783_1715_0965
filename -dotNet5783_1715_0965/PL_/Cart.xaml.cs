@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PL.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,17 @@ namespace PL_
     /// </summary>
     public partial class Cart : Window
     {
-        public Cart()
+        private ProductCatalog productCatalog { get; set; }
+        public Cart(ProductCatalog p)
         {
             InitializeComponent();
+            productCatalog = p;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            productCatalog.Show();
+            this.Hide();
         }
     }
 }

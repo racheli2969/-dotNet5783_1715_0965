@@ -15,14 +15,12 @@ namespace PL
     public partial class ProductListWindow : Window
     {
         private IBl? Bl { get; set; }
-        private MainWindow mainWindow { get; set; }
-        private PL_.Admin.OrderForAdmin.OrderList orderList { get; set; }   
-        public ProductListWindow(IBl? b, MainWindow mw)
+        private Admin admin { get; set; }   
+        public ProductListWindow(IBl? b, Admin a)
         {
             InitializeComponent();
             Bl = b;
-            mainWindow = mw;
-            orderList = new PL_.Admin.OrderForAdmin.OrderList(Bl,this);
+            admin = a;
             //CategorySelector.Items.Clear();
             string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
             List<string> options = new();
@@ -68,10 +66,17 @@ namespace PL
 
         }
 
-        private void viewOrders_Click(object sender, RoutedEventArgs e)
+        private void backToAdmin_Click(object sender, RoutedEventArgs e)
         {
-            orderList.Show();
+            admin.Show();
             this.Hide();
+
         }
+
+        //private void viewOrders_Click(object sender, RoutedEventArgs e)
+        //{
+        //    orderList.Show();
+        //    this.Hide();
+        //}
     }
 }

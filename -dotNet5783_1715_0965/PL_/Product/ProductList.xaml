@@ -18,11 +18,12 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="CategorySelector" Grid.Column="1" Margin="172,80,108,0" Width="120" RenderTransformOrigin="0.004,-0.118" Height="26" VerticalAlignment="Top" Background="#FFD1F6FD" BorderBrush="#FFD1F6FD" SelectionChanged="CategorySelector_SelectionChanged"/>
-            <Label x:Name="lbl" Content="choose a category " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.681,0.745" Height="37" Width="132" Margin="59,77,0,0" Grid.Column="1"/>
+            <ComboBox x:Name="CategorySelector" Grid.Column="1" Margin="212,48,148,0" Width="120" RenderTransformOrigin="0.004,-0.118" Height="26" VerticalAlignment="Top" Background="#FFD1F6FD" BorderBrush="#FFD1F6FD" SelectionChanged="CategorySelector_SelectionChanged"/>
+            <Label x:Name="lbl" Content="choose a category " HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.681,0.745" Height="37" Width="132" Margin="59,0,0,0" Grid.Column="1"/>
+            <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Height="33" Margin="46,28,0,0" VerticalAlignment="Top" Width="61" Click="backToAdmin_Click" Background="#FFFB8585"/>
         </Grid>
 
-        <ListView x:Name="ProductListView" Grid.Row="1" SelectionChanged="ProductListView_SelectionChanged" MouseDoubleClick="ProductListView_MouseDoubleClick"   >
+        <ListView x:Name="ProductListView" SelectionChanged="ProductListView_SelectionChanged" MouseDoubleClick="ProductListView_MouseDoubleClick" Margin="0,87,0,94" Grid.RowSpan="3"   >
             <ListView.View>
                 <GridView AllowsColumnReorder="true" >
                     <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=ItemId}" Header="ID" Width="100"/>
@@ -33,17 +34,5 @@
             </ListView.View>
         </ListView>
         <Button x:Name="AddProduct" Content="Add Product" HorizontalAlignment="Left" Margin="610,38,0,0" Grid.Row="2" VerticalAlignment="Top" Height="40" Width="142" IsCancel="True" FontSize="14" FontWeight="Normal" FontFamily="Segoe UI" Click="AddProduct_Click" FontStyle="Italic"/>
-        <Button x:Name="viewOrders" HorizontalAlignment="Left" Height="40" Margin="138,34,0,0" Grid.Row="2" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.5,0.5" FontSize="18" Content="view orders" Click="viewOrders_Click">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-2.421"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.846"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-
-
     </Grid>
 </Window>

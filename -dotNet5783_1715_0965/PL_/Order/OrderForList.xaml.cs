@@ -1,10 +1,8 @@
 ﻿using BlApi;
-using PL;
-using PL_;
 using System.Windows;
 using System.Windows.Input;
 
-namespace PL_.Admin.OrderForAdmin
+namespace PL.Order
 {
     /// <summary>
     /// Interaction logic for OrderList.xaml
@@ -12,12 +10,12 @@ namespace PL_.Admin.OrderForAdmin
     public partial class OrderList : Window
     {
         private IBl? Bl { get; set; }
-        private ProductListWindow productListWindow { get; set; }
-        public OrderList(IBl? b, ProductListWindow plw)
+        private Admin admin { get; set; }
+        public OrderList(IBl? b, Admin a)
         {
             InitializeComponent();
             Bl = b;
-            productListWindow = plw;
+            admin = a;
             OrderListView.ItemsSource = Bl?.Order.GetOrderList();
         }
 
@@ -25,10 +23,16 @@ namespace PL_.Admin.OrderForAdmin
         {
             if (((BO.OrderForList)OrderListView.SelectedItem)!=null)
             {
-                Order o = new(Bl, ((BO.OrderForList)OrderListView.SelectedItem).Id, this);
+                OrderWindow o = new(Bl, ((BO.OrderForList)OrderListView.SelectedItem).Id, this);
                 o.Show();
                 this.Hide();
             }
+        }
+
+        private void backToAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            admin.Show();
+            this.Hide();
         }
     }
 }

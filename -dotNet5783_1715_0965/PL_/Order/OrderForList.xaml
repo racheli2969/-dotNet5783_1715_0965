@@ -1,9 +1,9 @@
-﻿<Window x:Class="PL_.Admin.OrderForAdmin.OrderList"
+﻿<Window x:Class="PL.Order.OrderList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL_.Admin.OrderForAdmin"
+        xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
         Title="OrderForList" Height="450" Width="800">
     <Grid x:Name="MainGrid">
@@ -19,8 +19,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
         </Grid>
-
-        <ListView x:Name="OrderListView" Grid.Row="1" MouseDoubleClick="OrderListView_MouseDoubleClick" >
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Height="33" Margin="46,28,0,0" VerticalAlignment="Top" Width="61" Click="backToAdmin_Click" Background="#FFFB8585"/>
+        <ListView x:Name="OrderListView" MouseDoubleClick="OrderListView_MouseDoubleClick" Margin="0,66,0,10" Grid.RowSpan="3" >
             <ListView.View>
                 <GridView AllowsColumnReorder="true" >
                     <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=Id}" Header="ID" Width="100"/>
