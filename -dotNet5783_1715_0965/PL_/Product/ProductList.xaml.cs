@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BlApi;
+using PL.Product;
 using PL_;
 
 namespace PL

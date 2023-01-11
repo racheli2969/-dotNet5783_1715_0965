@@ -1,9 +1,17 @@
+<<<<<<< HEAD:-dotNet5783_1715_0965/PL_/Product/Product.xaml
 ﻿<Window x:Class="PL.ProductWindow"
+=======
+﻿<Window x:Class="PL.Product.ProductWindow"
+>>>>>>> 29b807a8f3d7d997189f50c1c799f8a1b61d4830:PL_/Product/Product.xaml
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+<<<<<<< HEAD:-dotNet5783_1715_0965/PL_/Product/Product.xaml
         xmlns:local="clr-namespace:PL.ProductWindow"
+=======
+        xmlns:local="clr-namespace:PL"
+>>>>>>> 29b807a8f3d7d997189f50c1c799f8a1b61d4830:PL_/Product/Product.xaml
         mc:Ignorable="d"
         Title="Product" Height="450" Width="800">
     <Grid>

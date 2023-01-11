@@ -3,7 +3,7 @@ using System.Windows;
 using BlApi;
 using System.Text.RegularExpressions;
 
-namespace PL
+namespace PL.Product
 {
     /// <summary>
     /// Interaction logic for Product.xaml

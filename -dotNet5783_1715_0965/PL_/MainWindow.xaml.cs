@@ -1,4 +1,4 @@
-﻿using PL_.Product;
+﻿using PL.Product;
 using System.Windows;
 
 namespace PL
@@ -11,7 +11,7 @@ namespace PL
     {
         private BlApi.IBl? Bl { get; set; }
         private ProductListWindow productListWindow { get; set; }
-        private PL_.Product.ProductCatalog ProductCatalog { get; set; }
+        private PL.Product.ProductCatalog ProductCatalog { get; set; }
         public MainWindow()
         {
             InitializeComponent();
