@@ -1,8 +1,4 @@
-<<<<<<< HEAD:-dotNet5783_1715_0965/PL_/Product/ProductItem.xaml
-﻿<Window x:Class="PL.Product.ProductItem"
-=======
-﻿<Window x:Class="PL.Product.ProductItemWindow"
->>>>>>> 29b807a8f3d7d997189f50c1c799f8a1b61d4830:PL_/Product/ProductItem.xaml
+<Window x:Class="PL.Product.ProductItemWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,22 +7,27 @@
         mc:Ignorable="d"
         Title="ProductItem" Height="450" Width="800">
     <Grid Margin="0,0,0,15">
-        <Label  Content="ID" Margin="218,29,525,359"/>
-        <Label  Content="Name" Margin="218,61,525,323" />
-        <Label  Content="Price" Margin="218,97,525,291" />
-        <Label  Content="Category" Margin="218,138,525,250" />
-        <Label  Content="Amount" Margin="218,179,525,207" />
+        <Label  Content="ID" Margin="218,29,525,359" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+            <Label.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Label.BorderBrush>
+        </Label>
+        <Label x:Name="lblForName" Content="Name" Margin="218,61,507,322" FontSize="14" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
+        <Label  Content="Price" Margin="218,97,525,291" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
+        <Label  Content="Category" Margin="218,138,525,250" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
+        <Label  Content="Amount" Margin="218,179,525,207" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
         <ComboBox Margin="321,177,422,207"/>
-        <Label x:Name="lblId" Content="" Margin="321,138,422,250"/>
+        <Label x:Name="lblId" Content="{Binding Path=ID, Mode=TwoWay}" Margin="321,138,422,250"/>
         <Label x:Name="lblName" Content="" Margin="321,138,422,250"/>
         <Label x:Name="lblPrice" Content="" Margin="321,138,422,250"/>
         <Label x:Name="lblCategory" Content="" Margin="321,138,422,250"/>
-        <Button Content="Add To Cart" Margin="551,285,171,92"/>
+        <Button Content="Add To Cart" Margin="551,285,171,92" FontStyle="Italic"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="321,29,422,359"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="321,137,422,250"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="321,102,422,286"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="321,66,422,322"/>
-
-
     </Grid>
 </Window>

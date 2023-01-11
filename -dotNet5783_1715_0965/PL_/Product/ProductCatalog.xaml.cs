@@ -40,9 +40,15 @@ namespace PL.Product
 
         private void ProductCatalogView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ProductItemWindow p = new ProductItemWindow(Bl, ((BO.ProductForList)ProductCatalogView.SelectedItem).ItemId,this, cart);
-            p.Show();
-            this.Hide();
+            try
+            {
+                ProductItemWindow p = new ProductItemWindow(Bl, ((BO.ProductForList)ProductCatalogView.SelectedItem).ItemId, this, cart);
+                p.Show();
+                this.Hide();
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void ToCart_Click(object sender, RoutedEventArgs e)
