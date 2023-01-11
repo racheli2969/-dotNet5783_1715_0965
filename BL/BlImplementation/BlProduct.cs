@@ -36,17 +36,12 @@ public class BlProduct : BlApi.IProduct
             BO.Product p = new BO.Product();
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
-<<<<<<< HEAD
-            List<DO.Item>? product = dal?.Item.GetAll(i => i.ID == id)?.ToList();
-            p.Name = product[0].Name;
-=======
-            List<DO.Item>? product = dal?.Item.GetAll(i=>i.ID==id)?.ToList();
-            p.Name = product?[0].Name;
->>>>>>> 594759e4c0ddd74fbdcbbadb26fd99b27eb28e5c
-            p.ID = product[0].ID;
-            p.AmountInStock = product[0].AmountInStock;
-            p.Price = product[0].Price;
-            p.Category = (BO.BookGenre)product[0].Category;
+            List<DO.Item>? productFromDal = dal?.Item.GetAll(i => i.ID == id)?.ToList();
+            p.Name = productFromDal?[0].Name;
+            p.ID = productFromDal[0].ID;
+            p.AmountInStock = productFromDal[0].AmountInStock;
+            p.Price = productFromDal[0].Price;
+            p.Category = (BO.BookGenre)productFromDal[0].Category;
             return p;
         }
         catch (DalApi.EntityNotFoundException ex)

@@ -1,18 +1,9 @@
 ﻿using BlApi;
-using PL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL.Product
 {
@@ -23,11 +14,13 @@ namespace PL.Product
     {
         private IBl? Bl { get; set; }
         private MainWindow mainWindow { get; set; }
+        private BO.Cart cart { get; set; }
         public ProductCatalog(IBl? b, MainWindow mw)
         {
             InitializeComponent();
             Bl = b;
             mainWindow = mw;
+            cart = new BO.Cart();
             string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
             List<string> options = new();
             options.Insert(0, "GetAll");
@@ -47,7 +40,7 @@ namespace PL.Product
 
         private void ProductCatalogView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            PL_.Product.ProductItem p = new(Bl, ProductCatalogView.SelectedItem.ItemId, this);
+            ProductItemWindow p = new ProductItemWindow(Bl, ((BO.ProductForList)ProductCatalogView.SelectedItem).ItemId,this, cart);
             p.Show();
             this.Hide();
         }
