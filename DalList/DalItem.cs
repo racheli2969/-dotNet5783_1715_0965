@@ -32,7 +32,7 @@ internal class DalItem : IItem
         {
             items = DataSource.Items;
         }
-        else items = DataSource.Items.Where(x=>func).ToList();
+        else items = DataSource.Items.Where(x=>x.HasValue&&func((Item)x)).ToList();
         //else items = (from item in DataSource.Items
         //                 where func((Item)item)!=false
         //              select item).Cast<Item>().ToList();
