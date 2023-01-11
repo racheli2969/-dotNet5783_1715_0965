@@ -114,9 +114,11 @@ internal class BLCart : BlApi.ICart
                 tempItem.Amount = c.Items[i].Amount;
                 tempItem.OrderID = temp.OrderId;
                 tempItem.ItemId = c.Items[i].ItemId;
+                //adds to order items
                 id = dal.OrderItem.Add(tempItem);
                 tempItem.OrderItemId = id;
                 c.Items[i].OrderItemId = id;
+                //updates amount
                 dal.Item.Update(tempItem.ItemId, tempItem.Amount);
             }
         }

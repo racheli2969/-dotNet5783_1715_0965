@@ -8,7 +8,7 @@ namespace PL
     /// <summary>
     /// Interaction logic for Product.xaml
     /// </summary>
-    public partial class Product : Window
+    public partial class ProductWindow : Window
     {
         private IBl? Bl { get; set; }
         private BO.Product? product = new();
@@ -17,7 +17,7 @@ namespace PL
         /// a constructor for adding 
         /// </summary>
         /// <param name="b"></param>
-        public Product(IBl? b, ProductListWindow pwl)
+        public ProductWindow(IBl? b, ProductListWindow pwl)
         {
             InitializeComponent();
             Bl = b;
@@ -26,7 +26,7 @@ namespace PL
             btnDeleteProduct.Visibility = Visibility.Hidden;
             cmbCategoryForProduct.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
         }
-        public Product(IBl? b, int id, ProductListWindow pwl)
+        public ProductWindow(IBl? b, int id, ProductListWindow pwl)
         {
             InitializeComponent();
             Bl = b;

@@ -8,12 +8,12 @@ public class BlOrder : BlApi.IOrder
         List<DO.Order>? ordersFromDal = new List<DO.Order>();
         BO.OrderForList temp;
         //gets all orders from dal
-        ordersFromDal = dal?.Order?.GetAll().ToList();
+        ordersFromDal = dal?.Order?.GetAll()?.ToList();
         //get for each order orderItems
         for (int i = 0; i < ordersFromDal?.Count; i++)
         {
             List<DO.OrderItem>? oi = new List<DO.OrderItem>();
-            oi = dal?.OrderItem?.GetAll(p => p.OrderID == ordersFromDal[i].OrderId).ToList();
+            oi = dal?.OrderItem?.GetAll(p => p.OrderID == ordersFromDal[i].OrderId)?.ToList();
             double finalPrice = 0;
             int amountOfProducts = 0;
             for (int j = 0; j < oi?.Count; j++)
@@ -108,13 +108,13 @@ public class BlOrder : BlApi.IOrder
                 o.DateOrdered = order_.DateOrdered;
                 o.OrderStatus = BO.EnumOrderStatus.Delivered;
                 double finalPrice = 0;
-                for (int i = 0; i < oi.Count; i++)
+                for (int i = 0; i < oi?.Count; i++)
                 {
                     finalPrice = finalPrice + (oi[i].Price * oi[i].Amount);
                 }
                 o.SumOfOrder = finalPrice;
                 List<BO.OrderItem> listOfOrderItems = new List<BO.OrderItem>();
-                for (int i = 0; i < oi.Count; i++)
+                for (int i = 0; i < oi?.Count; i++)
                 {
                     BO.OrderItem orderI = new BO.OrderItem();
                     List<DO.Item>? item = new List<DO.Item>();
@@ -123,7 +123,7 @@ public class BlOrder : BlApi.IOrder
                     orderI.Amount = oi[i].Amount;
                     //gets the item from dal
                     item = dal?.Item?.GetAll(i => i.ID == orderI.ItemId)?.ToList();
-                    orderI.ItemName = item[0].Name;
+                    orderI.ItemName = item?[0].Name;
                     orderI.ItemPrice = item[0].Price;
                     orderI.PriceOfItems = (orderI.ItemPrice * orderI.Amount);
                     listOfOrderItems.Add(orderI);
@@ -144,7 +144,7 @@ public class BlOrder : BlApi.IOrder
         {
             //get the order
             List<DO.Order>? order = dal?.Order?.GetAll(o => o.OrderId == orderId)?.ToList();
-            if (order[0].DateReceived == DateTime.MinValue && order[0].DateDelivered != DateTime.MinValue)
+            if (order?[0].DateReceived == DateTime.MinValue && order[0].DateDelivered != DateTime.MinValue)
             {
                 List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderID == orderId)?.ToList();
                 DO.Order order_ = new();
@@ -160,13 +160,13 @@ public class BlOrder : BlApi.IOrder
                 o.OrderStatus = BO.EnumOrderStatus.Received;
                 o.OrderId = orderId;
                 double finalPrice = 0;
-                for (int i = 0; i < oi.Count; i++)
+                for (int i = 0; i < oi?.Count; i++)
                 {
                     finalPrice = finalPrice + (oi[i].Price * oi[i].Amount);
                 }
                 o.SumOfOrder = finalPrice;
                 List<BO.OrderItem> listOfOrderItems = new List<BO.OrderItem>();
-                for (int i = 0; i < oi.Count; i++)
+                for (int i = 0; i < oi?.Count; i++)
                 {
                     BO.OrderItem orderI = new BO.OrderItem();
                     List<DO.Item>? item = new List<DO.Item>();
@@ -175,7 +175,7 @@ public class BlOrder : BlApi.IOrder
                     orderI.Amount = oi[i].Amount;
                     //gets the item from dal
                     item = dal?.Item?.GetAll(i => i.ID == orderI.ItemId)?.ToList();
-                    orderI.ItemName = item[0].Name;
+                    orderI.ItemName = item?[0].Name;
                     orderI.ItemPrice = item[0].Price;
                     orderI.PriceOfItems = (orderI.ItemPrice * orderI.Amount);
                     listOfOrderItems.Add(orderI);
