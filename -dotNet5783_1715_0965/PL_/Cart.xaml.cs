@@ -32,5 +32,20 @@ namespace PL_
             productCatalog.Show();
             this.Hide();
         }
+
+        private void Add1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Decrease1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

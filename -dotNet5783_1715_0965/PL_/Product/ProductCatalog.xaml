@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="ProductCatalog" Height="450" Width="800">
     <Grid>
-        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,380" Grid.RowSpan="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="401*"/>
+            <ColumnDefinition Width="399*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,380" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
@@ -15,9 +19,10 @@
             </Grid.ColumnDefinitions >
             <ComboBox x:Name="CategorySelector" Grid.Column="1" Margin="172,80,108,0" Width="120" RenderTransformOrigin="0.004,-0.118" Height="26" VerticalAlignment="Top" Background="#FFD1F6FD" BorderBrush="#FFD1F6FD" SelectionChanged="CategorySelector_SelectionChanged"/>
             <Label x:Name="lbl" Content="choose a category " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.681,0.745" Height="37" Width="132" Margin="59,77,0,0" Grid.Column="1"/>
+            <Button Content="Back" HorizontalAlignment="Left" Margin="23,7,0,0" VerticalAlignment="Top" Click="Back_Click"/>
         </Grid>
 
-        <ListView x:Name="ProductCatalogView" Grid.Row="1" MouseDoubleClick="ProductCatalogView_MouseDoubleClick"   >
+        <ListView x:Name="ProductCatalogView" MouseDoubleClick="ProductCatalogView_MouseDoubleClick" Grid.ColumnSpan="2" Margin="0,38,0,0"   >
             <ListView.View>
                 <GridView AllowsColumnReorder="true" >
                     <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=ItemId}" Header="ID" Width="100"/>
@@ -27,7 +32,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="GoCart" Content="View Cart" HorizontalAlignment="Left" Margin="621,347,0,0" VerticalAlignment="Top" Height="40" Width="142" IsCancel="True" FontSize="14" FontWeight="Normal" FontFamily="Segoe UI" Click="ToCart_Click" FontStyle="Italic"/>
+        <Button x:Name="GoCart" Content="View Cart" HorizontalAlignment="Left" Margin="220,347,0,0" VerticalAlignment="Top" Height="40" Width="142" IsCancel="True" FontSize="14" FontWeight="Normal" FontFamily="Segoe UI" Click="ToCart_Click" FontStyle="Italic" Grid.Column="1"/>
         <!--<Button x:Name="Back" HorizontalAlignment="Left" Height="40" Margin="138,53,0,0" Grid.Row="2" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.5,0.5" FontSize="18" Content="view orders" Click="BackToMain_Click">
             <Button.RenderTransform>
                 <TransformGroup>

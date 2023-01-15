@@ -23,11 +23,28 @@ namespace PL.Order
     {
         private IBl? Bl { get; set; }
         private OrderList orderListWindow { get; set; }
-        public OrderWindow(IBl? bl,int id, OrderList ol)
+        public OrderWindow(IBl? bl, int id, OrderList ol)
         {
             InitializeComponent();
             Bl = bl;
-            orderListWindow= ol;
+            orderListWindow = ol;
+            txtDateDelivered.TextChanged += DateDeliveredChanged_TextChanged;
+        }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            orderListWindow.Show();
+            this.Close();
+        }
+
+        private void DateDeliveredChanged_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //validate input? check if can update?
+            btnUpdateDeliveryDate.IsEnabled = true;
+        }
+
+        private void btnUpdateDeliveryDate_Click(object sender, RoutedEventArgs e)
+        {
+            //validate input
         }
     }
 }

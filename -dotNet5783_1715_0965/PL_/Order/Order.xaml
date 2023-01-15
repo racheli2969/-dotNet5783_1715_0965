@@ -6,56 +6,63 @@
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
         Title="Order" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="68*"/>
-            <ColumnDefinition Width="405*"/>
-            <ColumnDefinition Width="90*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="222*"/>
-        </Grid.ColumnDefinitions>
+    <Canvas>
+        <Grid HorizontalAlignment="Center" Height="434" VerticalAlignment="Center" Width="800">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="68*"/>
+                <ColumnDefinition Width="405*"/>
+                <ColumnDefinition Width="90*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="222*"/>
+            </Grid.ColumnDefinitions>
 
-        <Label x:Name="CustomerName" Content="CustomerName" Margin="10,22,359,387" Grid.Column="1" Grid.ColumnSpan="2" />
-        <Label x:Name="Email" Content="Email" Grid.Column="1" Margin="14,52,394,352" Grid.ColumnSpan="2" RenderTransformOrigin="0.151,0.464"/>
-        <Label x:Name="OrderStatus" Content="OrderStatus" Grid.ColumnSpan="2" Margin="10,87,390,321" Grid.Column="1"/>
-        <Label x:Name="DateOrdered" Content="DateOrdered" Margin="10,118,379,276" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <Label x:Name="DateDelivered" Content="DateDelivered" Grid.ColumnSpan="2" Margin="10,152,379,243" Grid.Column="1"/>
-        <Label x:Name="DateReceived" Content="DateReceived" Grid.Column="1" Margin="11,187,379,217" Grid.ColumnSpan="2"/>
+            <Label x:Name="CustomerName" Content="CustomerName" Margin="10,22,359,387" Grid.Column="1" Grid.ColumnSpan="2" />
+            <Label x:Name="Email" Content="Email" Grid.Column="1" Margin="14,52,394,352" Grid.ColumnSpan="2" RenderTransformOrigin="0.151,0.464"/>
+            <Label x:Name="OrderStatus" Content="OrderStatus" Grid.ColumnSpan="2" Margin="10,87,390,321" Grid.Column="1"/>
+            <Label x:Name="DateOrdered" Content="DateOrdered" Margin="10,118,379,276" Grid.Column="1" Grid.ColumnSpan="2"/>
+            <Label x:Name="DateDelivered" Content="DateDelivered" Grid.ColumnSpan="2" Margin="10,152,379,243" Grid.Column="1"/>
+            <Label x:Name="DateReceived" Content="DateReceived" Grid.Column="1" Margin="11,187,379,217" Grid.ColumnSpan="2"/>
 
-        <Label x:Name="name"  BorderBrush="Black" Height="27" VerticalAlignment="Top" Margin="65,24,257,0" Grid.Column="2" >
-            <Label.Background>
-                <ImageBrush TileMode="Tile"/>
-            </Label.Background>
-        </Label>
-        <Label Content="tyyyyy" Grid.Column="2" Margin="61,56,257,348"/>
-        <Label Content="jhkjh" Grid.Column="2" Margin="61,87,257,317"/>
-        <TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2" Margin="61,154,273,260"/>
-        <TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2" Margin="61,187,273,224"/>
-        <TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2" Margin="61,127,273,285"/>
-        <TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2" Margin="61,127,273,285"/>
+            <Label x:Name="name"  BorderBrush="Black" Height="27" VerticalAlignment="Top" Margin="55,24,267,0" Grid.Column="2" >
+                <Label.Background>
+                    <ImageBrush TileMode="Tile"/>
+                </Label.Background>
+            </Label>
+            <Label Content="tyyyyy" Grid.Column="2" Margin="61,56,257,348"/>
+            <Label Content="jhkjh" Grid.Column="2" Margin="61,87,257,317"/>
+            <TextBox x:Name="txtDateDelivered" TextWrapping="Wrap" Grid.Column="2" Margin="61,157,273,257"/>
+            <TextBox TextWrapping="Wrap" Text="" Grid.Column="2" Margin="61,187,273,224"/>
 
-        <ListView x:Name="OrderItemListView" Margin="5,222,10,0" Grid.ColumnSpan="5" Grid.Column="1">
-            <ListView.View>
-                <GridView AllowsColumnReorder="true" >
-                    <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=OrderItemId}" Header="OrderItemId" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemId}" Header="ItemId" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemName}" Header="Name" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice}" Header="Price" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PriceOfItems}" Header="PriceOfItems" Width="100"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+            <ListView x:Name="OrderItemListView" Margin="0,222,0,0" Grid.ColumnSpan="5" Grid.Column="1">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true" >
+                        <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding OrderItemId}" Header="OrderItemId" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding ItemId}" Header="ItemId" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding ItemName}" Header="Name" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding ItemPrice}" Header="Price" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Amount}" Header="Amount" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding PriceOfItems}" Header="PriceOfItems" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Content="Back" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top" Height="25" Width="66" Click="Back_Click" Grid.ColumnSpan="2"/>
+            <Button Content="Update" Grid.Column="3" Margin="60,134,209,280" IsEnabled="False" Grid.ColumnSpan="3"/>
+            <Button x:Name="btnUpdateDeliveryDate" Content="Update" Grid.Column="2" Margin="176,157,176,257" RenderTransformOrigin="0.3,-1.498" IsEnabled="False" Click="btnUpdateDeliveryDate_Click"/>
+            <Border Grid.Column="2" Margin="61,117,257,287">
+                <Label Content=""/>
+            </Border>
 
 
 
-        <!--OrderId 
+            <!--OrderId 
         CustomerName 
         Email 
         OrderStatus 
         DateDelivered 
         DateReceived
         <OrderItem>Items SumOfOrder-->
-    </Grid>
+        </Grid>
+        <Button Content="Update" Canvas.Left="245" Canvas.Top="187" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="False" Width="56"/>
+    </Canvas>
 </Window>

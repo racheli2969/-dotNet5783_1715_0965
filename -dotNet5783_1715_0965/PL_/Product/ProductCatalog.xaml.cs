@@ -22,7 +22,7 @@ namespace PL.Product
             Bl = b;
             mainWindow = mw;
             cart = new BO.Cart();
-            cartWindow= new PL_.Cart(this);
+            cartWindow = new PL_.Cart(this);
             //the combo box
             string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
             List<string> options = new();
@@ -48,7 +48,8 @@ namespace PL.Product
                 ProductItemWindow p = new ProductItemWindow(Bl, ((BO.ProductForList)ProductCatalogView.SelectedItem).ItemId, this, cart);
                 p.Show();
                 this.Hide();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -57,6 +58,12 @@ namespace PL.Product
         private void ToCart_Click(object sender, RoutedEventArgs e)
         {
             cartWindow.Show();
+            this.Hide();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Show();
             this.Hide();
         }
     }

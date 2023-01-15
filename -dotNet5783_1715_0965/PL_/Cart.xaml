@@ -7,26 +7,32 @@
         mc:Ignorable="d"
         Title="Cart" Height="450" Width="800">
     <Grid>
-        <Label x:Name="lblCustomerName" Content="CustomerName" Margin="235,54,471,355"/>
-        <TextBox x:Name="txtCustomerName" Margin="379,54,284,355"/>
-        <Label x:Name="lblEmail" Content="Email" Margin="238,82,478,320"/>
-        <TextBox x:Name="txtEmail" Margin="379,84,284,318"/>
-        <Label x:Name="lblAddress" Content="Address" Margin="235,121,476,279"/>
-        <TextBox x:Name="txtAddress" Margin="379,121,284,279"/>
-        <Label x:Name="lblFinalPrice" Content="FinalPrice" Margin="224,155,495,247"/>
-        <Border BorderBrush="Black" Margin="379,160,284,242">
-            <Label x:Name="lblFinalPriceValue"  Margin="224,155,495,247"/>
-        </Border>
-        <Button Content="BACK" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <!--
-    public List
-        <OrderItem>? Items { get; set; }
-    public double FinalPrice { get; set; }-->
-        <!--<Style x:Key="MyBorderStyle" TargetType="Border">
-            <Setter Property="BorderBrush" Value="White" />
-            <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="CornerRadius" Value="3" />
-        </Style>-->
-
+        <Canvas Margin="24,10,39,10">
+            <Label x:Name="lblCustomerName" Content="CustomerName" Height="25" Canvas.Left="211" Canvas.Top="44" Width="94"/>
+            <TextBox x:Name="txtCustomerName" Height="33" Canvas.Left="355" Canvas.Top="36" Width="137" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Label x:Name="lblEmail" Content="Email" Height="32" Canvas.Left="214" Canvas.Top="72" Width="84"/>
+            <TextBox x:Name="txtEmail" Height="32" Canvas.Left="355" Canvas.Top="74" Width="137"/>
+            <Label x:Name="lblAddress" Content="Address" Height="34" Canvas.Left="211" Canvas.Top="111" Width="89"/>
+            <TextBox x:Name="txtAddress" Height="34" Canvas.Left="355" Canvas.Top="111" Width="137"/>
+            <Label x:Name="lblFinalPrice" Content="FinalPrice" Height="32" Canvas.Left="211" Canvas.Top="150" Width="81"/>
+            <Border BorderBrush="Black" Height="32" Canvas.Left="355" Canvas.Top="150" Width="137" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label x:Name="lblFinalPriceValue"  Margin="224,155,495,247"/>
+            </Border>
+            <Button Content="BACK" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ListView x:Name="CartItemsListView" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="26" Canvas.Top="191" VerticalAlignment="Top" Canvas.Left="131"   >
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true" >
+                        <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=ItemId}" Header="ItemId" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ItemName}" Header="Name" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice}" Header="Price" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=PriceOfItems}" Header="PriceOfItems" Width="100"/>
+                    </GridView>
+                </ListView.View>
+                <Button Content="+" Click="Add1_Click" Width="100"/>
+                <Button Content="-" Click="Decrease1_Click" Width="100" />
+                <Button Content="Remove" Click="Remove_Click"  Width="100"/>
+            </ListView>
+        </Canvas>
     </Grid>
 </Window>
