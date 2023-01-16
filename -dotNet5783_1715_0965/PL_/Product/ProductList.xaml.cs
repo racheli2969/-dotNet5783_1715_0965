@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,7 +16,10 @@ namespace PL
     public partial class ProductListWindow : Window
     {
         private IBl? Bl { get; set; }
-        private Admin admin { get; set; }   
+        private Admin admin { get; set; }
+        //private List<BO.ProductForList>? products { get; set; }
+       // private ObservableCollection<BO.ProductForList>? products { get; set; }
+        private IEnumerable<BO.ProductForList>? products { get; set; }
         public ProductListWindow(IBl? b, Admin a)
         {
             InitializeComponent();
@@ -27,12 +31,13 @@ namespace PL
             options.Insert(0, "GetAll");
             options.AddRange(enumOptions);
             CategorySelector.ItemsSource = options;
-            ProductListView.ItemsSource = Bl?.Product.GetProductList();
+            products = Bl?.Product.GetProductList();
+            ProductListView.DataContext= products;
         }
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
-            ProductWindow p = new(Bl,this);
+            ProductWindow p = new(Bl, this,updateProducts);
             p.Show();
             this.Hide();
         }
@@ -41,7 +46,7 @@ namespace PL
         {
 
             if (CategorySelector?.SelectedItem?.ToString()?.CompareTo("GetAll") != 0)
-                ProductListView.ItemsSource = Bl?.Product.GetProductList((BO.BookGenre?)Enum.Parse(typeof(BO.BookGenre), CategorySelector?.SelectedItem.ToString()??""));
+                ProductListView.ItemsSource = Bl?.Product.GetProductList((BO.BookGenre?)Enum.Parse(typeof(BO.BookGenre), CategorySelector?.SelectedItem.ToString() ?? ""));
             else
                 ProductListView.ItemsSource = Bl?.Product.GetProductList();
 
@@ -51,11 +56,11 @@ namespace PL
         {
             try
             {
-                ProductWindow p = new(Bl, ((BO.ProductForList)ProductListView.SelectedItem).ItemId, this);
+                ProductWindow p = new(Bl, ((BO.ProductForList)ProductListView.SelectedItem).ItemId, this,updateProducts);
                 p.Show();
                 this.Hide();
             }
-           catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -71,6 +76,12 @@ namespace PL
             admin.Show();
             this.Hide();
 
+        }
+
+        private void updateProducts()
+        {
+            products = Bl?.Product.GetProductList();
+            ProductListView.DataContext = products;
         }
 
         //private void viewOrders_Click(object sender, RoutedEventArgs e)

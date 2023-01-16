@@ -12,21 +12,23 @@ namespace PL.Product
     {
         private IBl? Bl { get; set; }
         private BO.Product? product = new();
+        private Action updateProductsInList { get; set; }
         private ProductListWindow productListWindow { get; set; }
         /// <summary>
         /// a constructor for adding 
         /// </summary>
         /// <param name="b"></param>
-        public ProductWindow(IBl? b, ProductListWindow pwl)
+        public ProductWindow(IBl? b, ProductListWindow pwl, Action updateProducts)
         {
             InitializeComponent();
             Bl = b;
             productListWindow = pwl;
             btnUpdateProduct.Visibility = Visibility.Hidden;
             btnDeleteProduct.Visibility = Visibility.Hidden;
+            updateProductsInList = updateProducts;
             cmbCategoryForProduct.ItemsSource = Enum.GetValues(typeof(BO.BookGenre));
         }
-        public ProductWindow(IBl? b, int id, ProductListWindow pwl)
+        public ProductWindow(IBl? b, int id, ProductListWindow pwl, Action updateProducts)
         {
             InitializeComponent();
             Bl = b;
@@ -34,6 +36,7 @@ namespace PL.Product
             btnAddProduct.Visibility = Visibility.Hidden;
             product = Bl?.Product.GetProductForManager(id);
             txtProductName.Text = product?.Name;
+            updateProductsInList = updateProducts;
             if (product != null)
             {
                 txtProductPrice.Text = product.Price.ToString();
@@ -50,6 +53,7 @@ namespace PL.Product
                 buildProduct();
                 if (product != null)
                     Bl?.Product.UpdateProduct(product);
+                updateProductsInList();
                 MessageBox.Show("product was updated successfully");
                 productListWindow.Show();
                 this.Close();
@@ -105,6 +109,7 @@ namespace PL.Product
                     int? result = Bl?.Product.AddProduct(product);
                     MessageBox.Show("the product was successfully added with id: " + result);
                 }
+                updateProductsInList();
                 productListWindow.Show();
                 this.Close();
             }
@@ -129,7 +134,8 @@ namespace PL.Product
                     if (product != null)
                         Bl?.Product.RemoveProduct(product.ID);
                     MessageBox.Show("successfully deleted");
-                     productListWindow.Show();
+                    updateProductsInList();
+                    productListWindow.Show();
                     this.Close();
                 }
                 catch (BlApi.ErrorDeleting ex)

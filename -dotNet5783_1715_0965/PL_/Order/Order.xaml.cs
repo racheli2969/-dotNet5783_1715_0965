@@ -1,18 +1,5 @@
 ﻿using BlApi;
-using PL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL.Order
 {
@@ -28,7 +15,8 @@ namespace PL.Order
             InitializeComponent();
             Bl = bl;
             orderListWindow = ol;
-            txtDateDelivered.TextChanged += DateDeliveredChanged_TextChanged;
+            txtDateDelivered.LostFocus += DateDelivered_LostFocus;
+            txtReceivedDate.LostFocus += DateReceived_LostFocus;
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
@@ -36,15 +24,25 @@ namespace PL.Order
             this.Close();
         }
 
-        private void DateDeliveredChanged_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //validate input? check if can update?
-            btnUpdateDeliveryDate.IsEnabled = true;
-        }
-
         private void btnUpdateDeliveryDate_Click(object sender, RoutedEventArgs e)
         {
             //validate input
+            //do something
+        }
+
+        private void DateDelivered_LostFocus(object sender, RoutedEventArgs e)
+        {// validate input
+            btnUpdateDeliveryDate.IsEnabled = true;
+        }
+        private void DateReceived_LostFocus(object sender, RoutedEventArgs e)
+        {// validate input
+            btnReceivedDate.IsEnabled = true;
+        }
+
+        private void UpdateReceivedDate_Click(object sender, RoutedEventArgs e)
+        {
+            //validate input
+            //do something
         }
     }
 }

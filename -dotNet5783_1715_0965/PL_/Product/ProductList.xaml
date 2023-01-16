@@ -23,7 +23,7 @@
             <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Height="33" Margin="46,28,0,0" VerticalAlignment="Top" Width="61" Click="backToAdmin_Click" Background="#FFFB8585"/>
         </Grid>
 
-        <ListView x:Name="ProductListView" SelectionChanged="ProductListView_SelectionChanged" MouseDoubleClick="ProductListView_MouseDoubleClick" Margin="0,87,0,94" Grid.RowSpan="3"   >
+        <ListView x:Name="ProductListView" SelectionChanged="ProductListView_SelectionChanged" MouseDoubleClick="ProductListView_MouseDoubleClick" Margin="0,87,0,94" Grid.RowSpan="3"  ItemsSource="{Binding}" >
             <ListView.View>
                 <GridView AllowsColumnReorder="true" >
                     <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=ItemId}" Header="ID" Width="100"/>

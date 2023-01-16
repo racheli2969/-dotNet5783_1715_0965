@@ -21,10 +21,12 @@ namespace PL_
     public partial class Cart : Window
     {
         private ProductCatalog productCatalog { get; set; }
-        public Cart(ProductCatalog p)
+        private BO.Cart cart { get; set; }
+        public Cart(ProductCatalog p, BO.Cart cart)
         {
             InitializeComponent();
             productCatalog = p;
+            this.cart = cart;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

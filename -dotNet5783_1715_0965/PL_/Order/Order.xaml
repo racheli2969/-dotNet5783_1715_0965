@@ -31,8 +31,8 @@
             </Label>
             <Label Content="tyyyyy" Grid.Column="2" Margin="61,56,257,348"/>
             <Label Content="jhkjh" Grid.Column="2" Margin="61,87,257,317"/>
-            <TextBox x:Name="txtDateDelivered" TextWrapping="Wrap" Grid.Column="2" Margin="61,157,273,257"/>
-            <TextBox TextWrapping="Wrap" Text="" Grid.Column="2" Margin="61,187,273,224"/>
+            <TextBox x:Name="txtDateDelivered" TextWrapping="Wrap" Grid.Column="2" Margin="61,157,273,257" LostFocus="DateDelivered_LostFocus"/>
+            <TextBox x:Name="txtReceivedDate" TextWrapping="Wrap" Text="" Grid.Column="2" Margin="61,187,273,224"/>
 
             <ListView x:Name="OrderItemListView" Margin="0,222,0,0" Grid.ColumnSpan="5" Grid.Column="1">
                 <ListView.View>
@@ -63,6 +63,6 @@
         DateReceived
         <OrderItem>Items SumOfOrder-->
         </Grid>
-        <Button Content="Update" Canvas.Left="245" Canvas.Top="187" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="False" Width="56"/>
+        <Button x:Name="btnReceivedDate" Content="Update" Canvas.Left="245" Canvas.Top="187" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="False" Width="56" Click="UpdateReceivedDate_Click"/>
     </Canvas>
 </Window>

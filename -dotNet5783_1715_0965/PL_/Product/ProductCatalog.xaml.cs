@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace PL.Product
 {
@@ -22,7 +23,7 @@ namespace PL.Product
             Bl = b;
             mainWindow = mw;
             cart = new BO.Cart();
-            cartWindow = new PL_.Cart(this);
+            cartWindow = new PL_.Cart(this,cart);
             //the combo box
             string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
             List<string> options = new();
@@ -68,3 +69,20 @@ namespace PL.Product
         }
     }
 }
+
+//public class CartDependencyProperty
+//{
+
+//    public static readonly DependencyProperty CartDependency = DependencyProperty.Register("MyProperty", typeof(string), typeof(CartDependencyProperty));
+//    public string MyCart
+//    {
+//        get
+//        {
+//            return (string)GetValue(CartDependency);
+//        }
+//        set
+//        {
+//            SetValue(CartDependency, value);
+//        }
+//    }
+//}

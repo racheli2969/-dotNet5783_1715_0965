@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Grid Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,380" Grid.RowSpan="2">
             <Canvas>
-                <Label x:Name="lblId" Content="{Binding Path=ID}" Canvas.Left="329" Canvas.Top="28" Height="27" Width="83" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="lblId" Content="{Binding Path=ID }" Canvas.Left="329" Canvas.Top="28" Height="27" Width="83" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <Button Content="BACK" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Click="Back_Click"/>
                 <Button Content="EXIT" Click="CloseAllWindows" Margin="73,10,694,54"/>
                 <Label  Content="ID" Margin="218,29,525,359" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
