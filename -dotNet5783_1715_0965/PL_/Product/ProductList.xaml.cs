@@ -46,9 +46,9 @@ namespace PL
         {
 
             if (CategorySelector?.SelectedItem?.ToString()?.CompareTo("GetAll") != 0)
-                ProductListView.ItemsSource = Bl?.Product.GetProductList((BO.BookGenre?)Enum.Parse(typeof(BO.BookGenre), CategorySelector?.SelectedItem.ToString() ?? ""));
+                ProductListView.DataContext = Bl?.Product.GetProductList((BO.BookGenre?)Enum.Parse(typeof(BO.BookGenre), CategorySelector?.SelectedItem.ToString() ?? ""));
             else
-                ProductListView.ItemsSource = Bl?.Product.GetProductList();
+                ProductListView.DataContext = Bl?.Product.GetProductList();
 
         }
 

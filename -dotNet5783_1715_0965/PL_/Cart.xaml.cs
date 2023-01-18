@@ -49,5 +49,10 @@ namespace PL_
         {
 
         }
+
+        private void btnOrderConfirmation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

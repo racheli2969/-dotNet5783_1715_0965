@@ -15,7 +15,7 @@ namespace PL.Order
             InitializeComponent();
             Bl = bl;
             orderListWindow = ol;
-            txtDateDelivered.LostFocus += DateDelivered_LostFocus;
+            txtDateDelivered.TextChanged += DateDelivered_LostFocus;
             txtReceivedDate.LostFocus += DateReceived_LostFocus;
         }
         private void Back_Click(object sender, RoutedEventArgs e)

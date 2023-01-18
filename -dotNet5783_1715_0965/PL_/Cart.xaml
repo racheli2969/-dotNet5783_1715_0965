@@ -39,6 +39,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+            <Button x:Name="btnOrderConfirmation" Content="Order" Canvas.Left="605" Canvas.Top="151" Height="31" Width="50" Click="btnOrderConfirmation_Click"/>
         </Canvas>
     </Grid>
 </Window>
