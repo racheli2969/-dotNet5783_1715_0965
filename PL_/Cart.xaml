@@ -27,14 +27,26 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice}" Header="Price" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=PriceOfItems}" Header="PriceOfItems" Width="100"/>
-                        <GridViewColumn Width="40">
-                            <Button x:Name="btnAdd" Content="+" Click="Add1_Click" Width="30"/>
+                        <GridViewColumn Width="40" Header="Add">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="btnAdd" Content="+" Click="Add1_Click" Width="30"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="40">
-                            <Button Content="-" Click="Decrease1_Click" Width="30" />
+                        <GridViewColumn Width="40" Header="Decrease">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="-" Click="Decrease1_Click" Width="30" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="65">
-                            <Button Content="Remove" Click="Remove_Click"  Width="60"/>
+                        <GridViewColumn Width="65" Header="remove">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Remove" Click="Remove_Click"  Width="60"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
