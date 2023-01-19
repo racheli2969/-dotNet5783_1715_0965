@@ -42,3 +42,5 @@ C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\ne
 C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\Product\ProductCatalog.baml
 C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\Product\ProductItem.baml
 C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\Product\ProductList.baml
+C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\Admin.g.cs
+C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\Admin.baml
