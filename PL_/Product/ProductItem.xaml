@@ -1,0 +1,49 @@
+<Window x:Class="PL.Product.ProductItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Product"
+        mc:Ignorable="d"
+        Title="ProductItem" Height="450" Width="800">
+    <Grid Margin="0,0,0,15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,380" Grid.RowSpan="2">
+            <Canvas>
+                <Label x:Name="lblId" Content="{Binding Path=ID }" Canvas.Left="329" Canvas.Top="28" Height="27" Width="83" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button Content="BACK" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Click="Back_Click"/>
+                <Button Content="EXIT" Click="CloseAllWindows" Margin="73,10,694,54"/>
+                <Label  Content="ID" Margin="218,29,525,359" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+                    <Label.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Label.BorderBrush>
+                </Label>
+                <Label x:Name="lblForName" Content="Name" Margin="218,61,507,322" FontSize="14" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
+                <Label  Content="Price" Margin="218,97,525,291" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
+                <Label  Content="Category" Margin="218,138,525,250" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
+                <Label  Content="Amount in cart" Margin="218,179,525,207" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
+                <Label x:Name="lblName" Content="{Binding Path=Name}" Canvas.Left="321" Canvas.Top="64" HorizontalAlignment="Left" VerticalAlignment="Center" Width="79"/>
+                <Label x:Name="lblPrice" Content="{Binding Path=Price}" Canvas.Left="321" Canvas.Top="97" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblCategory" Content="{Binding Path=Category}" Canvas.Left="321" Canvas.Top="138" Width="83" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center"/>
+                <Button x:Name="btnAddToCart" Content="+" FontStyle="Italic" Click="AddToCart_Click" Canvas.Left="360" Canvas.Top="290" Height="28" Width="28"/>
+                <Button x:Name="btnAddToCart_Copy" Content="-" FontStyle="Italic" Click="AddToCart_Click" Canvas.Left="303" Canvas.Top="290" Height="28" Width="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Border BorderBrush="Black" BorderThickness="1" Height="32" Canvas.Left="321" Canvas.Top="26" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" BorderThickness="1" Height="31" Canvas.Left="321" Canvas.Top="138" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" BorderThickness="1" Height="30" Canvas.Left="321" Canvas.Top="102" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" BorderThickness="1" Height="31" Canvas.Left="321" Canvas.Top="66" Width="83"/>
+            </Canvas>
+        </Grid>
+        <Label Content="Label" Margin="321,96,400,125" Grid.Row="1"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="321,94,396,125" Grid.Row="1"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="263,140,400,79" Grid.Row="1"/>
+        <Label Content="lblAvailability" HorizontalAlignment="Left" Height="30" Margin="261,140,0,0" Grid.Row="1" VerticalAlignment="Top" Width="141"/>
+
+    </Grid>
+</Window>

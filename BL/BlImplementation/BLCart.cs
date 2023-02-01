@@ -27,18 +27,22 @@ internal class BLCart : BlApi.ICart
             else
             {    //add the product
                 BO.OrderItem oi = new BO.OrderItem();
-                oi.ItemId = product[0].ID;
-                oi.ItemName = product[0].Name;
-                oi.ItemPrice = product[0].Price;
-                oi.Amount = 1;
-                oi.PriceOfItems = product[0].Price;
-                c?.Items?.Add(oi);
+                if (product != null)
+                {
+                    oi.ItemId = product[0].ID;
+                    oi.ItemName = product[0].Name;
+                    oi.ItemPrice = product[0].Price;
+                    oi.Amount = 1;
+                    oi.PriceOfItems = product[0].Price;
+                    c?.Items?.Add(oi);
+                }
             }
             double finalPrice = 0;
-            foreach (BO.OrderItem item in c.Items)
-            {
-                finalPrice += item.ItemPrice;
-            }
+            if (c.Items != null)
+                foreach (BO.OrderItem item in c.Items)
+                {
+                    finalPrice += item.ItemPrice;
+                }
             //return updated cart
             c.FinalPrice = finalPrice;
             return c;
