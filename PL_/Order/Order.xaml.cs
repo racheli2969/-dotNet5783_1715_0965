@@ -15,7 +15,7 @@ namespace PL.Order
     {
         private IBl? Bl { get; set; }
         private OrderList orderListWindow { get; set; }
-
+       private Action updateOrders;
         public BO.Order? order
         {
             get { return (BO.Order)GetValue(orderProperty); }
@@ -25,50 +25,21 @@ namespace PL.Order
         // Using a DependencyProperty as the backing store for order.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty orderProperty =
             DependencyProperty.Register("order", typeof(BO.Order), typeof(OrderWindow));
-
-
-        ///// <summary>
-        ///// dependency property for date of delivery ro update
-        ///// </summary>
-        //public DateTime? DateDeliveredProp
+      //  , new FrameworkPropertyMetadata(null,
+      //new PropertyChangedCallback(OnIsDefaultChanged)));
+        //private  void OnIsDefaultChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         //{
-        //    get { return (DateTime)GetValue(DateDeliveredProperty); }
-        //    set { SetValue(DateDeliveredProperty, value); }
+        //    updateOrders();
         //}
 
-        //// Using a DependencyProperty as the backing store for TextDateDelivered.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty? DateDeliveredProperty =
-        //    DependencyProperty.Register("TextDateDeliveredProp", typeof(string), typeof(OrderWindow));
 
-        ///// <summary>
-        ///// dependency property for date received
-        ///// </summary>
-        //public DateTime DateReceivedProp
-        //{
-        //    get { return (DateTime)GetValue(DateReceivedProperty); }
-        //    set { SetValue(DateReceivedProperty, value); }
-        //}
 
-        //// Using a DependencyProperty as the backing store for DateReceived.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty DateReceivedProperty =
-        //    DependencyProperty.Register("DateReceived", typeof(string), typeof(OrderWindow));
-
-        public OrderWindow(IBl? bl, int id, OrderList ol)
+        public OrderWindow(IBl? bl, int id, OrderList ol, Action updateOs)
         {
             InitializeComponent();
             Bl = bl;
+           updateOrders = updateOs;
             orderListWindow = ol;
-
-            ////set the delivery date picker
-            //DateDeliveredPicker.SelectedDateChanged += DateDeliveredProp_selectionChanged;
-            //DateDeliveredPicker.DisplayDateStart = DateTime.Now;//.Subtract(new TimeSpan(30,2,2,2));
-            //DateDeliveredPicker.DisplayDateEnd = DateTime.Now.AddMonths(6);
-
-            ////set the received date picker
-            //ReceivedDatePicker.SelectedDateChanged += DateReceived_selectionChanged;
-            //ReceivedDatePicker.DisplayDateStart = DateTime.Now;
-            //ReceivedDatePicker.DisplayDateEnd = DateTime.Now.AddMonths(4);
-
             order = bl?.Order?.GetOrderDetails(id);
             DataContext = order;
             OrderItemListView.ItemsSource = order?.Items;
@@ -77,8 +48,6 @@ namespace PL.Order
                 case BO.EnumOrderStatus.Ordered:
                     btnUpdateDeliveryDate.Visibility = Visibility.Visible;
                     btnReceivedDate.Visibility = Visibility.Visible;
-                    //lblDateDelivered.Visibility = Visibility.Hidden;
-                    btnReceivedDate.IsEnabled = false;
                     break;
                 case BO.EnumOrderStatus.Delivered:
                     btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
@@ -98,40 +67,25 @@ namespace PL.Order
 
         private void btnUpdateDeliveryDate_Click(object sender, RoutedEventArgs e)
         {
-            //if (order?.DateOrdered > order?.DateDelivered)
-            //    throw new Exception("delivery date must be a later date than the order date");
-
-            //if (order?.DateDelivered <= DateTime.Now)
-            //{
-            //    order.OrderStatus = BO.EnumOrderStatus.Delivered;
-            //}
-            order=Bl?.Order.UpdateOrderShipping(order.OrderId);
+            order = Bl?.Order.UpdateOrderShipping(order.OrderId);
+            DataContext = order;
             btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
-            lblDateDelivered.Visibility = Visibility.Visible;
-           // lblReceivedDate.Visibility = Visibility.Visible;
-           
+            btnReceivedDate.IsEnabled = true;
+            updateOrders();
         }
-
-        //private void DateDeliveredProp_selectionChanged(object sender, RoutedEventArgs e)
-        //{// validate input
-        //    btnUpdateDeliveryDate.IsEnabled = true;
-        //}
-        //private void DateReceived_selectionChanged(object sender, RoutedEventArgs e)
-        //{// validate input
-        //    btnReceivedDate.IsEnabled = true;
-        //}
 
         private void UpdateReceivedDate_Click(object sender, RoutedEventArgs e)
         {
-          order=Bl?.Order.UpdateOrderDelivery(order.OrderId);
-         
-            //lblReceivedDate.Visibility = Visibility.Visible;    
+            order = Bl?.Order.UpdateOrderDelivery(order.OrderId);
+            DataContext = order;
             btnReceivedDate.Visibility = Visibility.Hidden;
-            lblReceivedDate.Content = order.DateReceived;
+            lblReceivedDate.Content = order?.DateReceived;
+            updateOrders();
         }
+        //for bonus
         private void UpdateOrderItem_Click(object sender, RoutedEventArgs e)
         {
-
+            updateOrders();
         }
     }
 }

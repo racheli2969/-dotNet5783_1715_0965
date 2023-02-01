@@ -17,15 +17,13 @@ namespace PL
     {
         private IBl? Bl { get; set; }
         private Admin admin { get; set; }
-        //private List<BO.ProductForList>? products { get; set; }
-       // private ObservableCollection<BO.ProductForList>? products { get; set; }
         private IEnumerable<BO.ProductForList>? products { get; set; }
+
         public ProductListWindow(IBl? b, Admin a)
         {
             InitializeComponent();
             Bl = b;
             admin = a;
-            //CategorySelector.Items.Clear();
             string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
             List<string> options = new();
             options.Insert(0, "GetAll");

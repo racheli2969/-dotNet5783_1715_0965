@@ -32,8 +32,7 @@
             </Label>
             <Label Content="{Binding Email}" Grid.Column="2" Margin="61,56,218,348"/>
             <Label Content="{Binding OrderStatus}" Grid.Column="2" Margin="61,87,228,317"/>
-            <!--<DatePicker x:Name="DateDeliveredPicker" Visibility="Hidden" Grid.Column="2" Margin="55,154,228,254" FontFamily="Comic Sans MS" FontSize="12" SelectedDate="{Binding DateDelivered, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>-->
-            <Label x:Name="lblDateDelivered" Grid.Column="2" Margin="55,154,228,254" Content="{Binding DateDelivered}">
+            <Label x:Name="lblDateDelivered" Grid.Column="2" Margin="55,154,228,254">
                 <Label.Style>
                     <Style TargetType="{x:Type Label}">
                         <Setter Property="Visibility" Value="Hidden" />
@@ -44,19 +43,9 @@
                         </Style.Triggers>
                     </Style>
                 </Label.Style>
+                <Binding x:Name="binding1" Path="DateDelivered"/>
             </Label>
-            <!--<DatePicker x:Name="ReceivedDatePicker" Visibility="Hidden"  Grid.Column="2" Margin="55,187,228,217"  FontFamily="Comic Sans MS" FontSize="12" SelectedDate="{Binding DateReceived, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>-->
-            <Label x:Name="lblReceivedDate" Grid.Column="2" Margin="55,187,228,217" Visibility="{Binding btnReceivedDate, ElementName=binding}">
-                <!--<Label.Style>
-                    <Style TargetType="{x:Type Label}">
-                        <Setter Property="Visibility" Value="Visible" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsVisible, ElementName=btnReceivedDate}" Value="False">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>-->
+            <Label x:Name="lblReceivedDate" Grid.Column="2" Margin="55,187,228,217" Visibility="{Binding ElementName=binding}">
                 <Binding x:Name="binding" Path="DateReceived"/>
             </Label>
             <ListView x:Name="OrderItemListView" Margin="0,222,0,0" Grid.ColumnSpan="5" Grid.Column="1" >
@@ -84,17 +73,6 @@
                 <Label Content="{Binding DateOrdered}" Margin="0,0,-31,0"/>
             </Border>
         </Grid>
-        <Button x:Name="btnReceivedDate" Content="Update" Canvas.Left="173" Canvas.Top="187" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="UpdateReceivedDate_Click" RenderTransformOrigin="0.518,1.305"/>
-        <!--<Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="IsEnabled" Value="True" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsVisible,ElementName=btnUpdateDeliveryDate}" Value="False">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>-->
+        <Button x:Name="btnReceivedDate" Content="Update" Canvas.Left="173" Canvas.Top="187" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Click="UpdateReceivedDate_Click" RenderTransformOrigin="0.518,1.305" IsEnabled="False"/>
     </Canvas>
 </Window>
