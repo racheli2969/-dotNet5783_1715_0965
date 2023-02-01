@@ -24,7 +24,12 @@ public class BlOrder : BlApi.IOrder
             temp = new BO.OrderForList();
             temp.Id = ordersFromDal[i].OrderId;
             temp.CustomerName = ordersFromDal[i].CustomerName;
-            temp.OrderStatus = ordersFromDal[i].DateReceived != DateTime.MinValue ? BO.EnumOrderStatus.Received : ordersFromDal[i].DateDelivered != DateTime.MinValue ? BO.EnumOrderStatus.Delivered : BO.EnumOrderStatus.Ordered;
+            if (ordersFromDal[i].DateReceived != DateTime.MinValue)
+                temp.OrderStatus = BO.EnumOrderStatus.Received;
+            else if (ordersFromDal[i].DateDelivered != DateTime.MinValue)
+                temp.OrderStatus = BO.EnumOrderStatus.Delivered;
+            else temp.OrderStatus = BO.EnumOrderStatus.Ordered;
+
             temp.NumOfItems = amountOfProducts;
             temp.Price = finalPrice;
             orders.Add(temp);
@@ -48,10 +53,10 @@ public class BlOrder : BlApi.IOrder
             order.DateDelivered = O[0].DateDelivered;
             order.DateOrdered = O[0].DateOrdered;
             order.DateReceived = O[0].DateReceived;
-            if (O[0].DateDelivered != DateTime.MinValue)
-                order.OrderStatus = BO.EnumOrderStatus.Delivered;
             if (O[0].DateReceived != DateTime.MinValue)
                 order.OrderStatus = BO.EnumOrderStatus.Received;
+            else if (O[0].DateDelivered != DateTime.MinValue)
+                order.OrderStatus = BO.EnumOrderStatus.Delivered;
             else
                 order.OrderStatus = BO.EnumOrderStatus.Ordered;
             double finalPrice = 0;
@@ -86,6 +91,7 @@ public class BlOrder : BlApi.IOrder
         }
 
     }
+    //updates date of delivery
     public BO.Order UpdateOrderShipping(int orderId)
     {
         try
@@ -97,8 +103,10 @@ public class BlOrder : BlApi.IOrder
                 List<DO.OrderItem>? oi = dal?.OrderItem.GetAll(p => p.OrderID == orderId)?.ToList();
                 DO.Order order_ = new();
                 order_ = order[0];
+                //update the date
                 order_.DateDelivered = DateTime.Now;
-                dal.Order.Update(order[0]);
+                dal?.Order.Update(order_);
+                //create an order of the bo layer and move all the info
                 BO.Order o = new BO.Order();
                 o.OrderId = orderId;
                 o.CustomerName = order_.CustomerName;
@@ -138,6 +146,7 @@ public class BlOrder : BlApi.IOrder
         }
         throw new BlApi.SentAlreadyException();
     }
+    //updates the date of delivery (receiving)
     public BO.Order UpdateOrderDelivery(int orderId)
     {
         try
@@ -188,8 +197,9 @@ public class BlOrder : BlApi.IOrder
         {
             throw new BlApi.BlEntityNotFoundException();
         }
-        throw new BlApi.deliveredAlreadyException();
+       throw new BlApi.deliveredAlreadyException();
     }
+
     public BO.OrderTracking OrderTracking(int orderId)
     {
         try

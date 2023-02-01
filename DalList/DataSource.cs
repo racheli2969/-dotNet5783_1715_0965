@@ -107,18 +107,18 @@ public static class DataSource
             order.DateDelivered = DateTime.MinValue;
             order.DateReceived = DateTime.MinValue;
             TimeSpan ts = new TimeSpan(Number.Next(20, 500), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));//time span of between 2-12 days 
-            order.DateOrdered = ((DateTime)((Order)order).DateOrdered).Subtract(ts);
+            order.DateOrdered = ((DateTime)(order).DateOrdered).Subtract(ts);
             ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
             if (i < 0.8 * orders)//80% of orders date of delivery started
             {
                 order.DateDelivered = order.DateOrdered;
-                order.DateDelivered = ((DateTime)((Order)order).DateDelivered).Add(ts);
+                order.DateDelivered = ((DateTime)order.DateDelivered).Add(ts);
             }
             ts = new TimeSpan(Number.Next(2, 10), Number.Next(0, 30), Number.Next(0, 24), Number.Next(0, 60), Number.Next(0, 60));
             if (i < 0.6 * orders)//60% of orders
             {
                 order.DateReceived = order.DateDelivered;
-                order.DateReceived = ((DateTime)((Order)order).DateReceived).Add(ts);
+                order.DateReceived = ((DateTime)(order).DateReceived).Add(ts);
             }
 
             Orders.Add(order);

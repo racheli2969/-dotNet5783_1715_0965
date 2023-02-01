@@ -93,7 +93,7 @@ namespace PL.Order {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PL_;V1.0.0.0;component/order/orderforlist.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PL_;component/order/orderforlist.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Order\OrderForList.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
