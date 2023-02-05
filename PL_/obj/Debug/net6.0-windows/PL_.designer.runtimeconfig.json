@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\brach\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\brach\\.nuget\\packages",
+      "C:\\Users\\פוקרוי רחל\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\פוקרוי רחל\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {

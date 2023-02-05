@@ -36,3 +36,22 @@ C:\Users\brach\source\repos\-dotNet5783_1715_0965\BL\obj\Debug\net6.0\BL.dll
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\BL\obj\Debug\net6.0\refint\BL.dll
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\BL\obj\Debug\net6.0\BL.pdb
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\BL\obj\Debug\net6.0\ref\BL.dll
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\BL.deps.json
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\BL.dll
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\BL.pdb
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\DalFacade.dll
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\DalList.dll
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\DalXml.dll
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\DalFacade.pdb
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\DalList.pdb
+C:\Users\פוקרוי רחל\Source\Repos\BL\bin\Debug\net6.0\DalXml.pdb
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\BL.csproj.AssemblyReference.cache
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\BL.AssemblyInfoInputs.cache
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\BL.AssemblyInfo.cs
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\BL.csproj.CoreCompileInputs.cache
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\BL.csproj.CopyComplete
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\BL.dll
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\refint\BL.dll
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\BL.pdb
+C:\Users\פוקרוי רחל\Source\Repos\BL\obj\Debug\net6.0\ref\BL.dll

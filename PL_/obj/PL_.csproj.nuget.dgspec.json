@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj": {}
+    "C:\\Users\\פוקרוי רחל\\Source\\Repos\\PL_\\PL_.csproj": {}
   },
   "projects": {
-    "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj": {
+    "C:\\Users\\פוקרוי רחל\\Source\\Repos\\BL\\BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj",
+        "projectUniqueName": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\BL\\BL.csproj",
         "projectName": "BL",
-        "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj",
-        "packagesPath": "C:\\Users\\brach\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\obj\\",
+        "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\BL\\BL.csproj",
+        "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\BL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\brach\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,14 +32,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
-                "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
+              "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj"
               },
-              "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj": {
-                "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj"
+              "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalList\\DalList.csproj": {
+                "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalList\\DalList.csproj"
               },
-              "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj": {
-                "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj"
+              "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalXml\\DalXml.csproj": {
+                "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalXml\\DalXml.csproj"
               }
             }
           }
@@ -59,8 +59,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -69,24 +68,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
+    "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
+        "projectUniqueName": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj",
         "projectName": "DalFacade",
-        "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
-        "packagesPath": "C:\\Users\\brach\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\obj\\",
+        "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj",
+        "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\brach\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -118,8 +117,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -128,24 +126,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj": {
+    "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalList\\DalList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj",
+        "projectUniqueName": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalList\\DalList.csproj",
         "projectName": "DalList",
-        "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj",
-        "packagesPath": "C:\\Users\\brach\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\obj\\",
+        "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalList\\DalList.csproj",
+        "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalList\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\brach\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -160,8 +158,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
-                "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
+              "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj"
               }
             }
           }
@@ -181,8 +179,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -191,24 +188,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj": {
+    "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalXml\\DalXml.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj",
+        "projectUniqueName": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalXml\\DalXml.csproj",
         "projectName": "DalXml",
-        "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj",
-        "packagesPath": "C:\\Users\\brach\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\obj\\",
+        "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalXml\\DalXml.csproj",
+        "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalXml\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\brach\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -223,8 +220,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
-                "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
+              "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\DalFacade\\DalFacade.csproj"
               }
             }
           }
@@ -244,8 +241,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -254,29 +250,29 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj": {
+    "C:\\Users\\פוקרוי רחל\\Source\\Repos\\PL_\\PL_.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj",
+        "projectUniqueName": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\PL_\\PL_.csproj",
         "projectName": "PL_",
-        "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj",
-        "packagesPath": "C:\\Users\\brach\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\PL_\\obj\\",
+        "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\PL_\\PL_.csproj",
+        "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\PL_\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\brach\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net6.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -286,8 +282,8 @@
           "net6.0-windows7.0": {
             "targetAlias": "net6.0-windows",
             "projectReferences": {
-              "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj": {
-                "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj"
+              "C:\\Users\\פוקרוי רחל\\Source\\Repos\\BL\\BL.csproj": {
+                "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\BL\\BL.csproj"
               }
             }
           }
@@ -307,8 +303,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -320,7 +315,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
