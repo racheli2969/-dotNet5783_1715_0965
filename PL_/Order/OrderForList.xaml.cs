@@ -19,7 +19,8 @@ namespace PL.Order
             InitializeComponent();
             Bl = b;
             admin = a;
-            orders = Bl?.Order.GetOrderList ();
+            orders = Bl?.Order.GetOrderList();
+            OrderListView.ItemsSource = orders;
             OrderListView.DataContext = orders;
         }
 
