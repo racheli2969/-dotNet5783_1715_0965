@@ -159,7 +159,7 @@ public class BlOrder : BlApi.IOrder
                 DO.Order order_ = new();
                 order_ = order[0];
                 order_.DateReceived = DateTime.Now;
-                dal?.Order.Update(order[0]);
+                dal?.Order.Update(order_);
                 BO.Order o = new BO.Order();
                 o.CustomerName = order_.CustomerName;
                 o.Email = order_.Email;

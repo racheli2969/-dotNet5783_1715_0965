@@ -20,7 +20,7 @@
             </Grid.ColumnDefinitions >
         </Grid>
         <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Left" Height="33" Margin="46,28,0,0" VerticalAlignment="Top" Width="61" Click="backToAdmin_Click" Background="#FFFB8585"/>
-        <ListView x:Name="OrderListView" MouseDoubleClick="OrderListView_MouseDoubleClick" Margin="0,66,0,10" Grid.RowSpan="3" >
+        <ListView x:Name="OrderListView" MouseDoubleClick="OrderListView_MouseDoubleClick" Margin="0,66,0,10" Grid.RowSpan="3" ItemsSource="{Binding}">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" >
                     <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=Id}" Header="ID" Width="100"/>

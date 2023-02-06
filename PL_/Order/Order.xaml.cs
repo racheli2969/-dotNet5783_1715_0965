@@ -15,30 +15,14 @@ namespace PL.Order
     {
         private IBl? Bl { get; set; }
         private OrderList orderListWindow { get; set; }
-       private Action updateOrders;
-        public BO.Order? order
-        {
-            get { return (BO.Order)GetValue(orderProperty); }
-            set { SetValue(orderProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for order.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty orderProperty =
-            DependencyProperty.Register("order", typeof(BO.Order), typeof(OrderWindow));
-      //  , new FrameworkPropertyMetadata(null,
-      //new PropertyChangedCallback(OnIsDefaultChanged)));
-        //private  void OnIsDefaultChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        //{
-        //    updateOrders();
-        //}
-
-
+        private Action updateOrders;
+        public BO.Order? order { get; set; }
 
         public OrderWindow(IBl? bl, int id, OrderList ol, Action updateOs)
         {
             InitializeComponent();
             Bl = bl;
-           updateOrders = updateOs;
+            updateOrders = updateOs;
             orderListWindow = ol;
             order = bl?.Order?.GetOrderDetails(id);
             DataContext = order;
@@ -51,13 +35,17 @@ namespace PL.Order
                     break;
                 case BO.EnumOrderStatus.Delivered:
                     btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
-                    btnReceivedDate.Visibility = Visibility.Visible; break;
+                    btnReceivedDate.Visibility = Visibility.Visible;
+                    btnReceivedDate.IsEnabled = true;
+                    break;
                 case BO.EnumOrderStatus.Received:
                     btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
-                    btnReceivedDate.Visibility = Visibility.Hidden; break;
+                    btnReceivedDate.Visibility = Visibility.Hidden;
+                    break;
                 default:
                     break;
             }
+            
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
