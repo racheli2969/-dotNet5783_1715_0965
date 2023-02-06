@@ -1,6 +1,6 @@
 ﻿using BlApi;
 using BO;
-using PL_.Order;
+using Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,24 +16,6 @@ namespace PL.Order
     {
         private IBl? Bl { get; set; }
         private Admin admin { get; set; }
-
-
-        //public IEnumerable<BO.OrderForList>? orders
-        //{
-        //    get { return (IEnumerable<BO.OrderForList>)GetValue(ordersProperty); }
-        //    set { SetValue(ordersProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for orders.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty ordersProperty =
-        //    DependencyProperty.Register("orders", typeof(IEnumerable<BO.OrderForList>), typeof(OrderList), new PropertyMetadata(onOrdersChanged));
-
-        //private static void onOrdersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    IEnumerable<BO.OrderForList>? o = (IEnumerable<OrderForList>?)d;
-
-        //}
-
         private IEnumerable<PlOrderForList>? orders { get; set; }
         public OrderList(IBl? b, Admin a)
         {
@@ -49,22 +31,25 @@ namespace PL.Order
         private List<PlOrderForList>? convertBlOrdersToPl(List<OrderForList>? ordersOfBl)
         {
             List<PlOrderForList>? ordersOfpl = new List<PlOrderForList>(ordersOfBl.Count());
+            PlOrderForList pl;
             for (int i = 0; i < ordersOfBl.Count(); i++)
             {
-                ordersOfpl[i].Id = ordersOfBl[i].Id;
-                ordersOfpl[i].CustomerName = ordersOfBl[i].CustomerName;
-                ordersOfpl[i].OrderStatus = (EnumOrderStatus?)ordersOfBl[i]?.OrderStatus;
-                ordersOfpl[i].NumOfItems = ordersOfBl[i].NumOfItems;
-                ordersOfpl[i].Price = ordersOfBl[i].Price; 
+                pl = new PlOrderForList();
+                pl.Id = ordersOfBl[i].Id;
+                pl.CustomerName = ordersOfBl[i].CustomerName;
+                pl.OrderStatus = ordersOfBl[i]?.OrderStatus;
+                pl.NumOfItems = ordersOfBl[i].NumOfItems;
+                pl.Price = ordersOfBl[i].Price;
+                ordersOfpl.Add(pl);
             }
             return ordersOfpl;
         }
 
         private void OrderListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (((BO.OrderForList)OrderListView.SelectedItem) != null)
+            if (((PlOrderForList)OrderListView.SelectedItem) != null)
             {
-                OrderWindow o = new(Bl, ((BO.OrderForList)OrderListView.SelectedItem).Id, this, updateOrders);
+                OrderWindow o = new(Bl, ((PlOrderForList)OrderListView.SelectedItem).Id, this, updateOrders);
                 o.Show();
                 this.Hide();
             }

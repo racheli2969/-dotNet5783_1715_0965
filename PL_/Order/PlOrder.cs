@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;   // Remember to reference WindowsBase
 
-namespace PL_.Order;
+namespace Order;
 
 public class PlOrder : DependencyObject
 {
