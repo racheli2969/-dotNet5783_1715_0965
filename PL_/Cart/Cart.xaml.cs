@@ -13,20 +13,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL_;
+namespace PL_.Cart;
 
 /// <summary>
 /// Interaction logic for Cart.xaml
 /// </summary>
-public partial class Cart : Window
+public partial class CartWindow : Window
 {
     private ProductCatalog productCatalog { get; set; }
     private BO.Cart cart { get; set; }
-    public Cart(ProductCatalog p, BO.Cart cart)
+    public CartWindow(ProductCatalog p, BO.Cart cart)
     {
         InitializeComponent();
         productCatalog = p;
         this.cart = cart;
+        DataContext = cart;
+        if (cart.Items == null || cart.Items.Count() == 0)
+        {
+            CartItemsListView.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            imgEmptyCart.Visibility = Visibility.Collapsed;
+            lblForEmptyCart.Visibility = Visibility.Collapsed;
+        }
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)

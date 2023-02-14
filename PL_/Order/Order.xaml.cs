@@ -15,10 +15,17 @@ namespace PL_.Order
     public partial class OrderWindow : Window
     {
         private IBl? Bl { get; set; }
-        private OrderList orderListWindow { get; set; }
-        private Action<BO.EnumOrderStatus,int> updateOrders;
+        private OrderList? orderListWindow { get; set; }
+        private MainWindow? mainWindow { get; }
+        private Action<BO.EnumOrderStatus, int>? updateOrders;
         public BO.Order? order { get; set; }
-
+        /// <summary>
+        /// constructor for admin to update reached through the order list window
+        /// </summary>
+        /// <param name="bl">the blapi obj through it we access the bl layer</param>
+        /// <param name="id">id of the order we want to open for admin</param>
+        /// <param name="ol">the order list window where the admin could return to when he's done</param>
+        /// <param name="updateOs">a function that we call only when there's an update in the order staus and is used to update the staus in order list using the functionality of dependency object</param>
         public OrderWindow(IBl? bl, int id, OrderList ol, Action<BO.EnumOrderStatus, int> updateOs)
         {
             InitializeComponent();
@@ -46,11 +53,29 @@ namespace PL_.Order
                 default:
                     break;
             }
-            
+            mainWindow = null;
+        }
+        public OrderWindow(IBl? bl, int id, MainWindow mw)
+        {
+            InitializeComponent();
+            Bl = bl;
+            order = bl?.Order?.GetOrderDetails(id);
+            DataContext = order;
+            mainWindow = mw;
+            OrderItemListView.ItemsSource = order?.Items;
+            orderListWindow = null;
+            updateOrders = null;
+            btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
+            btnReceivedDate.Visibility = Visibility.Hidden;
+            updateColumn.Width = 0;
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            orderListWindow.Show();
+            //if you came through the admin you go back to orders list else you go back to main page
+            if (orderListWindow != null)
+                orderListWindow.Show();
+            else if(mainWindow!=null)
+                mainWindow.Show();
             this.Close();
         }
         /// <summary>
@@ -65,7 +90,7 @@ namespace PL_.Order
             DataContext = order;
             btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
             btnReceivedDate.IsEnabled = true;
-            if (order != null)
+            if (order != null&&updateOrders!=null)
                 updateOrders(BO.EnumOrderStatus.Shipped, order.OrderId);
         }
 
@@ -76,13 +101,13 @@ namespace PL_.Order
             DataContext = order;
             btnReceivedDate.Visibility = Visibility.Hidden;
             lblReceivedDate.Content = order?.DateReceived;
-            if (order != null)
+            if (order != null && updateOrders != null)
                 updateOrders(BO.EnumOrderStatus.Delivered, order.OrderId);
         }
         //for bonus
         private void UpdateOrderItem_Click(object sender, RoutedEventArgs e)
         {
-           // updateOrders();
+            // updateOrders();
         }
     }
 }

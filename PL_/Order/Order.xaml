@@ -22,8 +22,8 @@
             <Label x:Name="Email" Content="Email" Grid.Column="1" Margin="14,52,394,352" Grid.ColumnSpan="2" RenderTransformOrigin="0.151,0.464"/>
             <Label x:Name="OrderStatus" Content="OrderStatus" Grid.ColumnSpan="2" Margin="10,87,390,321" Grid.Column="1"/>
             <Label x:Name="DateOrdered" Content="DateOrdered" Margin="10,118,379,276" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <Label x:Name="DateDelivered" Content="DateDelivered" Grid.ColumnSpan="2" Margin="10,152,379,243" Grid.Column="1"/>
-            <Label x:Name="DateReceived" Content="DateReceived" Grid.Column="1" Margin="11,187,379,217" Grid.ColumnSpan="2"/>
+            <Label x:Name="DateShipped" Content="DateDelivered" Grid.ColumnSpan="2" Margin="10,152,379,243" Grid.Column="1"/>
+            <Label x:Name="DateDelivered" Content="DateReceived" Grid.Column="1" Margin="11,187,379,217" Grid.ColumnSpan="2"/>
 
             <Label x:Name="name" Content="{Binding CustomerName}"  BorderBrush="Black" Height="27" VerticalAlignment="Top" Margin="61,24,212,0" Grid.Column="2" >
                 <Label.Background>
@@ -57,7 +57,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding ItemPrice}" Header="Price" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Amount}" Header="Amount" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding PriceOfItems}" Header="PriceOfItems" Width="100"/>
-                        <GridViewColumn Width="100" >
+                        <GridViewColumn Width="100" x:Name="updateColumn" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button x:Name="btnUpdateOrderItem" Content="update" Click="UpdateOrderItem_Click" Width="80" IsEnabled="False"/>

@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using PL_;
+using PL_.Cart;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -17,14 +18,14 @@ public partial class ProductCatalog : Window
     private IBl? Bl { get; set; }
     private MainWindow mainWindow { get; set; }
     private BO.Cart cart { get; set; }
-    private PL_.Cart cartWindow { get; set; }
+    private PL_.Cart.CartWindow cartWindow { get; set; }
     public ProductCatalog(IBl? b, MainWindow mw)
     {
         InitializeComponent();
         Bl = b;
         mainWindow = mw;
         cart = new BO.Cart();
-        cartWindow = new PL_.Cart(this,cart);
+        cartWindow = new CartWindow(this,cart);
         //the combo box
         string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
         List<string> options = new();
@@ -69,20 +70,3 @@ public partial class ProductCatalog : Window
         this.Hide();
     }
 }
-
-//public class CartDependencyProperty
-//{
-
-//    public static readonly DependencyProperty CartDependency = DependencyProperty.Register("MyProperty", typeof(string), typeof(CartDependencyProperty));
-//    public string MyCart
-//    {
-//        get
-//        {
-//            return (string)GetValue(CartDependency);
-//        }
-//        set
-//        {
-//            SetValue(CartDependency, value);
-//        }
-//    }
-//}

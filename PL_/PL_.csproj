@@ -18,6 +18,7 @@
     <None Remove="Images\bookCase.jpg" />
     <None Remove="Images\booksLine.jpg" />
     <None Remove="Images\bookWithLightBulb.jpg" />
+    <None Remove="Images\greenShoppingBAsket.webp" />
     <None Remove="Images\straightBookCase.jpg" />
   </ItemGroup>
 
@@ -33,6 +34,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\bookWithLightBulb.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\greenShoppingBAsket.webp">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\straightBookCase.jpg">

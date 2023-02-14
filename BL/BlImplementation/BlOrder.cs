@@ -145,18 +145,21 @@ public class BlOrder : BlApi.IOrder
             DO.Order? order = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().First();
             BO.OrderTracking orderTracking = new BO.OrderTracking();
             orderTracking.Id = orderId;
-            orderTracking?.TrackingTuples?.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateOrdered, EnumOrderStatus.Ordered));
+            List<(DateTime?, EnumOrderStatus)> tempTrackingtUples = new();
+            // orderTracking.TrackingTuples[0] = ((order ?? throw new DalApi.EntityNotFoundException()).DateOrdered, EnumOrderStatus.Ordered);
+            tempTrackingtUples.Add((order.HasValue?(order).Value.DateOrdered:throw new DalApi.EntityNotFoundException(), EnumOrderStatus.Ordered));
             (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Ordered;
             if ((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered != DateTime.MinValue)
             {
-                orderTracking?.TrackingTuples?.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered, EnumOrderStatus.Ordered));
+                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered, EnumOrderStatus.Ordered));
                 (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Shipped;
             }
             if ((order ?? throw new DalApi.EntityNotFoundException()).DateReceived != DateTime.MinValue)
             {
-                orderTracking?.TrackingTuples?.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateReceived, EnumOrderStatus.Ordered));
+                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateReceived, EnumOrderStatus.Ordered));
                 (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Delivered;
             }
+            orderTracking.TrackingTuples = tempTrackingtUples;
             return orderTracking ?? throw new Exception("an unexpected error occured");
 
         }

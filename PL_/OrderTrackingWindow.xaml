@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="OrderTrackingWindow" Height="450" Width="800">
     <Grid>
-        <Label x:Name="info" Content="" HorizontalAlignment="Left" Height="264" Margin="209,79,0,0" VerticalAlignment="Top" Width="356"/>
-
+        <Label x:Name="info" Content="" HorizontalAlignment="Left" Height="264" Margin="200,79,0,0" VerticalAlignment="Top" Width="427" FontSize="20" FontStyle="Oblique" FontWeight="Thin"/>
+        <Button x:Name="btnViewMyOrder" Content="View order details" Margin="630,356,35,10" FontSize="16" FontStyle="Italic" FontWeight="Thin" Background="#FFEDE9BB" Click="btnViewMyOrder_Click" />
+        <Button x:Name="btnBackToMain" Content="Back" HorizontalAlignment="Left" Margin="25,28,0,0" VerticalAlignment="Top" Background="#FFB9E28A" FontSize="14" Click="btnBackToMain_Click"/>
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="78,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.539,0.603" Width="37" FontSize="14" Background="#FFF59797" Click="btnExit_Click"/>
     </Grid>
 </Window>
