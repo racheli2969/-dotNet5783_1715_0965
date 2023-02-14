@@ -15,10 +15,10 @@ namespace PL.Order
     {
         private IBl? Bl { get; set; }
         private OrderList orderListWindow { get; set; }
-        private Action updateOrders;
+        private Action<BO.EnumOrderStatus,int> updateOrders;
         public BO.Order? order { get; set; }
 
-        public OrderWindow(IBl? bl, int id, OrderList ol, Action updateOs)
+        public OrderWindow(IBl? bl, int id, OrderList ol, Action<BO.EnumOrderStatus, int> updateOs)
         {
             InitializeComponent();
             Bl = bl;
@@ -33,12 +33,12 @@ namespace PL.Order
                     btnUpdateDeliveryDate.Visibility = Visibility.Visible;
                     btnReceivedDate.Visibility = Visibility.Visible;
                     break;
-                case BO.EnumOrderStatus.Delivered:
+                case BO.EnumOrderStatus.Shipped:
                     btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
                     btnReceivedDate.Visibility = Visibility.Visible;
                     btnReceivedDate.IsEnabled = true;
                     break;
-                case BO.EnumOrderStatus.Received:
+                case BO.EnumOrderStatus.Delivered:
                     btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
                     btnReceivedDate.Visibility = Visibility.Hidden;
                     break;
@@ -52,28 +52,36 @@ namespace PL.Order
             orderListWindow.Show();
             this.Close();
         }
-
+        /// <summary>
+        /// updates the date of shipping to be now
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdateDeliveryDate_Click(object sender, RoutedEventArgs e)
         {
-            order = Bl?.Order.UpdateOrderShipping(order.OrderId);
+            if (order != null)
+                order = Bl?.Order.UpdateOrderShipping(order.OrderId);
             DataContext = order;
             btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
             btnReceivedDate.IsEnabled = true;
-            updateOrders();
+            if (order != null)
+                updateOrders(BO.EnumOrderStatus.Shipped, order.OrderId);
         }
 
         private void UpdateReceivedDate_Click(object sender, RoutedEventArgs e)
         {
-            order = Bl?.Order.UpdateOrderDelivery(order.OrderId);
+            if (order != null)
+                order = Bl?.Order.UpdateOrderDelivery(order.OrderId);
             DataContext = order;
             btnReceivedDate.Visibility = Visibility.Hidden;
             lblReceivedDate.Content = order?.DateReceived;
-            updateOrders();
+            if (order != null)
+                updateOrders(BO.EnumOrderStatus.Delivered, order.OrderId);
         }
         //for bonus
         private void UpdateOrderItem_Click(object sender, RoutedEventArgs e)
         {
-            updateOrders();
+           // updateOrders();
         }
     }
 }

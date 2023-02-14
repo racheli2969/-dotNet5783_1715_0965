@@ -20,11 +20,11 @@ public class PlOrderForList:DependencyObject
 
     // Using a DependencyProperty as the backing store for OrderStatus.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty OrderStatusProperty =
-        DependencyProperty.Register("OrderStatus", typeof(EnumOrderStatus), typeof(PlOrder), new PropertyMetadata(EnumOrderStatus.Ordered, new PropertyChangedCallback(OnOrderStatusChanged)));
+        DependencyProperty.Register("OrderStatus", typeof(EnumOrderStatus), typeof(PlOrderForList), new PropertyMetadata(EnumOrderStatus.Ordered, new PropertyChangedCallback(OnOrderStatusChanged)));
 
     private static void OnOrderStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        PlOrder plOrder = (PlOrder)d;
+        PlOrderForList plOrder = (PlOrderForList)d;
         plOrder.OrderStatus = (EnumOrderStatus)e.NewValue;
     }
     public int NumOfItems { get; set; }

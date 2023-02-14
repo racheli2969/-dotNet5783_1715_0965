@@ -1,7 +1,6 @@
 ﻿using BlApi;
 using BO;
 using Order;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -16,18 +15,22 @@ namespace PL.Order
     {
         private IBl? Bl { get; set; }
         private Admin admin { get; set; }
-        private IEnumerable<PlOrderForList>? orders { get; set; }
+        private List<PlOrderForList>? orders { get; set; }
         public OrderList(IBl? b, Admin a)
         {
             InitializeComponent();
             Bl = b;
             admin = a;
-            List<OrderForList>? ordersOfBl = Bl?.Order.GetOrderList().ToList();
-            orders = convertBlOrdersToPl(ordersOfBl);
-            OrderListView.DataContext = orders;
+            orders = getOrders();
+            //OrderListView.DataContext = orders;
+            OrderListView.ItemsSource = orders;
 
         }
-
+        private List<PlOrderForList>? getOrders()
+        {
+            List<OrderForList>? ordersOfBl = Bl?.Order.GetOrderList().ToList();
+            return convertBlOrdersToPl(ordersOfBl);
+        }
         private List<PlOrderForList>? convertBlOrdersToPl(List<OrderForList>? ordersOfBl)
         {
             List<PlOrderForList>? ordersOfpl = new List<PlOrderForList>(ordersOfBl.Count());
@@ -55,10 +58,12 @@ namespace PL.Order
             }
         }
 
-        private void updateOrders()
+        private void updateOrders(EnumOrderStatus status, int id)
         {
             // orders = (IEnumerable<PlOrderForList>?)(Bl?.Order.GetOrderList());
-            OrderListView.DataContext = orders;
+            if (orders != null)
+                orders[orders.FindIndex(item => item.Id == id)].OrderStatus = status;
+           // OrderListView.DataContext = orders;
         }
         private void backToAdmin_Click(object sender, RoutedEventArgs e)
         {

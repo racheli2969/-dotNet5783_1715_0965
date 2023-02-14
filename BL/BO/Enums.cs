@@ -10,8 +10,8 @@ namespace BO;
 public enum EnumOrderStatus
 {
     Ordered,
-    Delivered,
-    Received
+    Shipped,
+    Delivered
 }
 public enum BookGenre
 {

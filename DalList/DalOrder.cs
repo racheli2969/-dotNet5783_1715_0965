@@ -22,7 +22,7 @@ internal class DalOrder : IOrder
 #pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
     public IEnumerable<Order>? GetAll(Func<Order, bool> func)
     {
-        List<Order?> orders;
+        List<Order?> orders=new();
         if (func == null)
             orders = DataSource.Orders;
         else orders = DataSource.Orders.Where(x => x.HasValue && func((Order)x)).ToList();
