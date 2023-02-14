@@ -1,12 +1,13 @@
 ﻿using BlApi;
 using Microsoft.VisualBasic;
+using PL_.Order;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace PL.Order
+namespace PL_.Order
 {
     /// <summary>
     /// Interaction logic for Order.xaml

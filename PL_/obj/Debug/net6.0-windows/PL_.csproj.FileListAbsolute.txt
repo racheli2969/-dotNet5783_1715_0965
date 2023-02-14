@@ -136,3 +136,5 @@ C:\Users\brach\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\r
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\PL_.pdb
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\PL_.genruntimeconfig.cache
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\ref\PL_.dll
+C:\Users\brach\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\OrderTrackingWindow.g.cs
+C:\Users\brach\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\OrderTrackingWindow.baml

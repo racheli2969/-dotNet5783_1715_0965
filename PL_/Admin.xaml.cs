@@ -1,5 +1,5 @@
 ﻿using BlApi;
-using PL;
+using PL_.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,34 +14,36 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL
+namespace PL_;
+
+/// <summary>
+/// Interaction logic for Admin.xaml
+/// </summary>
+public partial class Admin : Window
 {
-    /// <summary>
-    /// Interaction logic for Admin.xaml
-    /// </summary>
-    public partial class Admin : Window
+    private BlApi.IBl? Bl { get; set; }
+    //maybe to just create them everytime?
+    private ProductListWindow productListWindow { get; set; }
+    private PL_.Order.OrderList orderList { get; set; }
+    private MainWindow mainWindow { get; set; }
+    public Admin(IBl? bl, MainWindow mw)
     {
-        private BlApi.IBl? Bl { get; set; }
-        private ProductListWindow productListWindow { get; set; }
-        private PL.Order.OrderList orderList { get; set; }
-        public Admin(IBl? bl, MainWindow mw)
-        {
-            InitializeComponent();
-            Bl= bl;
-            productListWindow = new(b: Bl ?? null, this);
-            orderList = new(b: Bl ?? null, this);
-        }
+        InitializeComponent();
+        Bl= bl;
+        mainWindow= mw;
+        productListWindow = new(b: Bl ?? null, this);
+        orderList = new(b: Bl ?? null, this);
+    }
 
-        private void btnViewOrders_Click(object sender, RoutedEventArgs e)
-        {
-            orderList.Show();
-            this.Hide();
-        }
+    private void btnViewOrders_Click(object sender, RoutedEventArgs e)
+    {
+        orderList.Show();
+        this.Hide();
+    }
 
-        private void BtnViewProduct_Click(object sender, RoutedEventArgs e)
-        {
-            productListWindow.Show();
-            this.Hide();
-        }
+    private void BtnViewProduct_Click(object sender, RoutedEventArgs e)
+    {
+        productListWindow.Show();
+        this.Hide();
     }
 }

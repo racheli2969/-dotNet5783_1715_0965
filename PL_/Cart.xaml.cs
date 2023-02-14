@@ -1,4 +1,4 @@
-﻿using PL.Product;
+﻿using PL_.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,46 +13,45 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL_
+namespace PL_;
+
+/// <summary>
+/// Interaction logic for Cart.xaml
+/// </summary>
+public partial class Cart : Window
 {
-    /// <summary>
-    /// Interaction logic for Cart.xaml
-    /// </summary>
-    public partial class Cart : Window
+    private ProductCatalog productCatalog { get; set; }
+    private BO.Cart cart { get; set; }
+    public Cart(ProductCatalog p, BO.Cart cart)
     {
-        private ProductCatalog productCatalog { get; set; }
-        private BO.Cart cart { get; set; }
-        public Cart(ProductCatalog p, BO.Cart cart)
-        {
-            InitializeComponent();
-            productCatalog = p;
-            this.cart = cart;
-        }
+        InitializeComponent();
+        productCatalog = p;
+        this.cart = cart;
+    }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            productCatalog.Show();
-            this.Hide();
-        }
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        productCatalog.Show();
+        this.Hide();
+    }
 
-        private void Add1_Click(object sender, RoutedEventArgs e)
-        {
+    private void Add1_Click(object sender, RoutedEventArgs e)
+    {
 
-        }
+    }
 
-        private void Remove_Click(object sender, RoutedEventArgs e)
-        {
+    private void Remove_Click(object sender, RoutedEventArgs e)
+    {
 
-        }
+    }
 
-        private void Decrease1_Click(object sender, RoutedEventArgs e)
-        {
+    private void Decrease1_Click(object sender, RoutedEventArgs e)
+    {
 
-        }
+    }
 
-        private void btnOrderConfirmation_Click(object sender, RoutedEventArgs e)
-        {
+    private void btnOrderConfirmation_Click(object sender, RoutedEventArgs e)
+    {
 
-        }
     }
 }

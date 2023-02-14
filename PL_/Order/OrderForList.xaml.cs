@@ -1,12 +1,11 @@
 ﻿using BlApi;
 using BO;
-using Order;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-namespace PL.Order
+namespace PL_.Order
 {
     /// <summary>
     /// Interaction logic for OrderList.xaml

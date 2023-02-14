@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Order;
+namespace PL_.Order;
 
 public class PlOrderForList:DependencyObject
 {

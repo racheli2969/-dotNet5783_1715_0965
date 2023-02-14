@@ -15,7 +15,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\bookCase.jpg" />
+    <None Remove="Images\booksLine.jpg" />
+    <None Remove="Images\bookWithLightBulb.jpg" />
+    <None Remove="Images\straightBookCase.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\bookCase.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\booksLine.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\bookWithLightBulb.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\straightBookCase.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
