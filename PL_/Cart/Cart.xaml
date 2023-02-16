@@ -8,8 +8,8 @@
         Title="Cart" Height="450" Width="800">
     <Grid>
         <Canvas Margin="24,10,39,10">
-            <Label x:Name="lblCustomerName" Content="CustomerName" Height="25" Canvas.Left="211" Canvas.Top="44" Width="94"/>
-            <TextBox x:Name="txtCustomerName" Height="33" Canvas.Left="355" Canvas.Top="36" Width="137" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Label x:Name="lblCustomerName" Content="CustomerName" Height="25" Canvas.Left="211" Canvas.Top="44" Width="94" />
+            <TextBox x:Name="txtCustomerName" Height="33" Canvas.Left="355" Canvas.Top="36" Width="137" HorizontalAlignment="Center" VerticalAlignment="Top" />
             <Label x:Name="lblEmail" Content="Email" Height="32" Canvas.Left="214" Canvas.Top="72" Width="84"/>
             <TextBox x:Name="txtEmail" Height="32" Canvas.Left="355" Canvas.Top="74" Width="137"/>
             <Label x:Name="lblAddress" Content="Address" Height="34" Canvas.Left="211" Canvas.Top="111" Width="89"/>

@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PL_.Order;
+namespace PL_.PO;
 
-public class PlOrderForList:DependencyObject
+public class PlOrderForList : DependencyObject
 {
     public int Id { get; set; }
     public string? CustomerName { get; set; }

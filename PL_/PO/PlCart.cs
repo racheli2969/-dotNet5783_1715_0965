@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PL_.Cart;
+namespace PL_.PO;
 
 internal class PlCart : DependencyObject
 {
@@ -42,5 +42,16 @@ internal class PlCart : DependencyObject
                 sb.AppendLine(item.ToString());
             }
         return sb.ToString();
+    }
+    public static PlCart ConvertBOCArtToPlCart(BO.Cart cart)
+    {
+        PlCart plCart = new PlCart();
+        plCart.CustomerName = cart.CustomerName;
+        plCart.Email = cart.Email;
+        plCart.Address = cart.Address;
+        List<PlOrderItem> tempItems = new();
+        cart?.Items?.ForEach(item => tempItems.Add(PlOrderItem.ConvertBOorderItemToPoOrderItem(item)));
+        plCart.Items = tempItems;
+        return plCart;
     }
 }

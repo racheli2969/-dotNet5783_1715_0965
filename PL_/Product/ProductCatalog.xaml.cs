@@ -17,7 +17,7 @@ public partial class ProductCatalog : Window
 {
     private IBl? Bl { get; set; }
     private MainWindow mainWindow { get; set; }
-    private BO.Cart cart { get; set; }
+   private BO.Cart cart { get; set; }
     private PL_.Cart.CartWindow cartWindow { get; set; }
     public ProductCatalog(IBl? b, MainWindow mw)
     {
@@ -25,7 +25,7 @@ public partial class ProductCatalog : Window
         Bl = b;
         mainWindow = mw;
         cart = new BO.Cart();
-        cartWindow = new CartWindow(this,cart);
+        cartWindow = new CartWindow(Bl,this,cart);
         //the combo box
         string[] enumOptions = Enum.GetNames(typeof(BO.BookGenre));
         List<string> options = new();
@@ -48,7 +48,7 @@ public partial class ProductCatalog : Window
     {
         try
         {
-            ProductItemWindow p = new ProductItemWindow(Bl, ((BO.ProductForList)ProductCatalogView.SelectedItem).ItemId, this, cart);
+            ProductItemWindow p = new ProductItemWindow(Bl, ((BO.ProductForList)ProductCatalogView.SelectedItem).ItemId, this, cart,getChangesOnCartFromProductItem);
             p.Show();
             this.Hide();
         }
@@ -68,5 +68,10 @@ public partial class ProductCatalog : Window
     {
         mainWindow.Show();
         this.Hide();
+    }
+    private void getChangesOnCartFromProductItem(BO.Cart cartTOupdate)
+    {
+        cart=cartTOupdate;
+        CartWindow.GetChangesInCartFromProductItem(cartTOupdate);
     }
 }

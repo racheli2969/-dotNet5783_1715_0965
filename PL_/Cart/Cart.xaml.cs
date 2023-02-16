@@ -1,4 +1,5 @@
-﻿using PL_.Product;
+﻿using PL_.PO;
+using PL_.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,18 @@ namespace PL_.Cart;
 public partial class CartWindow : Window
 {
     private ProductCatalog productCatalog { get; set; }
-    private BO.Cart cart { get; set; }
-    public CartWindow(ProductCatalog p, BO.Cart cart)
+    private static PlCart? cartDisplayed { get; set; }
+    private static BO.Cart? Cart { get; set; }
+    private BlApi.IBl Bl { get; set; }
+    public CartWindow(BlApi.IBl bl, ProductCatalog p, BO.Cart cart)
     {
         InitializeComponent();
         productCatalog = p;
-        this.cart = cart;
-        DataContext = cart;
-        if (cart.Items == null || cart.Items.Count() == 0)
+        Bl = bl;
+        cartDisplayed = PlCart.ConvertBOCArtToPlCart(cart);
+        Cart = cart;
+        CartItemsListView.ItemsSource = cartDisplayed.Items;
+        if (cart?.Items == null || cart?.Items.Count() == 0)
         {
             CartItemsListView.Visibility = Visibility.Collapsed;
         }
@@ -47,7 +52,19 @@ public partial class CartWindow : Window
 
     private void Add1_Click(object sender, RoutedEventArgs e)
     {
-
+        try
+        {
+            PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
+            if (obj == null) return;
+            int id = obj.ItemId;
+            Cart = Bl.Cart.AddToCart(id, Cart);
+            cartDisplayed = PlCart.ConvertBOCArtToPlCart(Cart);
+            DataContext = cartDisplayed;
+        }
+        catch (BlApi.NotInStockException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 
     private void Remove_Click(object sender, RoutedEventArgs e)
@@ -57,11 +74,27 @@ public partial class CartWindow : Window
 
     private void Decrease1_Click(object sender, RoutedEventArgs e)
     {
-
+        try
+        {
+            PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
+            if (obj == null) return;
+            int id = obj.ItemId;
+            Cart = Bl.Cart.UpdateProductQuantity(id, Cart,obj.Amount);
+            cartDisplayed = PlCart.ConvertBOCArtToPlCart(Cart);
+        }
+        catch (BlApi.NotInCartException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 
     private void btnOrderConfirmation_Click(object sender, RoutedEventArgs e)
     {
 
+    }
+    public static void GetChangesInCartFromProductItem(BO.Cart updatedCart)
+    { 
+        Cart=updatedCart;
+        cartDisplayed=PlCart.ConvertBOCArtToPlCart(Cart);
     }
 }
