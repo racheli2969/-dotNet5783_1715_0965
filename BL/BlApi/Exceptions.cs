@@ -78,3 +78,8 @@ public class deliveredAlreadyException : Exception
 {
     public override string Message => "The order has already been delivered";
 }
+
+public class BlNOtImplementedException : Exception
+{
+    public override string Message => "Object is null";
+}
