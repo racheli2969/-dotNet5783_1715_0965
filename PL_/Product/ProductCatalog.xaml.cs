@@ -60,6 +60,7 @@ public partial class ProductCatalog : Window
 
     private void ToCart_Click(object sender, RoutedEventArgs e)
     {
+        //cartWindow.Cart = cart;
         cartWindow.Show();
         this.Hide();
     }
@@ -69,9 +70,10 @@ public partial class ProductCatalog : Window
         mainWindow.Show();
         this.Hide();
     }
-    private void getChangesOnCartFromProductItem(BO.Cart cartTOupdate)
+    private void getChangesOnCartFromProductItem( BO.Cart cartTOupdate)
     {
         cart=cartTOupdate;
-        CartWindow.GetChangesInCartFromProductItem(cartTOupdate);
+       // cartWindow.Cart = temp;
+       cartWindow.getUpdateForCAart(cart);
     }
 }

@@ -2,6 +2,7 @@
 using PL_.Product;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,17 +23,18 @@ namespace PL_.Cart;
 public partial class CartWindow : Window
 {
     private ProductCatalog productCatalog { get; set; }
-    private static PlCart? cartDisplayed { get; set; }
-    private static BO.Cart? Cart { get; set; }
+    private PlCart? CartDisplayed { get; set; }
+    private BO.Cart? cart { get; set; }
     private BlApi.IBl Bl { get; set; }
     public CartWindow(BlApi.IBl bl, ProductCatalog p, BO.Cart cart)
     {
         InitializeComponent();
         productCatalog = p;
         Bl = bl;
-        cartDisplayed = PlCart.ConvertBOCArtToPlCart(cart);
-        Cart = cart;
-        CartItemsListView.ItemsSource = cartDisplayed.Items;
+        CartDisplayed = ConvertBOCArtToPlCart(cart);
+        this.cart = cart;
+        DataContext = CartDisplayed;
+        CartItemsListView.DataContext = CartDisplayed.Items;
         if (cart?.Items == null || cart?.Items.Count() == 0)
         {
             CartItemsListView.Visibility = Visibility.Collapsed;
@@ -57,9 +59,9 @@ public partial class CartWindow : Window
             PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
             if (obj == null) return;
             int id = obj.ItemId;
-            Cart = Bl.Cart.AddToCart(id, Cart);
-            cartDisplayed = PlCart.ConvertBOCArtToPlCart(Cart);
-            DataContext = cartDisplayed;
+            cart = Bl.Cart.AddToCart(id, cart);
+            CartDisplayed = ConvertBOCArtToPlCart(cart);
+            DataContext = CartDisplayed;
         }
         catch (BlApi.NotInStockException ex)
         {
@@ -79,8 +81,8 @@ public partial class CartWindow : Window
             PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
             if (obj == null) return;
             int id = obj.ItemId;
-            Cart = Bl.Cart.UpdateProductQuantity(id, Cart,obj.Amount);
-            cartDisplayed = PlCart.ConvertBOCArtToPlCart(Cart);
+            cart = Bl.Cart.UpdateProductQuantity(id, cart, obj.Amount);
+            CartDisplayed = ConvertBOCArtToPlCart(cart);
         }
         catch (BlApi.NotInCartException ex)
         {
@@ -92,9 +94,32 @@ public partial class CartWindow : Window
     {
 
     }
-    public static void GetChangesInCartFromProductItem(BO.Cart updatedCart)
-    { 
-        Cart=updatedCart;
-        cartDisplayed=PlCart.ConvertBOCArtToPlCart(Cart);
+    public void getUpdateForCAart(BO.Cart cart)
+    {
+        this.cart = cart;
+        this.CartDisplayed =ConvertBOCArtToPlCart(cart);
+        MessageBox.Show(CartDisplayed?.ToString());
+        if (this.CartDisplayed?.Items?.Count() > 0)
+        {
+            CartItemsListView.Visibility = Visibility.Visible;
+            imgEmptyCart.Visibility = Visibility.Collapsed;
+            lblForEmptyCart.Visibility = Visibility.Collapsed;
+            CartItemsListView.ItemsSource = CartDisplayed.Items;
+          //  CartItemsListView.DataContext = CartDisplayed.Items;
+        }
+    }
+
+    private static PlCart ConvertBOCArtToPlCart(BO.Cart cart)
+    {
+        PlCart plCart = new PlCart();
+        string? tempstr = new(cart.CustomerName);
+        plCart.CustomerName = tempstr;
+        plCart.Email = cart.Email;
+        plCart.Address = cart.Address;
+        plCart.FinalPrice = cart.FinalPrice;
+        ObservableCollection<PlOrderItem> tempItems = new();
+        cart?.Items?.ForEach(item => tempItems.Add(PlOrderItem.ConvertBOorderItemToPoOrderItem(item)));
+        plCart.Items = tempItems;
+        return plCart;
     }
 }

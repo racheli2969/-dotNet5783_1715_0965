@@ -117,7 +117,7 @@ namespace PL_.Product {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PL_;V1.0.0.0;component/product/productlist.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PL_;component/product/productlist.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Product\ProductList.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
