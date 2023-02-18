@@ -9,7 +9,7 @@
     <Grid>
         <Canvas Margin="24,10,39,10">
             <Label x:Name="lblCustomerName" Content="CustomerName" Height="25" Canvas.Left="211" Canvas.Top="44" Width="94" />
-            <TextBox x:Name="txtCustomerName" Height="33" Canvas.Left="355" Canvas.Top="36" Width="137" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <TextBox x:Name="txtCustomerName" Height="33" Text="{Binding Path=CustomerName}" Canvas.Left="355" Canvas.Top="36" Width="137" HorizontalAlignment="Center" VerticalAlignment="Top" />
             <Label x:Name="lblEmail" Content="Email" Height="32" Canvas.Left="214" Canvas.Top="72" Width="84"/>
             <TextBox x:Name="txtEmail" Height="32" Canvas.Left="355" Canvas.Top="74" Width="137"/>
             <Label x:Name="lblAddress" Content="Address" Height="34" Canvas.Left="211" Canvas.Top="111" Width="89"/>
@@ -19,7 +19,8 @@
                 <Label x:Name="lblFinalPriceValue"  Margin="224,155,495,247"/>
             </Border>
             <Button Content="BACK" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <ListView x:Name="CartItemsListView" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="26" Canvas.Top="189" VerticalAlignment="Top" Canvas.Left="67" ItemsSource="{Binding}" Visibility="{Binding Visibility.Collapsed, ElementName=imgEmptyCart}">
+            <ListView x:Name="CartItemsListView" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="26" Canvas.Top="189" VerticalAlignment="Top" Canvas.Left="67" ItemsSource="{Binding Path=CartDisplayed.Items}" >
+                <!--Visibility="{Binding Visibility.Collapsed, ElementName=imgEmptyCart}">-->
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" >
                         <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=ItemId}" Header="ItemId" Width="100"/>
@@ -34,7 +35,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="40" Header="Decrease">
+                        <GridViewColumn Width="60" Header="Decrease">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="-" Click="Decrease1_Click" Width="30" />

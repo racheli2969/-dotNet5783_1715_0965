@@ -1,8 +1,10 @@
-﻿using PL_.PO;
+﻿using DO;
+using PL_.PO;
 using PL_.Product;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +25,10 @@ namespace PL_.Cart;
 public partial class CartWindow : Window
 {
     private ProductCatalog productCatalog { get; set; }
-    PlCart? CartDisplayed { get; set; }
+    private PlCart? CartDisplayed { get; set; }
     private BO.Cart? cart { get; set; }
-    //private ObservableCollection<PlOrderItem>? items { get; set; }
+    //private List<PlOrderItem> orderItems { get; set; }= new List<PlOrderItem>() { new PlOrderItem()};
+   // private ObservableCollection<PlOrderItem>? items { get; set; }= new ObservableCollection<PlOrderItem>() { new PlOrderItem() { OrderItemId = 0, ItemId = 111111, ItemName = "ggg", ItemPrice = 9, Amount = 9, PriceOfItems = 89 } };
     private BlApi.IBl Bl { get; set; }
     public CartWindow(BlApi.IBl bl, ProductCatalog p, BO.Cart cart)
     {
@@ -34,11 +37,15 @@ public partial class CartWindow : Window
         Bl = bl;
         CartDisplayed = new();
         CartDisplayed = ConvertBOCArtToPlCart(cart);
+        DataContext = CartDisplayed;
         this.cart = cart;
-        this.DataContext = CartDisplayed;
+        CartDisplayed.Items = new ObservableCollection<PlOrderItem>() { new PlOrderItem() { OrderItemId = 0, ItemId = 111111, ItemName = "ggg", ItemPrice = 9, Amount = 9, PriceOfItems = 89 } };
+        //CartItemsListView.DataContext = CartDisplayed.Items;
         CartItemsListView.ItemsSource = CartDisplayed.Items;
-        CartItemsListView.ItemsSource = null;
-        if (cart?.Items == null || cart?.Items.Count() == 0)
+       // CartItemsListView.ItemsSource = items;
+        //CartItemsListView.ItemsSource = orderItems ;
+        // CartItemsListView.ItemsSource = new List<PlOrderItem> { new PlOrderItem()};
+        if (CartDisplayed?.Items == null || CartDisplayed?.Items.Count() == 0)
         {
             CartItemsListView.Visibility = Visibility.Collapsed;
         }
@@ -48,7 +55,6 @@ public partial class CartWindow : Window
             lblForEmptyCart.Visibility = Visibility.Collapsed;
         }
     }
-
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         productCatalog.Show();
@@ -118,16 +124,15 @@ public partial class CartWindow : Window
             CartItemsListView.Visibility = Visibility.Visible;
             imgEmptyCart.Visibility = Visibility.Collapsed;
             lblForEmptyCart.Visibility = Visibility.Collapsed;
-           // CartItemsListView.ItemsSource = CartDisplayed.Items;
-            //  CartItemsListView.DataContext = CartDisplayed.Items;
+            CartItemsListView.DataContext = CartDisplayed.Items;
+            MessageBox.Show(CartItemsListView.Items[0].ToString());
         }
     }
 
     private static PlCart ConvertBOCArtToPlCart(BO.Cart cart)
     {
         PlCart plCart = new PlCart();
-        string? tempstr = new(cart.CustomerName);
-        plCart.CustomerName = tempstr;
+        plCart.CustomerName = cart.CustomerName;
         plCart.Email = cart.Email;
         plCart.Address = cart.Address;
         plCart.FinalPrice = cart.FinalPrice;

@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace PL_.PO;
 
-internal class PlCart : DependencyObject, INotifyCollectionChanged
+internal class PlCart : DependencyObject//*, INotifyCollectionChanged
 {
     public string? CustomerName { get; set; }
     public string? Email { get; set; }
@@ -24,25 +24,28 @@ internal class PlCart : DependencyObject, INotifyCollectionChanged
     public ObservableCollection<PlOrderItem>? Items
     {
         get { return (ObservableCollection<PlOrderItem>?)GetValue(ItemsProperty); }
-        set { SetValue(ItemsProperty, value); }
+        set
+        {
+            SetValue(ItemsProperty, value);
+        }
     }
 
     // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty ItemsProperty =
-    //  DependencyProperty.Register("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
-    DependencyProperty.RegisterAttached("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new UIPropertyMetadata(null, onItemsChanged));
-    public event NotifyCollectionChangedEventHandler? CollectionChanged
-    {
-        add
-        {
-            ((INotifyCollectionChanged)Items).CollectionChanged += new NotifyCollectionChangedEventHandler(ItemsCollection_CollectionChanged);
-        }
+      DependencyProperty.Register("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
+    //DependencyProperty.RegisterAttached("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new UIPropertyMetadata(null, onItemsChanged));
+    //public event NotifyCollectionChangedEventHandler? CollectionChanged
+    //{
+    //    add
+    //    {
+    //        ((INotifyCollectionChanged)Items).CollectionChanged += new NotifyCollectionChangedEventHandler(ItemsCollection_CollectionChanged);
+    //    }
 
-        remove
-        {
-            ((INotifyCollectionChanged)Items).CollectionChanged -= new NotifyCollectionChangedEventHandler(ItemsCollection_CollectionChanged);
-        }
-    }
+    //    remove
+    //    {
+    //        ((INotifyCollectionChanged)Items).CollectionChanged -= new NotifyCollectionChangedEventHandler(ItemsCollection_CollectionChanged);
+    //    }
+    //}
 
     private static void onItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

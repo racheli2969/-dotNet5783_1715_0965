@@ -12,16 +12,9 @@
       }
     ],
     "additionalProbingPaths": [
-<<<<<<< HEAD
-      "C:\\Users\\acer\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\acer\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-      "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
-=======
       "C:\\Users\\brach\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\brach\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
->>>>>>> ae452b685c904a03905a62447a35278a01380e6f
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
