@@ -16,20 +16,20 @@ public partial class ProductItemWindow : Window
     private PlProductItem plproductItem { get; set; }
     bool wasCartChanged = false;
     Action<BO.Cart> sendChangesToCatalog;
-    public ProductItemWindow(IBl? b, int id, ProductCatalog pc,BO.Cart c,Action<BO.Cart> getChangesOnCartFromProductItem)
+    public ProductItemWindow(IBl? b, int id, ProductCatalog pc, BO.Cart c, Action<BO.Cart> getChangesOnCartFromProductItem)
     {
         InitializeComponent();
         Bl = b;
         productCatalog = pc;
-        plproductItem =PlProductItem.ConvertProductItemFromBOToPo(Bl?.Product?.GetProductForCustomer(id, c)??throw new BlApi.BlNOtImplementedException());
+        plproductItem = PlProductItem.ConvertProductItemFromBOToPo(Bl?.Product?.GetProductForCustomer(id, c) ?? throw new BlApi.BlNOtImplementedException());
         cart = c;
-        DataContext= plproductItem;
+        DataContext = plproductItem;
         sendChangesToCatalog = getChangesOnCartFromProductItem;
     }
 
     private void Back_Click(object sender, RoutedEventArgs e)
     {
-        if (wasCartChanged&&cart!=null)
+        if (wasCartChanged && cart != null)
         {
             sendChangesToCatalog(cart);
         }
@@ -48,10 +48,12 @@ public partial class ProductItemWindow : Window
     {
         try
         {
-           if(cart != null)
-            cart = Bl?.Cart?.AddToCart(plproductItem.ID, cart);
+            if (cart != null)
+                cart = Bl?.Cart?.AddToCart(plproductItem.ID, cart);
             MessageBox.Show($"successfully added {plproductItem.Name} to cart");
-           wasCartChanged = true;
+            wasCartChanged = true;
+            plproductItem.Amount = (cart?.Items?.Find(i => i.ItemId == plproductItem.ID) ?? throw new BlApi.BlEntityNotFoundException()).Amount;
+            // plproductItem.IsAvailable; maybe needs to update if product is still in stock
         }
         catch (BlApi.NotInStockException ex)
         {
@@ -59,13 +61,17 @@ public partial class ProductItemWindow : Window
         }
     }
 
-    private void DecreaseToCart_Click(object sender, RoutedEventArgs e)
+    private void DecreaseFromCart_Click(object sender, RoutedEventArgs e)
     {
         try
         {
-            if (cart != null)
-                cart = Bl?.Cart?.UpdateProductQuantity(plproductItem.ID, cart,plproductItem.Amount);
-            wasCartChanged=true;
+            int tempAmount = plproductItem.Amount - 1;
+            if (cart != null&&tempAmount>=0)
+                cart = Bl?.Cart?.UpdateProductQuantity(plproductItem.ID, cart, tempAmount);
+            if (tempAmount > 0)
+                plproductItem.Amount = (cart?.Items?.Find(i => i.ItemId == plproductItem.ID) ?? throw new BlApi.BlEntityNotFoundException()).Amount;
+            else plproductItem.Amount = 0;
+            wasCartChanged = true;
         }
         catch (BlApi.NotInStockException ex)
         {

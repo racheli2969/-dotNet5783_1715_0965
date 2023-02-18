@@ -54,7 +54,7 @@ internal class PlOrderItem : DependencyObject
         plOrderItem.OrderItemId = orderItem.OrderItemId;
         plOrderItem.ItemId = orderItem.ItemId;
         plOrderItem.ItemName = orderItem.ItemName;
-        plOrderItem.ItemPrice = orderItem.ItemPrice;
+        plOrderItem.ItemPrice = orderItem.ItemPrice; 
         plOrderItem.Amount = orderItem.Amount;
         plOrderItem.PriceOfItems = orderItem.PriceOfItems;
         return plOrderItem;

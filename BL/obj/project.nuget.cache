@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "Kc7jkX0B7670NUVpC7d3wq+FTb2qSIws0Zqeej0zgIJwWVSrH0hUeUzGnjfQ8BoudpUE3PgsqikwkKcrQrLNyA==",
   "success": true,
   "projectFilePath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\BL\\BL.csproj",
+=======
+  "dgSpecHash": "1PSRQJ3kPebGVKcyB8+6R+qIpDPwzde/y7MlSrCDfijTbRH3ClEXqM0gDSIbSv7ebRQ4ZL+lBHGZXK1ibYpo+Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj",
+>>>>>>> ae452b685c904a03905a62447a35278a01380e6f
   "expectedPackageFiles": [],
   "logs": []
 }

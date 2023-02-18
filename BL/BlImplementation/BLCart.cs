@@ -82,7 +82,7 @@ internal class BLCart : BlApi.ICart
             {
 
                 //reduce the amount in the cart
-                c.FinalPrice -= c.Items[idx].ItemPrice * (c.Items[idx].Amount - quantity);
+                c.FinalPrice -= c.Items[idx].ItemPrice * (c.Items[idx].Amount -quantity);
                 c.Items[idx].Amount = quantity;
                 c.Items[idx].PriceOfItems = c.Items[idx].Amount * c.Items[idx].ItemPrice;
 
@@ -91,7 +91,9 @@ internal class BLCart : BlApi.ICart
         }
         //if the added amount is bigger then the current amount then needed to check if there is enough in stock
         if (dal?.Item?.Available(productId, quantity) == false)
+        {
             throw new BlApi.NotInStockException();
+        }       
         //if in stock add the difference to the cart then calculates the final price 
         (c ?? throw new BlApi.BlNOtImplementedException()).FinalPrice
             += ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice

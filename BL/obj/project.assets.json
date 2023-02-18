@@ -65,25 +65,42 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\acer\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+=======
+    "C:\\Users\\brach\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> ae452b685c904a03905a62447a35278a01380e6f
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\BL\\BL.csproj",
       "projectName": "BL",
       "projectPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\BL\\BL.csproj",
       "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\BL\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj",
+      "projectName": "BL",
+      "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj",
+      "packagesPath": "C:\\Users\\brach\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\obj\\",
+>>>>>>> ae452b685c904a03905a62447a35278a01380e6f
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\brach\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> ae452b685c904a03905a62447a35278a01380e6f
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -99,6 +116,7 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\DalFacade\\DalFacade.csproj": {
               "projectPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\DalFacade\\DalFacade.csproj"
             },
@@ -107,6 +125,16 @@
             },
             "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\DalXml\\DalXml.csproj": {
               "projectPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\DalXml\\DalXml.csproj"
+=======
+            "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
+              "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
+            },
+            "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj": {
+              "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj"
+            },
+            "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj": {
+              "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj"
+>>>>>>> ae452b685c904a03905a62447a35278a01380e6f
             }
           }
         }
@@ -136,7 +164,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+>>>>>>> ae452b685c904a03905a62447a35278a01380e6f
       }
     }
   }

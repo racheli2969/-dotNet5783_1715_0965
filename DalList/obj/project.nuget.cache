@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "wDW6FNzdHtkblGZ0XJKljkOTkyvJIkAxzhVT7OFzWv7q7/euvnDjVdiCm12errmau/JtuB3sEnKE64WEJuOpbw==",
   "success": true,
   "projectFilePath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5783_1715_09\\DalList\\DalList.csproj",
+=======
+  "dgSpecHash": "GgI/Z3bT/ctYK6Es8RPaZwlH4nIzkhInzLHJXhldebfKzWE+Y9VCYpUw09V5sLeYPwqFOKhFH9Hj0stHPEMNtw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj",
+>>>>>>> ae452b685c904a03905a62447a35278a01380e6f
   "expectedPackageFiles": [],
   "logs": []
 }

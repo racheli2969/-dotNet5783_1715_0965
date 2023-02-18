@@ -34,7 +34,6 @@ internal class DalOrder : IOrder
         w.Close();
 
         return order.OrderId;
-
     }
 
     public void Delete(int id)
