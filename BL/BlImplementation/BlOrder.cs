@@ -151,12 +151,12 @@ public class BlOrder : BlApi.IOrder
             (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Ordered;
             if ((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered != DateTime.MinValue)
             {
-                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered, EnumOrderStatus.Ordered));
+                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered, EnumOrderStatus.Delivered));
                 (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Shipped;
             }
             if ((order ?? throw new DalApi.EntityNotFoundException()).DateReceived != DateTime.MinValue)
             {
-                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateReceived, EnumOrderStatus.Ordered));
+                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateReceived, EnumOrderStatus.Shipped));
                 (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Delivered;
             }
             orderTracking.TrackingTuples = tempTrackingtUples;
