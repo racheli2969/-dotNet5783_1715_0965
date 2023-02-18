@@ -19,7 +19,7 @@
                 <Label x:Name="lblFinalPriceValue"  Margin="224,155,495,247"/>
             </Border>
             <Button Content="BACK" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <ListView x:Name="CartItemsListView" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="26" Canvas.Top="189" VerticalAlignment="Top" Canvas.Left="67" ItemsSource="{Binding}" DataContext="{Binding}" Visibility="{Binding Visibility.Collapsed, ElementName=imgEmptyCart}">
+            <ListView x:Name="CartItemsListView" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="26" Canvas.Top="189" VerticalAlignment="Top" Canvas.Left="67" ItemsSource="{Binding}" Visibility="{Binding Visibility.Collapsed, ElementName=imgEmptyCart}">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" >
                         <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=ItemId}" Header="ItemId" Width="100"/>
@@ -51,9 +51,10 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="btnOrderConfirmation" Content="Order" Canvas.Left="605" Canvas.Top="151" Height="31" Width="50" Click="btnOrderConfirmation_Click"/>
+            <Button x:Name="btnOrderConfirmation" Content="Order" Canvas.Left="605" Canvas.Top="151" Height="31" Width="55" Click="btnOrderConfirmation_Click" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Image x:Name="imgEmptyCart" Height="180" Canvas.Left="61" Canvas.Top="182" Width="661" Source="\Images\greenShoppingBasket.webp" Visibility="{Binding Visibility.Collapsed, ElementName=CartItemsListView}"/>
             <Label x:Name="lblForEmptyCart" Content="No Items Yet Added" Canvas.Left="110" Canvas.Top="220" FontSize="16" FontFamily="Tempus Sans ITC" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding Visibility.Collapsed, ElementName=CartItemsListView}"/>
+            <Button x:Name="btnRemoveAll" Content="Empty Cart" Height="32" Canvas.Left="533" Canvas.Top="150" Width="67" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnRemoveAll_Click"/>
         </Canvas>
     </Grid>
 </Window>

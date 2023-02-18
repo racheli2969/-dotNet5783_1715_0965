@@ -60,7 +60,6 @@ public partial class ProductCatalog : Window
 
     private void ToCart_Click(object sender, RoutedEventArgs e)
     {
-        //cartWindow.Cart = cart;
         cartWindow.Show();
         this.Hide();
     }

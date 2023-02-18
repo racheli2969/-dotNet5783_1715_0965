@@ -23,18 +23,21 @@ namespace PL_.Cart;
 public partial class CartWindow : Window
 {
     private ProductCatalog productCatalog { get; set; }
-    private PlCart? CartDisplayed { get; set; }
+    PlCart? CartDisplayed { get; set; }
     private BO.Cart? cart { get; set; }
+    //private ObservableCollection<PlOrderItem>? items { get; set; }
     private BlApi.IBl Bl { get; set; }
     public CartWindow(BlApi.IBl bl, ProductCatalog p, BO.Cart cart)
     {
         InitializeComponent();
         productCatalog = p;
         Bl = bl;
+        CartDisplayed = new();
         CartDisplayed = ConvertBOCArtToPlCart(cart);
         this.cart = cart;
-        DataContext = CartDisplayed;
-        CartItemsListView.DataContext = CartDisplayed.Items;
+        this.DataContext = CartDisplayed;
+        CartItemsListView.ItemsSource = CartDisplayed.Items;
+        CartItemsListView.ItemsSource = null;
         if (cart?.Items == null || cart?.Items.Count() == 0)
         {
             CartItemsListView.Visibility = Visibility.Collapsed;
@@ -59,9 +62,9 @@ public partial class CartWindow : Window
             PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
             if (obj == null) return;
             int id = obj.ItemId;
-            cart = Bl.Cart.AddToCart(id, cart);
+            cart = Bl.Cart.AddToCart(id, cart ?? throw new BlApi.BlNOtImplementedException());
             CartDisplayed = ConvertBOCArtToPlCart(cart);
-            DataContext = CartDisplayed;
+            //  DataContext = CartDisplayed;
         }
         catch (BlApi.NotInStockException ex)
         {
@@ -71,7 +74,18 @@ public partial class CartWindow : Window
 
     private void Remove_Click(object sender, RoutedEventArgs e)
     {
-
+        try
+        {
+            PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
+            if (obj == null) return;
+            int id = obj.ItemId;
+            cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), 0);
+            CartDisplayed = ConvertBOCArtToPlCart(cart);
+        }
+        catch (BlApi.NotInCartException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 
     private void Decrease1_Click(object sender, RoutedEventArgs e)
@@ -81,7 +95,7 @@ public partial class CartWindow : Window
             PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
             if (obj == null) return;
             int id = obj.ItemId;
-            cart = Bl.Cart.UpdateProductQuantity(id, cart, obj.Amount);
+            cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), obj.Amount);
             CartDisplayed = ConvertBOCArtToPlCart(cart);
         }
         catch (BlApi.NotInCartException ex)
@@ -92,20 +106,20 @@ public partial class CartWindow : Window
 
     private void btnOrderConfirmation_Click(object sender, RoutedEventArgs e)
     {
-
+        //get all fields of the cart then send to bl to confirm
     }
     public void getUpdateForCAart(BO.Cart cart)
     {
         this.cart = cart;
-        this.CartDisplayed =ConvertBOCArtToPlCart(cart);
+        this.CartDisplayed = ConvertBOCArtToPlCart(cart);
         MessageBox.Show(CartDisplayed?.ToString());
         if (this.CartDisplayed?.Items?.Count() > 0)
         {
             CartItemsListView.Visibility = Visibility.Visible;
             imgEmptyCart.Visibility = Visibility.Collapsed;
             lblForEmptyCart.Visibility = Visibility.Collapsed;
-            CartItemsListView.ItemsSource = CartDisplayed.Items;
-          //  CartItemsListView.DataContext = CartDisplayed.Items;
+           // CartItemsListView.ItemsSource = CartDisplayed.Items;
+            //  CartItemsListView.DataContext = CartDisplayed.Items;
         }
     }
 
@@ -121,5 +135,18 @@ public partial class CartWindow : Window
         cart?.Items?.ForEach(item => tempItems.Add(PlOrderItem.ConvertBOorderItemToPoOrderItem(item)));
         plCart.Items = tempItems;
         return plCart;
+    }
+
+    private void btnRemoveAll_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            (cart ?? throw new BlApi.BlNOtImplementedException()).Items = new List<BO.OrderItem>();
+            (CartDisplayed ?? throw new BlApi.BlNOtImplementedException()).Items = new ObservableCollection<PlOrderItem>();
+        }
+        catch (BlApi.NotInCartException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 }

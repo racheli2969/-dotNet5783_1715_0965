@@ -34,7 +34,7 @@ public partial class ProductItemWindow : Window
             sendChangesToCatalog(cart);
         }
         productCatalog.Show();
-        this.Hide();
+        this.Close();
     }
     private void CloseAllWindows(object sender, RoutedEventArgs e)
     {

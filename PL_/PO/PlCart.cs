@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -15,15 +16,11 @@ using System.Windows.Controls;
 
 namespace PL_.PO;
 
-internal class PlCart : DependencyObject
+internal class PlCart : DependencyObject, INotifyCollectionChanged
 {
     public string? CustomerName { get; set; }
     public string? Email { get; set; }
     public string? Address { get; set; }
-    //  public List<PlOrderItem>? Items { get; set; }
-
-    ///public ObservableCollection<PlOrderItem>? Items { get; set; }
-
     public ObservableCollection<PlOrderItem>? Items
     {
         get { return (ObservableCollection<PlOrderItem>?)GetValue(ItemsProperty); }
@@ -32,13 +29,121 @@ internal class PlCart : DependencyObject
 
     // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty ItemsProperty =
-        DependencyProperty.Register("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlOrderItem), new PropertyMetadata(new ObservableCollection<PlOrderItem>(), new PropertyChangedCallback(onItemsChanged)));//new PropertyChangedCallback(onItemsChanged),
+    //  DependencyProperty.Register("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
+    DependencyProperty.RegisterAttached("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new UIPropertyMetadata(null, onItemsChanged));
+    public event NotifyCollectionChangedEventHandler? CollectionChanged
+    {
+        add
+        {
+            ((INotifyCollectionChanged)Items).CollectionChanged += new NotifyCollectionChangedEventHandler(ItemsCollection_CollectionChanged);
+        }
+
+        remove
+        {
+            ((INotifyCollectionChanged)Items).CollectionChanged -= new NotifyCollectionChangedEventHandler(ItemsCollection_CollectionChanged);
+        }
+    }
 
     private static void onItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        PlCart plcart = (PlCart)d;
-        plcart.Items = (ObservableCollection<PlOrderItem>)e.NewValue;
+        var cart = d as PlCart;
+
+        if (e.OldValue != null)
+        {
+            var coll = (INotifyCollectionChanged)e.OldValue;
+            // Unsubscribe from CollectionChanged on the old collection
+            coll.CollectionChanged -= ItemsCollection_CollectionChanged;
+        }
+
+        if (e.NewValue != null)
+        {
+            var coll = (ObservableCollection<PlOrderItem>)e.NewValue;
+            //calendar.DayTemplateSelector = new SpecialDaySelector(coll, GetSpecialDayTemplate(d));
+            // Subscribe to CollectionChanged on the new collection
+            coll.CollectionChanged += ItemsCollection_CollectionChanged;
+        }
     }
+    private static void ItemsCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        switch (e.Action)
+        {
+            case NotifyCollectionChangedAction.Add:
+                foreach (PlOrderItem s in e.NewItems)
+                {
+                    InternalAdd(s);
+                }
+                break;
+
+            case NotifyCollectionChangedAction.Remove:
+                foreach (PlOrderItem s in e.OldItems)
+                {
+                    InternalRemove(s);
+                }
+                break;
+
+            case NotifyCollectionChangedAction.Reset:
+                ReadOnlyObservableCollection<PlOrderItem> col = sender as ReadOnlyObservableCollection<PlOrderItem>;
+                InternalClearAll();
+                if (col != null)
+                {
+                    foreach (PlOrderItem s in col)
+                    {
+                        InternalAdd(s);
+                    }
+                }
+                break;
+        }
+    }
+
+    private static void InternalClearAll()
+    {
+        PlCart plcart = new PlCart();
+        ObservableCollection<PlOrderItem> coll = new ObservableCollection<PlOrderItem>();
+        plcart.Items = coll;
+    }
+
+    private static void InternalRemove(PlOrderItem s)
+    {
+        PlCart plcart = new PlCart();
+        ObservableCollection<PlOrderItem> coll = new ObservableCollection<PlOrderItem>();
+        coll.Remove(s);
+        plcart.Items = coll;
+    }
+
+    private static void InternalAdd(PlOrderItem s)
+    {
+        PlCart plcart = new PlCart();
+        ObservableCollection<PlOrderItem> coll = new ObservableCollection<PlOrderItem>();
+        coll.Add(s);
+        plcart.Items = coll;
+    }
+
+    /*
+//private static void onItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+//{
+//    var cart = d as PlCart;
+
+//    if (e.OldValue != null)
+//    {
+//        var coll = (INotifyCollectionChanged)e.OldValue;
+//        // Unsubscribe from CollectionChanged on the old collection
+//        coll.CollectionChanged -= ItemsCollection_CollectionChanged;
+//    }
+
+//    if (e.NewValue != null)
+//    {
+//        var coll = (ObservableCollection<PlOrderItem>)e.NewValue;
+//        //calendar.DayTemplateSelector = new SpecialDaySelector(coll, GetSpecialDayTemplate(d));
+//        // Subscribe to CollectionChanged on the new collection
+//        coll.CollectionChanged += ItemsCollection_CollectionChanged;
+//    }
+//}
+
+//private static void ItemsCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+//{
+//    // handle CollectionChanged
+//}
+*/
     public double FinalPrice
     {
         get { return (double)GetValue(FinalPriceProperty); }
