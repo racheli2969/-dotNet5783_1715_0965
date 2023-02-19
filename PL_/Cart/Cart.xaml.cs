@@ -23,7 +23,7 @@ namespace PL_.Cart;
 public partial class CartWindow : Window
 {
     private ProductCatalog productCatalog { get; set; }
-    PlCart? CartDisplayed { get; set; }
+    private PlCart? CartDisplayed { get; set; } = new();
     private BO.Cart? cart { get; set; }
     //private ObservableCollection<PlOrderItem>? items { get; set; }
     private BlApi.IBl Bl { get; set; }
@@ -32,12 +32,12 @@ public partial class CartWindow : Window
         InitializeComponent();
         productCatalog = p;
         Bl = bl;
-        CartDisplayed = new();
+       // CartDisplayed = new();
         CartDisplayed = ConvertBOCArtToPlCart(cart);
         this.cart = cart;
-        this.DataContext = CartDisplayed;
+        this.DataContext = this;
         CartItemsListView.ItemsSource = CartDisplayed.Items;
-        CartItemsListView.ItemsSource = null;
+       // CartItemsListView.ItemsSource = null;
         if (cart?.Items == null || cart?.Items.Count() == 0)
         {
             CartItemsListView.Visibility = Visibility.Collapsed;
@@ -118,7 +118,8 @@ public partial class CartWindow : Window
             CartItemsListView.Visibility = Visibility.Visible;
             imgEmptyCart.Visibility = Visibility.Collapsed;
             lblForEmptyCart.Visibility = Visibility.Collapsed;
-           // CartItemsListView.ItemsSource = CartDisplayed.Items;
+            CartItemsListView.DataContext = CartDisplayed.Items;
+            CartItemsListView.ItemsSource = CartDisplayed.Items;
             //  CartItemsListView.DataContext = CartDisplayed.Items;
         }
     }
