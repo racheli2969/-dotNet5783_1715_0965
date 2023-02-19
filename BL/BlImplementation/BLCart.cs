@@ -116,6 +116,8 @@ internal class BLCart : BlApi.ICart
         MailAddress m = new(cart.Email);
         if (cart.NumOfHouse <= 0)
             throw new BlApi.NegativeHouseNumberException();
+        if (cart?.Items?.Count() == 0)
+            throw new BlApi.NoItemsInCartException();
         cart?.Items?.ForEach(validateItem);
         //create in dal layer and move the info
         DO.Order temp = new DO.Order();

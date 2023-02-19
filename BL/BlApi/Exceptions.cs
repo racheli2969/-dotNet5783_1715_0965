@@ -83,3 +83,7 @@ public class BlNOtImplementedException : Exception
 {
     public override string Message => "Object is null";
 }
+public class  NoItemsInCartException : Exception
+{
+    public override string Message => "Order must contain at least one item";
+} 

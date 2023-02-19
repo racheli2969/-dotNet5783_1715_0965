@@ -42,26 +42,6 @@
                 <Label Content="{Binding Path=Amount}"  Canvas.Left="321" Canvas.Top="179" Grid.Row="1" Height="30" Width="83" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </Canvas>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="559,123,104,95" Grid.Row="1"/>
-        <!--<Label x:Name="lblAvailability" Content="{Binding Path=IsAvailable}" HorizontalAlignment="Left" Height="30" Margin="186,138,0,0" Grid.Row="1" VerticalAlignment="Top" Width="214">-->
-            <!--<Style TargetType="Label">
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding Source=plproductItem.IsAvailable}" Value="false">
-                        <Setter Property="Foreground" Value="Red" />
-                        <Setter Property="Content" Value="Not In Stock" />
-                    </DataTrigger>
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Source=plproductItem.IsAvailable}" Value="true" />
-                            --><!--<Condition Binding="{Binding Path=IsAvailable}" Value="OR" />--><!--
-                        </MultiDataTrigger.Conditions>
-                        <Setter Property="Background" Value="Cyan" />
-                        <Setter Property="Content" Value="In Stock" />
-                        --><!--Background="#FF62ED25"--><!--
-                    </MultiDataTrigger>
-                </Style.Triggers>
-            </Style>-->
-        <!--</Label>-->
         <TextBlock x:Name="txtAvailability"  HorizontalAlignment="Left" Height="30" Margin="186,138,0,0" Grid.Row="1" VerticalAlignment="Top" Width="214" FontSize="28">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">

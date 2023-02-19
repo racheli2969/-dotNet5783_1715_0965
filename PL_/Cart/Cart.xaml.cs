@@ -27,21 +27,18 @@ public partial class CartWindow : Window
     private ProductCatalog productCatalog { get; set; }
     private PlCart? CartDisplayed { get; set; }
     private BO.Cart? cart { get; set; }
-    // public ObservableCollection<PlOrderItem>? items { get; set; }=new();
     private BlApi.IBl Bl { get; set; }
     public CartWindow(BlApi.IBl bl, ProductCatalog p, BO.Cart cart)
     {
         InitializeComponent();
         productCatalog = p;
         Bl = bl;
-        // CartDisplayed = new();
         CartDisplayed = ConvertBOCArtToPlCart(cart);
         DataContext = CartDisplayed;
         this.cart = cart;
         this.DataContext = CartDisplayed;
         CartItemsListView.ItemsSource = CartDisplayed.Items;
         CartItemsListView.DataContext = CartDisplayed.Items;
-        // CartItemsListView.ItemsSource = null;
         if (cart?.Items == null || cart?.Items.Count() == 0)
         {
             CartItemsListView.Visibility = Visibility.Collapsed;
@@ -69,9 +66,21 @@ public partial class CartWindow : Window
             int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
             (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount++;
         }
+        catch (BlApi.BlNOtImplementedException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
         catch (BlApi.NotInStockException ex)
         {
             MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.NotInCartException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch
+        {
+            MessageBox.Show("unexplained error occured\n");
         }
     }
 
@@ -84,11 +93,21 @@ public partial class CartWindow : Window
             int id = obj.ItemId;
             int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
             CartDisplayed?.Items?.RemoveAt(idx ?? 0);
+            if (CartDisplayed?.Items?.Count() == 0)
+                CartItemsListView.ItemsSource = null;
             cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), 0);
+        }
+        catch (BlApi.BlNOtImplementedException ex)
+        {
+            MessageBox.Show(ex.Message);
         }
         catch (BlApi.NotInCartException ex)
         {
             MessageBox.Show(ex.Message);
+        }
+        catch
+        {
+            MessageBox.Show("unexplained error occured\n");
         }
     }
 
@@ -104,36 +123,104 @@ public partial class CartWindow : Window
             int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
             if (amount > 0)
             {
-                (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount--;
+                (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount = amount;
+            }
+            else if (CartDisplayed?.Items?.Count() == 1)
+            {
+                CartDisplayed?.Items?.RemoveAt(idx ?? 0);
+                CartItemsListView.ItemsSource = null;
             }
             else
             {
                 CartDisplayed?.Items?.RemoveAt(idx ?? 0);
+                CartItemsListView.ItemsSource = CartDisplayed?.Items;
             }
+        }
+        catch (BlApi.BlNOtImplementedException ex)
+        {
+            MessageBox.Show(ex.Message);
         }
         catch (BlApi.NotInCartException ex)
         {
             MessageBox.Show(ex.Message);
         }
+        catch
+        {
+            MessageBox.Show("unexplained error occured\n");
+        }
     }
 
     private void btnOrderConfirmation_Click(object sender, RoutedEventArgs e)
     {
-        if (cart != null)
+        try
         {
+            if (cart == null)
+                throw new BlApi.BlNOtImplementedException();
             cart.CustomerName = txtCustomerName.Text;
             cart.Email = txtEmail.Text;
             cart.Street = txtStreet.Text;
-            cart.City= txtCity.Text;    
+            cart.City = txtCity.Text;
             cart.NumOfHouse = int.Parse(txtNumHOuse.Text);
             Bl.Cart.OrderConfirmation(cart);
-        }     
+            MessageBox.Show("successfully created order");
+        }
+        catch (BlApi.NoItemsInCartException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.BlNOtImplementedException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.ExistsAlreadyException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.BlEntityNotFoundException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.EmptyStringException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.NegativeIdException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.NegativeHouseNumberException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.NegativeAmountException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.NegativePriceException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.NotInStockException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.NotInCartException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch (FormatException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch
+        {
+            MessageBox.Show("unexplained error occured\n");
+        }
     }
     public void getUpdateForCAart(BO.Cart cart)
     {
         this.cart = cart;
         this.CartDisplayed = ConvertBOCArtToPlCart(cart);
-        MessageBox.Show(CartDisplayed?.ToString());
         if (this.CartDisplayed?.Items?.Count() > 0)
         {
             CartItemsListView.Visibility = Visibility.Visible;
@@ -166,6 +253,14 @@ public partial class CartWindow : Window
         catch (BlApi.NotInCartException ex)
         {
             MessageBox.Show(ex.Message);
+        }
+        catch (BlApi.BlNOtImplementedException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        catch
+        {
+            MessageBox.Show("unexplained error occured\n");
         }
     }
 }
