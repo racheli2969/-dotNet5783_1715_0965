@@ -16,33 +16,24 @@ using System.Windows.Controls;
 
 namespace PL_.PO;
 
-<<<<<<< HEAD
 internal class PlCart : DependencyObject//*, INotifyCollectionChanged
-=======
-public class PlCart : DependencyObject//, INotifyCollectionChanged
->>>>>>> 007d6c4c241f489ecacf644a966a0a8c57283715
+
 {
     public string? CustomerName { get; set; }
     public string? Email { get; set; }
     public string? Address { get; set; }
     public List<PlOrderItem>? Items
     {
-<<<<<<< HEAD
-        get { return (ObservableCollection<PlOrderItem>?)GetValue(ItemsProperty); }
+        get { return (List<PlOrderItem>?)GetValue(ItemsProperty); }
         set
         {
             SetValue(ItemsProperty, value);
         }
-=======
-        get { return (List<PlOrderItem>?)GetValue(ItemsProperty); }
-        set { SetValue(ItemsProperty, value); }
->>>>>>> 007d6c4c241f489ecacf644a966a0a8c57283715
     }
 
     // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty ItemsProperty =
-<<<<<<< HEAD
-      DependencyProperty.Register("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
+      DependencyProperty.Register("Items", typeof(List<PlOrderItem>), typeof(PlCart), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
     //DependencyProperty.RegisterAttached("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new UIPropertyMetadata(null, onItemsChanged));
     //public event NotifyCollectionChangedEventHandler? CollectionChanged
     //{
@@ -56,9 +47,9 @@ public class PlCart : DependencyObject//, INotifyCollectionChanged
     //        ((INotifyCollectionChanged)Items).CollectionChanged -= new NotifyCollectionChangedEventHandler(ItemsCollection_CollectionChanged);
     //    }
     //}
-=======
-      DependencyProperty.Register("Items", typeof(List<PlOrderItem>), typeof(PlOrderItem), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
->>>>>>> 007d6c4c241f489ecacf644a966a0a8c57283715
+
+     // DependencyProperty.Register("Items", typeof(List<PlOrderItem>), typeof(PlOrderItem), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
+
 
     private static void onItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

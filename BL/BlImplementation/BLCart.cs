@@ -107,21 +107,21 @@ internal class BLCart : BlApi.ICart
         return c;
     }
 
-    public void OrderConfirmation(BO.Cart c, string? name, string? email, string? city, string? street, int numOfHouse)
+    public void OrderConfirmation(BO.Cart cart)
     {
         //check all information was received
-        if (name == null || email == null || city == null || street == null)
+        if (cart.CustomerName == null || cart.Email == null || cart.City == null || cart.Street == null)
             throw new BlApi.EmptyStringException();
         //validates the email address
-        MailAddress m = new(email);
-        if (numOfHouse <= 0)
+        MailAddress m = new(cart.Email);
+        if (cart.NumOfHouse <= 0)
             throw new BlApi.NegativeHouseNumberException();
-        c?.Items?.ForEach(validateItem);
+        cart?.Items?.ForEach(validateItem);
         //create in dal layer and move the info
         DO.Order temp = new DO.Order();
-        temp.CustomerName = name;
-        temp.Email = email;
-        temp.Address = city + " " + street + " " + numOfHouse;
+        temp.CustomerName = cart.CustomerName;
+        temp.Email = cart.Email;
+        temp.Address = cart.City + " " + cart.Street + " " + cart.NumOfHouse;
         temp.DateOrdered = DateTime.Now;
         temp.DateDelivered = DateTime.MinValue;
         temp.DateReceived = DateTime.MinValue;
@@ -132,16 +132,16 @@ internal class BLCart : BlApi.ICart
 
             //add the items to the order item array and update the products accordingly
             DO.OrderItem tempItem = new DO.OrderItem();
-            for (int i = 0; i < c?.Items?.Count; i++)
+            for (int i = 0; i < cart?.Items?.Count; i++)
             {
                 //create order items in dal layer 
-                tempItem.Amount = c.Items[i].Amount;
+                tempItem.Amount = cart.Items[i].Amount;
                 tempItem.OrderID = temp.OrderId;
-                tempItem.ItemId = c.Items[i].ItemId;
+                tempItem.ItemId = cart.Items[i].ItemId;
                 //adds to order items
                 id = dal.OrderItem.Add(tempItem);
                 tempItem.OrderItemId = id;
-                c.Items[i].OrderItemId = id;
+                cart.Items[i].OrderItemId = id;
                 //updates amount
                 dal.Item.Update(tempItem.ItemId, tempItem.Amount);
             }

@@ -27,20 +27,20 @@ public partial class CartWindow : Window
     private ProductCatalog productCatalog { get; set; }
     private PlCart? CartDisplayed { get; set; }
     private BO.Cart? cart { get; set; }
-   // public ObservableCollection<PlOrderItem>? items { get; set; }=new();
+    // public ObservableCollection<PlOrderItem>? items { get; set; }=new();
     private BlApi.IBl Bl { get; set; }
     public CartWindow(BlApi.IBl bl, ProductCatalog p, BO.Cart cart)
     {
         InitializeComponent();
         productCatalog = p;
         Bl = bl;
-       // CartDisplayed = new();
+        // CartDisplayed = new();
         CartDisplayed = ConvertBOCArtToPlCart(cart);
         DataContext = CartDisplayed;
         this.cart = cart;
         this.DataContext = CartDisplayed;
-       CartItemsListView.ItemsSource = CartDisplayed.Items;
-        //CartItemsListView.DataContext = CartDisplayed.Items;
+        CartItemsListView.ItemsSource = CartDisplayed.Items;
+        CartItemsListView.DataContext = CartDisplayed.Items;
         // CartItemsListView.ItemsSource = null;
         if (cart?.Items == null || cart?.Items.Count() == 0)
         {
@@ -66,7 +66,8 @@ public partial class CartWindow : Window
             if (obj == null) return;
             int id = obj.ItemId;
             cart = Bl.Cart.AddToCart(id, cart ?? throw new BlApi.BlNOtImplementedException());
-            CartDisplayed = ConvertBOCArtToPlCart(cart);
+            int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
+            (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount++;
         }
         catch (BlApi.NotInStockException ex)
         {
@@ -81,8 +82,9 @@ public partial class CartWindow : Window
             PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
             if (obj == null) return;
             int id = obj.ItemId;
+            int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
+            CartDisplayed?.Items?.RemoveAt(idx ?? 0);
             cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), 0);
-            CartDisplayed = ConvertBOCArtToPlCart(cart);
         }
         catch (BlApi.NotInCartException ex)
         {
@@ -97,8 +99,17 @@ public partial class CartWindow : Window
             PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
             if (obj == null) return;
             int id = obj.ItemId;
-            cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), obj.Amount);
-            CartDisplayed = ConvertBOCArtToPlCart(cart);
+            int amount = obj.Amount - 1;
+            cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), amount);
+            int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
+            if (amount > 0)
+            {
+                (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount--;
+            }
+            else
+            {
+                CartDisplayed?.Items?.RemoveAt(idx ?? 0);
+            }
         }
         catch (BlApi.NotInCartException ex)
         {
@@ -108,7 +119,15 @@ public partial class CartWindow : Window
 
     private void btnOrderConfirmation_Click(object sender, RoutedEventArgs e)
     {
-        //get all fields of the cart then send to bl to confirm
+        if (cart != null)
+        {
+            cart.CustomerName = txtCustomerName.Text;
+            cart.Email = txtEmail.Text;
+            cart.Street = txtStreet.Text;
+            cart.City= txtCity.Text;    
+            cart.NumOfHouse = int.Parse(txtNumHOuse.Text);
+            Bl.Cart.OrderConfirmation(cart);
+        }     
     }
     public void getUpdateForCAart(BO.Cart cart)
     {
@@ -120,17 +139,16 @@ public partial class CartWindow : Window
             CartItemsListView.Visibility = Visibility.Visible;
             imgEmptyCart.Visibility = Visibility.Collapsed;
             lblForEmptyCart.Visibility = Visibility.Collapsed;
-            CartItemsListView.DataContext = CartDisplayed.Items;
-            MessageBox.Show(CartItemsListView.Items[0].ToString());
+            CartItemsListView.ItemsSource = CartDisplayed.Items;
         }
     }
 
     private static PlCart ConvertBOCArtToPlCart(BO.Cart cart)
     {
         PlCart plCart = new PlCart();
-        plCart.CustomerName = cart.CustomerName;
-        plCart.Email = cart.Email;
-        plCart.Address = cart.Address;
+        //plCart.CustomerName = cart.CustomerName;
+        //plCart.Email = cart.Email;
+        //plCart.Address = cart.City;
         plCart.FinalPrice = cart.FinalPrice;
         List<PlOrderItem> tempItems = new();
         cart?.Items?.ForEach(item => tempItems.Add(PlOrderItem.ConvertBOorderItemToPoOrderItem(item)));

@@ -27,7 +27,7 @@ public interface ICart
     /// <param name="city">customer city</param>
     /// <param name="street">customer street</param>
     /// <param name="numOfHouse">customer num of house</param>
-    public void OrderConfirmation(Cart c, string name, string email, string city, string street, int numOfHouse);
+    public void OrderConfirmation(Cart cart);
     /// <summary>
     /// gets a cart and product id and searches for the product in the cart
     /// </summary>

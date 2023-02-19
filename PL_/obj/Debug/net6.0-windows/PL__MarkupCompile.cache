@@ -4,28 +4,16 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\PL_\obj\Debug\net6.0-windows\
-=======
-C:\Users\גרשון רחל\source\repos\PL_\obj\Debug\net6.0-windows\
->>>>>>> 007d6c4c241f489ecacf644a966a0a8c57283715
 PL_
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-<<<<<<< HEAD
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\PL_\App.xaml
 10-1005801145
 
 17-243359167
 198-243688726
-=======
-C:\Users\גרשון רחל\source\repos\PL_\App.xaml
-10-1005801145
-
-17-243359167
-198436068328
->>>>>>> 007d6c4c241f489ecacf644a966a0a8c57283715
 Admin.xaml;Cart\Cart.xaml;MainWindow.xaml;OrderTrackingWindow.xaml;Order\Order.xaml;Order\OrderForList.xaml;Product\Product.xaml;Product\ProductCatalog.xaml;Product\ProductItem.xaml;Product\ProductList.xaml;
 
 False
