@@ -12,8 +12,13 @@
       }
     ],
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\brach\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\brach\\.nuget\\packages",
+=======
+      "C:\\Users\\גרשון רחל\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\גרשון רחל\\.nuget\\packages",
+>>>>>>> 007d6c4c241f489ecacf644a966a0a8c57283715
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {

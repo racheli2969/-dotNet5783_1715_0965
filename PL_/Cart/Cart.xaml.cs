@@ -27,25 +27,22 @@ public partial class CartWindow : Window
     private ProductCatalog productCatalog { get; set; }
     private PlCart? CartDisplayed { get; set; }
     private BO.Cart? cart { get; set; }
-    //private List<PlOrderItem> orderItems { get; set; }= new List<PlOrderItem>() { new PlOrderItem()};
-   // private ObservableCollection<PlOrderItem>? items { get; set; }= new ObservableCollection<PlOrderItem>() { new PlOrderItem() { OrderItemId = 0, ItemId = 111111, ItemName = "ggg", ItemPrice = 9, Amount = 9, PriceOfItems = 89 } };
+   // public ObservableCollection<PlOrderItem>? items { get; set; }=new();
     private BlApi.IBl Bl { get; set; }
     public CartWindow(BlApi.IBl bl, ProductCatalog p, BO.Cart cart)
     {
         InitializeComponent();
         productCatalog = p;
         Bl = bl;
-        CartDisplayed = new();
+       // CartDisplayed = new();
         CartDisplayed = ConvertBOCArtToPlCart(cart);
         DataContext = CartDisplayed;
         this.cart = cart;
-        CartDisplayed.Items = new ObservableCollection<PlOrderItem>() { new PlOrderItem() { OrderItemId = 0, ItemId = 111111, ItemName = "ggg", ItemPrice = 9, Amount = 9, PriceOfItems = 89 } };
+        this.DataContext = CartDisplayed;
+       CartItemsListView.ItemsSource = CartDisplayed.Items;
         //CartItemsListView.DataContext = CartDisplayed.Items;
-        CartItemsListView.ItemsSource = CartDisplayed.Items;
-       // CartItemsListView.ItemsSource = items;
-        //CartItemsListView.ItemsSource = orderItems ;
-        // CartItemsListView.ItemsSource = new List<PlOrderItem> { new PlOrderItem()};
-        if (CartDisplayed?.Items == null || CartDisplayed?.Items.Count() == 0)
+        // CartItemsListView.ItemsSource = null;
+        if (cart?.Items == null || cart?.Items.Count() == 0)
         {
             CartItemsListView.Visibility = Visibility.Collapsed;
         }
@@ -70,7 +67,6 @@ public partial class CartWindow : Window
             int id = obj.ItemId;
             cart = Bl.Cart.AddToCart(id, cart ?? throw new BlApi.BlNOtImplementedException());
             CartDisplayed = ConvertBOCArtToPlCart(cart);
-            //  DataContext = CartDisplayed;
         }
         catch (BlApi.NotInStockException ex)
         {
@@ -136,7 +132,7 @@ public partial class CartWindow : Window
         plCart.Email = cart.Email;
         plCart.Address = cart.Address;
         plCart.FinalPrice = cart.FinalPrice;
-        ObservableCollection<PlOrderItem> tempItems = new();
+        List<PlOrderItem> tempItems = new();
         cart?.Items?.ForEach(item => tempItems.Add(PlOrderItem.ConvertBOorderItemToPoOrderItem(item)));
         plCart.Items = tempItems;
         return plCart;
@@ -147,7 +143,7 @@ public partial class CartWindow : Window
         try
         {
             (cart ?? throw new BlApi.BlNOtImplementedException()).Items = new List<BO.OrderItem>();
-            (CartDisplayed ?? throw new BlApi.BlNOtImplementedException()).Items = new ObservableCollection<PlOrderItem>();
+            (CartDisplayed ?? throw new BlApi.BlNOtImplementedException()).Items = new List<PlOrderItem>();
         }
         catch (BlApi.NotInCartException ex)
         {
