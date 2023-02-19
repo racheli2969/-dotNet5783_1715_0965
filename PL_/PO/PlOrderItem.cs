@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace PL_.PO;
 
-internal class PlOrderItem : DependencyObject
+public class PlOrderItem : DependencyObject
 {
     public int OrderItemId { get; set; }
     public int ItemId { get; set; }
