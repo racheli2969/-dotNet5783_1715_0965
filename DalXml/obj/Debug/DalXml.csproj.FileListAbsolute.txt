@@ -8,7 +8,6 @@ C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CopyComplete
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.dll
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\refint\DalXml.dll
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.pdb
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\ref\DalXml.dll
 C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\DalXml.deps.json
@@ -63,3 +62,4 @@ C:\Users\acer\Source\Repos\-dotNet5783_1715_09\DalXml\obj\Debug\DalXml.dll
 C:\Users\acer\Source\Repos\-dotNet5783_1715_09\DalXml\obj\Debug\refint\DalXml.dll
 C:\Users\acer\Source\Repos\-dotNet5783_1715_09\DalXml\obj\Debug\DalXml.pdb
 C:\Users\acer\Source\Repos\-dotNet5783_1715_09\DalXml\obj\Debug\ref\DalXml.dll
+C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\ref\DalXml.dll
