@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="SimulationWIndow" Height="450" Width="800">
     <Grid>
-        
+        <ProgressBar Margin="194,139,192,256" Foreground="#FF00E82A"/>
+        <Label x:Name="lblTimer" Content="00:00:00" Margin="280,31,0,315"  FontSize="48" FontFamily="Microsoft YaHei UI Light" Foreground="#FF11F13E" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="txtCurrentState" TextWrapping="Wrap" Margin="290,207,260,29" FontSize="22" TextAlignment="Center" Background="#FFCAEFCC">
+            <TextBlock.Foreground>
+                <SolidColorBrush/>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock x:Name="txtBlockPrevState" TextWrapping="Wrap" Margin="52,234,557,56" FontSize="18" TextAlignment="Center" Background="#FFCAEFCC" Foreground="#00000000"/>
+        <TextBlock x:Name="txtBlockNextState" TextWrapping="Wrap" Margin="584,234,25,56" FontSize="18" TextAlignment="Center" Background="#FFCAEFCC" Foreground="#00000000"/>
+
+
     </Grid>
 </Window>

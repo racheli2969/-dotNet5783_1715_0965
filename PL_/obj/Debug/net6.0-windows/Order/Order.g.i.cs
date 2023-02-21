@@ -181,7 +181,7 @@ namespace PL_.Order {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PL_;V1.0.0.0;component/order/order.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PL_;component/order/order.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Order\Order.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

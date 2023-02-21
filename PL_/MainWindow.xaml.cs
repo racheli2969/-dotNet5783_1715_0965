@@ -35,7 +35,7 @@ public partial class MainWindow : Window
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
         _ = int.TryParse(textBox.Text, out int x);
-        OrderTrackingWindow otw = new(Bl,x,this);
+        OrderTrackingWindow otw = new(Bl, x, this);
         otw.Show();
         this.Hide();
 
@@ -43,6 +43,8 @@ public partial class MainWindow : Window
 
     private void btnStartSimulator_Click(object sender, RoutedEventArgs e)
     {
-
+        SimulationWIndow sw = new SimulationWIndow(this);
+        sw.Show();
+        this.Hide();
     }
 }

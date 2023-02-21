@@ -1,17 +1,39 @@
-﻿
+﻿using BlApi;
 using System;
+using System.Diagnostics;
+using System.Threading;
 namespace Simulator;
+
 public static class Simulator
 {
-    //private properties
+    private static readonly IBl? Bl = Factory.Get();
+    private static Thread thread = new(Run);
+    private static volatile bool isRunning=true;
+
     public static void Run()
     {
+        while (isRunning)
+        {
+            int? id = Bl?.Order.GetOldestOrderNumber();
+            while (id != null)
+            {
+                BO.Order? order = new();
+                order = Bl?.Order.GetOrderDetails((int)id);
+                if (order?.DateShipped == DateTime.MinValue)
+                    order = Bl?.Order.UpdateOrderShipping((int)id);
+                else
+                    order = Bl?.Order.UpdateOrderDelivery((int)id);
+               // ((int)id).Invoke(OrderInProgress);
+                id = Bl?.Order.GetOldestOrderNumber();
 
+            }
+        }
     }
-    public static void End()
+    public static void Stop()
     {
-
+        isRunning = false;
     }
-//  private  Volatile int i;
-//private static event delegate<Volatile,bool> stopSimulation;
+    private delegate int OrderInProgress();
+
+    //private static event delegate<Volatile,bool> stopSimulation;
 }
