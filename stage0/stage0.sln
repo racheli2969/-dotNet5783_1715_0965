@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "..\DalXml\DalXml.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXmlTest", "..\XmlTest\DalXmlTest.csproj", "{30575C9B-D20E-4AA3-B7D9-9ABA936976CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator", "..\Simulator\Simulator.csproj", "{DAFE621C-A779-49A1-BDB7-FA6BE3C37EDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator", "..\Simulator\Simulator.csproj", "{DAFE621C-A779-49A1-BDB7-FA6BE3C37EDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -21,12 +21,12 @@ public static class Simulator
                 order = Bl?.Order.GetOrderDetails((int)id);
                 if (order?.DateShipped == DateTime.MinValue)
                     order = Bl?.Order.UpdateOrderShipping((int)id);
-                else
+                else if (order?.DateDelivered == DateTime.MinValue) 
                     order = Bl?.Order.UpdateOrderDelivery((int)id);
-               // ((int)id).Invoke(OrderInProgress);
-                id = Bl?.Order.GetOldestOrderNumber();
+                // ((int)id).Invoke(OrderInProgress);
 
-            }
+                id = Bl?.Order.GetOldestOrderNumber();
+            } 
         }
     }
     public static void Stop()

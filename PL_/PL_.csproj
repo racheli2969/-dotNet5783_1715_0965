@@ -1,48 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
 
-  <ItemGroup>
-    <Compile Remove="User\**" />
-    <EmbeddedResource Remove="User\**" />
-    <None Remove="User\**" />
-    <Page Remove="User\**" />
-  </ItemGroup>
+		<BaseOutputPath>$(SolutionDir)\bin\</BaseOutputPath>
+		<OutputPath>$(SolutionDir)\bin\</OutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
 
-  <ItemGroup>
-    <None Remove="Images\bookCase.jpg" />
-    <None Remove="Images\booksLine.jpg" />
-    <None Remove="Images\bookWithLightBulb.jpg" />
-    <None Remove="Images\greenShoppingBAsket.webp" />
-    <None Remove="Images\straightBookCase.jpg" />
-  </ItemGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj" />
-    <ProjectReference Include="..\Simulator\Simulator.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="User\**" />
+		<EmbeddedResource Remove="User\**" />
+		<None Remove="User\**" />
+		<Page Remove="User\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Images\bookCase.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\booksLine.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\bookWithLightBulb.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\greenShoppingBAsket.webp">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\straightBookCase.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Images\bookCase.jpg" />
+		<None Remove="Images\booksLine.jpg" />
+		<None Remove="Images\straightBookCase.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BL\BL.csproj" />
+		<ProjectReference Include="..\Simulator\Simulator.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Images\bookCase.jpg">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\booksLine.jpg">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\bookWithLightBulb.jpg">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\greenShoppingBAsket.webp">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\straightBookCase.jpg">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
 
 </Project>

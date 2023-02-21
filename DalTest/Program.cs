@@ -48,7 +48,7 @@ void Add(OptionsForMain characterType)
             order.Address = Console.ReadLine();
             order.DateOrdered = DateInputControl(Console.ReadLine());
             order.DateDelivered = DateInputControl(Console.ReadLine());
-            order.DateReceived = DateInputControl(Console.ReadLine());
+            order.DateShipped = DateInputControl(Console.ReadLine());
             dalList?.Order.Add(order);
             break;
         case OptionsForMain.OrderItem:
@@ -157,7 +157,7 @@ void Update(OptionsForMain characterType)
                 order.Address = Console.ReadLine();
                 order.DateOrdered = DateInputControl(Console.ReadLine());
                 order.DateDelivered = DateInputControl(Console.ReadLine());
-                order.DateReceived = DateInputControl(Console.ReadLine());
+                order.DateShipped = DateInputControl(Console.ReadLine());
                 dalList?.Order.Update(order);
                 break;
             case OptionsForMain.OrderItem:

@@ -98,18 +98,18 @@ public class BlOrder : BlApi.IOrder
         }
 
     }
-    //updates date of delivery
+    //updates date of shipping
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderShipping(int orderId)
     {
         try
         {
             //get the order
-            DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().SingleOrDefault() ?? throw new DalApi.EntityNotFoundException();
-            if (orderfromDalToUpdate.DateDelivered != DateTime.MinValue)
+            DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().First() ?? throw new DalApi.EntityNotFoundException();
+            if (orderfromDalToUpdate.DateShipped != DateTime.MinValue)
                 throw new BlApi.SentAlreadyException();
             // update the date of shipping
-            orderfromDalToUpdate.DateDelivered = DateTime.Now;
+            orderfromDalToUpdate.DateShipped = DateTime.Now;
             dal?.Order.Update(orderfromDalToUpdate);
             BO.Order order = GetOrderDetails(orderId);
             return order;
@@ -184,21 +184,26 @@ public class BlOrder : BlApi.IOrder
         //do something
         return order;
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public int? GetOldestOrderNumber()
     {
-        List<DO.Order>? orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
+        List<DO.Order>? orders1 = new List<DO.Order>();
+        orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
         //if all the orders dates are updated then we can return null to show we are done
         if (orders1 == null)
             return null;
-        DO.Order? smallestDateOrdered = (from order in orders1
-                                         orderby order.DateOrdered ascending
-                                         select order).ToList().FirstOrDefault();
+        orders1.ForEach(i => Console.WriteLine(i.ToString()));
+        DO.Order? smallestDateOrdered = new();
+        smallestDateOrdered = (from order in orders1
+                               orderby order.DateOrdered ascending
+                               select order).ToList().FirstOrDefault();
 
-        DO.Order? smallestDateShipped = (from order in orders1
-                                         orderby order.DateShipped ascending
-                                         where order.DateShipped != DateTime.MinValue
-                                         select order).ToList().FirstOrDefault();
+        DO.Order? smallestDateShipped = new();
+        smallestDateShipped = (from order in orders1
+                               orderby order.DateShipped ascending
+                               where order.DateShipped != DateTime.MinValue
+                               select order).ToList().FirstOrDefault();
         if (smallestDateShipped == null)
             return smallestDateOrdered.Value.OrderId;
         int res = DateTime.Compare(smallestDateOrdered.Value.DateOrdered, smallestDateShipped.Value.DateShipped);
