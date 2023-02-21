@@ -28,11 +28,11 @@ public class Order
     /// <summary>
     /// date of delivery
     /// </summary>
-    public DateTime? DateDelivered { get; set; }
+    public DateTime? DateShipped { get; set; }
     /// <summary>
     /// date received
     /// </summary>
-    public DateTime? DateReceived { get; set; }
+    public DateTime? DateDelivered { get; set; }
     /// <summary>
     /// list of items of type orderItem
     /// </summary>
@@ -48,7 +48,7 @@ public class Order
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendFormat("Order ID:{0}\n Customer Name:{1}\n Email:{2}\n Order Status:{3}\nDate Ordered:{4}\n Date Delivered{5}\nDate Received: {6}\nfinal price:{7};", OrderId, CustomerName, Email, OrderStatus, DateOrdered, DateDelivered, DateReceived, SumOfOrder);
+        sb.AppendFormat("Order ID:{0}\n Customer Name:{1}\n Email:{2}\n Order Status:{3}\nDate Ordered:{4}\n Date Delivered{5}\nDate Received: {6}\nfinal price:{7};", OrderId, CustomerName, Email, OrderStatus, DateOrdered,DateShipped, DateDelivered, SumOfOrder);
         if (Items != null)
             foreach (BO.OrderItem item in Items)
             {

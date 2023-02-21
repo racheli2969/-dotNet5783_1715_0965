@@ -125,8 +125,8 @@ internal class BLCart : BlApi.ICart
         temp.Email = cart.Email;
         temp.Address = cart.City + " " + cart.Street + " " + cart.NumOfHouse;
         temp.DateOrdered = DateTime.Now;
+        temp.DateShipped = DateTime.MinValue;
         temp.DateDelivered = DateTime.MinValue;
-        temp.DateReceived = DateTime.MinValue;
         //send to dal
         if (dal != null)
         {

@@ -73,7 +73,7 @@ void Add(OptionsForMain characterType)
             order.Address = Console.ReadLine();
             order.DateOrdered = DateInputControl(Console.ReadLine());
             order.DateDelivered = DateInputControl(Console.ReadLine());
-            order.DateReceived = DateInputControl(Console.ReadLine());
+            order.DateShipped = DateInputControl(Console.ReadLine());
             dalxml?.Order.Add(order);
             break;
         case OptionsForMain.OrderItem:
@@ -182,7 +182,7 @@ void Update(OptionsForMain characterType)
                 order.Address = Console.ReadLine();
                 order.DateOrdered = DateInputControl(Console.ReadLine());
                 order.DateDelivered = DateInputControl(Console.ReadLine());
-                order.DateReceived = DateInputControl(Console.ReadLine());
+                order.DateShipped = DateInputControl(Console.ReadLine());
                 dalxml?.Order.Update(order);
                 break;
             case OptionsForMain.OrderItem:
@@ -293,7 +293,7 @@ void Main()
     order.Address = "hahagana 23";
     order.DateOrdered = DateTime.MinValue;
     order.DateDelivered = DateTime.MinValue;
-    order.DateReceived = DateTime.MinValue;
+    order.DateShipped = DateTime.MinValue;
 
 
     //order.CustomerName = Console.ReadLine();

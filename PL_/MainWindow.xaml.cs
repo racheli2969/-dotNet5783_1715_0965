@@ -34,8 +34,7 @@ public partial class MainWindow : Window
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-        int x;
-        Int32.TryParse(textBox.Text, out x);
+        _ = int.TryParse(textBox.Text, out int x);
         OrderTrackingWindow otw = new(Bl,x,this);
         otw.Show();
         this.Hide();

@@ -100,7 +100,7 @@ namespace PL_.Order
                 order = Bl?.Order.UpdateOrderDelivery(order.OrderId);
             DataContext = order;
             btnReceivedDate.Visibility = Visibility.Hidden;
-            lblReceivedDate.Content = order?.DateReceived;
+            lblReceivedDate.Content = order?.DateDelivered;
             if (order != null && updateOrders != null)
                 updateOrders(BO.EnumOrderStatus.Delivered, order.OrderId);
         }

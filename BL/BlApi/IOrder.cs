@@ -37,6 +37,9 @@ public interface IOrder
     /// <param name="amount">amount to change to</param>
     /// <returns>the updated order</returns>
     public Order UpdateOrderDetails(int orderId, int productId, int amount);
-
-
+    /// <summary>
+    /// get the order that it's status wasn't changed for the longest time
+    /// </summary>
+    /// <returns>id of the order or null if all the orders are delivered</returns>
+    public int? GetOldestOrderNumber();
 }

@@ -42,7 +42,8 @@ void NavigateCart()
                     city = Console.ReadLine();
                     street = Console.ReadLine();
                     int.TryParse(Console.ReadLine(), out numOfHouse);
-                    bl.Cart.OrderConfirmation(myCart, name, email, city, street, numOfHouse);
+                    //, name, email, city, street, numOfHouse
+                    bl.Cart.OrderConfirmation(myCart);
                     Console.WriteLine("order created successfully");
                     break;
             }

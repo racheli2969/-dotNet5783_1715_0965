@@ -27,9 +27,9 @@ public class BlOrder : BlApi.IOrder
             temp = new BO.OrderForList();
             temp.Id = ordersFromDal[i].OrderId;
             temp.CustomerName = ordersFromDal[i].CustomerName;
-            if (ordersFromDal[i].DateReceived != DateTime.MinValue)
+            if (ordersFromDal[i].DateDelivered != DateTime.MinValue)
                 temp.OrderStatus = BO.EnumOrderStatus.Delivered;
-            else if (ordersFromDal[i].DateDelivered != DateTime.MinValue)
+            else if (ordersFromDal[i].DateShipped != DateTime.MinValue)
                 temp.OrderStatus = BO.EnumOrderStatus.Shipped;
             else temp.OrderStatus = BO.EnumOrderStatus.Ordered;
 
@@ -56,11 +56,11 @@ public class BlOrder : BlApi.IOrder
             order.OrderId = O.OrderId;
             order.DateDelivered = O.DateDelivered;
             order.DateOrdered = O.DateOrdered;
-            order.DateReceived = O.DateReceived;
+            order.DateShipped = O.DateShipped;
             //checks the staus of the order
-            if (O.DateReceived != DateTime.MinValue)
+            if (O.DateDelivered != DateTime.MinValue)
                 order.OrderStatus = BO.EnumOrderStatus.Delivered;
-            else if (O.DateDelivered != DateTime.MinValue)
+            else if (O.DateShipped != DateTime.MinValue)
                 order.OrderStatus = BO.EnumOrderStatus.Shipped;
             else
                 order.OrderStatus = BO.EnumOrderStatus.Ordered;
@@ -122,10 +122,10 @@ public class BlOrder : BlApi.IOrder
         {
             //get the order
             DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().First() ?? throw new Exception();
-            if (orderfromDalToUpdate.DateReceived != DateTime.MinValue)
+            if (orderfromDalToUpdate.DateDelivered != DateTime.MinValue)
                 throw new BlApi.deliveredAlreadyException();
             // update the date of shipping
-            orderfromDalToUpdate.DateReceived = DateTime.Now;
+            orderfromDalToUpdate.DateDelivered = DateTime.Now;
             dal?.Order.Update(orderfromDalToUpdate);
             BO.Order order = GetOrderDetails(orderId);
             return order;
@@ -147,16 +147,16 @@ public class BlOrder : BlApi.IOrder
             orderTracking.Id = orderId;
             List<(DateTime?, EnumOrderStatus)> tempTrackingtUples = new();
             // orderTracking.TrackingTuples[0] = ((order ?? throw new DalApi.EntityNotFoundException()).DateOrdered, EnumOrderStatus.Ordered);
-            tempTrackingtUples.Add((order.HasValue?(order).Value.DateOrdered:throw new DalApi.EntityNotFoundException(), EnumOrderStatus.Ordered));
+            tempTrackingtUples.Add((order.HasValue ? (order).Value.DateOrdered : throw new DalApi.EntityNotFoundException(), EnumOrderStatus.Ordered));
             (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Ordered;
-            if ((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered != DateTime.MinValue)
+            if ((order ?? throw new DalApi.EntityNotFoundException()).DateShipped != DateTime.MinValue)
             {
-                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered, EnumOrderStatus.Delivered));
+                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateShipped, EnumOrderStatus.Delivered));
                 (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Shipped;
             }
-            if ((order ?? throw new DalApi.EntityNotFoundException()).DateReceived != DateTime.MinValue)
+            if ((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered != DateTime.MinValue)
             {
-                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateReceived, EnumOrderStatus.Shipped));
+                tempTrackingtUples.Add(((order ?? throw new DalApi.EntityNotFoundException()).DateDelivered, EnumOrderStatus.Shipped));
                 (orderTracking ?? throw new Exception("an unexpected error occured")).OrderStatus = EnumOrderStatus.Delivered;
             }
             orderTracking.TrackingTuples = tempTrackingtUples;
@@ -175,5 +175,26 @@ public class BlOrder : BlApi.IOrder
         BO.Order order = new BO.Order();
         //do something
         return order;
+    }
+
+    public int? GetOldestOrderNumber()
+    {
+        List<DO.Order>? orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
+        //if all the orders dates are updated then we can return null to show we are done
+        if (orders1 == null)
+            return null;
+        DO.Order? smallestDateOrdered = (from order in orders1
+                                         orderby order.DateOrdered ascending
+                                         select order).ToList().FirstOrDefault();
+
+        DO.Order? smallestDateShipped = (from order in orders1
+                                         orderby order.DateShipped ascending
+                                         where order.DateShipped != DateTime.MinValue
+                                         select order).ToList().FirstOrDefault();
+        if (smallestDateShipped == null)
+            return smallestDateOrdered.Value.OrderId;
+        int res = DateTime.Compare(smallestDateOrdered.Value.DateOrdered, smallestDateShipped.Value.DateShipped);
+        int? id = res > 0 ? smallestDateShipped.Value.OrderId : smallestDateOrdered.Value.OrderId;
+        return id;
     }
 }

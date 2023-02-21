@@ -124,6 +124,7 @@ public partial class CartWindow : Window
             if (amount > 0)
             {
                 (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount = amount;
+                (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].PriceOfItems = (cart.Items.Find(i=>i.ItemId==id)??throw new BlApi.BlNOtImplementedException()).PriceOfItems;
             }
             else if (CartDisplayed?.Items?.Count() == 1)
             {

@@ -34,6 +34,5 @@ public interface ICart
     /// <param name="C">the cart to search in</param>
     /// <param name="productId">the product id to search for</param>
     /// <returns>if the product exists returns index else -1</returns>
-   // private int ProductIndexInCart(Cart C, int productId);
-
+    // private int ProductIndexInCart(Cart C, int productId);
 }
