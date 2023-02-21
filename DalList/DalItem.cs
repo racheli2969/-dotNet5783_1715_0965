@@ -1,6 +1,7 @@
 ﻿using DalApi;
 using DO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Dal;
 /// <summary>
@@ -14,6 +15,7 @@ internal class DalItem : IItem
     /// </summary>
     /// <param name="item"></param>
     /// <returns>returns the added item's id</returns>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Add(Item item)
     {
         item.ID = DataSource.Config.LastItemId;
@@ -25,6 +27,7 @@ internal class DalItem : IItem
     /// returns all the existing items
     /// </summary>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<Item>? GetAll(Func<Item, bool>? func)
     {
         List<Item?>? items=new();
@@ -46,6 +49,7 @@ internal class DalItem : IItem
     /// </summary>
     /// <param name="id"></param>
     /// <exception cref="Exception">if id does not exist in the product list</exception>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int id)
     {
         //check if exists
@@ -59,6 +63,7 @@ internal class DalItem : IItem
     /// </summary>
     /// <param name="item"></param>
     /// <exception cref="Exception">if there is no object with that id an exception is thrown</exception>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(Item item)
     {
         int? index = DataSource.Items?.FindIndex(x => x.HasValue && x.Value.ID == item.ID);
@@ -71,7 +76,9 @@ internal class DalItem : IItem
     /// </summary>
     /// <param name="id">product id</param>
     /// <param name="amount">amount to update to</param>
-    public void Update(int id, int amount)
+   
+    [MethodImpl(MethodImplOptions.Synchronized)]
+     public void Update(int id, int amount)
     {
         Item item = new();
         int? index = DataSource.Items?.FindIndex(x => x.HasValue && x.Value.ID == id);
@@ -90,6 +97,7 @@ internal class DalItem : IItem
     /// </summary>
     /// <param name="id">id of product</param>
     /// <returns>true if available</returns>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public bool Available(int id)
     {
         Item? item = new Item();
@@ -102,6 +110,8 @@ internal class DalItem : IItem
     /// <param name="id">id of product</param>
     ///  /// <param name="amount">amount wanted</param>
     /// <returns>true if available</returns>
+   
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public bool Available(int id, int amount)
     {
         Item? item = new Item();

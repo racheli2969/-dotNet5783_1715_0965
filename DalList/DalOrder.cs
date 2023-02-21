@@ -1,5 +1,7 @@
 ﻿using DO;
 using DalApi;
+using System.Runtime.CompilerServices;
+
 namespace Dal;
 
 internal class DalOrder : IOrder
@@ -20,6 +22,7 @@ internal class DalOrder : IOrder
     /// </summary>
     /// <returns></returns>
 #pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<Order>? GetAll(Func<Order, bool> func)
     {
         List<Order?> orders=new();
@@ -33,6 +36,7 @@ internal class DalOrder : IOrder
     /// </summary>
     /// <param name="id"></param>
     /// <exception cref="Exception">if the item does not exist</exception>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int id)
     {
         int? idx = DataSource.Orders?.FindIndex(order => order.HasValue&&order.Value.OrderId == id);
@@ -45,6 +49,8 @@ internal class DalOrder : IOrder
     /// </summary>
     /// <param name="order"> new order with existing id</param>
     /// <exception cref="Exception"></exception>
+   
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(Order order)
     {
         int? idx = DataSource.Orders?.FindIndex(order => order.HasValue&&order.Value.OrderId == order.Value.OrderId);

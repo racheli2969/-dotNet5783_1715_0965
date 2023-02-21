@@ -1,10 +1,13 @@
 ﻿using BO;
 using DO;
+using System.Runtime.CompilerServices;
 
 namespace BlImplementation;
 public class BlOrder : BlApi.IOrder
 {
     private DalApi.IDal? dal = DalApi.Factory.Get();
+
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<BO.OrderForList> GetOrderList()
     {
         List<BO.OrderForList> orders = new List<BO.OrderForList>();
@@ -40,6 +43,7 @@ public class BlOrder : BlApi.IOrder
         return orders;
     }
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order GetOrderDetails(int orderId)
     {
         if (orderId < 0)
@@ -95,6 +99,7 @@ public class BlOrder : BlApi.IOrder
 
     }
     //updates date of delivery
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderShipping(int orderId)
     {
         try
@@ -116,6 +121,8 @@ public class BlOrder : BlApi.IOrder
         }
     }
     //updates the date of delivery (receiving)
+
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderDelivery(int orderId)
     {
         try
@@ -136,7 +143,7 @@ public class BlOrder : BlApi.IOrder
             throw new BlApi.BlEntityNotFoundException();
         }
     }
-
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.OrderTracking OrderTracking(int orderId)
     {
         try
@@ -170,13 +177,14 @@ public class BlOrder : BlApi.IOrder
     }
 
     //for bonus
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderDetails(int orderId, int productId, int amount)
     {
         BO.Order order = new BO.Order();
         //do something
         return order;
     }
-
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int? GetOldestOrderNumber()
     {
         List<DO.Order>? orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
