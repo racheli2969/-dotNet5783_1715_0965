@@ -41,4 +41,9 @@ public partial class MainWindow : Window
         this.Hide();
 
     }
+
+    private void btnStartSimulator_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }
