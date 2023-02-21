@@ -264,4 +264,5 @@ public partial class CartWindow : Window
             MessageBox.Show("unexplained error occured\n");
         }
     }
+
 }

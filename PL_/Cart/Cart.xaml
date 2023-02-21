@@ -15,12 +15,12 @@
             <Label x:Name="lblAddress" Content="Address" Height="34" Canvas.Left="211" Canvas.Top="111" Width="89"/>
             <TextBox x:Name="txtCity" Height="34" Canvas.Left="355" Canvas.Top="111" Width="85" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Label x:Name="lblFinalPrice" Content="FinalPrice" Height="32" Canvas.Left="211" Canvas.Top="150" Width="81"/>
-            <Border BorderBrush="Black" Height="32" Canvas.Left="355" Canvas.Top="150" Width="211" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Label x:Name="lblFinalPriceValue"  Margin="224,155,495,247"/>
-            </Border>
+            <Border BorderBrush="Black"  BorderThickness="1" Height="32" Canvas.Left="355" Canvas.Top="155" Width="211" HorizontalAlignment="Center" VerticalAlignment="Top"></Border>
+            <Label x:Name="lblFinalPriceValue" Content="{Binding Path=FinalPrice}"  Height="32" Canvas.Left="355" Canvas.Top="155" Width="211"  />
+
             <Button Content="BACK" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <!--Visibility="{Binding Visibility.Collapsed, ElementName=imgEmptyCart}">-->
-            <ListView x:Name="CartItemsListView" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="204" Canvas.Top="182" VerticalAlignment="Top" Canvas.Left="10" ItemsSource="{Binding}" d:ItemsSource="{d:SampleData ItemCount=5}" Width="743">
+            <ListView x:Name="CartItemsListView" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="204" Canvas.Top="200" VerticalAlignment="Top" Canvas.Left="10" ItemsSource="{Binding}" d:ItemsSource="{d:SampleData ItemCount=5}" Width="743">
                 <ListView.View>
                     <GridView AllowsColumnReorder="true" >
                         <GridViewColumn DisplayMemberBinding="{Binding Path=ItemId}" Header="ItemId" Width="100"/>
