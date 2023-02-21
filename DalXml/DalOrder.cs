@@ -1,6 +1,7 @@
 ﻿using DalApi;
 using DO;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Xml;
@@ -11,6 +12,7 @@ namespace Dal;
 
 internal class DalOrder : IOrder
 {
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Add(DO.Order order)
     {
         XElement? configXml = XDocument.Load(@"..\..\..\..\xml\Config.xml").Root;
@@ -35,7 +37,7 @@ internal class DalOrder : IOrder
 
         return order.OrderId;
     }
-
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int id)
     {
         XmlRootAttribute xRoot = new XmlRootAttribute();
@@ -54,7 +56,7 @@ internal class DalOrder : IOrder
         serializer.Serialize(writer, lst);
         writer.Close();
     }
-
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<DO.Order>? GetAll(Func<DO.Order, bool>? func = null)
     {
         XmlRootAttribute xRoot = new XmlRootAttribute();
@@ -71,7 +73,7 @@ internal class DalOrder : IOrder
         List<DO.Order>? l = (List<DO.Order>?)lst?.Where(func).ToList();
         return l;
     }
-
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(DO.Order order)
     {
         XmlRootAttribute xRoot = new XmlRootAttribute();

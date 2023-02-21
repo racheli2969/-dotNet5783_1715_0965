@@ -2,6 +2,7 @@
 using DO;
 using DalApi;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Dal;
 internal class DalOrderItem : IOrderItem
@@ -11,6 +12,7 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="oi"></param>
     /// <returns>returns the added order item's id</returns>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Add(OrderItem oi)
     {
         oi.OrderItemId = DataSource.Config.OrderItemId;
@@ -21,6 +23,7 @@ internal class DalOrderItem : IOrderItem
     /// returns existing order items
     /// </summary>
 #pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool> func)
 #pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
     {
@@ -37,6 +40,7 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="id"></param>
     /// <exception cref="Exception"></exception>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int id)
     {
         int index = DataSource.OrderItems.FindIndex(orderItem => orderItem.HasValue&&((OrderItem)orderItem).OrderItemId == id);
@@ -50,6 +54,8 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="oi"> updated object</param>
     /// <exception cref="Exception"></exception>
+   
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(OrderItem oi)
     {
         int index = DataSource.OrderItems.FindIndex(orderItem => orderItem.HasValue&&((OrderItem)orderItem).OrderItemId == oi.OrderItemId);
