@@ -58,3 +58,15 @@ C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalFacade\obj\Debug\DalFacade.
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalFacade\obj\Debug\refint\DalFacade.dll
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalFacade\obj\Debug\DalFacade.pdb
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalFacade\obj\Debug\ref\DalFacade.dll
+C:\Users\acer\source\repos\-dotNet5\stage0\bin\DalFacade.deps.json
+C:\Users\acer\source\repos\-dotNet5\stage0\bin\DalFacade.dll
+C:\Users\acer\source\repos\-dotNet5\stage0\bin\DalFacade.pdb
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\DalFacade.csproj.AssemblyReference.cache
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\DalFacade.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\DalFacade.AssemblyInfoInputs.cache
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\DalFacade.AssemblyInfo.cs
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\DalFacade.csproj.CoreCompileInputs.cache
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\DalFacade.dll
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\refint\DalFacade.dll
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\DalFacade.pdb
+C:\Users\acer\Source\Repos\-dotNet5\DalFacade\obj\Debug\ref\DalFacade.dll
