@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 namespace BlImplementation;
 
@@ -7,6 +8,7 @@ internal class BLCart : BlApi.ICart
 
     private DalApi.IDal? dal = DalApi.Factory.Get();
 
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Cart AddToCart(int productId, BO.Cart c)
     {
         //check if product exists if so get product
@@ -55,6 +57,7 @@ internal class BLCart : BlApi.ICart
             throw new BlApi.BlEntityNotFoundException();
         }
     }
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Cart UpdateProductQuantity(int productId, BO.Cart c, int quantity)
     {
         //check if the product is in the cart
@@ -106,7 +109,7 @@ internal class BLCart : BlApi.ICart
             * ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice;
         return c;
     }
-
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void OrderConfirmation(BO.Cart cart)
     {
         //check all information was received

@@ -1,4 +1,6 @@
 ﻿
+using System.Runtime.CompilerServices;
+
 namespace BlImplementation;
 /// <summary>
 /// implementation of BlApiProduct
@@ -7,6 +9,7 @@ public class BlProduct : BlApi.IProduct
 {
     private DalApi.IDal? dal = DalApi.Factory.Get();
 #pragma warning disable CS8613 // Nullability of reference types in return type doesn't match implicitly implemented member.
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<BO.ProductForList?> GetProductList(BO.BookGenre? category)
 #pragma warning restore CS8613 // Nullability of reference types in return type doesn't match implicitly implemented member.
     {
@@ -29,6 +32,7 @@ public class BlProduct : BlApi.IProduct
         }
         return products ?? throw new BlApi.BlEntityNotFoundException();
     }
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Product GetProductForManager(int id)
     {
         try
@@ -49,6 +53,7 @@ public class BlProduct : BlApi.IProduct
             throw new BlApi.BlEntityNotFoundException(ex);
         }
     }
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.ProductItem GetProductForCustomer(int id, BO.Cart c)
     {
         try
@@ -85,6 +90,7 @@ public class BlProduct : BlApi.IProduct
             throw new BlApi.BlEntityNotFoundException(ex);
         }
     }
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int AddProduct(BO.Product p)
     {
         try
@@ -108,6 +114,7 @@ public class BlProduct : BlApi.IProduct
             throw new BlApi.ExistsAlreadyException();
         }
     }
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void RemoveProduct(int productId)
     {
         try
@@ -123,6 +130,7 @@ public class BlProduct : BlApi.IProduct
             throw new BlApi.BlEntityNotFoundException(ex);
         }
     }
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public void UpdateProduct(BO.Product p)
     {
         try
