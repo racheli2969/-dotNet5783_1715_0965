@@ -102,28 +102,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\acer\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\brach\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\acer\\Source\\Repos\\-dotNet5\\PL_\\PL_.csproj",
+      "projectUniqueName": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj",
       "projectName": "PL_",
-      "projectPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5\\PL_\\PL_.csproj",
-      "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5\\PL_\\obj\\",
+      "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj",
+      "packagesPath": "C:\\Users\\brach\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\PL_\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\brach\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0-windows"
@@ -136,11 +133,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\acer\\Source\\Repos\\-dotNet5\\BL\\BL.csproj": {
-              "projectPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5\\BL\\BL.csproj"
+            "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj"
             },
-            "C:\\Users\\acer\\Source\\Repos\\-dotNet5\\Simulator\\Simulator.csproj": {
-              "projectPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet5\\Simulator\\Simulator.csproj"
+            "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\Simulator\\Simulator.csproj": {
+              "projectPath": "C:\\Users\\brach\\source\\repos\\-dotNet5783_1715_0965\\Simulator\\Simulator.csproj"
             }
           }
         }
@@ -173,7 +170,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
