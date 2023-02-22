@@ -102,23 +102,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\גרשון רחל\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\": {},
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\PL_\\PL_.csproj",
       "projectName": "PL_",
       "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\PL_\\PL_.csproj",
       "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\גרשון רחל\\source\\repos\\PL_\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj",
+      "projectName": "PL_",
+      "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj",
+      "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\PL_\\obj\\",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\גרשון רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -133,11 +149,19 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\גרשון רחל\\source\\repos\\BL\\BL.csproj": {
               "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\BL\\BL.csproj"
             },
             "C:\\Users\\גרשון רחל\\source\\repos\\Simulator\\Simulator.csproj": {
               "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\Simulator\\Simulator.csproj"
+=======
+            "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\BL\\BL.csproj"
+            },
+            "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\Simulator\\Simulator.csproj": {
+              "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\Simulator\\Simulator.csproj"
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
             }
           }
         }
@@ -169,7 +193,11 @@
             "privateAssets": "none"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
       }
     }
   }
