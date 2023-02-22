@@ -22,8 +22,8 @@
             <Label x:Name="Email" Content="Email" Grid.Column="1" Margin="14,52,394,352" Grid.ColumnSpan="2" RenderTransformOrigin="0.151,0.464"/>
             <Label x:Name="OrderStatus" Content="OrderStatus" Grid.ColumnSpan="2" Margin="10,87,390,321" Grid.Column="1"/>
             <Label x:Name="DateOrdered" Content="DateOrdered" Margin="10,118,379,276" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <Label x:Name="DateShipped" Content="DateDelivered" Grid.ColumnSpan="2" Margin="10,152,379,243" Grid.Column="1"/>
-            <Label x:Name="DateDelivered" Content="DateReceived" Grid.Column="1" Margin="11,187,379,217" Grid.ColumnSpan="2"/>
+            <Label x:Name="DateShipped" Content="DateShipped" Grid.ColumnSpan="2" Margin="10,152,379,243" Grid.Column="1"/>
+            <Label x:Name="DateDelivered" Content="DateDelivered" Grid.Column="1" Margin="5,187,385,217" Grid.ColumnSpan="2"/>
 
             <Label x:Name="name" Content="{Binding CustomerName}"  BorderBrush="Black" Height="27" VerticalAlignment="Top" Margin="61,24,212,0" Grid.Column="2" >
                 <Label.Background>
@@ -43,10 +43,10 @@
                         </Style.Triggers>
                     </Style>
                 </Label.Style>
-                <Binding x:Name="binding1" Path="DateDelivered"/>
+                <Binding x:Name="binding1" Path="DateShipped"/>
             </Label>
             <Label x:Name="lblReceivedDate" Grid.Column="2" Margin="55,187,228,217" Visibility="{Binding ElementName=binding}">
-                <Binding x:Name="binding" Path="DateReceived"/>
+                <Binding x:Name="binding" Path="DateDelivered"/>
             </Label>
             <ListView x:Name="OrderItemListView" Margin="0,222,0,0" Grid.ColumnSpan="5" Grid.Column="1" >
                 <ListView.View>

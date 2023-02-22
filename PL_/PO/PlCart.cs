@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace PL_.PO;
 
-internal class PlCart : DependencyObject//*, INotifyCollectionChanged
+internal class PlCart : DependencyObject//, INotifyCollectionChanged
 
 {
     public string? CustomerName { get; set; }
@@ -48,7 +48,7 @@ internal class PlCart : DependencyObject//*, INotifyCollectionChanged
     //    }
     //}
 
-     // DependencyProperty.Register("Items", typeof(List<PlOrderItem>), typeof(PlOrderItem), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
+    // DependencyProperty.Register("Items", typeof(List<PlOrderItem>), typeof(PlOrderItem), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
 
 
     private static void onItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
