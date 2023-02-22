@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "t6bc5hnWyU8YNmyv01mNEzPFBceTTdZ666YEEDH6yK51OL0FgwwhsIDvB3AuSVZJA4zdBqfr+TGsLIB58vuSMw==",
   "success": true,
   "projectFilePath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\PL_\\PL_.csproj",
+=======
+  "dgSpecHash": "SIHd6OBjsb86z8dIdFI3rkB+V6cIsmIItn3vEeVLOqq4eiMJDcRv4z3bMwNUSJVS1IgaiqsioQ68EkL7IzNFqQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\גרשון רחל\\source\\repos\\PL_\\PL_.csproj",
+>>>>>>> 40a661eb3ee734facc45b4154f0898320a99f772
   "expectedPackageFiles": [],
   "logs": []
 }

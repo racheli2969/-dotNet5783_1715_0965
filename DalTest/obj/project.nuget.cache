@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "/U+vca+yskfb/c89AnygNmVQlq3lB7qmMOK/KlCkn1Y42WCgTtTADJ4Amdq/Io9tjajT6gps21dZgrelRzVgSA==",
   "success": true,
   "projectFilePath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj",
+=======
+  "dgSpecHash": "+TIZqMNakhLA/NtRKBwE7gRSoF681UmGXwDbiMRnMLHSkjHc8znFtLPNQc/KQtupyq1tkeD8Ftb3hGwnJdBkiw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\גרשון רחל\\source\\repos\\DalTest\\DalTest.csproj",
+>>>>>>> 40a661eb3ee734facc45b4154f0898320a99f772
   "expectedPackageFiles": [],
   "logs": []
 }

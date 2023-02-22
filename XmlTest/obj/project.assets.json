@@ -46,23 +46,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\גרשון רחל\\.nuget\\packages\\": {},
+>>>>>>> 40a661eb3ee734facc45b4154f0898320a99f772
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\XmlTest\\DalXmlTest.csproj",
       "projectName": "DalXmlTest",
       "projectPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\XmlTest\\DalXmlTest.csproj",
       "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\XmlTest\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\XmlTest\\DalXmlTest.csproj",
+      "projectName": "DalXmlTest",
+      "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\XmlTest\\DalXmlTest.csproj",
+      "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\גרשון רחל\\source\\repos\\XmlTest\\obj\\",
+>>>>>>> 40a661eb3ee734facc45b4154f0898320a99f772
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\גרשון רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 40a661eb3ee734facc45b4154f0898320a99f772
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -77,11 +93,19 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
               "projectPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
             },
             "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj": {
               "projectPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj"
+=======
+            "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj": {
+              "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj"
+            },
+            "C:\\Users\\גרשון רחל\\source\\repos\\DalXml\\DalXml.csproj": {
+              "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalXml\\DalXml.csproj"
+>>>>>>> 40a661eb3ee734facc45b4154f0898320a99f772
             }
           }
         }
@@ -111,7 +135,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+>>>>>>> 40a661eb3ee734facc45b4154f0898320a99f772
       }
     }
   }
