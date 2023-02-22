@@ -21,18 +21,6 @@ C:\Users\פוקרוי רחל\Source\Repos\DalFacade\obj\Debug\DalFacade.dll
 C:\Users\פוקרוי רחל\Source\Repos\DalFacade\obj\Debug\refint\DalFacade.dll
 C:\Users\פוקרוי רחל\Source\Repos\DalFacade\obj\Debug\DalFacade.pdb
 C:\Users\פוקרוי רחל\Source\Repos\DalFacade\obj\Debug\ref\DalFacade.dll
-C:\Users\גרשון רחל\source\repos\stage0\bin\DalFacade.deps.json
-C:\Users\גרשון רחל\source\repos\stage0\bin\DalFacade.dll
-C:\Users\גרשון רחל\source\repos\stage0\bin\DalFacade.pdb
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.csproj.AssemblyReference.cache
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.AssemblyInfoInputs.cache
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.AssemblyInfo.cs
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.csproj.CoreCompileInputs.cache
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.dll
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\refint\DalFacade.dll
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.pdb
-C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\ref\DalFacade.dll
 C:\Users\acer\source\repos\-dotNet5783_1715_09\stage0\bin\DalFacade.deps.json
 C:\Users\acer\source\repos\-dotNet5783_1715_09\stage0\bin\DalFacade.dll
 C:\Users\acer\source\repos\-dotNet5783_1715_09\stage0\bin\DalFacade.pdb
@@ -70,3 +58,15 @@ C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalFacade\obj\Debug\refint\Dal
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalFacade\obj\Debug\DalFacade.pdb
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalFacade\obj\Debug\ref\DalFacade.dll
 C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalFacade\obj\Debug\refint\DalFacade.dll
+C:\Users\גרשון רחל\source\repos\stage0\bin\DalFacade.deps.json
+C:\Users\גרשון רחל\source\repos\stage0\bin\DalFacade.dll
+C:\Users\גרשון רחל\source\repos\stage0\bin\DalFacade.pdb
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.csproj.AssemblyReference.cache
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.AssemblyInfoInputs.cache
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.AssemblyInfo.cs
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.csproj.CoreCompileInputs.cache
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.dll
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\refint\DalFacade.dll
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\DalFacade.pdb
+C:\Users\גרשון רחל\source\repos\DalFacade\obj\Debug\ref\DalFacade.dll
