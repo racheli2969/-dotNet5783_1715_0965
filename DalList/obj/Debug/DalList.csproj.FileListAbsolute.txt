@@ -1,15 +1,3 @@
-C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalList.deps.json
-C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalList.dll
-C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalList.pdb
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.csproj.AssemblyReference.cache
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.AssemblyInfoInputs.cache
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.AssemblyInfo.cs
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.csproj.CoreCompileInputs.cache
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.csproj.CopyComplete
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.dll
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.pdb
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\ref\DalList.dll
 C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\DalList.deps.json
 C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\DalList.dll
 C:\Users\פוקרוי רחל\Source\Repos\stage0\bin\DalList.pdb
@@ -62,7 +50,6 @@ C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.dll
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalList\obj\Debug\refint\DalList.dll
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.pdb
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalList\obj\Debug\ref\DalList.dll
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\refint\DalList.dll
 C:\Users\גרשון רחל\source\repos\stage0\bin\DalList.deps.json
 C:\Users\גרשון רחל\source\repos\stage0\bin\DalList.dll
 C:\Users\גרשון רחל\source\repos\stage0\bin\DalList.pdb
