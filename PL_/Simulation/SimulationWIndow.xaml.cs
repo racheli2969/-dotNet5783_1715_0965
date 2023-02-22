@@ -106,38 +106,38 @@ namespace PL_
             }
         }
 
-        private void SimulationBtn_Click(object sender, RoutedEventArgs e)
-        {
-            worker = new BackgroundWorker();
+//        private void SimulationBtn_Click(object sender, RoutedEventArgs e)
+//        {
+//            worker = new BackgroundWorker();
 
-            worker.DoWork += (object? sender, DoWorkEventArgs e) =>
-            {
-                BLObject.StartSimulation(
-                   droneBL,
-                   worker,
-                   (drone) => { BLObject.UpdateDataDrone(droneBL); worker.ReportProgress(1); },
-                   () => worker.CancellationPending);
+//            worker.DoWork += (object? sender, DoWorkEventArgs e) =>
+//            {
+//                BLObject.StartSimulation(
+//                   OrderBL,
+//                   worker,
+//                   (Order) => { BLObject.UpdateDataOrder(OrderBL); worker.ReportProgress(1); },
+//                   () => worker.CancellationPending);
 
-            };
-            worker.WorkerReportsProgress = true;
-            worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
-            {
-                DronePL.updateDrone(droneBL);
-                PLLists.UpdateDrone(droneBL);
-                createButtons(droneBL);
-            };
+//            };
+//            worker.WorkerReportsProgress = true;
+//            worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
+//            {
+//                OrderPL.updateOrder(OrderBL);
+//                PLLists.UpdateOrder(OrderBL);
+//                createButtons(OrderBL);
+//            };
 
-            worker.RunWorkerCompleted += (object? sender, RunWorkerCompletedEventArgs e) =>
-            {
-                SimulationBtn.Content = "start simulation";
-                worker.CancelAsync();
-                createButtons(droneBL);
-            };
-            worker.WorkerSupportsCancellation = true;
-            worker.RunWorkerAsync();
-        }
-    }
-}
+//            worker.RunWorkerCompleted += (object? sender, RunWorkerCompletedEventArgs e) =>
+//            {
+//                SimulationBtn.Content = "start simulation";
+//                worker.CancelAsync();
+//                createButtons(OrderBL);
+//            };
+//            worker.WorkerSupportsCancellation = true;
+//            worker.RunWorkerAsync();
+//        }
+//    }
+//}
 
     }
 }
