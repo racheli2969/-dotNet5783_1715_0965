@@ -6,6 +6,7 @@ using System.Threading;
 using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
+using System.Xml.Linq;
 
 namespace PL_
 {
@@ -104,5 +105,39 @@ namespace PL_
                 worker.ReportProgress(++i * 20);
             }
         }
+
+        private void SimulationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            worker = new BackgroundWorker();
+
+            worker.DoWork += (object? sender, DoWorkEventArgs e) =>
+            {
+                BLObject.StartSimulation(
+                   droneBL,
+                   worker,
+                   (drone) => { BLObject.UpdateDataDrone(droneBL); worker.ReportProgress(1); },
+                   () => worker.CancellationPending);
+
+            };
+            worker.WorkerReportsProgress = true;
+            worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
+            {
+                DronePL.updateDrone(droneBL);
+                PLLists.UpdateDrone(droneBL);
+                createButtons(droneBL);
+            };
+
+            worker.RunWorkerCompleted += (object? sender, RunWorkerCompletedEventArgs e) =>
+            {
+                SimulationBtn.Content = "start simulation";
+                worker.CancelAsync();
+                createButtons(droneBL);
+            };
+            worker.WorkerSupportsCancellation = true;
+            worker.RunWorkerAsync();
+        }
+    }
+}
+
     }
 }

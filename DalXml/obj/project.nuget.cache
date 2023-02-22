@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "3FAGH+ekBm1q4wcYVAbFfaOuIMlK5F7gu2Axjz4RTrbyLMZk3rnR+78+DFlNtG376+zpZBVEmlc1CLZqR+Qnaw==",
+  "dgSpecHash": "3Hw67Om+Skr0VD6HQdr9FQDAhIQv4KJEFPqb8zAB82ciOh1x/uZeZPzHZZ7LXjWPfvrMZNUTuBVXXSPc6t17ng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\גרשון רחל\\source\\repos\\DalXml\\DalXml.csproj",
-=======
-  "dgSpecHash": "zHEWZdtumb+HJlNNCWB401dLBt2vDiupbwN1K6klOYddNxG8Q/7dUGguSiurt2j703dIGKJ3j7NFBOjansZUvQ==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj",
->>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
+  "projectFilePath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\DalXml\\DalXml.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
