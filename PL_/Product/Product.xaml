@@ -27,7 +27,7 @@
         </Button>
         <Button x:Name="btnUpdateProduct" Content="Update" HorizontalAlignment="Left" Margin="691,357,0,0" VerticalAlignment="Top" Height="34" Width="66" Click="btnUpdateProduct_Click" RenderTransformOrigin="-0.915,0.825"/>
         <Button x:Name="btnBackToProductList" Content="ToProductList" HorizontalAlignment="Left" Margin="76,52,0,0" VerticalAlignment="Top" Click="btnBackToProductList_Click" Height="29"/>
-        <Button x:Name="btnDeleteProduct" Content="Delete" HorizontalAlignment="Left" Margin="622,357,0,0" VerticalAlignment="Top" Height="34" Width="66" RenderTransformOrigin="0.408,2.127" Click="btnDeleteProduct_Click">
+        <Button x:Name="btnDeleteProduct" Content="Delete" HorizontalAlignment="Left" Margin="620,356,0,0" VerticalAlignment="Top" Height="34" Width="66" RenderTransformOrigin="0.408,2.127" Click="btnDeleteProduct_Click">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
