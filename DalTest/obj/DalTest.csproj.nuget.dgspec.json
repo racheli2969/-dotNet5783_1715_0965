@@ -1,6 +1,19 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "C:\\Users\\גרשון רחל\\source\\repos\\DalTest\\DalTest.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj",
+        "projectName": "DalFacade",
+        "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj",
+        "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\obj\\",
+=======
     "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj": {}
   },
   "projects": {
@@ -12,12 +25,17 @@
         "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
         "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\obj\\",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\גרשון רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -49,8 +67,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -59,6 +76,20 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\גרשון רחל\\source\\repos\\DalList\\DalList.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\DalList\\DalList.csproj",
+        "projectName": "DalList",
+        "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalList\\DalList.csproj",
+        "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalList\\obj\\",
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
@@ -71,12 +102,17 @@
         "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj",
         "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\obj\\",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\גרשון רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -91,8 +127,13 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
+              "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj"
+=======
               "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
                 "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
               }
             }
           }
@@ -112,8 +153,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -122,6 +162,20 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\גרשון רחל\\source\\repos\\DalTest\\DalTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\DalTest\\DalTest.csproj",
+        "projectName": "DalTest",
+        "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalTest\\DalTest.csproj",
+        "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalTest\\obj\\",
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
@@ -134,12 +188,17 @@
         "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj",
         "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalTest\\obj\\",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
+          "C:\\Users\\גרשון רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
           "C:\\Users\\פוקרוי רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -154,11 +213,19 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
+              "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj"
+              },
+              "C:\\Users\\גרשון רחל\\source\\repos\\DalList\\DalList.csproj": {
+                "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\DalList\\DalList.csproj"
+=======
               "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
                 "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
               },
               "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj": {
                 "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj"
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
               }
             }
           }
@@ -178,8 +245,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -188,7 +254,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
         }
       }
     }

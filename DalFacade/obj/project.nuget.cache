@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "MTaer3rJ7p+UTjsqonDDlOm9Z+3S2Iv1U/yl/7BgRMHwI+hrsBHkM2LNwjOTqycLm3Svm1gdX/cgbrgXfUn7Rg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\גרשון רחל\\source\\repos\\DalFacade\\DalFacade.csproj",
+=======
   "dgSpecHash": "auoq0xzfhl3zTN6bDtT4RXOWjekKVbE+1SKdji+mvapphBhuyVFX18rux92a3qc5pNiVCPJYAyrGAWcFLhCJRA==",
   "success": true,
   "projectFilePath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
   "expectedPackageFiles": [],
   "logs": []
 }

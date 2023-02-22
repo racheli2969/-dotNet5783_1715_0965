@@ -11,6 +11,7 @@ internal class DalOrder : IOrder
     /// </summary>
     /// <param name="order"></param>
     /// <returns>returns the added order's id</returns>
+    [MethodImpl(MethodImplOptions.Synchronized)]
     public int Add(Order order)
     {
         order.OrderId = DataSource.Config.LastOrderId;
@@ -25,7 +26,7 @@ internal class DalOrder : IOrder
     [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<Order>? GetAll(Func<Order, bool> func)
     {
-        List<Order?> orders=new();
+        List<Order?> orders = new();
         if (func == null)
             orders = DataSource.Orders;
         else orders = DataSource.Orders.Where(x => x.HasValue && func((Order)x)).ToList();
@@ -39,7 +40,7 @@ internal class DalOrder : IOrder
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int id)
     {
-        int? idx = DataSource.Orders?.FindIndex(order => order.HasValue&&order.Value.OrderId == id);
+        int? idx = DataSource.Orders?.FindIndex(order => (order ?? throw new NullObject()).OrderId == id);
         if (idx == -1 || idx == null)
             throw new EntityNotFoundException();
         DataSource.Orders?.RemoveAt((int)idx);
@@ -49,11 +50,11 @@ internal class DalOrder : IOrder
     /// </summary>
     /// <param name="order"> new order with existing id</param>
     /// <exception cref="Exception"></exception>
-   
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(Order order)
     {
-        int? idx = DataSource.Orders?.FindIndex(order => order.HasValue&&order.Value.OrderId == order.Value.OrderId);
+        int? idx = DataSource.Orders?.FindIndex(o => (o ?? throw new NullObject()).OrderId == order.OrderId);
         if (idx == -1 || idx == null || DataSource.Orders == null)
             throw new EntityNotFoundException();
         DataSource.Orders[(int)idx] = order;

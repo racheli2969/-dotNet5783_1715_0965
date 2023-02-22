@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "KLBR/BAgWKUPXEdGkpX5kSuL1wquoYNo1NxmyrKHoSsgQQ9sWHyAimZ0ArY2r1OxB5fMd+uNcsoKa2WvSywiTw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\גרשון רחל\\source\\repos\\stage0\\stage0.csproj",
+=======
   "dgSpecHash": "effb73BOKJGf35ErINK0bg1A1QSYQdX97lV43POcI+9sZ7GDLnPL75LK9rrNxNACaDZpYWMNwUVobkN9ctT3IQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\stage0\\stage0.csproj",
+>>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
   "expectedPackageFiles": [],
   "logs": []
 }
