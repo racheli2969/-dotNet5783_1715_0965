@@ -105,7 +105,7 @@ public class BlOrder : BlApi.IOrder
         try
         {
             //get the order
-            DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().First() ?? throw new DalApi.EntityNotFoundException();
+            DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().FirstOrDefault() ?? throw new DalApi.EntityNotFoundException();
             if (orderfromDalToUpdate.DateShipped != DateTime.MinValue)
                 throw new BlApi.SentAlreadyException();
             // update the date of shipping

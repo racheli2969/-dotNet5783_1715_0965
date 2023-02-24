@@ -89,9 +89,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\BlTest\\BlTest.csproj",
+      "projectUniqueName": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\BlTest\\BlTest.csproj",
       "projectName": "BlTest",
-      "projectPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\BlTest\\BlTest.csproj",
+      "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\BlTest\\BlTest.csproj",
       "packagesPath": "C:\\Users\\פוקרוי רחל\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\BlTest\\obj\\",
       "projectStyle": "PackageReference",
@@ -108,14 +108,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj": {
-              "projectPath": "C:\\Users\\פוקרוי רחל\\source\\repos\\-dotNet5783_1715_0965\\BL\\BL.csproj"
+            "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\BL\\BL.csproj": {
+              "projectPath": "C:\\Users\\פוקרוי רחל\\Source\\Repos\\-dotNet5783_1715_0965\\BL\\BL.csproj"
             }
           }
         }
@@ -145,7 +146,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
