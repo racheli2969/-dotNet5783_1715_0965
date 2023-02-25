@@ -5,7 +5,9 @@ using System.Diagnostics;
 using System.Threading;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Xml.Linq;
 
 namespace PL_
 {
@@ -18,6 +20,17 @@ namespace PL_
         private MainWindow mainWindow;
         private Stopwatch stopwatch;
         private Thread timerThread;
+        //Prevent close button variables
+
+        private const int GWL_STYLE = -16;
+
+        private const int WS_SYSMENU = 0x80000;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
         public SimulationWIndow(MainWindow mw)
         {
             InitializeComponent();
@@ -32,11 +45,15 @@ namespace PL_
             stopwatch = new();
             stopwatch.Restart();
             timerThread = new Thread(run_timer);
-            //DispatcherTimer timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(1);
-            //timer.Start();
+            Loaded += RemoveCloseButton;
         }
 
+        void RemoveCloseButton(object sender, RoutedEventArgs e)
+        {
+            // Code to remove close box from window
+            var hwnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+        }
         private void run_timer(object? obj)
         {
             while (true)
@@ -62,25 +79,25 @@ namespace PL_
 
         private void Worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Cancelled == true)
-            {
-                //e.Result throw new System.InvalidOperationException;
-                //resultLabel.Content = "Canceled!";
-            }
-            else if (e.Error != null)
-            {
-                // e.Result throw System.Reflection.TargetInvocationException
-                // resultLabel.Content = "Error: " + e.Error.Message; //Exception Message
-            }
-            else
-            {
-                long result = (long)e.Result;
-                if (result < 1000) ;
-                // resultLabel.Content = "Done after " + result + " ms.";
-                else;
-                // resultLabel.Content = "Done after " + result / 1000 + " sec.";
-
-            }
+            Simulator.Simulator.Stop();
+            //if (e.Cancelled == true)
+            //{
+            //    //e.Result throw new System.InvalidOperationException;
+            //    //resultLabel.Content = "Canceled!";
+            //}
+            //else if (e.Error != null)
+            //{
+            //    // e.Result throw System.Reflection.TargetInvocationException
+            //    // resultLabel.Content = "Error: " + e.Error.Message; //Exception Message
+            //}
+            //else
+            //{
+            //    long result = (long)e.Result;
+            //    if (result < 1000) ;
+            //    // resultLabel.Content = "Done after " + result + " ms.";
+            //    else;
+            //    // resultLabel.Content = "Done after " + result / 1000 + " sec.";
+            //}
         }
 
         private void Worker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
@@ -88,6 +105,8 @@ namespace PL_
             int progress = e.ProgressPercentage;
             //resultLabel.Content = (progress + "%");
             //resultProgressBar.Value = progress;
+
+            //ProgressBar.Value = e.ProgressPercentage;
         }
 
         private void Worker_DoWork(object? sender, DoWorkEventArgs e)
@@ -98,11 +117,54 @@ namespace PL_
             //i.	רשמו מתודות משקיפות (ראו בהמשך) לאירועי הסימולטור
             Simulator.Simulator.Run();
             int i = 0;
+            BO.Order? order= new BO.Order();
             while (!worker.CancellationPending)//worker.CancellationPending
             {
+                order= Simulator.Simulator.Order;
+                txtBlockPrevState.Text = showStatusAndIdIntxtBlock(order);
                 System.Threading.Thread.Sleep(1000);
                 worker.ReportProgress(++i * 20);
             }
+        }
+
+//        private void SimulationBtn_Click(object sender, RoutedEventArgs e)
+//        {
+//            worker = new BackgroundWorker();
+
+//            worker.DoWork += (object? sender, DoWorkEventArgs e) =>
+//            {
+//                BLObject.StartSimulation(
+//                   OrderBL,
+//                   worker,
+//                   (Order) => { BLObject.UpdateDataOrder(OrderBL); worker.ReportProgress(1); },
+//                   () => worker.CancellationPending);
+
+//            };
+//            worker.WorkerReportsProgress = true;
+//            worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
+//            {
+//                OrderPL.updateOrder(OrderBL);
+//                PLLists.UpdateOrder(OrderBL);
+//                createButtons(OrderBL);
+//            };
+
+//            worker.RunWorkerCompleted += (object? sender, RunWorkerCompletedEventArgs e) =>
+//            {
+//                SimulationBtn.Content = "start simulation";
+//                worker.CancelAsync();
+//                createButtons(OrderBL);
+//            };
+//            worker.WorkerSupportsCancellation = true;
+//            worker.RunWorkerAsync();
+//        }
+//    }
+//}
+
+        private string showStatusAndIdIntxtBlock(BO.Order? order)
+        {
+            if (order == null)
+                return "";
+            return $"id= {order.OrderId}\nstatus={order.OrderStatus}";
         }
     }
 }

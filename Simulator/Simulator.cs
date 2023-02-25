@@ -7,33 +7,35 @@ namespace Simulator;
 public static class Simulator
 {
     private static readonly IBl? Bl = Factory.Get();
-    private static Thread thread = new(Run);
-    private static volatile bool isRunning=true;
-
+    private static Thread thread = new Thread(simulate);
+    private static volatile bool isRunning = true;
+    private static BO.Order? order;
+    public static BO.Order? Order { get => order; }
     public static void Run()
     {
-        while (isRunning)
-        {
-            int? id = Bl?.Order.GetOldestOrderNumber();
-            while (id != null)
-            {
-                BO.Order? order = new();
-                order = Bl?.Order.GetOrderDetails((int)id);
-                if (order?.DateShipped == DateTime.MinValue)
-                    order = Bl?.Order.UpdateOrderShipping((int)id);
-                else if (order?.DateDelivered == DateTime.MinValue) 
-                    order = Bl?.Order.UpdateOrderDelivery((int)id);
-                // ((int)id).Invoke(OrderInProgress);
-
-                id = Bl?.Order.GetOldestOrderNumber();
-            } 
-        }
+        thread.Start();
     }
     public static void Stop()
     {
         isRunning = false;
     }
-    private delegate int OrderInProgress();
+    private static void simulate()
+    {
+        int? id = Bl?.Order.GetOldestOrderNumber();
+        while (order != default && isRunning)
+        {
+            order = new();
+            order = Bl?.Order.GetOrderDetails((int)id);
+
+            if (order?.DateShipped == DateTime.MinValue)
+                order = Bl?.Order.UpdateOrderShipping((int)id);
+            else if (order?.DateDelivered == DateTime.MinValue)
+                order = Bl?.Order.UpdateOrderDelivery((int)id);
+            Thread.Sleep(1000);
+            id = Bl?.Order.GetOldestOrderNumber();
+        }
+    }
+    private delegate BO.Order OrderInProgress(BO.Order order);
 
     //private static event delegate<Volatile,bool> stopSimulation;
 }

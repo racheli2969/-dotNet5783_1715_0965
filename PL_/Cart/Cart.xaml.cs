@@ -9,13 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL_.Cart;
 
@@ -34,9 +27,10 @@ public partial class CartWindow : Window
         productCatalog = p;
         Bl = bl;
         CartDisplayed = ConvertBOCArtToPlCart(cart);
-        DataContext = CartDisplayed;
+      //  DataContext = CartDisplayed;
         this.cart = cart;
-        this.DataContext = CartDisplayed;
+        // this.DataContext = CartDisplayed;
+       
         CartItemsListView.ItemsSource = CartDisplayed.Items;
         CartItemsListView.DataContext = CartDisplayed.Items;
         if (cart?.Items == null || cart?.Items.Count() == 0)
@@ -65,6 +59,7 @@ public partial class CartWindow : Window
             cart = Bl.Cart.AddToCart(id, cart ?? throw new BlApi.BlNOtImplementedException());
             int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
             (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount++;
+            CartDisplayed.FinalPrice = cart.FinalPrice;
         }
         catch (BlApi.BlNOtImplementedException ex)
         {
@@ -96,6 +91,7 @@ public partial class CartWindow : Window
             if (CartDisplayed?.Items?.Count() == 0)
                 CartItemsListView.ItemsSource = null;
             cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), 0);
+            CartDisplayed.FinalPrice = cart.FinalPrice;
         }
         catch (BlApi.BlNOtImplementedException ex)
         {
@@ -129,13 +125,14 @@ public partial class CartWindow : Window
             else if (CartDisplayed?.Items?.Count() == 1)
             {
                 CartDisplayed?.Items?.RemoveAt(idx ?? 0);
-                CartItemsListView.ItemsSource = null;
-            }
+/*                CartItemsListView.ItemsSource = null;
+*/            }
             else
             {
                 CartDisplayed?.Items?.RemoveAt(idx ?? 0);
                 CartItemsListView.ItemsSource = CartDisplayed?.Items;
             }
+            CartDisplayed.FinalPrice = cart.FinalPrice;
         }
         catch (BlApi.BlNOtImplementedException ex)
         {
@@ -227,6 +224,7 @@ public partial class CartWindow : Window
             CartItemsListView.Visibility = Visibility.Visible;
             imgEmptyCart.Visibility = Visibility.Collapsed;
             lblForEmptyCart.Visibility = Visibility.Collapsed;
+            //DataContext = CartDisplayed;
             CartItemsListView.ItemsSource = CartDisplayed.Items;
         }
     }
@@ -250,6 +248,7 @@ public partial class CartWindow : Window
         {
             (cart ?? throw new BlApi.BlNOtImplementedException()).Items = new List<BO.OrderItem>();
             (CartDisplayed ?? throw new BlApi.BlNOtImplementedException()).Items = new List<PlOrderItem>();
+            CartDisplayed.FinalPrice = 0;
         }
         catch (BlApi.NotInCartException ex)
         {
