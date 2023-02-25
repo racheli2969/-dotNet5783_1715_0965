@@ -1,13 +1,9 @@
-﻿using Simulator;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
-using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Threading;
-using System.Xml.Linq;
 
 namespace PL_
 {
@@ -18,8 +14,12 @@ namespace PL_
     {
         private BackgroundWorker worker { get; set; }
         private MainWindow mainWindow;
+
+        //timer variables
         private Stopwatch stopwatch;
         private Thread timerThread;
+        private volatile bool isTimerRunning = true;
+
         //Prevent close button variables
 
         private const int GWL_STYLE = -16;
@@ -34,14 +34,17 @@ namespace PL_
         public SimulationWIndow(MainWindow mw)
         {
             InitializeComponent();
+
             mainWindow = mw;
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
             worker.RunWorkerAsync();
+
             stopwatch = new();
             stopwatch.Restart();
             timerThread = new Thread(run_timer);
@@ -56,10 +59,10 @@ namespace PL_
         }
         private void run_timer(object? obj)
         {
-            while (true)
+            while (isTimerRunning)
             {
                 string timerText = stopwatch.Elapsed.ToString();
-                timerText = timerText.Substring(0, 8);
+                timerText = timerText.Substring(3, 5);
 
                 setTextInvoke(timerText);
                 Thread.Sleep(1000);
@@ -80,91 +83,68 @@ namespace PL_
         private void Worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
             Simulator.Simulator.Stop();
-            //if (e.Cancelled == true)
-            //{
-            //    //e.Result throw new System.InvalidOperationException;
-            //    //resultLabel.Content = "Canceled!";
-            //}
-            //else if (e.Error != null)
-            //{
-            //    // e.Result throw System.Reflection.TargetInvocationException
-            //    // resultLabel.Content = "Error: " + e.Error.Message; //Exception Message
-            //}
-            //else
-            //{
-            //    long result = (long)e.Result;
-            //    if (result < 1000) ;
-            //    // resultLabel.Content = "Done after " + result + " ms.";
-            //    else;
-            //    // resultLabel.Content = "Done after " + result / 1000 + " sec.";
-            //}
+            isTimerRunning = false;
         }
 
         private void Worker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
             int progress = e.ProgressPercentage;
-            //resultLabel.Content = (progress + "%");
-            //resultProgressBar.Value = progress;
+            resultLabel.Content = (progress + "%");
+            progressBar.Value = e.ProgressPercentage;
 
-            //ProgressBar.Value = e.ProgressPercentage;
+            BO.Order? order = new BO.Order();
+            order = Simulator.Simulator.Order;
+            if (order?.OrderId != 0)
+                switch (order?.OrderStatus)
+                {
+                    default: break;
+                    case BO.EnumOrderStatus.Ordered:
+                        txtBlockPrevState.Content = "";
+                        txtCurrentState.Content = $"id= {order.OrderId}\nstatus={order.OrderStatus}";
+                        txtBlockNextState.Content = $"id= {order.OrderId}\nstatus={BO.EnumOrderStatus.Shipped}";
+                        break;
+                    case BO.EnumOrderStatus.Shipped:
+                        txtBlockPrevState.Content = $"id= {order.OrderId}\nstatus={BO.EnumOrderStatus.Delivered}";
+                        txtCurrentState.Content = $"id= {order.OrderId}\nstatus={order.OrderStatus}";
+                        txtBlockNextState.Content = $"id= {order.OrderId}\nstatus={BO.EnumOrderStatus.Delivered}";
+                        break;
+
+                }
+            else
+            {
+                txtBlockPrevState.Content = "";
+                txtCurrentState.Content = "";
+                txtBlockNextState.Content = "";
+                resultLabel.Content = (100 + "%");
+                progressBar.Value = 100;
+                worker.CancelAsync();
+            }
         }
 
         private void Worker_DoWork(object? sender, DoWorkEventArgs e)
         {
-
             timerThread.Start();
-            //
-            //i.	רשמו מתודות משקיפות (ראו בהמשך) לאירועי הסימולטור
             Simulator.Simulator.Run();
             int i = 0;
-            BO.Order? order= new BO.Order();
-            while (!worker.CancellationPending)//worker.CancellationPending
+            int? j;
+            if (Simulator.Simulator.NumOfTimes == 0 || Simulator.Simulator.NumOfTimes == null)
+                return;
+            j = 100 / Simulator.Simulator.NumOfTimes;
+            while (!worker.CancellationPending)
             {
-                order= Simulator.Simulator.Order;
-                txtBlockPrevState.Text = showStatusAndIdIntxtBlock(order);
-                System.Threading.Thread.Sleep(1000);
-                worker.ReportProgress(++i * 20);
+                worker.ReportProgress((int)(i * j));
+                if (i * j >= 100)
+                    worker.CancelAsync();
+                Thread.Sleep(1000);
+                i++;
             }
         }
 
-//        private void SimulationBtn_Click(object sender, RoutedEventArgs e)
-//        {
-//            worker = new BackgroundWorker();
-
-//            worker.DoWork += (object? sender, DoWorkEventArgs e) =>
-//            {
-//                BLObject.StartSimulation(
-//                   OrderBL,
-//                   worker,
-//                   (Order) => { BLObject.UpdateDataOrder(OrderBL); worker.ReportProgress(1); },
-//                   () => worker.CancellationPending);
-
-//            };
-//            worker.WorkerReportsProgress = true;
-//            worker.ProgressChanged += (object? sender, ProgressChangedEventArgs e) =>
-//            {
-//                OrderPL.updateOrder(OrderBL);
-//                PLLists.UpdateOrder(OrderBL);
-//                createButtons(OrderBL);
-//            };
-
-//            worker.RunWorkerCompleted += (object? sender, RunWorkerCompletedEventArgs e) =>
-//            {
-//                SimulationBtn.Content = "start simulation";
-//                worker.CancelAsync();
-//                createButtons(OrderBL);
-//            };
-//            worker.WorkerSupportsCancellation = true;
-//            worker.RunWorkerAsync();
-//        }
-//    }
-//}
-
-        private string showStatusAndIdIntxtBlock(BO.Order? order)
+        private void btnBackToMain_Click(object sender, RoutedEventArgs e)
         {
-            if (order == null)
-                return "";
-            return $"id= {order.OrderId}\nstatus={order.OrderStatus}";
+            mainWindow.Show();
+            worker.CancelAsync();
+            this.Close();
         }
     }
 }

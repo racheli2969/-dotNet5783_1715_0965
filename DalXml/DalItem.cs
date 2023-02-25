@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 internal class DalItem : IItem
 {
-    private XElement? itemsXml = XDocument.Load(@"..\..\..\..\xml\Item.xml").Root;
+    private XElement? itemsXml = XDocument.Load(@"..\..\xml\Item.xml").Root;//@"..\..\..\..\xml\Item.xml"
     [MethodImpl(MethodImplOptions.Synchronized)]
     public int Add(DO.Item item)
     {
@@ -26,7 +26,7 @@ internal class DalItem : IItem
                                new XElement("AmountInStock", item.AmountInStock)
                                );
         itemsXml?.Add(newItem);
-        itemsXml?.Save(@"..\..\..\..\xml\Item.xml");
+        itemsXml?.Save(@"..\..\xml\Item.xml");//@"..\..\..\..\xml\Item.xml"
         return item.ID;
     }
     [MethodImpl(MethodImplOptions.Synchronized)]
@@ -90,7 +90,7 @@ internal class DalItem : IItem
                      .FirstOrDefault());
         int a = Convert.ToInt32(item?.Element("AmountInStock")?.Value.ToString()) - amount;
         item?.Element("Amount")?.SetValue(a);
-        itemsXml?.Save(@"..\..\..\..\xml\Item.xml");
+        itemsXml?.Save(@"..\..\xml\Item.xml");//@"..\..\..\..\xml\Item.xml"
     }
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(DO.Item itemToUpdate)
@@ -102,6 +102,6 @@ internal class DalItem : IItem
         item?.Element("Category")?.SetValue(itemToUpdate.Category);
         item?.Element("Price")?.SetValue(itemToUpdate.Price);
         item?.Element("AmountInStock")?.SetValue(itemToUpdate.AmountInStock);
-        itemsXml?.Save(@"..\..\..\..\xml\Item.xml");
+        itemsXml?.Save(@"..\..\xml\Item.xml");//@"..\..\..\..\xml\Item.xml"
     }
 }

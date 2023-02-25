@@ -42,4 +42,9 @@ public interface IOrder
     /// </summary>
     /// <returns>id of the order or null if all the orders are delivered</returns>
     public int? GetOldestOrderNumber();
+    /// <summary>
+    /// counts the number of dates that equal to DateTime.MinValue 
+    /// </summary>
+    /// <returns>the number of dates needed to update</returns>
+    public int TimeToUpdateAllDatesForSimulation();
 }

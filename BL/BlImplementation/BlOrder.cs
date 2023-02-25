@@ -110,7 +110,10 @@ public class BlOrder : BlApi.IOrder
                 throw new BlApi.SentAlreadyException();
             // update the date of shipping
             orderfromDalToUpdate.DateShipped = DateTime.Now;
-            dal?.Order.Update(orderfromDalToUpdate);
+            lock (dal)
+            {
+                dal?.Order.Update(orderfromDalToUpdate);
+            }
             BO.Order order = GetOrderDetails(orderId);
             return order;
 
@@ -133,7 +136,10 @@ public class BlOrder : BlApi.IOrder
                 throw new BlApi.deliveredAlreadyException();
             // update the date of shipping
             orderfromDalToUpdate.DateDelivered = DateTime.Now;
-            dal?.Order.Update(orderfromDalToUpdate);
+            lock (dal)
+            {
+                dal?.Order.Update(orderfromDalToUpdate);
+            }
             BO.Order order = GetOrderDetails(orderId);
             return order;
 
@@ -209,5 +215,24 @@ public class BlOrder : BlApi.IOrder
         int res = DateTime.Compare(smallestDateOrdered.Value.DateOrdered, smallestDateShipped.Value.DateShipped);
         int? id = res > 0 ? smallestDateShipped.Value.OrderId : smallestDateOrdered.Value.OrderId;
         return id;
+    }
+
+    [MethodImpl(MethodImplOptions.Synchronized)]
+    public int TimeToUpdateAllDatesForSimulation()
+    {
+        try
+        {
+            List<DO.Order>? orders1 = new List<DO.Order>();
+            orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
+            int num = (orders1 ?? throw new Exception("no elements")).Count;
+            num += (from order in orders1
+                    where order.DateShipped == DateTime.MinValue
+                    select order).Count();
+            return num;
+        }
+        catch
+        {
+            return 0;
+        }
     }
 }
