@@ -91,30 +91,26 @@ namespace PL_
             int progress = e.ProgressPercentage;
             resultLabel.Content = (progress + "%");
             progressBar.Value = e.ProgressPercentage;
+            int? numoftimesleft = --Simulator.Simulator.RandomNum;
 
             BO.Order? order = new BO.Order();
             order = Simulator.Simulator.Order;
+            if(numoftimesleft==1)
             if (order?.OrderId != 0)
                 switch (order?.OrderStatus)
                 {
                     default: break;
                     case BO.EnumOrderStatus.Ordered:
-                        txtBlockPrevState.Content = "";
-                        txtCurrentState.Content = $"id= {order.OrderId}\nstatus={order.OrderStatus}";
-                        txtBlockNextState.Content = $"id= {order.OrderId}\nstatus={BO.EnumOrderStatus.Shipped}";
+                        txtCurrentState.Content = $"id= {order.OrderId}\nstatus={order.OrderStatus}\nnext status={BO.EnumOrderStatus.Shipped}";
                         break;
                     case BO.EnumOrderStatus.Shipped:
-                        txtBlockPrevState.Content = $"id= {order.OrderId}\nstatus={BO.EnumOrderStatus.Delivered}";
-                        txtCurrentState.Content = $"id= {order.OrderId}\nstatus={order.OrderStatus}";
-                        txtBlockNextState.Content = $"id= {order.OrderId}\nstatus={BO.EnumOrderStatus.Delivered}";
+                        txtCurrentState.Content = $"id= {order.OrderId}\nstatus={order.OrderStatus}\nnext status={BO.EnumOrderStatus.Delivered}";
                         break;
-
                 }
             else
             {
-                txtBlockPrevState.Content = "";
-                txtCurrentState.Content = "";
-                txtBlockNextState.Content = "";
+
+                txtCurrentState.Content = "simulation done";
                 resultLabel.Content = (100 + "%");
                 progressBar.Value = 100;
                 worker.CancelAsync();
@@ -125,18 +121,21 @@ namespace PL_
         {
             timerThread.Start();
             Simulator.Simulator.Run();
-            int i = 0;
+            int? i = 0;
             int? j;
-            if (Simulator.Simulator.NumOfTimes == 0 || Simulator.Simulator.NumOfTimes == null)
-                return;
-            j = 100 / Simulator.Simulator.NumOfTimes;
+            //if (Simulator.Simulator.NumOfTimes == 0 || Simulator.Simulator.NumOfTimes == null)
+            //    return;
+
             while (!worker.CancellationPending)
             {
-                worker.ReportProgress((int)(i * j));
-                if (i * j >= 100)
-                    worker.CancelAsync();
-                Thread.Sleep(1000);
-                i++;
+                i = Simulator.Simulator.RandomNum;
+                j = 100 / i;
+                while (j*i<100)
+                {
+                    worker.ReportProgress((int)(++i * j));
+
+                    Thread.Sleep(1000);
+                }
             }
         }
 
