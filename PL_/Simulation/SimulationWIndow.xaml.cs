@@ -88,14 +88,17 @@ namespace PL_
 
         private void Worker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
+            
+
+            BO.Order? order = Simulator.Simulator.Order;
+            if (order == null)
+                return;
+
             int progress = e.ProgressPercentage;
             resultLabel.Content = (progress + "%");
             progressBar.Value = e.ProgressPercentage;
             int? numoftimesleft = --Simulator.Simulator.RandomNum;
 
-            BO.Order? order = new BO.Order();
-            order = Simulator.Simulator.Order;
-            if(numoftimesleft==1)
             if (order?.OrderId != 0)
                 switch (order?.OrderStatus)
                 {
@@ -111,8 +114,8 @@ namespace PL_
             {
 
                 txtCurrentState.Content = "simulation done";
-                resultLabel.Content = (100 + "%");
-                progressBar.Value = 100;
+                //resultLabel.Content = (100 + "%");
+                //progressBar.Value = 100;
                 worker.CancelAsync();
             }
         }
@@ -129,13 +132,18 @@ namespace PL_
             while (!worker.CancellationPending)
             {
                 i = Simulator.Simulator.RandomNum;
-                j = 100 / i;
-                while (j*i<100)
+                if (i != 0)
                 {
-                    worker.ReportProgress((int)(++i * j));
+                    j = 100 / i;
 
-                    Thread.Sleep(1000);
+                    while (j * i < 100)
+                    {
+                        worker.ReportProgress((int)(++i * j));
+
+                        Thread.Sleep(1000);
+                    }
                 }
+                else Thread.Sleep(100);
             }
         }
 
