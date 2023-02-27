@@ -14,10 +14,10 @@
         </Grid.RowDefinitions>
         <Grid Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,380" Grid.RowSpan="2">
             <Canvas>
-                <Label x:Name="lblId" Content="{Binding Path=ID }" Canvas.Left="329" Canvas.Top="28" Height="27" Width="83" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="lblId" Content="{Binding Path=ID }" Canvas.Left="422" Canvas.Top="69" Height="27" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Button Content="BACK" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Click="Back_Click"/>
                 <Button Content="EXIT" Click="CloseAllWindows" Margin="73,10,694,54"/>
-                <Label  Content="ID" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="182" Canvas.Top="29">
+                <Label  Content="ID" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="275" Canvas.Top="70" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <Label.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black"/>
@@ -25,21 +25,21 @@
                         </LinearGradientBrush>
                     </Label.BorderBrush>
                 </Label>
-                <Label x:Name="lblForName" Content="Name" FontSize="14" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="182" Canvas.Top="61" />
-                <Label  Content="Price" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="182" Canvas.Top="97" />
-                <Label  Content="Category" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="182" Canvas.Top="138" />
-                <Label  Content="Amount in cart" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="182" Canvas.Top="179" />
-                <Label x:Name="lblName" Content="{Binding Path=Name}" Canvas.Left="321" Canvas.Top="64" HorizontalAlignment="Left" VerticalAlignment="Center" Width="79"/>
-                <Label x:Name="lblPrice" Content="{Binding Path=Price}" Canvas.Left="321" Canvas.Top="97" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Label x:Name="lblCategory" Content="{Binding Path=Category}" Canvas.Left="321" Canvas.Top="138" Width="83" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center"/>
-                <Button x:Name="btnAddToCart" Content="+" FontStyle="Italic" Click="AddToCart_Click" Canvas.Left="390" Canvas.Top="176" Height="28" Width="28" IsEnabled="{Binding Background.Color\=#FFED252A, ElementName=lblAvailability}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Button x:Name="btnDecreaseFromCart" Content="-" FontStyle="Italic" Click="DecreaseFromCart_Click" Canvas.Left="303" Canvas.Top="176" Height="28" Width="28" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="{Binding Path=Amount}"/>
-                <Border BorderBrush="Black" BorderThickness="1" Height="32" Canvas.Left="321" Canvas.Top="26" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Border BorderBrush="Black" BorderThickness="1" Height="31" Canvas.Left="321" Canvas.Top="138" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Border BorderBrush="Black" BorderThickness="1" Height="30" Canvas.Left="321" Canvas.Top="102" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <Border BorderBrush="Black" BorderThickness="1" Height="31" Canvas.Left="321" Canvas.Top="66" Width="83"/>
-                <Border BorderBrush="Black" Canvas.Left="336" Canvas.Top="176" BorderThickness="1" Grid.Row="1" Height="27" Width="49" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Label Content="{Binding Path=Amount}"  Canvas.Left="351" Canvas.Top="178" Grid.Row="1" Height="23" Width="33" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                <Label x:Name="lblForName" Content="Name" FontSize="14" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="275" Canvas.Top="102" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <Label  Content="Price" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="275" Canvas.Top="138" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <Label  Content="Category" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="275" Canvas.Top="179" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <Label  Content="Amount in cart" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="275" Canvas.Top="220" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <Label x:Name="lblName" Content="{Binding Path=Name}" Canvas.Left="414" Canvas.Top="105" HorizontalAlignment="Center" VerticalAlignment="Top" Width="79"/>
+                <Label x:Name="lblPrice" Content="{Binding Path=Price}" Canvas.Left="414" Canvas.Top="138" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblCategory" Content="{Binding Path=Category}" Canvas.Left="414" Canvas.Top="179" Width="83" HorizontalAlignment="Center" Height="26" VerticalAlignment="Top"/>
+                <Button x:Name="btnAddToCart" Content="+" FontStyle="Italic" Click="AddToCart_Click" Canvas.Left="483" Canvas.Top="217" Height="28" Width="28" IsEnabled="{Binding Background.Color\=#FFED252A, ElementName=lblAvailability}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Button x:Name="btnDecreaseFromCart" Content="-" FontStyle="Italic" Click="DecreaseFromCart_Click" Canvas.Left="396" Canvas.Top="217" Height="28" Width="28" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="{Binding Path=Amount}"/>
+                <Border BorderBrush="Black" BorderThickness="1" Height="32" Canvas.Left="414" Canvas.Top="67" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" BorderThickness="1" Height="31" Canvas.Left="414" Canvas.Top="179" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" BorderThickness="1" Height="30" Canvas.Left="414" Canvas.Top="143" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" BorderThickness="1" Height="31" Canvas.Left="414" Canvas.Top="107" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Border BorderBrush="Black" Canvas.Left="429" Canvas.Top="217" BorderThickness="1" Grid.Row="1" Height="27" Width="49" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label Content="{Binding Path=Amount}"  Canvas.Left="444" Canvas.Top="219" Grid.Row="1" Height="23" Width="33" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
                     <Label.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -51,7 +51,7 @@
                 </Label>
             </Canvas>
         </Grid>
-        <TextBlock x:Name="txtAvailability"  HorizontalAlignment="Left" Height="30" Margin="186,138,0,0" Grid.Row="1" VerticalAlignment="Top" Width="214" FontSize="28">
+        <TextBlock x:Name="txtAvailability"  HorizontalAlignment="Left" Height="30" Margin="279,179,0,0" Grid.Row="1" VerticalAlignment="Top" Width="214" FontSize="28">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Setter Property="Text" Value="Not In Stock" />

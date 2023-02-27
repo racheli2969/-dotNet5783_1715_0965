@@ -18,14 +18,14 @@
             <ColumnDefinition Width="388*"/>
         </Grid.ColumnDefinitions>
         <Canvas HorizontalAlignment="Left" Margin="124,206,0,0" VerticalAlignment="Top" Width="532" Grid.Column="1">
-            <Button x:Name="btnEnter" Content="Admin" Click="BtnEnter_Click" RenderTransformOrigin="2.532,3.557" Height="60" Width="105" FontSize="18" Canvas.Left="236" Canvas.Top="56" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label Content="Order Id" FontSize="18" Height="30" Canvas.Left="393" Width="86" Canvas.Top="56" Background="White"/>
-            <TextBox x:Name="textBox" TextWrapping="Wrap"  FontSize="18" Height="30" Canvas.Left="393" Width="86" Canvas.Top="86"/>
-            <Button  Content="Track" FontSize="18" Height="60" Canvas.Left="479" Canvas.Top="56" Width="102" Click="Button_Click_1" AllowDrop="True"  IsEnabled="{Binding ElementName=textBox,Path=Text.Length}"/>
-            <Button  Content="New Order"  Click="Button_Click" FontSize="18" Height="60" Width="107" Canvas.Left="58" Canvas.Top="56"  HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button x:Name="btnEnter" Content="Admin" Click="BtnEnter_Click" RenderTransformOrigin="2.532,3.557" Height="60" Width="105" FontSize="18" Canvas.Left="236" Canvas.Top="56" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+            <Label Content="Order Id" FontSize="18" Height="30" Canvas.Left="393" Width="86" Canvas.Top="56" Background="White" FontWeight="Bold"/>
+            <TextBox x:Name="textBox" TextWrapping="Wrap"  FontSize="18" Height="30" Canvas.Left="393" Width="86" Canvas.Top="86" FontWeight="Bold"/>
+            <Button  Content="Track" FontSize="18" Height="60" Canvas.Left="479" Canvas.Top="56" Width="102" Click="Button_Click_1" AllowDrop="True"  IsEnabled="{Binding ElementName=textBox,Path=Text.Length}" FontWeight="Bold"/>
+            <Button  Content="New Order"  Click="Button_Click" FontSize="18" Height="60" Width="107" Canvas.Left="58" Canvas.Top="56"  HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold">
             </Button>
         </Canvas>
-        <Label x:Name="label" Content="Welcome To Rachel&amp; Racheli's BookStore!" HorizontalAlignment="Left" Height="63" Margin="140,43,0,0" VerticalAlignment="Top" Width="500" FontSize="24" Grid.Column="1"/>
-        <Button x:Name="btnStartSimulator" Content="Start &#xD;&#xA;Simulator" Margin="20,265,652,85" FontSize="18" FontFamily="Amazing Grotesk Infographics" Click="btnStartSimulator_Click" Grid.Column="1"/>
+        <Label x:Name="label" Content="Welcome To Rachel&amp; Racheli's BookStore!" HorizontalAlignment="Left" Height="63" Margin="34,43,0,0" VerticalAlignment="Top" Width="704" FontSize="36" Grid.Column="1" Foreground="#FFEAE3E3" FontFamily="Adobe Fangsong Std R"/>
+        <Button x:Name="btnStartSimulator" Content="Start &#xD;&#xA;Simulator" Margin="20,265,652,85" FontSize="18" FontFamily="Amazing Grotesk Infographics" Click="btnStartSimulator_Click" Grid.Column="1" FontWeight="Bold"/>
     </Grid>
 </Window>

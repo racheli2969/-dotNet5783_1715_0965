@@ -1,13 +1,8 @@
-﻿using DO;
-using PL_.PO;
+﻿using PL_.PO;
 using PL_.Product;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PL_.Cart;
@@ -28,12 +23,10 @@ public partial class CartWindow : Window
         Bl = bl;
         CartDisplayed = ConvertBOCArtToPlCart(cart);
         CartDisplayed.FinalPrice = 0;
-      //  DataContext = CartDisplayed;
-        this.cart = cart;
-        // this.DataContext = CartDisplayed;
-       
-        CartItemsListView.ItemsSource = CartDisplayed.Items;
+        DataContext = CartDisplayed;
         CartItemsListView.DataContext = CartDisplayed.Items;
+        this.cart = cart;
+
         if (cart?.Items == null || cart?.Items.Count() == 0)
         {
             CartItemsListView.Visibility = Visibility.Collapsed;
@@ -57,11 +50,17 @@ public partial class CartWindow : Window
             PlOrderItem? obj = ((FrameworkElement)sender).DataContext as PlOrderItem;
             if (obj == null) return;
             int id = obj.ItemId;
+            int amount = obj.Amount + 1;
+            if (CartDisplayed?.Items?.Count()==0)
             cart = Bl.Cart.AddToCart(id, cart ?? throw new BlApi.BlNOtImplementedException());
-            CartDisplayed = ConvertBOCArtToPlCart(cart);
-            //int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
-            //(CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount++;
-            CartDisplayed.FinalPrice = cart.FinalPrice;
+            else cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(),amount);
+            //update amount and price of product
+            int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
+            (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount++;
+            (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].PriceOfItems = (cart?.Items?.Find(i => i.ItemId == id)?.PriceOfItems) ?? 0;
+
+            CartDisplayed.FinalPrice = (cart ?? throw new BlApi.BlNOtImplementedException()).FinalPrice;
+            lblFinalPriceValue.Content = CartDisplayed?.FinalPrice;
         }
         catch (BlApi.BlNOtImplementedException ex)
         {
@@ -90,13 +89,16 @@ public partial class CartWindow : Window
             int id = obj.ItemId;
             cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), 0);
             CartDisplayed = ConvertBOCArtToPlCart(cart);
-            
-            //int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
-            //CartDisplayed?.Items?.RemoveAt(idx ?? 0);
-            //if (CartDisplayed?.Items?.Count() == 0)
-            //    CartItemsListView.ItemsSource = null;
-            //cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), 0);
-            //CartDisplayed.FinalPrice = cart.FinalPrice;
+
+            CartItemsListView.ItemsSource = CartDisplayed?.Items;
+            lblFinalPriceValue.Content = CartDisplayed?.FinalPrice;
+            if (CartDisplayed?.Items?.Count() == 0)
+            {
+                CartItemsListView.Visibility = Visibility.Collapsed;
+                imgEmptyCart.Visibility = Visibility.Visible;
+                lblForEmptyCart.Visibility = Visibility.Visible;
+            }
+
         }
         catch (BlApi.BlNOtImplementedException ex)
         {
@@ -121,25 +123,20 @@ public partial class CartWindow : Window
             int id = obj.ItemId;
             int amount = obj.Amount - 1;
             cart = Bl.Cart.UpdateProductQuantity(id, cart ?? throw new BlApi.BlNOtImplementedException(), amount);
-            CartDisplayed = ConvertBOCArtToPlCart(cart);
-
-            //int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
-            //if (amount > 0)
-            //{
-            //    (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount = amount;
-            //    (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].PriceOfItems = (cart.Items.Find(i=>i.ItemId==id)??throw new BlApi.BlNOtImplementedException()).PriceOfItems;
-            //}
-            //else if (CartDisplayed?.Items?.Count() == 1)
-            //{
-            //    CartDisplayed?.Items?.RemoveAt(idx ?? 0);
-            //   CartItemsListView.ItemsSource = null;
-            //}
-            //else
-            //{
-            //    CartDisplayed?.Items?.RemoveAt(idx ?? 0);
-            //    CartItemsListView.ItemsSource = CartDisplayed?.Items;
-            //}
-            //CartDisplayed.FinalPrice = cart.FinalPrice;
+           
+            if (amount == 0)
+            {
+                CartDisplayed = ConvertBOCArtToPlCart(cart);
+                CartItemsListView.ItemsSource = CartDisplayed?.Items; 
+            }
+            else
+            {
+                int? idx = CartDisplayed?.Items?.FindIndex(i => i.ItemId == id);
+                (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].Amount = amount;
+                (CartDisplayed?.Items ?? throw new BlApi.BlNOtImplementedException())[idx ?? 0].PriceOfItems = (cart?.Items?.Find(i => i.ItemId == id)?.PriceOfItems)??0;
+            }
+            (CartDisplayed ?? throw new BlApi.BlNOtImplementedException()).FinalPrice = (cart ?? throw new BlApi.BlNOtImplementedException()).FinalPrice;
+            lblFinalPriceValue.Content = CartDisplayed?.FinalPrice;
         }
         catch (BlApi.BlNOtImplementedException ex)
         {
@@ -231,8 +228,8 @@ public partial class CartWindow : Window
             CartItemsListView.Visibility = Visibility.Visible;
             imgEmptyCart.Visibility = Visibility.Collapsed;
             lblForEmptyCart.Visibility = Visibility.Collapsed;
-            //DataContext = CartDisplayed;
             CartItemsListView.ItemsSource = CartDisplayed.Items;
+            lblFinalPriceValue.Content = CartDisplayed?.FinalPrice;
         }
     }
 
@@ -243,7 +240,7 @@ public partial class CartWindow : Window
         //plCart.Email = cart.Email;
         //plCart.Address = cart.City;
         plCart.FinalPrice = cart.FinalPrice;
-        ObservableCollection<PlOrderItem> tempItems = new();
+        List<PlOrderItem> tempItems = new();
         cart?.Items?.ForEach(item => tempItems.Add(PlOrderItem.ConvertBOorderItemToPoOrderItem(item)));
         plCart.Items = null;
         plCart.Items = tempItems;
@@ -254,9 +251,11 @@ public partial class CartWindow : Window
     {
         try
         {
-            (cart ?? throw new BlApi.BlNOtImplementedException()).Items = null;//new List<BO.OrderItem>();
-            (CartDisplayed ?? throw new BlApi.BlNOtImplementedException()).Items = null;// new ObservableCollection<PlOrderItem>();
-            CartDisplayed.FinalPrice = 0;
+            cart?.Items?.RemoveAll(i => true);
+            CartDisplayed?.Items?.RemoveAll(i => true);
+            CartItemsListView.ItemsSource = null;
+            (CartDisplayed ?? throw new BlApi.BlNOtImplementedException()).FinalPrice = 0;
+            lblFinalPriceValue.Content = 0;
         }
         catch (BlApi.NotInCartException ex)
         {

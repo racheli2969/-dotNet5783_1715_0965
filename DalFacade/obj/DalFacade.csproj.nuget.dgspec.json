@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\acer\\Source\\Repos\\-dotNet578_1715_0965\\DalFacade\\DalFacade.csproj": {}
+    "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {}
   },
   "projects": {
-    "C:\\Users\\acer\\Source\\Repos\\-dotNet578_1715_0965\\DalFacade\\DalFacade.csproj": {
+    "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\acer\\Source\\Repos\\-dotNet578_1715_0965\\DalFacade\\DalFacade.csproj",
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
         "projectName": "DalFacade",
-        "projectPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet578_1715_0965\\DalFacade\\DalFacade.csproj",
-        "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\acer\\Source\\Repos\\-dotNet578_1715_0965\\DalFacade\\obj\\",
+        "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
+        "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\גרשון רחל\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -61,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

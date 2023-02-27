@@ -16,15 +16,15 @@ using System.Windows.Controls;
 
 namespace PL_.PO;
 
-internal class PlCart : DependencyObject//, INotifyCollectionChanged
+internal class PlCart : DependencyObject
 
 {
     public string? CustomerName { get; set; }
     public string? Email { get; set; }
     public string? Address { get; set; }
-    public ObservableCollection<PlOrderItem>? Items
+    public List<PlOrderItem>? Items
     {
-        get { return (ObservableCollection<PlOrderItem>?)GetValue(ItemsProperty); }
+        get { return (List<PlOrderItem>?)GetValue(ItemsProperty); }
         set
         {
             SetValue(ItemsProperty, value);
@@ -33,11 +33,11 @@ internal class PlCart : DependencyObject//, INotifyCollectionChanged
 
     // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty ItemsProperty =
-      DependencyProperty.Register("Items", typeof(ObservableCollection<PlOrderItem>), typeof(PlCart), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
+      DependencyProperty.Register("Items", typeof(List<PlOrderItem>), typeof(PlCart), new PropertyMetadata(null, new PropertyChangedCallback(onItemsChanged)));
     private static void onItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         PlCart plCart = (PlCart)d;
-        ObservableCollection<PlOrderItem> items = (ObservableCollection<PlOrderItem>)e.NewValue;
+        List<PlOrderItem> items = (List<PlOrderItem>)e.NewValue;
         plCart.Items = items;
     }
 
@@ -67,15 +67,5 @@ internal class PlCart : DependencyObject//, INotifyCollectionChanged
             }
         return sb.ToString();
     }
-    //public static PlCart ConvertBOCArtToPlCart(BO.Cart cart)
-    //{
-    //    PlCart plCart = new PlCart();
-    //    plCart.CustomerName = cart.CustomerName;
-    //    plCart.Email = cart.Email;
-    //    plCart.Address = cart.Address;
-    //    ObservableCollection<PlOrderItem> tempItems = new();
-    //    cart?.Items?.ForEach(item => tempItems.Add(PlOrderItem.ConvertBOorderItemToPoOrderItem(item)));
-    //    plCart.Items = tempItems;
-    //    return plCart;
-    //}
+    
 }

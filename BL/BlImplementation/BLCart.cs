@@ -37,7 +37,7 @@ internal class BLCart : BlApi.ICart
                     oi.ItemPrice = product.Value.Price;
                     oi.Amount = 1;
                     oi.PriceOfItems = product.Value.Price;
-                    if (c!=null&&c.Items == null)
+                    if (c != null && c.Items == null)
                     {
                         List<BO.OrderItem> temp = new();
                         temp.Add(oi);
@@ -72,41 +72,40 @@ internal class BLCart : BlApi.ICart
         {
             if (c != null && c.Items != null)
             {
-
                 c.FinalPrice -= c.Items[idx].PriceOfItems;
                 c.Items.RemoveAt(idx);
-                return c;
             }
         }
         //if the added amount is smaller then the current amount
-        if (c?.Items?[idx].Amount - quantity > 0)
+        else if (c?.Items?[idx].Amount - quantity > 0)
         {
             if (c != null && c.Items != null)
             {
 
                 //reduce the amount in the cart
-                c.FinalPrice -= c.Items[idx].ItemPrice * (c.Items[idx].Amount -quantity);
+                c.FinalPrice -= c.Items[idx].ItemPrice * (c.Items[idx].Amount - quantity);
                 c.Items[idx].Amount = quantity;
                 c.Items[idx].PriceOfItems = c.Items[idx].Amount * c.Items[idx].ItemPrice;
-
-                return c;
             }
         }
         //if the added amount is bigger then the current amount then needed to check if there is enough in stock
-        if (dal?.Item?.Available(productId, quantity) == false)
+        else
         {
-            throw new BlApi.NotInStockException();
-        }       
-        //if in stock add the difference to the cart then calculates the final price 
-        (c ?? throw new BlApi.BlNOtImplementedException()).FinalPrice
-            += ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice
-            * (((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].Amount - quantity);
+            if (dal?.Item?.Available(productId, quantity) == false)
+            {
+                throw new BlApi.NotInStockException();
+            }
+             //if in stock add the difference to the cart then calculates the final price 
+             (c ?? throw new BlApi.BlNOtImplementedException()).FinalPrice
+                 += ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice
+                 *(quantity- (((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].Amount));
 
-        ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].Amount = quantity;
+            ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].Amount = quantity;
 
-        ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].PriceOfItems
-            = quantity
-            * ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice;
+            ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].PriceOfItems
+                = quantity
+                * ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice;    
+        }
         return c;
     }
     [MethodImpl(MethodImplOptions.Synchronized)]
