@@ -131,12 +131,12 @@ public class BlProduct : BlApi.IProduct
         {
             List<DO.OrderItem>? orderItems = dal?.OrderItem?.GetAll(i => i.ItemId == productId)?.ToList();
             List<DO.Order>? orders = dal?.Order?.GetAll(o => orderItems?.FindIndex(i => i.OrderID == o.OrderId) > 0)?.ToList();
-            lock (dal)
-            {
-                if (orders?.Count > 0)
+            
+            
+                if (orders?.Count < 0)
                     throw new BlApi.ErrorDeleting();
                 dal?.Item.Delete(productId);
-            }
+            
         }
         catch (DalApi.EntityNotFoundException ex)
         {

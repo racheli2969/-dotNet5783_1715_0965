@@ -43,6 +43,7 @@ public partial class MainWindow : Window
 
     private void btnStartSimulator_Click(object sender, RoutedEventArgs e)
     {
+        
         SimulationWIndow sw = new SimulationWIndow(this);
         sw.Show();
         this.Hide();
