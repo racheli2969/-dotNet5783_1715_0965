@@ -22,18 +22,10 @@
             <Label Content="Order Id" FontSize="18" Height="30" Canvas.Left="393" Width="86" Canvas.Top="56" Background="White"/>
             <TextBox x:Name="textBox" TextWrapping="Wrap"  FontSize="18" Height="30" Canvas.Left="393" Width="86" Canvas.Top="86"/>
             <Button  Content="Track" FontSize="18" Height="60" Canvas.Left="479" Canvas.Top="56" Width="102" Click="Button_Click_1" AllowDrop="True"  IsEnabled="{Binding ElementName=textBox,Path=Text.Length}"/>
-            <Button  Content="New Order"  Click="Button_Click" FontSize="18" Height="60" Width="107" Canvas.Left="112" Canvas.Top="56" RenderTransformOrigin="0.5,0.5">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-23.544"/>
-                        <RotateTransform Angle="0.875"/>
-                        <TranslateTransform X="13.07" Y="0.2"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
+            <Button  Content="New Order"  Click="Button_Click" FontSize="18" Height="60" Width="107" Canvas.Left="112" Canvas.Top="56"  HorizontalAlignment="Center" VerticalAlignment="Center">
             </Button>
         </Canvas>
-        <Label x:Name="label" Content="Welcome To Rachel&amp; Racheli's BookStore!!!!!!!!" HorizontalAlignment="Left" Height="63" Margin="140,43,0,0" VerticalAlignment="Top" Width="500" Background="#FFDDECD1" FontSize="24" Grid.Column="1"/>
-        <Button x:Name="btnStartSimulator" Content="Start &#xD;&#xA;Simulator" Grid.Column="1" Margin="37,148,605,502" FontSize="18" FontFamily="Amazing Grotesk Infographics" Click="btnStartSimulator_Click"/>
+        <Label x:Name="label" Content="Welcome To Rachel&amp; Racheli's BookStore!" HorizontalAlignment="Left" Height="63" Margin="140,43,0,0" VerticalAlignment="Top" Width="500" FontSize="24" Grid.Column="1"/>
+        <Button x:Name="btnStartSimulator" Content="Start &#xD;&#xA;Simulator" Grid.Column="1" Margin="54,211,588,439" FontSize="18" FontFamily="Amazing Grotesk Infographics" Click="btnStartSimulator_Click"/>
     </Grid>
 </Window>
