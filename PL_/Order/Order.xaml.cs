@@ -117,8 +117,7 @@ namespace PL_.Order
                 return;
             BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
             order = Bl.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount + 1);
-            OrderItemListView.DataContext = order?.Items;
-            MessageBox.Show("cvb");
+            OrderItemListView.ItemsSource = order?.Items;
         }
         private void Decrease1_Click(object sender, RoutedEventArgs e)
         {
@@ -126,7 +125,7 @@ namespace PL_.Order
                 return;
             BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
             order = Bl.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount - 1);
-            OrderItemListView.DataContext = order?.Items;
+            OrderItemListView.ItemsSource = order?.Items;
         }
     }
 }
