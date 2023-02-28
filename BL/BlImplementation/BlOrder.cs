@@ -220,6 +220,7 @@ public class BlOrder : BlApi.IOrder
             return smallestDateOrdered.Value.OrderId;
         int res = DateTime.Compare(smallestDateOrdered.Value.DateOrdered, smallestDateShipped.Value.DateShipped);
         int? id = res > 0 ? smallestDateShipped.Value.OrderId : smallestDateOrdered.Value.OrderId;
+       id=id==0?null: id;   
         return id;
     }
 
