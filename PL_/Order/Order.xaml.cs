@@ -111,12 +111,6 @@ namespace PL_.Order
                 updateOrders(BO.EnumOrderStatus.Delivered, order.OrderId);
         }
         //for bonus
-        private void UpdateOrderItem_Click(object sender, RoutedEventArgs e)
-        {
-            BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
-
-            // updateOrders();
-        }
         private void Add1_Click(object sender, RoutedEventArgs e)
         {
             if (order?.DateShipped == DateTime.MinValue)
@@ -124,6 +118,7 @@ namespace PL_.Order
             BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
             order = Bl.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount + 1);
             OrderItemListView.DataContext = order?.Items;
+            MessageBox.Show("cvb");
         }
         private void Decrease1_Click(object sender, RoutedEventArgs e)
         {
