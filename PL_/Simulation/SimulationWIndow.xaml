@@ -7,21 +7,21 @@
         mc:Ignorable="d"
         Title="SimulationWIndow" Height="450" Width="800">
     <Grid>
-        <ProgressBar x:Name="progressBar" Margin="194,139,192,256" Foreground="#FF00E82A"/>
+        <ProgressBar x:Name="progressBar" Minimum="0" Maximum="100" Value="0" Margin="194,139,192,256" Foreground="#FF00E82A" />
+        <TextBlock Text="{Binding ElementName=progressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.439,-3.634" Margin="0,151,0,0" Width="28" />
+        <!--<ProgressBar x:Name="progressBar" Margin="194,139,192,256" Foreground="#FF00E82A"/>-->
         <Label x:Name="lblTimer" Content="00:00" Margin="0,31,0,315"  FontSize="48" FontFamily="Microsoft YaHei UI Light" Foreground="#FF11F13E" HorizontalAlignment="Center"/>
         <Canvas Margin="209,183,352,100">
             <Label Content="OrderId" FontSize="18" Height="34" Width="94"/>
-            <Label x:Name="lblTimeLeft" FontSize="18" Content="{Binding RandomTime}" Height="34" Canvas.Left="144" Canvas.Top="117" Width="94"/>
-            <Label x:Name="lblNextStatus" FontSize="18" Content="{Binding NextState}" Height="34" Canvas.Left="145" Canvas.Top="78" Width="94"/>
-            <Label x:Name="lblOrderId" FontSize="18" Content="{Binding OrderId}" Height="34" Canvas.Left="145" Width="94"/>
-            <Label x:Name="lblPreviousStatus" FontSize="18" Content="{Binding PreviousState}" Height="34" Canvas.Left="145" Canvas.Top="44" Width="94"/>
+            <Label x:Name="lblTimeLeft" FontSize="18" Content="{Binding Item4}" Height="34" Canvas.Left="144" Canvas.Top="117" Width="94"/>
+            <Label x:Name="lblNextStatus" FontSize="18" Content="{Binding Item3}" Height="34" Canvas.Left="145" Canvas.Top="78" Width="94"/>
+            <Label x:Name="lblOrderId" FontSize="18" Content="{Binding Item1}" Height="34" Canvas.Left="145" Width="94"/>
+            <Label x:Name="lblPreviousStatus" FontSize="18" Content="{Binding Item2}" Height="34" Canvas.Left="145" Canvas.Top="44" Width="94"/>
             <Label Content="TimeLeft" FontSize="18" Height="34" Canvas.Top="117" Width="94"/>
             <Label Content="NextStatus" FontSize="18" Height="34" Canvas.Top="78" Width="94"/>
             <Label Content="PreviousStatus" FontSize="18" Height="34" Canvas.Top="39" Width="140"/>
         </Canvas>
-        <!--<Label x:Name="txtCurrentState"  Margin="231,209,231,20" FontSize="22"  Background="#FFCAEFCC">
-           
-        </Label>-->
+
         <Button x:Name="btnBackToMain" Content="stop" HorizontalAlignment="Left" Height="67" Margin="32,31,0,0" VerticalAlignment="Top" Width="116" RenderTransformOrigin="0.327,0.332" FontSize="24" Click="btnBackToMain_Click"/>
         <Label x:Name="resultLabel"  Margin="90,121,606,238" FontSize="16"/>
 

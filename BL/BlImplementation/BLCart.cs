@@ -105,7 +105,7 @@ internal class BLCart : BlApi.ICart
                 = quantity
                 * ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice;
         }
-        return c;
+        return c??throw new BlApi.BlNOtImplementedException();
     }
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void OrderConfirmation(BO.Cart cart)
