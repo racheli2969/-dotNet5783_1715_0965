@@ -67,7 +67,7 @@ namespace PL_.Order
             order = bl?.Order?.GetOrderDetails(id);
             DataContext = order;
             mainWindow = mw;
-            OrderItemListView.DataContext = order?.Items;
+            OrderItemListView.ItemsSource = order?.Items;
             orderListWindow = null;
             updateOrders = null;
             btnUpdateDeliveryDate.Visibility = Visibility.Collapsed;
