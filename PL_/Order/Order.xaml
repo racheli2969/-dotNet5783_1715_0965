@@ -57,14 +57,14 @@
                         <GridViewColumn DisplayMemberBinding="{Binding ItemPrice}" Header="Price" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Amount}" Header="Amount" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding PriceOfItems}" Header="PriceOfItems" Width="100"/>
-                        <GridViewColumn Width="50" Header="">
+                        <GridViewColumn x:Name="add" Width="50" Header="">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button x:Name="btnAdd" Content="+" Click="Add1_Click" Width="30"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="50" Header="">
+                        <GridViewColumn x:Name="decrease" Width="50" Header="">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="-" Click="Decrease1_Click" Width="30" />
