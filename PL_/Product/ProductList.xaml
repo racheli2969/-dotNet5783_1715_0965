@@ -28,7 +28,7 @@
                 <GridView AllowsColumnReorder="true" >
                     <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding Path=ItemId}" Header="ID" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=ItemName }" Header="Name" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice}" Header="Price" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice,StringFormat=${0}}" Header="Price" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Category}" Header="category" Width="100"/>
                 </GridView>
             </ListView.View>

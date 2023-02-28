@@ -192,8 +192,25 @@ public class BlOrder : BlApi.IOrder
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderDetails(int orderId, int productId, int amount)
     {
+       
+        if (productId < 0) { throw new BlApi.NegativeIdException(); }
+        if (amount < 0) { throw new BlApi.NegativeAmountException(); }  
+        DO.OrderItem orderItem= dal.OrderItem.GetAll(i => i.OrderID == orderId&&i.ItemId== productId).FirstOrDefault();
+        if (amount == 0)
+            dal.OrderItem.Delete(orderItem.OrderItemId);
+        else if(amount>orderItem.Amount)
+        {
+            dal.Item.Available(productId);
+            orderItem.Amount = amount;
+            dal.OrderItem.Update(orderItem);
+        }
+        else
+        {
+            orderItem.Amount = amount;
+            dal.OrderItem.Update(orderItem);
+        }
         BO.Order order = new BO.Order();
-        //do something
+        order = GetOrderDetails(orderId);
         return order;
     }
 

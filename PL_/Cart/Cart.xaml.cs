@@ -106,6 +106,7 @@ public partial class CartWindow : Window
         }
         catch (BlApi.NotInCartException ex)
         {
+            
             MessageBox.Show(ex.Message);
         }
         catch

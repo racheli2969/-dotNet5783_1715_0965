@@ -54,7 +54,7 @@
                         <GridViewColumn x:Name="displayId" DisplayMemberBinding="{Binding OrderItemId}" Header="OrderItemId" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding ItemId}" Header="ItemId" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding ItemName}" Header="Name" Width="100"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding ItemPrice}" Header="Price" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding ItemPrice,StringFormat=${0}}" Header="Price" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Amount}" Header="Amount" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding PriceOfItems}" Header="PriceOfItems" Width="100"/>
                         <GridViewColumn x:Name="add" Width="50" Header="">

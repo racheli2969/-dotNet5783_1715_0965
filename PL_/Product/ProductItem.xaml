@@ -30,7 +30,7 @@
                 <Label  Content="Category" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="275" Canvas.Top="179" HorizontalAlignment="Center" VerticalAlignment="Top" />
                 <Label  Content="Amount in cart" Width="136" FontFamily="Zurich Ex BT" Canvas.Left="275" Canvas.Top="220" HorizontalAlignment="Center" VerticalAlignment="Top" />
                 <Label x:Name="lblName" Content="{Binding Path=Name}" Canvas.Left="414" Canvas.Top="105" HorizontalAlignment="Center" VerticalAlignment="Top" Width="79"/>
-                <Label x:Name="lblPrice" Content="{Binding Path=Price}" Canvas.Left="414" Canvas.Top="138" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lblPrice" Content="{Binding StringFormat=${0}, Path=Price}" Canvas.Left="414" Canvas.Top="138" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Label x:Name="lblCategory" Content="{Binding Path=Category}" Canvas.Left="414" Canvas.Top="179" Width="83" HorizontalAlignment="Center" Height="26" VerticalAlignment="Top"/>
                 <Button x:Name="btnAddToCart" Content="+" FontStyle="Italic" Click="AddToCart_Click" Canvas.Left="483" Canvas.Top="217" Height="28" Width="28" IsEnabled="{Binding Background.Color\=#FFED252A, ElementName=lblAvailability}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Button x:Name="btnDecreaseFromCart" Content="-" FontStyle="Italic" Click="DecreaseFromCart_Click" Canvas.Left="396" Canvas.Top="217" Height="28" Width="28" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="{Binding Path=Amount}"/>

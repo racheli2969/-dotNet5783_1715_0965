@@ -27,7 +27,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=CustomerName}" Header="CustomerName" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=OrderStatus}" Header="OrderStatus" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=NumOfItems}" Header="NumOfItems" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price,StringFormat=${0}}" Header="Price" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>
