@@ -192,23 +192,25 @@ public class BlOrder : BlApi.IOrder
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderDetails(int orderId, int productId, int amount)
     {
-       
+
         if (productId < 0) { throw new BlApi.NegativeIdException(); }
-        if (amount < 0) { throw new BlApi.NegativeAmountException(); }  
-        DO.OrderItem orderItem= dal.OrderItem.GetAll(i => i.OrderID == orderId&&i.ItemId== productId).FirstOrDefault();
+        if (amount < 0) { throw new BlApi.NegativeAmountException(); }
+        DO.OrderItem orderItem = dal.OrderItem.GetAll(i => i.OrderID == orderId && i.ItemId == productId).FirstOrDefault();
         if (amount == 0)
             dal.OrderItem.Delete(orderItem.OrderItemId);
-        else if(amount>orderItem.Amount)
+        else if (amount > orderItem.Amount)
         {
             dal.Item.Available(productId);
             orderItem.Amount = amount;
             dal.OrderItem.Update(orderItem);
+
         }
         else
         {
             orderItem.Amount = amount;
             dal.OrderItem.Update(orderItem);
         }
+        
         BO.Order order = new BO.Order();
         order = GetOrderDetails(orderId);
         return order;
@@ -237,7 +239,7 @@ public class BlOrder : BlApi.IOrder
             return smallestDateOrdered.Value.OrderId;
         int res = DateTime.Compare(smallestDateOrdered.Value.DateOrdered, smallestDateShipped.Value.DateShipped);
         int? id = res > 0 ? smallestDateShipped.Value.OrderId : smallestDateOrdered.Value.OrderId;
-       id=id==0?null: id;   
+        id = id == 0 ? null : id;
         return id;
     }
 
