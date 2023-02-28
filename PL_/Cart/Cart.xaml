@@ -16,7 +16,7 @@
             <TextBox x:Name="txtCity" Height="34" Canvas.Left="355" Canvas.Top="111" Width="85" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Label x:Name="lblFinalPrice" Content="FinalPrice" Height="32" Canvas.Left="211" Canvas.Top="150" Width="81"/>
             <Border BorderBrush="Black"  BorderThickness="1" Height="32" Canvas.Left="355" Canvas.Top="155" Width="211" HorizontalAlignment="Center" VerticalAlignment="Top"></Border>
-            <Label x:Name="lblFinalPriceValue" Content="{Binding Path=FinalPrice,Mode=TwoWay}"  Height="32" Canvas.Left="355" Canvas.Top="155" Width="211"  />
+            <Label x:Name="lblFinalPriceValue" Content="{Binding Path=FinalPrice,StringFormat=${0},Mode=TwoWay}"  Height="32" Canvas.Left="355" Canvas.Top="155" Width="211"  />
 
             <Button Content="BACK" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <ListView x:Name="CartItemsListView" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="204" Canvas.Top="200" VerticalAlignment="Top" Canvas.Left="10" ItemsSource="{Binding}" d:ItemsSource="{d:SampleData ItemCount=5}" Width="743">
@@ -24,9 +24,9 @@
                     <GridView AllowsColumnReorder="true" >
                         <GridViewColumn DisplayMemberBinding="{Binding Path=ItemId}" Header="ItemId" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=ItemName}" Header="Name" Width="100"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice}" Header="Price" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=ItemPrice,StringFormat=${0}}" Header="Price" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Amount}" Header="Amount" Width="100"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=PriceOfItems}" Header="PriceOfItems" Width="100"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=PriceOfItems,StringFormat=${0}}" Header="PriceOfItems" Width="100"/>
                         <GridViewColumn Width="60" Header="Add">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

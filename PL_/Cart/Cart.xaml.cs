@@ -106,6 +106,7 @@ public partial class CartWindow : Window
         }
         catch (BlApi.NotInCartException ex)
         {
+            
             MessageBox.Show(ex.Message);
         }
         catch
@@ -164,6 +165,7 @@ public partial class CartWindow : Window
             cart.City = txtCity.Text;
             cart.NumOfHouse = int.Parse(txtNumHOuse.Text);
             Bl.Cart.OrderConfirmation(cart);
+            //MessageBox.Show("Unable to save file, try again.", "Save error", MessageBoxButton.OK, MessageBoxImage.Error);
             MessageBox.Show("successfully created order");
         }
         catch (BlApi.NoItemsInCartException ex)

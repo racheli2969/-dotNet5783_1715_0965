@@ -50,7 +50,7 @@ public partial class ProductItemWindow : Window
         {
             if (cart != null)
                 cart = Bl?.Cart?.AddToCart(plproductItem.ID, cart);
-            MessageBox.Show($"successfully added {plproductItem.Name} to cart");
+            MessageBox.Show($"successfully added {plproductItem.Name} to cart", "success", MessageBoxButton.OK);
             wasCartChanged = true;
             plproductItem.Amount = (cart?.Items?.Find(i => i.ItemId == plproductItem.ID) ?? throw new BlApi.BlEntityNotFoundException()).Amount;
             // plproductItem.IsAvailable; maybe needs to update if product is still in stock
