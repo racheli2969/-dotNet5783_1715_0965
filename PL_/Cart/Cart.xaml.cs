@@ -222,6 +222,7 @@ public partial class CartWindow : Window
     public void getUpdateForCAart(BO.Cart cart)
     {
         this.cart = cart;
+        cart.FinalPrice=cart.Items.Select(i => i.PriceOfItems).Sum();
         this.CartDisplayed = ConvertBOCArtToPlCart(cart);
         if (this.CartDisplayed?.Items?.Count() > 0)
         {
