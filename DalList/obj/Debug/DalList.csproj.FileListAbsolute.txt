@@ -99,6 +99,7 @@ C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\
 C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.csproj.CoreCompileInputs.cache
 C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.csproj.CopyComplete
 C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.dll
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\refint\DalList.dll
 C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\DalList.pdb
 C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalList\obj\Debug\ref\DalList.dll
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\ref\DalList.dll
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\DalList\obj\Debug\refint\DalList.dll
