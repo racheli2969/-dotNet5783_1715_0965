@@ -56,11 +56,18 @@
                         <GridViewColumn DisplayMemberBinding="{Binding ItemName}" Header="Name" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding ItemPrice,StringFormat=${0}}" Header="Price" Width="100"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Amount}" Header="Amount" Width="100"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding PriceOfItems,StringFormat=${0}}" Header="PriceOfItems" Width="100"/>
-                        <GridViewColumn Width="100" x:Name="updateColumn" >
+                        <GridViewColumn DisplayMemberBinding="{Binding PriceOfItems}" Header="PriceOfItems" Width="100"/>
+                        <GridViewColumn x:Name="add" Width="50" Header="">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="btnUpdateOrderItem" Content="update" Click="UpdateOrderItem_Click" Width="80" IsEnabled="False"/>
+                                    <Button x:Name="btnAdd" Content="+" Click="Add1_Click" Width="30"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="decrease" Width="50" Header="">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="-" Click="Decrease1_Click" Width="30" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

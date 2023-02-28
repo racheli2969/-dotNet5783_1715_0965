@@ -164,9 +164,9 @@ public partial class CartWindow : Window
             cart.Street = txtStreet.Text;
             cart.City = txtCity.Text;
             cart.NumOfHouse = int.Parse(txtNumHOuse.Text);
-            Bl.Cart.OrderConfirmation(cart);
-            //MessageBox.Show("Unable to save file, try again.", "Save error", MessageBoxButton.OK, MessageBoxImage.Error);
-            MessageBox.Show("successfully created order");
+          int id= Bl.Cart.OrderConfirmation(cart);
+            MessageBox.Show($"successfully created order with id: {id}");
+            this.Close();
         }
         catch (BlApi.NoItemsInCartException ex)
         {

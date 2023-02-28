@@ -20,6 +20,7 @@ namespace PL_
         private Stopwatch stopwatch;
         private Thread timerThread;
         private volatile bool isTimerRunning = true;
+
         private string? message;
         private bool progress = true;
 
@@ -82,27 +83,68 @@ namespace PL_
             else
                 lblTimer.Content = timerText;
         }
+        private void Worker_DoWork(object? sender, DoWorkEventArgs e)
+        {
+            timerThread.Start();
+            Simulator.Simulator.registerChangeEvent(changeOrder);
+            Simulator.Simulator.registerStopEvent(finishSimulator);
+            Simulator.Simulator.Run();
+            while (!worker.CancellationPending)
+            {
+                worker.ReportProgress(1, EventArgs.Empty);
+                Thread.Sleep(1000);
+            }
+        }
+        private void Worker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
+        {
+            if (e.ProgressPercentage == 2)
+            {
+                Tuple<int, BO.EnumOrderStatus?, BO.EnumOrderStatus?, int>? data = e.UserState as Tuple<int, BO.EnumOrderStatus?, BO.EnumOrderStatus?, int>;
+                DataContext = data;
 
+                BackgroundWorker progressBarWorker = new BackgroundWorker();
+                progressBarWorker.DoWork += progressBarWorker_DoWork;
+                progressBarWorker.ProgressChanged += progressBarWorker_ProgressChanged;
+                progressBarWorker.WorkerReportsProgress = true;
+                progressBarWorker.RunWorkerAsync(data.Item4);
+                progress = true;
+
+            }
+        }
+        private void progressBarWorker_DoWork(object? sender, DoWorkEventArgs e)
+        {
+            while (progress)
+            {
+                int times = int.Parse(e.Argument.ToString());
+                for (int i = 1; i <= times; i++)
+                {
+                    (sender as BackgroundWorker).ReportProgress(100 / times * i);
+                    Thread.Sleep(1000);
+                }
+                progress = false;
+            }
+        }
+        private void progressBarWorker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
+        {
+            progressBar.Value = e.ProgressPercentage;
+        }
         private void Worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
-            isTimerRunning = false;
             Simulator.Simulator.unregisterChangeEvent(changeOrder);
             Simulator.Simulator.unregisterStopEvent(finishSimulator);
         }
+
         /// <summary>
         /// A function that is called when there is event of StopSimulator.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void finishSimulator(object? sender, EventArgs e)
         {
             isTimerRunning = false;
 
             worker.CancelAsync();
         }
-
-
         /// <summary>
         /// A function that is called when there is event of ProgressChange, the function receved the details whose sent to the event
         /// and the function send them to the Worker_ProgressChanged.
@@ -117,64 +159,6 @@ namespace PL_
             Tuple<int, BO.EnumOrderStatus?, BO.EnumOrderStatus?, int> orderDetails = new(details.OrderId, details.PreviousStatus, details.NextStatus, details.RandomTime);
             worker.ReportProgress(2, orderDetails);
         }
-
-
-        private void Worker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
-        {
-            if (e.ProgressPercentage == 2)
-            {
-                progress = true;
-                Tuple<int, BO.EnumOrderStatus?, BO.EnumOrderStatus?, int>? data = e.UserState as Tuple<int, BO.EnumOrderStatus?, BO.EnumOrderStatus?, int>;
-                DataContext = data;
-
-                BackgroundWorker progressBarWorker = new BackgroundWorker();
-                progressBarWorker.DoWork += progressBarWorker_DoWork;
-                progressBarWorker.ProgressChanged += progressBarWorker_ProgressChanged;
-                progressBarWorker.RunWorkerCompleted += progressBarWorker_WorkCompleted;
-                progressBarWorker.WorkerReportsProgress = true;
-                progressBarWorker.WorkerSupportsCancellation = true;
-                progressBarWorker.RunWorkerAsync(data.Item4);
-                progress = true;
-
-            }
-        }
-
-        private void progressBarWorker_WorkCompleted(object? sender, RunWorkerCompletedEventArgs e)
-        {
-
-        }
-
-        private void progressBarWorker_ProgressChanged(object? sender, ProgressChangedEventArgs e)
-        {
-            progressBar.Value = e.ProgressPercentage;
-        }
-
-        private void progressBarWorker_DoWork(object? sender, DoWorkEventArgs e)
-        {
-            while (progress)
-            {
-                int times = int.Parse(e.Argument.ToString());
-                for (int i = 1; i <= times; i++)
-                {
-                    (sender as BackgroundWorker).ReportProgress(100/times*i);
-                    Thread.Sleep(1000);
-                }
-                progress = false;
-            }
-        }
-        private void Worker_DoWork(object? sender, DoWorkEventArgs e)
-        {
-            timerThread.Start();
-            Simulator.Simulator.registerChangeEvent(changeOrder);
-            Simulator.Simulator.registerStopEvent(finishSimulator);
-            Simulator.Simulator.Run();
-            while (!worker.CancellationPending)
-            {
-                worker.ReportProgress(1, EventArgs.Empty);
-                Thread.Sleep(1000);
-            }
-        }
-
         private void btnBackToMain_Click(object sender, RoutedEventArgs e)
         {
 
@@ -182,18 +166,5 @@ namespace PL_
             worker.CancelAsync();
             this.Close();
         }
-
-        /// <summary>
-        /// A function for finish Simulator that called by user click.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void finishSimulator_Click(object sender, RoutedEventArgs e)
-        {
-            message = "stopped by user";
-            //Simulator.Simulator.Stop(null, EventArgs.Empty);
-            worker.CancelAsync();
-        }
-
     }
 }

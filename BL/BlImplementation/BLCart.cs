@@ -108,7 +108,7 @@ internal class BLCart : BlApi.ICart
         return c??throw new BlApi.BlNOtImplementedException();
     }
     [MethodImpl(MethodImplOptions.Synchronized)]
-    public void OrderConfirmation(BO.Cart cart)
+    public int OrderConfirmation(BO.Cart cart)
     {
         //check all information was received
         if (cart.CustomerName == null || cart.Email == null || cart.City == null || cart.Street == null)
@@ -148,7 +148,9 @@ internal class BLCart : BlApi.ICart
                 //updates amount
                 dal.Item.Update(tempItem.ItemId, tempItem.Amount);
             }
+            return id;
         }
+        return 0;
     }
 
     /// <summary>

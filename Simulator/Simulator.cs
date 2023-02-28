@@ -15,9 +15,6 @@ public static class Simulator
     public static event EventHandler? StopSimulator;
     public static event EventHandler? StatusChange;
 
-    //private static int randomNum;
-    //public static int RandomNum { get => randomNum; set => randomNum = value; }
-
     public static void Run()
     {
         Thread changeStatuses = new Thread(simulate);
