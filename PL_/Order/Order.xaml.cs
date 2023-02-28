@@ -113,7 +113,7 @@ namespace PL_.Order
         //for bonus
         private void Add1_Click(object sender, RoutedEventArgs e)
         {
-            if (order?.DateShipped == DateTime.MinValue)
+            if (order?.DateShipped != DateTime.MinValue)
                 return;
             BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
             order = Bl.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount + 1);
@@ -122,7 +122,7 @@ namespace PL_.Order
         }
         private void Decrease1_Click(object sender, RoutedEventArgs e)
         {
-            if (order?.DateShipped == DateTime.MinValue)
+            if (order?.DateShipped != DateTime.MinValue)
                 return;
             BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
             order = Bl.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount - 1);
