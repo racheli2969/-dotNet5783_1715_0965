@@ -1,6 +1,8 @@
 ﻿using BlApi;
+using BO;
 using Microsoft.VisualBasic;
 using PL_.Order;
+using PL_.PO;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -18,6 +20,8 @@ namespace PL_.Order
         private OrderList? orderListWindow { get; set; }
         private MainWindow? mainWindow { get; }
         private Action<BO.EnumOrderStatus, int>? updateOrders;
+        private bool isTrue=false;
+       
         public BO.Order? order { get; set; }
         /// <summary>
         /// constructor for admin to update reached through the order list window
@@ -33,7 +37,8 @@ namespace PL_.Order
             updateOrders = updateOs;
             orderListWindow = ol;
             order = bl?.Order?.GetOrderDetails(id);
-            DataContext = order;
+           isTrue= order.DateShipped==DateTime.MinValue;
+                 DataContext = order;
             OrderItemListView.ItemsSource = order?.Items;
             switch (order?.OrderStatus)
             {
@@ -42,13 +47,13 @@ namespace PL_.Order
                     btnReceivedDate.Visibility = Visibility.Visible;
                     break;
                 case BO.EnumOrderStatus.Shipped:
-                    btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
+                    btnUpdateDeliveryDate.Visibility = Visibility.Collapsed;
                     btnReceivedDate.Visibility = Visibility.Visible;
                     btnReceivedDate.IsEnabled = true;
                     break;
                 case BO.EnumOrderStatus.Delivered:
-                    btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
-                    btnReceivedDate.Visibility = Visibility.Hidden;
+                    btnUpdateDeliveryDate.Visibility = Visibility.Collapsed;
+                    btnReceivedDate.Visibility = Visibility.Collapsed;
                     break;
                 default:
                     break;
@@ -62,12 +67,11 @@ namespace PL_.Order
             order = bl?.Order?.GetOrderDetails(id);
             DataContext = order;
             mainWindow = mw;
-            OrderItemListView.ItemsSource = order?.Items;
+            OrderItemListView.DataContext = order?.Items;
             orderListWindow = null;
             updateOrders = null;
-            btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
-            btnReceivedDate.Visibility = Visibility.Hidden;
-            updateColumn.Width = 0;
+            btnUpdateDeliveryDate.Visibility = Visibility.Collapsed;
+            btnReceivedDate.Visibility = Visibility.Collapsed;
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
@@ -88,7 +92,7 @@ namespace PL_.Order
             if (order != null)
                 order = Bl?.Order.UpdateOrderShipping(order.OrderId);
             DataContext = order;
-            btnUpdateDeliveryDate.Visibility = Visibility.Hidden;
+            btnUpdateDeliveryDate.Visibility = Visibility.Collapsed;
             btnReceivedDate.IsEnabled = true;
             if (order != null&&updateOrders!=null)
                 updateOrders(BO.EnumOrderStatus.Shipped, order.OrderId);
@@ -99,7 +103,7 @@ namespace PL_.Order
             if (order != null)
                 order = Bl?.Order.UpdateOrderDelivery(order.OrderId);
             DataContext = order;
-            btnReceivedDate.Visibility = Visibility.Hidden;
+            btnReceivedDate.Visibility = Visibility.Collapsed;
             lblReceivedDate.Content = order?.DateDelivered;
             if (order != null && updateOrders != null)
                 updateOrders(BO.EnumOrderStatus.Delivered, order.OrderId);
@@ -107,7 +111,17 @@ namespace PL_.Order
         //for bonus
         private void UpdateOrderItem_Click(object sender, RoutedEventArgs e)
         {
+            BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
+
             // updateOrders();
+        }
+        private void Add1_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+        private void Decrease1_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿namespace DalApi;
-
-using System.Diagnostics;
 using System.Xml.Linq;
 
 static class DalConfig
