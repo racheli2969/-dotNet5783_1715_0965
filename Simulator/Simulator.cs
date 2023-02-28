@@ -49,26 +49,26 @@ public static class Simulator
     private static void simulate()
     {
         int? id = Bl?.Order.GetOldestOrderNumber();
-        if (id == null)
-        {
-            Stop(null, EventArgs.Empty);
+        //if (id == null)
+        //{
+        //    Stop(null, EventArgs.Empty);
            
-        }
-        BO.Order crrntOrder = Bl.Order.GetOrderDetails((int)id);
-        Random rnd = new Random();
-        int seconds = rnd.Next(1, 6);
-        SimulatorEventArgs details = new SimulatorEventArgs(crrntOrder.Id, (eOrderStatus)crrntOrder.status, (eOrderStatus)((int)crrntOrder.status + 1), seconds);
-        if (ProgressChange != null)
-            ProgressChange(null, details);
-        Thread.Sleep(seconds * 1000);
-        if (crrntOrder.status == eOrderStatus.confirmed)
-        {
-            bl.Order.UpdateOrdShipping(crrntOrder.Id);
-        }
-        else
-        {
-            bl.Order.UpdateOrdDelivery(crrntOrder.Id);
-        }
+        //}
+        //BO.Order crrntOrder = Bl.Order.GetOrderDetails((int)id);
+        //Random rnd = new Random();
+        //int seconds = rnd.Next(1, 6);
+        //SimulatorEventArgs details = new SimulatorEventArgs(crrntOrder.OrderId, (BO.EnumOrderStatus)crrntOrder.o, (eOrderStatus)((int)crrntOrder.status + 1), seconds);
+        //if (ProgressChange != null)
+        //    ProgressChange(null, details);
+        //Thread.Sleep(seconds * 1000);
+        //if (crrntOrder.status == eOrderStatus.confirmed)
+        //{
+        //    bl.Order.UpdateOrdShipping(crrntOrder.Id);
+        //}
+        //else
+        //{
+        //    bl.Order.UpdateOrdDelivery(crrntOrder.Id);
+        //}
 
       
         if (id == null)
