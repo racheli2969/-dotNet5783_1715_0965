@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {}
+    "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {}
   },
   "projects": {
-    "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
+    "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
         "projectName": "DalFacade",
-        "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
+        "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
         "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\obj\\",
+        "outputPath": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
