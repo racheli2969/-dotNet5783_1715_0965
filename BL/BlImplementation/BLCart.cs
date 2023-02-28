@@ -48,7 +48,7 @@ internal class BLCart : BlApi.ICart
                 }
             }
             if (c?.Items != null)
-                c.FinalPrice = c.Items.Select(i => i.ItemPrice).Sum();
+                c.FinalPrice = c.Items.Select(i => i.PriceOfItems).Sum();
             //return updated cart
             return c ?? throw new BlApi.BlNOtImplementedException();
         }
