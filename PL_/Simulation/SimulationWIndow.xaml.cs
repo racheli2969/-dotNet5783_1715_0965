@@ -179,9 +179,7 @@ namespace PL_
 
                 //while (j * i < 100)
                 //{
-                worker.ReportProgress(++i);
-
-
+                worker.ReportProgress(1);
 
                 Thread.Sleep(100);
             }
