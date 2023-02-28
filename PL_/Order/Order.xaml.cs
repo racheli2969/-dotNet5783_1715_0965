@@ -37,7 +37,7 @@ namespace PL_.Order
             updateOrders = updateOs;
             orderListWindow = ol;
             order = bl?.Order?.GetOrderDetails(id);
-            isTrue = order.DateShipped == DateTime.MinValue;
+            isTrue = order?.DateShipped == DateTime.MinValue;
             DataContext = order;
             OrderItemListView.ItemsSource = order?.Items;
             switch (order?.OrderStatus)
@@ -116,7 +116,7 @@ namespace PL_.Order
             if (order?.DateShipped != DateTime.MinValue)
                 return;
             BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
-            order = Bl.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount + 1);
+            order = Bl?.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount + 1);
             OrderItemListView.ItemsSource = order?.Items;
         }
         private void Decrease1_Click(object sender, RoutedEventArgs e)
@@ -124,7 +124,7 @@ namespace PL_.Order
             if (order?.DateShipped != DateTime.MinValue)
                 return;
             BO.OrderItem? obj = ((FrameworkElement)sender).DataContext as BO.OrderItem;
-            order = Bl.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount - 1);
+            order = Bl?.Order.UpdateOrderDetails(order.OrderId, obj.ItemId, obj.Amount - 1);
             OrderItemListView.ItemsSource = order?.Items;
         }
     }
