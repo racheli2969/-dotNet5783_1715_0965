@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj": {}
+    "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
+    "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
         "projectName": "DalFacade",
-        "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
+        "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj",
         "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\obj\\",
         "projectStyle": "PackageReference",
@@ -63,12 +63,12 @@
         }
       }
     },
-    "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj": {
+    "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj",
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj",
         "projectName": "DalList",
-        "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj",
+        "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj",
         "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\obj\\",
         "projectStyle": "PackageReference",
@@ -91,8 +91,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
-                "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
+              "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
               }
             }
           }
@@ -126,12 +126,12 @@
         }
       }
     },
-    "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj": {
+    "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj",
+        "projectUniqueName": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj",
         "projectName": "DalTest",
-        "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj",
+        "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalTest\\DalTest.csproj",
         "packagesPath": "C:\\Users\\גרשון רחל\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalTest\\obj\\",
         "projectStyle": "PackageReference",
@@ -154,11 +154,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
-                "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
+              "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj": {
+                "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalFacade\\DalFacade.csproj"
               },
-              "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj": {
-                "projectPath": "C:\\Users\\גרשון רחל\\Source\\Repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj"
+              "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj": {
+                "projectPath": "C:\\Users\\גרשון רחל\\source\\repos\\-dotNet5783_1715_0965\\DalList\\DalList.csproj"
               }
             }
           }
