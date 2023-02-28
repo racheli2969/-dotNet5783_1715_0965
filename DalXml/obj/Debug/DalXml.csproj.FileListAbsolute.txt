@@ -79,3 +79,4 @@ C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\D
 C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\refint\DalXml.dll
 C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.pdb
 C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\ref\DalXml.dll
+C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\ref\DalXml.dll
