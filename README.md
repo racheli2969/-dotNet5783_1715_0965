@@ -1,12 +1,5 @@
 # -dotNet5783_1715_0965
-#The aplication manages a bookstore. 
-#The application is meant both for manager and customer.
-#Technologies: 
-#  *.Net Core 
-#  * C#
-#  * XML
-#  * WPF
-#  * design patterns 
-#  * synchronization 
-
+An application built to manage a bookstore.
+The application is built on design patterns such as singletone, factory, observers and three layers module.
+Technologies used: .Net Core, WPF, XML, threads and synchronization.
    
