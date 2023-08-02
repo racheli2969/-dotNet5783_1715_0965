@@ -24,7 +24,7 @@ Features
    order books for customers of the book store
 
   Admin:
-   Secure admin access to manage orders and products can add and delete
+   Secure admin access to manage orders and products.
    Ensure data security and integrity with admin privileges.
 
 
