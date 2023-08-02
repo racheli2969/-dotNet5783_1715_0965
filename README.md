@@ -12,7 +12,7 @@ Description
    - Synchronization Tools
    - Design Patterns
 
-Features
+##Features
 
 The Bookstore Management System offers the following features:
 
