@@ -18,7 +18,6 @@
             <ColumnDefinition Width="388*"/>
         </Grid.ColumnDefinitions>
         <Canvas HorizontalAlignment="Left" Margin="124,206,0,0" VerticalAlignment="Top" Width="532" Grid.Column="1">
-            <Button x:Name="btnEnter" Content="Admin" Click="BtnEnter_Click" RenderTransformOrigin="2.532,3.557" Height="62" Width="105" FontSize="18" Canvas.Left="238" Canvas.Top="67" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
             <Viewbox HorizontalAlignment="Left" Height="64" Canvas.Left="393" Stretch="Fill" Canvas.Top="65" VerticalAlignment="Top" Width="184">
                 <Grid Height="64" Width="184">
                     <Grid.ColumnDefinitions>
@@ -31,10 +30,16 @@
                     <Button  Content="Track" FontSize="18" Height="64" Width="98" Click="Button_Click_1" AllowDrop="True"  IsEnabled="{Binding Text.Length, ElementName=textBox}" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="86,0,0,0" Grid.ColumnSpan="3"/>
                 </Grid>
             </Viewbox>
-            <Button  Content="New Order"  Click="Button_Click" FontSize="18" Height="62" Width="107" Canvas.Left="79" Canvas.Top="65"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold">
-            </Button>
+            <Button x:Name="btnEnter" Content="Admin" Click="BtnEnter_Click" RenderTransformOrigin="2.532,3.557" Height="62" Width="105" FontSize="18" Canvas.Left="238" Canvas.Top="67" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Button  Content="New Order"  Click="Button_Click" FontSize="18" Height="62" Width="107" Canvas.Left="79" Canvas.Top="65"  HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
         </Canvas>
-        <Button x:Name="btnStartSimulator" Content="Start &#xA;Simulator" Margin="34,270,638,100" FontSize="18" FontFamily="Amazing Grotesk Infographics" Click="btnStartSimulator_Click" Grid.Column="1" FontWeight="Bold"/>
         <Label x:Name="label" Content="Welcome To R&amp;R's Book Store!" HorizontalAlignment="Left" Height="63" Margin="34,43,0,0" VerticalAlignment="Top" Width="704" FontSize="48" Grid.Column="1" Foreground="#FFEAE3E3" FontFamily="Adobe Fangsong Std R"/>
+        <Border Margin="34,270,638,100" Grid.Column="1" >
+            <Canvas>
+                <Canvas HorizontalAlignment="Center" Canvas.Left="0" Canvas.Top="0" VerticalAlignment="Center">
+                    <Button x:Name="btnStartSimulator" Content="Start &#xA;Simulator" FontSize="18" FontFamily="Amazing Grotesk Infographics" Click="btnStartSimulator_Click" FontWeight="Bold" Height="64" Width="104" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Canvas>
+            </Canvas>
+        </Border>
     </Grid>
 </Window>
