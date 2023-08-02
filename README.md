@@ -1,6 +1,33 @@
-# -dotNet5783_1715_0965
-An application built to manage a bookstore.
-The application is built on design patterns such as singletone, factory, observers and three layers module.
-Technologies used: .Net Core, WPF, XML, threads and synchronization.
-The application was built in a team of two students using github version control
-   
+# bookstore management system
+###authors: Rachel Pokroy & Rachel Gershon
+##Description
+  An application built to manage a bookstore.
+ Technologies used and implemented:
+   - .NET
+   - WPF
+   - XML
+   - XAML
+   - Synchronization Tools
+   - Design Patterns
+
+##Features
+
+-The Bookstore Management System offers the following features:
+###Track
+
+ -enables customers to track the order and view it's status
+
+###Simulate
+
+ -Simulate the order procees of shipping, delivery and receiving
+
+###Order
+
+  -order books for customers of the book store
+
+###Admin
+
+  Secure admin access to manage orders and products can add and delete
+  Ensure data security and integrity with admin privileges.
+
+
