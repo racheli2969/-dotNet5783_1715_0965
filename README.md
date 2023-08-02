@@ -12,25 +12,19 @@ Description
    - Synchronization Tools
    - Design Patterns
 
-##Features
+Features
 
-The Bookstore Management System offers the following features:
+  Track:
+   enables customers to track the order and view it's status
 
-Track
+  Simulate: 
+   Simulate the order procees of shipping, delivery and receiving
 
- enables customers to track the order and view it's status
+  Order:
+   order books for customers of the book store
 
-Simulate
-
- Simulate the order procees of shipping, delivery and receiving
-
-Order
-
-  order books for customers of the book store
-
-Admin
-
-  Secure admin access to manage orders and products can add and delete
-  Ensure data security and integrity with admin privileges.
+  Admin:
+   Secure admin access to manage orders and products can add and delete
+   Ensure data security and integrity with admin privileges.
 
 
