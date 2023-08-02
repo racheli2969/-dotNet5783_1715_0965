@@ -1,6 +1,8 @@
 # bookstore management system
 authors: Rachel Pokroy & Rachel Gershon
+
 Description
+
   An application built to manage a bookstore.
  Technologies used and implemented:
    - .NET
@@ -12,14 +14,15 @@ Description
 
 Features
 
--The Bookstore Management System offers the following features:
+The Bookstore Management System offers the following features:
+
 Track
 
- -enables customers to track the order and view it's status
+ enables customers to track the order and view it's status
 
 Simulate
 
- -Simulate the order procees of shipping, delivery and receiving
+ Simulate the order procees of shipping, delivery and receiving
 
 Order
 
