@@ -1,6 +1,5 @@
 using System.Net.Mail;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 namespace BlImplementation;
 
 internal class BLCart : BlApi.ICart
@@ -14,49 +13,54 @@ internal class BLCart : BlApi.ICart
         //check if product exists if so get product
         try
         {
-            DO.Item? product = dal?.Item?.GetAll(x => x.ID == productId)?.ToList().FirstOrDefault();
-            //if not available
-            if (dal?.Item?.Available(productId) == false)
-                throw new BlApi.NotInStockException();
-            //check if the item is in the cart already
-            int idx = ProductIndexInCart(c, productId);
-            if (idx >= 0)
+            //lock dal instance to prevent synchronization problems
+            lock (dal ?? throw new DalApi.NullObject())
             {
-                //update the amount in the cart                 
-                ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].Amount++;
-                ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].PriceOfItems
-                    += ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice;
-            }
-            else
-            {    //add the product
-                BO.OrderItem oi = new BO.OrderItem();
-                if (product != null)
+                DO.Item? product = dal?.Item?.GetAll(x => x.ID == productId)?.ToList().FirstOrDefault();
+                //if not available
+                if (dal?.Item?.Available(productId) == false)
+                    throw new BlApi.NotInStockException();
+                //check if the item is in the cart already
+                int idx = ProductIndexInCart(c, productId);
+                if (idx >= 0)
                 {
-                    oi.ItemId = product.Value.ID;
-                    oi.ItemName = product.Value.Name;
-                    oi.ItemPrice = product.Value.Price;
-                    oi.Amount = 1;
-                    oi.PriceOfItems = product.Value.Price;
-                    if (c != null && c.Items == null)
-                    {
-                        List<BO.OrderItem> temp = new();
-                        temp.Add(oi);
-                        c.Items = temp;
-                    }
-                    else
-                        c?.Items?.Add(oi);
+                    //update the amount in the cart                 
+                    ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].Amount++;
+                    ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].PriceOfItems
+                        += ((c ?? throw new BlApi.BlNOtImplementedException()).Items ?? throw new BlApi.BlNOtImplementedException())[idx].ItemPrice;
                 }
+                else
+                {    //add the product
+                    BO.OrderItem oi = new BO.OrderItem();
+                    if (product != null)
+                    {
+                        oi.ItemId = product.Value.ID;
+                        oi.ItemName = product.Value.Name;
+                        oi.ItemPrice = product.Value.Price;
+                        oi.Amount = 1;
+                        oi.PriceOfItems = product.Value.Price;
+                        if (c != null && c.Items == null)
+                        {
+                            List<BO.OrderItem> temp = new();
+                            temp.Add(oi);
+                            c.Items = temp;
+                        }
+                        else
+                            c?.Items?.Add(oi);
+                    }
+                }
+                if (c?.Items != null)
+                    c.FinalPrice = c.Items.Select(i => i.PriceOfItems).Sum();
+                //return updated cart
+                return c ?? throw new BlApi.BlNOtImplementedException();
             }
-            if (c?.Items != null)
-                c.FinalPrice = c.Items.Select(i => i.PriceOfItems).Sum();
-            //return updated cart
-            return c ?? throw new BlApi.BlNOtImplementedException();
         }
         catch (DalApi.EntityNotFoundException)
         {
             throw new BlApi.BlEntityNotFoundException();
         }
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Cart UpdateProductQuantity(int productId, BO.Cart c, int quantity)
     {
@@ -91,9 +95,10 @@ internal class BLCart : BlApi.ICart
         //if the added amount is bigger then the current amount then needed to check if there is enough in stock
         else
         {
-            if (dal?.Item?.Available(productId, quantity) == false)
+            lock (dal ?? throw new DalApi.NullObject())
             {
-                throw new BlApi.NotInStockException();
+                if (dal?.Item?.Available(productId, quantity) == false)
+                    throw new BlApi.NotInStockException();
             }
              //if in stock add the difference to the cart then calculates the final price 
              (c ?? throw new BlApi.BlNOtImplementedException()).FinalPrice
@@ -107,6 +112,7 @@ internal class BLCart : BlApi.ICart
         }
         return c??throw new BlApi.BlNOtImplementedException();
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public int OrderConfirmation(BO.Cart cart)
     {
@@ -128,28 +134,32 @@ internal class BLCart : BlApi.ICart
         temp.DateOrdered = DateTime.Now;
         temp.DateShipped = DateTime.MinValue;
         temp.DateDelivered = DateTime.MinValue;
-        //send to dal
-        if (dal != null)
+        lock (dal ?? throw new DalApi.NullObject())
         {
-            int id = dal.Order.Add(temp);
-
-            //add the items to the order item array and update the products accordingly
-            DO.OrderItem tempItem = new DO.OrderItem();
-            for (int i = 0; i < cart?.Items?.Count; i++)
+            //send to dal
+            if (dal != null)
             {
-                //create order items in dal layer 
-                tempItem.Amount = cart.Items[i].Amount;
-                tempItem.OrderID = temp.OrderId;
-                tempItem.ItemId = cart.Items[i].ItemId;
-                //adds to order items
-                id = dal.OrderItem.Add(tempItem);
-                tempItem.OrderItemId = id;
-                cart.Items[i].OrderItemId = id;
-                //updates amount
-                dal.Item.Update(tempItem.ItemId, tempItem.Amount);
+                int id = dal.Order.Add(temp);
+
+                //add the items to the order item array and update the products accordingly
+                DO.OrderItem tempItem = new DO.OrderItem();
+                for (int i = 0; i < cart?.Items?.Count; i++)
+                {
+                    //create order items in dal layer 
+                    tempItem.Amount = cart.Items[i].Amount;
+                    tempItem.OrderID = temp.OrderId;
+                    tempItem.ItemId = cart.Items[i].ItemId;
+                    //adds to order items
+                    id = dal.OrderItem.Add(tempItem);
+                    tempItem.OrderItemId = id;
+                    cart.Items[i].OrderItemId = id;
+                    //updates amount
+                    dal.Item.Update(tempItem.ItemId, tempItem.Amount);
+                }
+                return id;
             }
-            return id;
         }
+
         return 0;
     }
 
@@ -168,13 +178,16 @@ internal class BLCart : BlApi.ICart
 
     private void validateItem(BO.OrderItem oi)
     {
-        //product exists
-        dal?.Item?.GetAll(o => o.ID == oi.ItemId)?.ToList();
-        //amount is a positive number
-        if (oi.Amount <= 0)
-            throw new BlApi.NegativeAmountException();
-        //item is in stock
-        if (dal?.Item?.Available(oi.ItemId, oi.Amount) == false)
-            throw new BlApi.NotInStockException();
+        lock (dal ?? throw new DalApi.NullObject())
+        {
+            //product exists
+            dal?.Item?.GetAll(o => o.ID == oi.ItemId)?.ToList();
+            //amount is a positive number
+            if (oi.Amount <= 0)
+                throw new BlApi.NegativeAmountException();
+            //item is in stock
+            if (dal?.Item?.Available(oi.ItemId, oi.Amount) == false)
+                throw new BlApi.NotInStockException();
+        }
     }
 }

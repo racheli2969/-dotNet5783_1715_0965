@@ -36,13 +36,9 @@ internal class DalItem : IItem
             items = DataSource.Items;
         }
         else items = DataSource.Items.Where(x=>x.HasValue&&func((Item)x)).ToList();
-        //else items = (from item in DataSource.Items
-        //                 where func((Item)item)!=false
-        //              select item).Cast<Item>().ToList();
         if (items == null)
             throw new EntityNotFoundException();
         return items.Cast<Item>();
-        //racheli surprise
     }
     /// <summary>
     /// gets an id and deletes that item

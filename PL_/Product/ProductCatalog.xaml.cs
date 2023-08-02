@@ -1,12 +1,10 @@
 ﻿using BlApi;
-using PL_;
 using PL_.Cart;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace PL_.Product;
 
@@ -18,7 +16,7 @@ public partial class ProductCatalog : Window
     private IBl? Bl { get; set; }
     private MainWindow mainWindow { get; set; }
     private BO.Cart cart { get; set; }
-    private PL_.Cart.CartWindow cartWindow { get; set; }
+    private CartWindow cartWindow { get; set; }
     public ProductCatalog(IBl? b, MainWindow mw)
     {
         InitializeComponent();

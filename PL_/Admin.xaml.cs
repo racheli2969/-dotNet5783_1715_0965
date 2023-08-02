@@ -21,7 +21,7 @@ namespace PL_;
 /// </summary>
 public partial class Admin : Window
 {
-    private BlApi.IBl? Bl { get; set; }
+    private IBl? Bl { get; set; }
     //maybe to just create them everytime?
     private ProductListWindow productListWindow { get; set; }
     private PL_.Order.OrderList orderList { get; set; }

@@ -37,6 +37,7 @@ internal class DalOrder : IOrder
 
         return order.OrderId;
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int id)
     {
@@ -56,6 +57,7 @@ internal class DalOrder : IOrder
         serializer.Serialize(writer, lst);
         writer.Close();
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<DO.Order>? GetAll(Func<DO.Order, bool>? func = null)
     {
@@ -73,6 +75,7 @@ internal class DalOrder : IOrder
         List<DO.Order>? l = lst?.Where(func).ToList();
         return l;
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(DO.Order order)
     {

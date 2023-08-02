@@ -8,6 +8,7 @@ using System.Xml.Linq;
 internal class DalItem : IItem
 {
     private XElement? itemsXml = XDocument.Load(@"..\..\xml\Item.xml").Root;//@"..\..\..\..\xml\Item.xml"
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public int Add(DO.Item item)
     {
@@ -29,6 +30,7 @@ internal class DalItem : IItem
         itemsXml?.Save(@"..\..\xml\Item.xml");//@"..\..\..\..\xml\Item.xml"
         return item.ID;
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public bool Available(int id)
     {
@@ -39,6 +41,7 @@ internal class DalItem : IItem
         int t = Convert.ToInt32((string?)item?.Value.ToString());
         return t - 1 >= 0;
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public bool Available(int id, int amount)
     {
@@ -48,6 +51,7 @@ internal class DalItem : IItem
         int t = Convert.ToInt32((string?)item?.Value.ToString());
         return t - amount >= 0;
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void Delete(int id)
     {
@@ -56,6 +60,7 @@ internal class DalItem : IItem
                      .FirstOrDefault());
         item?.Remove();
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<DO.Item>? GetAll(Func<DO.Item, bool>? func = null)
     {
@@ -82,6 +87,7 @@ internal class DalItem : IItem
             items = items.Where(item => item.HasValue && func((DO.Item)item)).ToList();
         return (IEnumerable<DO.Item>?)items.Cast<DO.Item>();
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(int id, int amount)
     {
@@ -92,6 +98,7 @@ internal class DalItem : IItem
         item?.Element("Amount")?.SetValue(a);
         itemsXml?.Save(@"..\..\xml\Item.xml");//@"..\..\..\..\xml\Item.xml"
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void Update(DO.Item itemToUpdate)
     {

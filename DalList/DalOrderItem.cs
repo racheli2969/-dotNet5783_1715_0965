@@ -22,10 +22,8 @@ internal class DalOrderItem : IOrderItem
     /// <summary>
     /// returns existing order items
     /// </summary>
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
     [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<OrderItem>? GetAll(Func<OrderItem,bool> func)
-#pragma warning restore CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
     {
         List<OrderItem?> orderItems;
         if (func == null)

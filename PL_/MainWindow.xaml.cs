@@ -1,7 +1,5 @@
 ﻿using PL_.Product;
-using System;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace PL_;
 
@@ -43,7 +41,6 @@ public partial class MainWindow : Window
 
     private void btnStartSimulator_Click(object sender, RoutedEventArgs e)
     {
-        
         SimulationWIndow sw = new SimulationWIndow(this);
         sw.Show();
         this.Hide();

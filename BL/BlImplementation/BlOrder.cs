@@ -1,4 +1,5 @@
 ﻿using BO;
+using DalApi;
 using DO;
 using System.Runtime.CompilerServices;
 
@@ -14,7 +15,7 @@ public class BlOrder : BlApi.IOrder
         List<DO.Order>? ordersFromDal = new List<DO.Order>();
         BO.OrderForList temp;
         //gets all orders from dal
-        lock (dal)
+        lock (dal ?? throw new DalApi.NullObject())
         {
             ordersFromDal = dal?.Order?.GetAll()?.ToList();
             //get for each order orderItems
@@ -55,48 +56,48 @@ public class BlOrder : BlApi.IOrder
         {
             //gets the order from dal
             DO.Order O = new DO.Order();
-            lock (dal)
+            lock (dal ?? throw new DalApi.NullObject())
             {
                 O = dal?.Order?.GetAll(o => o.OrderId == orderId)?.ToList().FirstOrDefault() ?? throw new DalApi.EntityNotFoundException();
+                //move info from dal order to bo order
+                BO.Order order = new BO.Order();
+                order.Email = O.Email;
+                order.CustomerName = O.CustomerName;
+                order.OrderId = O.OrderId;
+                order.DateDelivered = O.DateDelivered;
+                order.DateOrdered = O.DateOrdered;
+                order.DateShipped = O.DateShipped;
+                //checks the staus of the order
+                if (O.DateDelivered != DateTime.MinValue)
+                    order.OrderStatus = BO.EnumOrderStatus.Delivered;
+                else if (O.DateShipped != DateTime.MinValue)
+                    order.OrderStatus = BO.EnumOrderStatus.Shipped;
+                else
+                    order.OrderStatus = BO.EnumOrderStatus.Ordered;
+
+                //gets the order items from dal
+                List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderID == orderId)?.ToList();
+
+                //get the order items details from dal and puts then in bl layer
+                List<BO.OrderItem> listOfOrderItems = (List<BO.OrderItem>)(IEnumerable<BO.OrderItem>)(
+                    from item in oi
+                    let tempItemFromDal = dal?.Item?.GetAll(i => i.ID == item.ItemId)?.ToList().SingleOrDefault()
+                    let tempBOorderItem = new BO.OrderItem()
+                    {
+                        OrderItemId = item.OrderItemId,
+                        ItemId = item.ItemId,
+                        ItemName = tempItemFromDal.Value.Name,
+                        ItemPrice = tempItemFromDal.Value.Price,
+                        Amount = item.Amount,
+                        PriceOfItems = item.Amount * tempItemFromDal.Value.Price
+                    }
+                    select tempBOorderItem).ToList();
+                //calculates the final price of the order
+                if (oi != null)
+                    order.SumOfOrder = oi.Select(o => o.Price * o.Amount).Sum();
+                order.Items = listOfOrderItems;
+                return order;
             }
-            //move info from dal order to bo order
-            BO.Order order = new BO.Order();
-            order.Email = O.Email;
-            order.CustomerName = O.CustomerName;
-            order.OrderId = O.OrderId;
-            order.DateDelivered = O.DateDelivered;
-            order.DateOrdered = O.DateOrdered;
-            order.DateShipped = O.DateShipped;
-            //checks the staus of the order
-            if (O.DateDelivered != DateTime.MinValue)
-                order.OrderStatus = BO.EnumOrderStatus.Delivered;
-            else if (O.DateShipped != DateTime.MinValue)
-                order.OrderStatus = BO.EnumOrderStatus.Shipped;
-            else
-                order.OrderStatus = BO.EnumOrderStatus.Ordered;
-
-            //gets the order items from dal
-            List<DO.OrderItem>? oi = dal?.OrderItem?.GetAll(p => p.OrderID == orderId)?.ToList();
-
-            //get the order items details from dal and puts then in bl layer
-            List<BO.OrderItem> listOfOrderItems = (List<BO.OrderItem>)(IEnumerable<BO.OrderItem>)(
-                from item in oi
-                let tempItemFromDal = dal?.Item?.GetAll(i => i.ID == item.ItemId)?.ToList().SingleOrDefault()
-                let tempBOorderItem = new BO.OrderItem()
-                {
-                    OrderItemId = item.OrderItemId,
-                    ItemId = item.ItemId,
-                    ItemName = tempItemFromDal.Value.Name,
-                    ItemPrice = tempItemFromDal.Value.Price,
-                    Amount = item.Amount,
-                    PriceOfItems = item.Amount * tempItemFromDal.Value.Price
-                }
-                select tempBOorderItem).ToList();
-            //calculates the final price of the order
-            if (oi != null)
-                order.SumOfOrder = oi.Select(o => o.Price * o.Amount).Sum();
-            order.Items = listOfOrderItems;
-            return order;
         }
         catch (DalApi.EntityNotFoundException)
         {
@@ -104,20 +105,22 @@ public class BlOrder : BlApi.IOrder
         }
 
     }
+
     //updates date of shipping
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderShipping(int orderId)
     {
         try
         {
-            //get the order
-            DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().FirstOrDefault() ?? throw new DalApi.EntityNotFoundException();
-            if (orderfromDalToUpdate.DateShipped != DateTime.MinValue)
-                throw new BlApi.SentAlreadyException();
-            // update the date of shipping
-            orderfromDalToUpdate.DateShipped = DateTime.Now;
-            lock (dal)
+            lock (dal ?? throw new DalApi.NullObject())
             {
+                //get the order
+                DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().FirstOrDefault() ?? throw new DalApi.EntityNotFoundException();
+
+                if (orderfromDalToUpdate.DateShipped != DateTime.MinValue)
+                    throw new BlApi.SentAlreadyException();
+                // update the date of shipping
+                orderfromDalToUpdate.DateShipped = DateTime.Now;
                 dal?.Order.Update(orderfromDalToUpdate);
             }
             BO.Order order = GetOrderDetails(orderId);
@@ -129,21 +132,21 @@ public class BlOrder : BlApi.IOrder
             throw new BlApi.BlEntityNotFoundException();
         }
     }
-    //updates the date of delivery (receiving)
 
+    //updates the date of delivery (receiving)
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderDelivery(int orderId)
     {
         try
         {
-            //get the order
-            DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().First() ?? throw new Exception();
+            lock (dal??throw new DalApi.NullObject())
+            {
+                //get the order
+                DO.Order orderfromDalToUpdate = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().First() ?? throw new Exception();
             if (orderfromDalToUpdate.DateDelivered != DateTime.MinValue)
                 throw new BlApi.deliveredAlreadyException();
             // update the date of shipping
             orderfromDalToUpdate.DateDelivered = DateTime.Now;
-            lock (dal)
-            {
                 dal?.Order.Update(orderfromDalToUpdate);
             }
             BO.Order order = GetOrderDetails(orderId);
@@ -155,13 +158,19 @@ public class BlOrder : BlApi.IOrder
             throw new BlApi.BlEntityNotFoundException();
         }
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.OrderTracking OrderTracking(int orderId)
     {
         try
         {
+            DO.Order? order;
             //gets the order from dal
-            DO.Order? order = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().First();
+            lock (dal ?? throw new NullObject())
+            {
+                order = dal?.Order.GetAll(o => o.OrderId == orderId)?.ToList().First();
+            }
+
             BO.OrderTracking orderTracking = new BO.OrderTracking();
             orderTracking.Id = orderId;
             List<(DateTime?, EnumOrderStatus)> tempTrackingtUples = new();
@@ -192,25 +201,31 @@ public class BlOrder : BlApi.IOrder
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Order UpdateOrderDetails(int orderId, int productId, int amount)
     {
-
-        if (productId < 0) { throw new BlApi.NegativeIdException(); }
-        if (amount < 0) { throw new BlApi.NegativeAmountException(); }
-        DO.OrderItem orderItem = dal.OrderItem.GetAll(i => i.OrderID == orderId && i.ItemId == productId).FirstOrDefault();
-        if (amount == 0)
-            dal.OrderItem.Delete(orderItem.OrderItemId);
-        else if (amount > orderItem.Amount)
+        try
         {
-            dal.Item.Available(productId);
-            orderItem.Amount = amount;
-            dal.OrderItem.Update(orderItem);
+            lock (dal ?? throw new NullObject())
+            {
+                if (productId < 0) { throw new BlApi.NegativeIdException(); }
+                if (amount < 0) { throw new BlApi.NegativeAmountException(); }
+                DO.OrderItem orderItem = ((dal ?? throw new NullObject()).OrderItem.GetAll(i => i.OrderID == orderId && i.ItemId == productId) ?? throw new NullObject()).FirstOrDefault();
+                if (amount == 0)
+                    dal.OrderItem.Delete(orderItem.OrderItemId);
+                else if (amount > orderItem.Amount)
+                {
+                    dal.Item.Available(productId);
+                    orderItem.Amount = amount;
+                    dal.OrderItem.Update(orderItem);
 
+                }
+                else
+                {
+                    orderItem.Amount = amount;
+                    dal.OrderItem.Update(orderItem);
+                }
+            }
         }
-        else
-        {
-            orderItem.Amount = amount;
-            dal.OrderItem.Update(orderItem);
-        }
-        
+        catch (NullObject)
+        {}
         BO.Order order = new BO.Order();
         order = GetOrderDetails(orderId);
         return order;
@@ -220,7 +235,10 @@ public class BlOrder : BlApi.IOrder
     public int? GetOldestOrderNumber()
     {
         List<DO.Order>? orders1 = new List<DO.Order>();
-        orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
+        lock (dal ?? throw new NullObject())
+        {
+            orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
+        }
         //if all the orders dates are updated then we can return null to show we are done
         if (orders1 == null)
             return null;
@@ -249,7 +267,11 @@ public class BlOrder : BlApi.IOrder
         try
         {
             List<DO.Order>? orders1 = new List<DO.Order>();
-            orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
+            lock (dal ?? throw new NullObject())
+            {
+                orders1 = dal?.Order?.GetAll(o => o.DateDelivered == DateTime.MinValue)?.ToList();
+            }
+
             int num = (orders1 ?? throw new Exception("no elements")).Count;
             num += (from order in orders1
                     where order.DateShipped == DateTime.MinValue

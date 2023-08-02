@@ -1,4 +1,5 @@
 ﻿
+using DalApi;
 using System.Runtime.CompilerServices;
 
 namespace BlImplementation;
@@ -8,16 +9,15 @@ namespace BlImplementation;
 public class BlProduct : BlApi.IProduct
 {
     private DalApi.IDal? dal = DalApi.Factory.Get();
-#pragma warning disable CS8613 // Nullability of reference types in return type doesn't match implicitly implemented member.
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<BO.ProductForList?> GetProductList(BO.BookGenre? category)
-#pragma warning restore CS8613 // Nullability of reference types in return type doesn't match implicitly implemented member.
     {
         List<BO.ProductForList>? products = new();
         List<DO.Item>? productsFromDal = new();
         BO.ProductForList temp;
         //gets all products from dal
-        lock (dal)
+        lock (dal ?? throw new DalApi.NullObject())
         {
             if (category != null)
                 productsFromDal = dal?.Item?.GetAll(o => ((BO.BookGenre)o.Category).CompareTo(category) == 0)?.ToList();
@@ -35,6 +35,7 @@ public class BlProduct : BlApi.IProduct
         }
         return products ?? throw new BlApi.BlEntityNotFoundException();
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.Product GetProductForManager(int id)
     {
@@ -43,12 +44,12 @@ public class BlProduct : BlApi.IProduct
             BO.Product p = new BO.Product();
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
-            lock (dal)
+            lock (dal ?? throw new DalApi.NullObject())
             {
                 List<DO.Item>? productFromDal = dal?.Item.GetAll(i => i.ID == id)?.ToList();
 
                 p.Name = productFromDal?[0].Name;
-                p.ID = productFromDal[0].ID;
+                p.ID = (productFromDal?? throw new NullObject())[0].ID;
                 p.AmountInStock = productFromDal[0].AmountInStock;
                 p.Price = productFromDal[0].Price;
                 p.Category = (BO.BookGenre)productFromDal[0].Category;
@@ -60,6 +61,7 @@ public class BlProduct : BlApi.IProduct
             throw new BlApi.BlEntityNotFoundException(ex);
         }
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public BO.ProductItem GetProductForCustomer(int id, BO.Cart c)
     {
@@ -69,7 +71,7 @@ public class BlProduct : BlApi.IProduct
             if (id < 100000)
                 throw new BlApi.NegativeIdException();
             int count = 0;
-            lock (dal)
+            lock (dal ?? throw new DalApi.NullObject())
             {
                 List<DO.Item>? product = dal?.Item?.GetAll(i => i.ID == id)?.ToList();
                 p.Name = product?[0].Name;
@@ -100,6 +102,7 @@ public class BlProduct : BlApi.IProduct
             throw new BlApi.BlEntityNotFoundException(ex);
         }
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public int AddProduct(BO.Product p)
     {
@@ -117,32 +120,42 @@ public class BlProduct : BlApi.IProduct
             item.ID = p.ID;
             item.Category = (DO.BookGenre)p.Category;
             item.AmountInStock = p.AmountInStock;
-            return dal.Item.Add(item);
+            int id;
+            lock (dal ?? throw new NullObject())
+            {
+                id = dal.Item.Add(item);
+            }
+            return id;
         }
         catch (DalApi.EntityDuplicateException)
         {
             throw new BlApi.ExistsAlreadyException();
         }
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void RemoveProduct(int productId)
     {
         try
         {
-            List<DO.OrderItem>? orderItems = dal?.OrderItem?.GetAll(i => i.ItemId == productId)?.ToList();
-            List<DO.Order>? orders = dal?.Order?.GetAll(o => orderItems?.FindIndex(i => i.OrderID == o.OrderId) > 0)?.ToList();
-            
-            
+            lock (dal ?? throw new NullObject())
+            {
+                List<DO.OrderItem>? orderItems = dal?.OrderItem?.GetAll(i => i.ItemId == productId)?.ToList();
+                List<DO.Order>? orders = dal?.Order?.GetAll(o => orderItems?.FindIndex(i => i.OrderID == o.OrderId) > 0)?.ToList();
+
+
                 if (orders?.Count < 0)
                     throw new BlApi.ErrorDeleting();
                 dal?.Item.Delete(productId);
-            
+
+            }
         }
         catch (DalApi.EntityNotFoundException ex)
         {
             throw new BlApi.BlEntityNotFoundException(ex);
         }
     }
+
     [MethodImpl(MethodImplOptions.Synchronized)]
     public void UpdateProduct(BO.Product p)
     {
@@ -162,7 +175,10 @@ public class BlProduct : BlApi.IProduct
             i.AmountInStock = p.AmountInStock;
             i.ID = p.ID;
             i.Category = (DO.BookGenre)p.Category;
-            dal?.Item.Update(i);
+            lock (dal ?? throw new NullObject())
+            {
+                dal?.Item.Update(i);
+            }
         }
         catch (DalApi.EntityNotFoundException ex)
         {

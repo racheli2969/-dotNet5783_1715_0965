@@ -22,7 +22,6 @@ internal class DalOrder : IOrder
     /// returns all existing orders
     /// </summary>
     /// <returns></returns>
-#pragma warning disable CS8767 // Nullability of reference types in type of parameter doesn't match implicitly implemented member (possibly because of nullability attributes).
     [MethodImpl(MethodImplOptions.Synchronized)]
     public IEnumerable<Order>? GetAll(Func<Order, bool> func)
     {

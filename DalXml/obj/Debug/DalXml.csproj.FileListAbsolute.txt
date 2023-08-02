@@ -1,82 +1,13 @@
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.deps.json
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.dll
 C:\Users\brach\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.pdb
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CopyComplete
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.dll
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\refint\DalXml.dll
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.pdb
-C:\Users\brach\source\repos\-dotNet5783_1715_0965\DalXml\obj\Debug\ref\DalXml.dll
-<<<<<<< HEAD
-C:\Users\גרשון רחל\source\repos\stage0\bin\DalXml.deps.json
-C:\Users\גרשון רחל\source\repos\stage0\bin\DalXml.dll
-C:\Users\גרשון רחל\source\repos\stage0\bin\DalXml.pdb
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\DalXml.csproj.CopyComplete
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\DalXml.dll
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\refint\DalXml.dll
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\DalXml.pdb
-C:\Users\גרשון רחל\source\repos\DalXml\obj\Debug\ref\DalXml.dll
-=======
-C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.deps.json
-C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.dll
-C:\Users\פוקרוי רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.pdb
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CopyComplete
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.dll
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\refint\DalXml.dll
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.pdb
-C:\Users\פוקרוי רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\ref\DalXml.dll
->>>>>>> 90ce6b9034d763697015a188735e7183134ff6ad
-C:\Users\פוקרוי רחל\source\repos\stage0\bin\DalXml.deps.json
-C:\Users\פוקרוי רחל\source\repos\stage0\bin\DalXml.dll
-C:\Users\פוקרוי רחל\source\repos\stage0\bin\DalXml.pdb
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\DalXml.csproj.CopyComplete
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\DalXml.dll
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\refint\DalXml.dll
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\DalXml.pdb
-C:\Users\פוקרוי רחל\source\repos\DalXml\obj\Debug\ref\DalXml.dll
-C:\Users\acer\source\repos\-dotNet578_1715_0965\stage0\bin\DalXml.deps.json
-C:\Users\acer\source\repos\-dotNet578_1715_0965\stage0\bin\DalXml.dll
-C:\Users\acer\source\repos\-dotNet578_1715_0965\stage0\bin\DalXml.pdb
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\DalXml.csproj.CopyComplete
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\DalXml.dll
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\refint\DalXml.dll
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\DalXml.pdb
-C:\Users\acer\Source\Repos\-dotNet578_1715_0965\DalXml\obj\Debug\ref\DalXml.dll
-C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.deps.json
-C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.dll
-C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\DalXml.pdb
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CopyComplete
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.dll
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\refint\DalXml.dll
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.pdb
-C:\Users\גרשון רחל\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\ref\DalXml.dll
-C:\Users\גרשון רחל\source\repos\-dotNet5783_1715_0965\stage0\bin\ref\DalXml.dll
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.AssemblyReference.cache
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfoInputs.cache
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.AssemblyInfo.cs
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CoreCompileInputs.cache
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.csproj.CopyComplete
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.dll
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\refint\DalXml.dll
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\DalXml.pdb
+C:\Users\brach\Source\Repos\-dotNet5783_1715_0965\DalXml\obj\Debug\ref\DalXml.dll
