@@ -1,5 +1,5 @@
 # bookstore management system
-authors: Rachel Pokroy & Rachel Gershon
+Authors: Rachel Pokroy & Rachel Gershon
 
 Description
 
